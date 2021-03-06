@@ -5,16 +5,16 @@ using Makc2021.Layer1.Base.Data;
 namespace Makc2021.Layer1.Data.Base.Clients.SqlServer
 {
     /// <summary>
-    /// Данные. Основа. Клиенты. SQL Server. Контекст.
+    /// Клиент базы данных "Microsoft SQL Server". Контекст.
     /// </summary>
-    public class DataBaseClientSqlServerContext
+    public class SqlServerContext
     {
         #region Properties
 
         /// <summary>
         /// Поставщик.
         /// </summary>
-        public IDataBaseProvider Provider { get; private set; } = new DataBaseClientSqlServerProvider();
+        public IBaseProvider Provider { get; private set; } = new SqlServerProvider();
 
         #endregion Properties
     }

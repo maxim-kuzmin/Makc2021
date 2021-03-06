@@ -6,16 +6,16 @@ using Makc2021.Layer1.Base.Data.Trigger;
 namespace Makc2021.Layer1.Data.Base.Queries.Tree.Trigger
 {
     /// <summary>
-    /// Данные. Основа. Запросы. Дерево. Триггер. Построитель.
+    /// Основа. Запрос триггера дерева. Построитель.
     /// </summary>
-    public abstract class DataBaseQueryTreeTriggerBuilder : BaseDataQueryTreeBuilder
+    public abstract class BaseTreeTriggerQueryBuilder : BaseTreeQueryBuilder
     {
         #region Properties
 
         /// <summary>
         /// Действие.
         /// </summary>
-        public BaseDataTriggerAction Action { get; set; }
+        public BaseTriggerAction Action { get; set; }
 
         #endregion Properties
 
@@ -24,7 +24,7 @@ namespace Makc2021.Layer1.Data.Base.Queries.Tree.Trigger
         /// <summary>
         /// Конструктор.
         /// </summary>
-        public DataBaseQueryTreeTriggerBuilder()
+        public BaseTreeTriggerQueryBuilder()
         {
             Prefix = "TreeTrigger_";
         }

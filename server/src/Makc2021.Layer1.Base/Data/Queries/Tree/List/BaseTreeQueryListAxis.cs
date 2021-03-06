@@ -3,9 +3,9 @@
 namespace Makc2021.Layer1.Base.Data.Queries.Tree.List
 {
     /// <summary>
-    /// Основа. Данные. Запросы. Дерево. Список. Ось.
+    /// Основа. Запрос дерева. Ось списка.
     /// </summary>
-    public enum BaseDataQueryTreeListAxis
+    public enum BaseTreeQueryListAxis
     {
         /// <summary>
         /// Отсутствует.

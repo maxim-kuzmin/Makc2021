@@ -5,9 +5,9 @@ using System.Collections.Generic;
 namespace Makc2021.Layer1.Data.Base.Queries.Identity.Reseed
 {
     /// <summary>
-    /// Данные. Основа. Запросы. Идентичность. Перезаполнение. Ввод.
+    /// Основа. Запрос перезаполнения идентичности. Ввод.
     /// </summary>
-    public class DataBaseQueryIdentityReseedInput
+    public class BaseIdentityReseedQueryInput
     {
         #region Properties
 
@@ -33,7 +33,7 @@ namespace Makc2021.Layer1.Data.Base.Queries.Identity.Reseed
         /// <summary>
         /// Получить результирующий SQL.
         /// </summary>
-        public DataBaseQueryIdentityReseedInput(
+        public BaseIdentityReseedQueryInput(
             string table,
             string schema,
             params string[] columns

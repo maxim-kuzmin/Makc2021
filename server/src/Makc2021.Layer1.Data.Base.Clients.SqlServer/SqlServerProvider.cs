@@ -17,9 +17,9 @@ using System.Runtime.InteropServices;
 namespace Makc2021.Layer1.Data.Base.Clients.SqlServer
 {
     /// <summary>
-    /// Данные. Основа. Клиенты. SQL Server. Поставщик.
+    /// Клиент базы данных "Microsoft SQL Server". Поставщик.
     /// </summary>
-    public class DataBaseClientSqlServerProvider : IDataBaseProvider
+    public class SqlServerProvider : IBaseProvider
     {
         #region Public methods
 
@@ -89,21 +89,21 @@ namespace Makc2021.Layer1.Data.Base.Clients.SqlServer
         }
 
         /// <inheritdoc/>
-        public DataBaseQueryIdentityReseedBuilder CreateQueryIdentityReseedBuilder()
+        public BaseIdentityReseedQueryBuilder CreateQueryIdentityReseedBuilder()
         {
-            return new DataBaseClientSqlServerQueryIdentityReseedBuilder();
+            return new SqlServerIdentityReseedQueryBuilder();
         }
 
         /// <inheritdoc/>
-        public DataBaseQueryTreeCalculateBuilder CreateQueryTreeCalculateBuilder()
+        public BaseTreeCalculateQueryBuilder CreateQueryTreeCalculateBuilder()
         {
-            return new DataBaseClientSqlServerQueryTreeCalculateBuilder();
+            return new SqlServerTreeCalculateQueryBuilder();
         }
 
         /// <inheritdoc/>
-        public DataBaseQueryTreeTriggerBuilder CreateQueryTreeTriggerBuilder()
+        public BaseTreeTriggerQueryBuilder CreateQueryTreeTriggerBuilder()
         {
-            return new DataBaseClientSqlServerQueryTreeTriggerBuilder();
+            return new SqlServerTreeTriggerQueryBuilder();
         }
 
         /// <summary>

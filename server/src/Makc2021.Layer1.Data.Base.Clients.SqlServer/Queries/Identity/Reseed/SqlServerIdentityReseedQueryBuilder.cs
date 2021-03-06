@@ -6,9 +6,9 @@ using System.Text;
 namespace Makc2021.Layer1.Data.Base.Clients.SqlServer.Queries.Identity.Reseed
 {
     /// <summary>
-    /// Данные. Основа. Клиенты. SQL Server. Запросы. Идентичность. Перезаполнение. Построитель.
+    /// Клиент базы данных "Microsoft SQL Server". Запрос перезаполнения идентичности. Построитель.
     /// </summary>
-    public class DataBaseClientSqlServerQueryIdentityReseedBuilder : DataBaseQueryIdentityReseedBuilder
+    public class SqlServerIdentityReseedQueryBuilder : BaseIdentityReseedQueryBuilder
     {
         #region Public methods
 

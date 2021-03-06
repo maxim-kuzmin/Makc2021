@@ -8,10 +8,10 @@ using System.Text;
 
 namespace Makc2021.Layer1.Data.Base.Clients.SqlServer.Queries.Tree.Trigger
 {
-    /// <summary>
-    /// Данные. Основа. Клиенты. SQL Server. Запросы. Дерево. Триггер. Построитель.
-    /// </summary>
-    public class DataBaseClientSqlServerQueryTreeTriggerBuilder : DataBaseQueryTreeTriggerBuilder
+	/// <summary>
+	/// Клиент базы данных "Microsoft SQL Server". Запрос триггера дерева. Построитель.
+	/// </summary>
+	public class SqlServerTreeTriggerQueryBuilder : BaseTreeTriggerQueryBuilder
 	{
 		#region Public methods
 
@@ -73,13 +73,13 @@ namespace Makc2021.Layer1.Data.Base.Clients.SqlServer.Queries.Tree.Trigger
 
 			switch (Action)
 			{
-				case BaseDataTriggerAction.Delete:
+				case BaseTriggerAction.Delete:
 					variableValueForAction = valueForActionDelete;
 					break;
-				case BaseDataTriggerAction.Insert:
+				case BaseTriggerAction.Insert:
 					variableValueForAction = valueForActionInsert;
 					break;
-				case BaseDataTriggerAction.Update:
+				case BaseTriggerAction.Update:
 					variableValueForAction = valueForActionUpdate;
 					break;
 			}
@@ -323,7 +323,7 @@ from
 
 		private string CreateSqlForCalculate(string sqlForIdsSelectQuery)
 		{
-			return new DataBaseClientSqlServerQueryTreeCalculateBuilder
+			return new SqlServerTreeCalculateQueryBuilder
 			{
 				LinkTableFieldNameForId = LinkTableFieldNameForId,
 				LinkTableFieldNameForParentId = LinkTableFieldNameForParentId,

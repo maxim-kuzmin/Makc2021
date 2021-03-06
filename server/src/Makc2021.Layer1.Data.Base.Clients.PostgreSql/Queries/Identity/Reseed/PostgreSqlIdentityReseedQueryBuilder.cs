@@ -6,9 +6,9 @@ using System.Text;
 namespace Makc2021.Layer1.Data.Base.Clients.PostgreSql.Queries.Identity.Reseed
 {
     /// <summary>
-    /// Данные. Основа. Клиенты. PostgreSQL. Запросы. Идентичность. Перезаполнение. Построитель.
+    /// Клиент базы данных "PostgreSQL". Запрос перезаполнения идентичности. Построитель.
     /// </summary>
-    public class DataBaseClientPostgreSqlQueryIdentityReseedBuilder : DataBaseQueryIdentityReseedBuilder
+    public class PostgreSqlIdentityReseedQueryBuilder : BaseIdentityReseedQueryBuilder
 	{
         #region Public methods
 

@@ -8,10 +8,10 @@ using System.Text;
 
 namespace Makc2021.Layer1.Data.Base.Clients.PostgreSql.Queries.Tree.Trigger
 {
-    /// <summary>
-    /// Данные. Основа. Клиенты. PostgreSQL. Запросы. Дерево. Триггер. Построитель.
-    /// </summary>
-    public class DataBaseClientPostgreSqlQueryTreeTriggerBuilder : DataBaseQueryTreeTriggerBuilder
+	/// <summary>
+	/// Клиент базы данных "PostgreSQL". Запрос триггера дерева. Построитель.
+	/// </summary>
+	public class PostgreSqlTreeTriggerQueryBuilder : BaseTreeTriggerQueryBuilder
 	{
 		#region Public methods
 
@@ -73,13 +73,13 @@ namespace Makc2021.Layer1.Data.Base.Clients.PostgreSql.Queries.Tree.Trigger
 
 			switch (Action)
 			{
-				case BaseDataTriggerAction.Delete:
+				case BaseTriggerAction.Delete:
 					variableValueForAction = valueForActionDelete;
 					break;
-				case BaseDataTriggerAction.Insert:
+				case BaseTriggerAction.Insert:
 					variableValueForAction = valueForActionInsert;
 					break;
-				case BaseDataTriggerAction.Update:
+				case BaseTriggerAction.Update:
 					variableValueForAction = valueForActionUpdate;
 					break;
 			}
@@ -322,7 +322,7 @@ end $$;
 
 		private string CreateSqlForCalculate(string sqlForIdsSelectQuery)
 		{
-			return new DataBaseClientPostgreSqlQueryTreeCalculateBuilder
+			return new PostgreSqlTreeCalculateQueryBuilder
 			{
 				LinkTableFieldNameForId = LinkTableFieldNameForId,
 				LinkTableFieldNameForParentId = LinkTableFieldNameForParentId,

@@ -3,9 +3,9 @@
 namespace Makc2021.Layer1.Data.Base
 {
     /// <summary>
-    /// Данные. Основа. Значения по умолчанию.
+    /// Основа. Значения по умолчанию.
     /// </summary>
-    public class DataBaseDefaults
+    public class BaseDefaults
     {
         #region Properties
 

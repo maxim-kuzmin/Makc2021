@@ -6,10 +6,10 @@ using System.Text;
 
 namespace Makc2021.Layer1.Data.Base.Clients.PostgreSql.Queries.Tree.Calculate
 {
-    /// <summary>
-    /// Данные. Основа. Клиенты. PostgreSQL. Запросы. Дерево. Вычисление. Построитель.
-    /// </summary>
-    public class DataBaseClientPostgreSqlQueryTreeCalculateBuilder : DataBaseQueryTreeCalculateBuilder
+	/// <summary>
+	/// Клиент базы данных "PostgreSQL". Запрос вычисления дерева. Построитель.
+	/// </summary>
+	public class PostgreSqlTreeCalculateQueryBuilder : BaseTreeCalculateQueryBuilder
 	{
 		#region Public methods
 

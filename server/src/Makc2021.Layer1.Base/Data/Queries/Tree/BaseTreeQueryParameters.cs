@@ -6,9 +6,9 @@ using System.Data.Common;
 namespace  Makc2021.Layer1.Base.Data.Queries.Tree
 {
     /// <summary>
-    /// Основа. Данные. Запросы. Дерево. Параметры.
+    /// Основа. Запрос дерева. Параметры.
     /// </summary>
-    public class BaseDataQueryTreeParameters
+    public class BaseTreeQueryParameters
     {
         #region Properties
 

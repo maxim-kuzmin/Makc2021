@@ -3,9 +3,9 @@
 namespace  Makc2021.Layer1.Base.Data.Queries.Tree
 {
     /// <summary>
-    /// Основа. Данные. Запросы. Дерево. Построитель.
+    /// Основа. Запрос дерева. Построитель.
     /// </summary>
-    public abstract class BaseDataQueryTreeBuilder
+    public abstract class BaseTreeQueryBuilder
     {
         #region Properties
 
@@ -32,8 +32,8 @@ namespace  Makc2021.Layer1.Base.Data.Queries.Tree
         /// <summary>
         /// Параметры.
         /// </summary>
-        public BaseDataQueryTreeParameters Parameters { get; private set; }
-            = new BaseDataQueryTreeParameters();
+        public BaseTreeQueryParameters Parameters { get; private set; }
+            = new BaseTreeQueryParameters();
 
         /// <summary>
         /// Префикс.

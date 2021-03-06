@@ -9,9 +9,9 @@ using System.Data.Common;
 namespace Makc2021.Layer1.Data.Base
 {
     /// <summary>
-    /// Данные. Основа. Поставщик. Интерфейс.
+    /// Основа. Поставщик. Интерфейс.
     /// </summary>
-    public interface IDataBaseProvider
+    public interface IBaseProvider
     {
         /// <summary>
         /// Создать параметр команды базы данных.
@@ -41,18 +41,18 @@ namespace Makc2021.Layer1.Data.Base
         /// Создать построитель запроса перезаполнения идентичности.
         /// </summary>
         /// <returns>Построитель запроса.</returns>
-        DataBaseQueryIdentityReseedBuilder CreateQueryIdentityReseedBuilder();
+        BaseIdentityReseedQueryBuilder CreateQueryIdentityReseedBuilder();
 
         /// <summary>
         /// Создать построитель запроса вычисления дерева.
         /// </summary>
         /// <returns>Построитель запроса.</returns>
-        DataBaseQueryTreeCalculateBuilder CreateQueryTreeCalculateBuilder();
+        BaseTreeCalculateQueryBuilder CreateQueryTreeCalculateBuilder();
 
         /// <summary>
         /// Создать построитель запроса триггера дерева.
         /// </summary>
         /// <returns>Построитель запроса.</returns>
-        DataBaseQueryTreeTriggerBuilder CreateQueryTreeTriggerBuilder();
+        BaseTreeTriggerQueryBuilder CreateQueryTreeTriggerBuilder();
     }
 }

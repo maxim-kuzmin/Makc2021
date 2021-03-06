@@ -3,11 +3,11 @@
 namespace Makc2021.Layer1.Data.Base
 {
     /// <summary>
-    /// Данные. Основа. Настройка.
+    /// Основа. Настройка.
     /// </summary>
     /// <typeparam name="TDefaults">Тип значений по умолчанию.</typeparam>
-    public abstract class DataBaseSetting<TDefaults>
-        where TDefaults : DataBaseDefaults
+    public abstract class BaseSetting<TDefaults>
+        where TDefaults : BaseDefaults
     {
         #region Properties
 
@@ -38,7 +38,7 @@ namespace Makc2021.Layer1.Data.Base
         /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public DataBaseSetting(TDefaults defaults, string dbTable, string dbSchema = null)
+        public BaseSetting(TDefaults defaults, string dbTable, string dbSchema = null)
         {
             Defaults = defaults;
             DbTable = dbTable;

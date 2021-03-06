@@ -7,16 +7,16 @@ using System;
 namespace Makc2021.Layer1.Data.Base.Clients.SqlServer
 {
     /// <summary>
-    /// Данные. Основа. Клиенты. SQL Server. Модуль.
+    /// Клиент базы данных "Microsoft SQL Server". Модуль.
     /// </summary>
-    public class DataBaseClientSqlServerModule : IBaseCommonModule
+    public class SqlServerModule : IBaseCommonModule
     {
         #region Properties
 
         /// <summary>
         /// Контекст.
         /// </summary>
-        public DataBaseClientSqlServerContext Context { get; private set; } = new DataBaseClientSqlServerContext();
+        public SqlServerContext Context { get; private set; } = new SqlServerContext();
 
         #endregion Properties
 
@@ -35,9 +35,9 @@ namespace Makc2021.Layer1.Data.Base.Clients.SqlServer
 
         #region Private methods
 
-        private DataBaseClientSqlServerContext GetContext(IServiceProvider serviceProvider)
+        private SqlServerContext GetContext(IServiceProvider serviceProvider)
         {
-            return serviceProvider.GetService<DataBaseClientSqlServerContext>();
+            return serviceProvider.GetService<SqlServerContext>();
         }
 
         #endregion Private methods

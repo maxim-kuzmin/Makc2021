@@ -5,17 +5,17 @@ using System.Collections.Generic;
 namespace Makc2021.Layer1.Data.Base.Queries.Identity.Reseed
 {
     /// <summary>
-    /// Данные. Основа. Запросы. Идентичность. Перезаполнение. Построитель.
+    /// Основа. Запрос перезаполнения идентичности. Построитель.
     /// </summary>
-    public abstract class DataBaseQueryIdentityReseedBuilder
+    public abstract class BaseIdentityReseedQueryBuilder
     {
         #region Properties
 
         /// <summary>
         /// Таблицы.
         /// </summary>
-        public List<DataBaseQueryIdentityReseedInput> Inputs { get; private set; }
-            = new List<DataBaseQueryIdentityReseedInput>();
+        public List<BaseIdentityReseedQueryInput> Inputs { get; private set; }
+            = new List<BaseIdentityReseedQueryInput>();
 
         #endregion Properties
 

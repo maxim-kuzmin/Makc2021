@@ -6,10 +6,10 @@ using System.Text;
 
 namespace Makc2021.Layer1.Data.Base.Clients.SqlServer.Queries.Tree.Calculate
 {
-    /// <summary>
-    /// Данные. Основа. Клиенты. SQL Server. Запросы. Дерево. Вычисление. Построитель.
-    /// </summary>
-    public class DataBaseClientSqlServerQueryTreeCalculateBuilder : DataBaseQueryTreeCalculateBuilder
+	/// <summary>
+	/// Клиент базы данных "Microsoft SQL Server". Запрос вычисления дерева. Построитель.
+	/// </summary>
+	public class SqlServerTreeCalculateQueryBuilder : BaseTreeCalculateQueryBuilder
 	{
 		#region Public methods
 

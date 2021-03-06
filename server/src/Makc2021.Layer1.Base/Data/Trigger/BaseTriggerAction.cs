@@ -3,9 +3,9 @@
 namespace Makc2021.Layer1.Base.Data.Trigger
 {
     /// <summary>
-    ///  Основа. Данные. Триггер. Действие.
+    ///  Основа. Действие триггера.
     /// </summary>
-    public enum BaseDataTriggerAction
+    public enum BaseTriggerAction
     {
         /// <summary>
         /// Отсутствует.
