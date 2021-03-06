@@ -1,4 +1,6 @@
-﻿namespace Makc2021.Layer1.Base
+﻿//Author Maxim Kuzmin//makc//
+
+namespace Makc2021.Layer1.Base
 {
     /// <summary>
     /// Основа. Окружение.
