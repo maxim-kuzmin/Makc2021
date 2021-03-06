@@ -1,9 +1,9 @@
 ﻿namespace Makc2021.Layer1.Base
 {
     /// <summary>
-    /// Слой "Layer1". Основа. Окружение.
+    /// Основа. Окружение.
     /// </summary>
-    public class Layer1BaseEnvironment
+    public class BaseEnvironment
     {
         #region Properties
 
