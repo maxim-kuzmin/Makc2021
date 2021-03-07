@@ -1,13 +1,13 @@
 ﻿//Author Maxim Kuzmin//makc//
 
-using Makc2021.Layer2.Sources.Sample.Entities.DummyMain;
+using Makc2021.Layer2.Sources.Sample.Entities.DummyMainDummyManyToMany;
 
-namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyMain
+namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyMainDummyManyToMany
 {
     /// <summary>
-    /// Источник "Sample". Сущность "DummyMain". ORM "Entity Framework". Расширение.
+    /// Источник "Sample". Сущность "DummyMainDummyManyToMany". ORM "Entity Framework". Расширение.
     /// </summary>
-    public static class SampleDummyMainEntityEFExtension
+    public static class SampleDummyMainDummyManyToManyEntityEFExtension
     {
         #region Public methods
 
@@ -16,13 +16,13 @@ namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyMain
         /// </summary>
         /// <param name="source">Источник данных.</param>
         /// <returns>Объект Entity Framework, где хранятся данные сущности "DummyMain".</returns>
-        public static SampleDummyMainEntityEFObject CreateEntityEFObject(
-            this SampleDummyMainEntityObject source
+        public static SampleDummyMainDummyManyToManyEntityEFObject CreateEntityEFObject(
+            this SampleDummyMainDummyManyToManyEntityObject source
             )
         {
-            var result = new SampleDummyMainEntityEFObject();
+            var result = new SampleDummyMainDummyManyToManyEntityEFObject();
 
-            new SampleDummyMainEntityLoader(result).LoadDataFrom(source);
+            new SampleDummyMainDummyManyToManyEntityLoader(result).LoadDataFrom(source);
             
             return result;
         }
@@ -31,11 +31,11 @@ namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyMain
         /// Создать объект, где хранятся данные сущности "DummyMain".
         /// </summary>
         /// <returns>Объект, где хранятся данные сущности "DummyMain".</returns>
-        public static SampleDummyMainEntityObject CreateEntityObject(
-            this SampleDummyMainEntityEFObject source
+        public static SampleDummyMainDummyManyToManyEntityObject CreateEntityObject(
+            this SampleDummyMainDummyManyToManyEntityEFObject source
             )
         {
-            var loader = new SampleDummyMainEntityLoader();
+            var loader = new SampleDummyMainDummyManyToManyEntityLoader();
 
             loader.LoadDataFrom(source);
             
