@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyManyToMany
 {
     /// <summary>
-    /// Источник "Sample". Сущность "DummyManyToMany". ORM "Entity Framework". Объект.
+    /// Источник "Sample". Сущность "DummyManyToMany". ORM "Entity Framework". Схема.
     /// </summary>
     public class SampleDummyManyToManyEntityEFShema : SampleEFSchema<SampleDummyManyToManyEntityEFObject>
     {

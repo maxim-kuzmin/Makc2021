@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyMain
 {
     /// <summary>
-    /// Источник "Sample". Сущность "DummyMain". ORM "Entity Framework". Объект.
+    /// Источник "Sample". Сущность "DummyMain". ORM "Entity Framework". Схема.
     /// </summary>
     public class SampleDummyMainEntityEFShema : SampleEFSchema<SampleDummyMainEntityEFObject>
     {

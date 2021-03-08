@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyTreeLink
 {
     /// <summary>
-    /// Источник "Sample". Сущность "DummyTreeLink". ORM "Entity Framework". Объект.
+    /// Источник "Sample". Сущность "DummyTreeLink". ORM "Entity Framework". Схема.
     /// </summary>
     public class SampleDummyTreeLinkEntityEFShema : SampleEFSchema<SampleDummyTreeLinkEntityEFObject>
     {
