@@ -1,6 +1,6 @@
 ﻿//Author Maxim Kuzmin//makc//
 
-namespace Makc2021.Layer2.Common.Queries.Tree.List
+namespace Makc2021.Layer2.Queries.Tree.List
 {
     /// <summary>
     /// Запрос дерева. Ось списка.

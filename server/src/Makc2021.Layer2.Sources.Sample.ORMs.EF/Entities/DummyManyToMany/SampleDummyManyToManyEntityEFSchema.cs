@@ -3,17 +3,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyOneToMany
+namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyManyToMany
 {
     /// <summary>
-    /// Источник "Sample". Сущность "DummyOneToMany". ORM "Entity Framework". Схема.
+    /// Источник "Sample". Сущность "DummyManyToMany". ORM "Entity Framework". Схема.
     /// </summary>
-    public class SampleDummyOneToManyEntityEFShema : SampleEFSchema<SampleDummyOneToManyEntityEFObject>
+    public class SampleDummyManyToManyEntityEFSchema : SampleEFSchema<SampleDummyManyToManyEntityEFObject>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public SampleDummyOneToManyEntityEFShema(SampleSettings settings)
+        public SampleDummyManyToManyEntityEFSchema(SampleSettings settings)
             : base(settings)
         {
         }
@@ -23,9 +23,9 @@ namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyOneToMany
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override void Configure(EntityTypeBuilder<SampleDummyOneToManyEntityEFObject> builder)
+        public sealed override void Configure(EntityTypeBuilder<SampleDummyManyToManyEntityEFObject> builder)
         {
-            var setting = Settings.DummyOneToMany;
+            var setting = Settings.DummyManyToMany;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 
@@ -44,6 +44,6 @@ namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyOneToMany
             builder.HasIndex(x => x.Name).IsUnique().HasDatabaseName(setting.DbUniqueIndexForName);
         }
 
-        #endregion Public methods    
+        #endregion Public methods
     }
 }

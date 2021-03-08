@@ -8,12 +8,12 @@ namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.Role
     /// <summary>
     /// Источник "Sample". Сущность "Role". ORM "Entity Framework". Схема.
     /// </summary>
-    public class SampleRoleEntityEFShema : SampleEFSchema<SampleRoleEntityEFObject>
+    public class SampleRoleEntityEFSchema : SampleEFSchema<SampleRoleEntityEFObject>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public SampleRoleEntityEFShema(SampleSettings settings)
+        public SampleRoleEntityEFSchema(SampleSettings settings)
             : base(settings)
         {
         }

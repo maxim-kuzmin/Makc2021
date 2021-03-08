@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using System.Data.Common;
 
-namespace  Makc2021.Layer2.Common.Queries.Tree
+namespace Makc2021.Layer2.Queries.Tree
 {
     /// <summary>
     /// Запрос дерева. Параметры.

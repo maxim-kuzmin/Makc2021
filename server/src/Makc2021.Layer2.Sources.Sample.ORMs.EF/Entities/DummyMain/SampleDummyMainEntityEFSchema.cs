@@ -8,12 +8,12 @@ namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyMain
     /// <summary>
     /// Источник "Sample". Сущность "DummyMain". ORM "Entity Framework". Схема.
     /// </summary>
-    public class SampleDummyMainEntityEFShema : SampleEFSchema<SampleDummyMainEntityEFObject>
+    public class SampleDummyMainEntityEFSchema : SampleEFSchema<SampleDummyMainEntityEFObject>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public SampleDummyMainEntityEFShema(SampleSettings settings)
+        public SampleDummyMainEntityEFSchema(SampleSettings settings)
             : base(settings)
         {
         }

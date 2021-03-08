@@ -1,7 +1,5 @@
 ﻿//Author Maxim Kuzmin//makc//
 
-using  Makc2021.Layer2.Common.Queries.Tree;
-
 namespace Makc2021.Layer2.Queries.Tree.Calculate
 {
     /// <summary>

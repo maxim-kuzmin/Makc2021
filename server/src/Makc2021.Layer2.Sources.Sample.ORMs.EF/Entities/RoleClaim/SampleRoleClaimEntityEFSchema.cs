@@ -3,17 +3,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.UserClaim
+namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.RoleClaim
 {
     /// <summary>
-    /// Источник "Sample". Сущность "UserClaim". ORM "Entity Framework". Схема.
+    /// Источник "Sample". Сущность "RoleClaim". ORM "Entity Framework". Схема.
     /// </summary>
-    public class SampleUserClaimEntityEFShema : SampleEFSchema<SampleUserClaimEntityEFObject>
+    public class SampleRoleClaimEntityEFSchema : SampleEFSchema<SampleRoleClaimEntityEFObject>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public SampleUserClaimEntityEFShema(SampleSettings settings)
+        public SampleRoleClaimEntityEFSchema(SampleSettings settings)
             : base(settings)
         {
         }
@@ -23,9 +23,9 @@ namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.UserClaim
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override void Configure(EntityTypeBuilder<SampleUserClaimEntityEFObject> builder)
+        public sealed override void Configure(EntityTypeBuilder<SampleRoleClaimEntityEFObject> builder)
         {
-            var setting = Settings.UserClaim;
+            var setting = Settings.RoleClaim;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 
@@ -40,15 +40,15 @@ namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.UserClaim
             builder.Property(x => x.Id)
                 .HasColumnName(setting.DbColumnNameForId);
 
-            builder.Property(x => x.UserId)
-                .HasColumnName(setting.DbColumnNameForUserId);
+            builder.Property(x => x.RoleId)
+                .HasColumnName(setting.DbColumnNameForRoleId);
 
-            builder.HasIndex(x => x.UserId).HasDatabaseName(setting.DbIndexForUserId);
+            builder.HasIndex(x => x.RoleId).IsUnique().HasDatabaseName(setting.DbUniqueIndexForRoleId);
 
-            builder.HasOne(x => x.ObjectUser)
-                .WithMany(x => x.ObjectsUserClaim)
-                .HasForeignKey(x => x.UserId)
-                .HasConstraintName(setting.DbForeignKeyToUser);
+            builder.HasOne(x => x.ObjectRole)
+                .WithMany(x => x.ObjectsRoleClaim)
+                .HasForeignKey(x => x.RoleId)
+                .HasConstraintName(setting.DbForeignKeyToRole);
         }
 
         #endregion Public methods    

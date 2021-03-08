@@ -8,12 +8,12 @@ namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.User
     /// <summary>
     /// Источник "Sample". Сущность "User". ORM "Entity Framework". Схема.
     /// </summary>
-    public class SampleUserEntityEFShema : SampleEFSchema<SampleUserEntityEFObject>
+    public class SampleUserEntityEFSchema : SampleEFSchema<SampleUserEntityEFObject>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public SampleUserEntityEFShema(SampleSettings settings)
+        public SampleUserEntityEFSchema(SampleSettings settings)
             : base(settings)
         {
         }

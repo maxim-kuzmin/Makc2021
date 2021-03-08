@@ -8,12 +8,12 @@ namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.UserLogin
     /// <summary>
     /// Источник "Sample". Сущность "UserLogin". ORM "Entity Framework". Схема.
     /// </summary>
-    public class SampleUserLoginEntityEFShema : SampleEFSchema<SampleUserLoginEntityEFObject>
+    public class SampleUserLoginEntityEFSchema : SampleEFSchema<SampleUserLoginEntityEFObject>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public SampleUserLoginEntityEFShema(SampleSettings settings)
+        public SampleUserLoginEntityEFSchema(SampleSettings settings)
             : base(settings)
         {
         }

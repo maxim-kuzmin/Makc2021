@@ -8,12 +8,12 @@ namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.DummyTreeLink
     /// <summary>
     /// Источник "Sample". Сущность "DummyTreeLink". ORM "Entity Framework". Схема.
     /// </summary>
-    public class SampleDummyTreeLinkEntityEFShema : SampleEFSchema<SampleDummyTreeLinkEntityEFObject>
+    public class SampleDummyTreeLinkEntityEFSchema : SampleEFSchema<SampleDummyTreeLinkEntityEFObject>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public SampleDummyTreeLinkEntityEFShema(SampleSettings settings)
+        public SampleDummyTreeLinkEntityEFSchema(SampleSettings settings)
             : base(settings)
         {
         }

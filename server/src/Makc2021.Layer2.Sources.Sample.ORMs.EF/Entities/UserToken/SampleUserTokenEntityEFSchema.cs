@@ -8,12 +8,12 @@ namespace Makc2021.Layer2.Sources.Sample.ORMs.EF.Entities.UserToken
     /// <summary>
     /// Источник "Sample". Сущность "UserToken". ORM "Entity Framework". Схема.
     /// </summary>
-    public class SampleUserTokenEntityEFShema : SampleEFSchema<SampleUserTokenEntityEFObject>
+    public class SampleUserTokenEntityEFSchema : SampleEFSchema<SampleUserTokenEntityEFObject>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public SampleUserTokenEntityEFShema(SampleSettings settings)
+        public SampleUserTokenEntityEFSchema(SampleSettings settings)
             : base(settings)
         {
         }
