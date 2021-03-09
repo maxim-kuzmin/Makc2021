@@ -32,10 +32,14 @@ namespace Makc2021.Layer1.Config
 
         #region Public methods
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Загрузить.
+        /// </summary>
         public abstract void Load();
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Сохранить.
+        /// </summary>
         public abstract void Save();
 
         #endregion Public methods

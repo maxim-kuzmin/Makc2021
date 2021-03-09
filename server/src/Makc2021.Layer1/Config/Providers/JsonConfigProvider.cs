@@ -29,15 +29,11 @@ namespace Makc2021.Layer1.Config.Providers
         /// <param name="settings">Настройки.</param>
         /// <param name="filePath">Путь к файлу.</param>
         /// <param name="environment">Окружение.</param>
-        public JsonConfigProvider(
-            TSettings settings,
-            string filePath,
-            Environment environment
-            )
+        public JsonConfigProvider(TSettings settings, string filePath, Environment environment)
             : base(settings)
         {
-            Environment = environment;
             FilePath = filePath;
+            Environment = environment;            
         }
 
         #endregion Constructors
