@@ -9,9 +9,9 @@ namespace Makc2021.Layer0.WebAPI.App
     using Makc2021.Layer1;
 
     /// <summary>
-    /// Приложение. Сервис.
+    /// Приложение. Конфигуратор.
     /// </summary>
-    public class AppService
+    public class AppConfigurator
     {
         #region Properties
 
