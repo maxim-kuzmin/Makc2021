@@ -13,8 +13,8 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.DummyOneToMany
         #region Constructors
 
         /// <inheritdoc/>
-        public DummyOneToManyEntityEFSchema(EntitiesSettings settings)
-            : base(settings)
+        public DummyOneToManyEntityEFSchema(EntitiesSettings entitiesSettings)
+            : base(entitiesSettings)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.DummyOneToMany
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<DummyOneToManyEntityEFObject> builder)
         {
-            var setting = Settings.DummyOneToMany;
+            var setting = EntitiesSettings.DummyOneToMany;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

@@ -13,8 +13,8 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.RoleClaim
         #region Constructors
 
         /// <inheritdoc/>
-        public RoleClaimEntityEFSchema(EntitiesSettings settings)
-            : base(settings)
+        public RoleClaimEntityEFSchema(EntitiesSettings entitiesSettings)
+            : base(entitiesSettings)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.RoleClaim
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<RoleClaimEntityEFObject> builder)
         {
-            var setting = Settings.RoleClaim;
+            var setting = EntitiesSettings.RoleClaim;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

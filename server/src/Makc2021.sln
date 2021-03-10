@@ -39,6 +39,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer3.Sample.ORMs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer", "Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer\Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer.csproj", "{F172DEB3-DC71-440D-B9B1-ACF2638083A9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C443ADA-A9D6-44C8-8222-5FDF3E6F4FE3}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

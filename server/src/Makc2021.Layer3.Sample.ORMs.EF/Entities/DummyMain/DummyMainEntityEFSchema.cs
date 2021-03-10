@@ -13,8 +13,8 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.DummyMain
         #region Constructors
 
         /// <inheritdoc/>
-        public DummyMainEntityEFSchema(EntitiesSettings settings)
-            : base(settings)
+        public DummyMainEntityEFSchema(EntitiesSettings entitiesSettings)
+            : base(entitiesSettings)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.DummyMain
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<DummyMainEntityEFObject> builder)
         {
-            var setting = Settings.DummyMain;
+            var setting = EntitiesSettings.DummyMain;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

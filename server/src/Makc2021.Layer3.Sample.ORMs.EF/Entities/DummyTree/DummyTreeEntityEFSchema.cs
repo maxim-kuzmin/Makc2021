@@ -13,8 +13,8 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.DummyTree
         #region Constructors
 
         /// <inheritdoc/>
-        public DummyTreeEntityEFSchema(EntitiesSettings settings)
-            : base(settings)
+        public DummyTreeEntityEFSchema(EntitiesSettings entitiesSettings)
+            : base(entitiesSettings)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.DummyTree
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<DummyTreeEntityEFObject> builder)
         {
-            var setting = Settings.DummyTree;
+            var setting = EntitiesSettings.DummyTree;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

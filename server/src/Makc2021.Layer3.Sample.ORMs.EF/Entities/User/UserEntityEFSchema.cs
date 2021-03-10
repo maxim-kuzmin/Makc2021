@@ -13,8 +13,8 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.User
         #region Constructors
 
         /// <inheritdoc/>
-        public UserEntityEFSchema(EntitiesSettings settings)
-            : base(settings)
+        public UserEntityEFSchema(EntitiesSettings entitiesSettings)
+            : base(entitiesSettings)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.User
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<UserEntityEFObject> builder)
         {
-            var setting = Settings.User;
+            var setting = EntitiesSettings.User;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

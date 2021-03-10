@@ -23,7 +23,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Db
 
         #endregion Properties
 
-        #region Public methods
+        #region Methods
 
         /// <summary>
         /// Создать контекст базы данных.
@@ -31,6 +31,6 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Db
         /// <returns>Контекст базы данных.</returns>
         EFDbContext CreateDbContext();
 
-        #endregion Public methods
+        #endregion Methods
     }
 }

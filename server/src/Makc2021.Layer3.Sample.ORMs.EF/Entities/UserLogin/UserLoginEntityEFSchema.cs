@@ -13,8 +13,8 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.UserLogin
         #region Constructors
 
         /// <inheritdoc/>
-        public UserLoginEntityEFSchema(EntitiesSettings settings)
-            : base(settings)
+        public UserLoginEntityEFSchema(EntitiesSettings entitiesSettings)
+            : base(entitiesSettings)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.UserLogin
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<UserLoginEntityEFObject> builder)
         {
-            var setting = Settings.UserLogin;
+            var setting = EntitiesSettings.UserLogin;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

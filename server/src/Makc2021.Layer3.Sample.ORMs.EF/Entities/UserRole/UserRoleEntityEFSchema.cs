@@ -13,8 +13,8 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.UserRole
         #region Constructors
 
         /// <inheritdoc/>
-        public UserRoleEntityEFSchema(EntitiesSettings settings)
-            : base(settings)
+        public UserRoleEntityEFSchema(EntitiesSettings entitiesSettings)
+            : base(entitiesSettings)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.UserRole
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<UserRoleEntityEFObject> builder)
         {
-            var setting = Settings.UserRole;
+            var setting = EntitiesSettings.UserRole;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

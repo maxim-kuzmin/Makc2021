@@ -14,13 +14,13 @@ namespace Makc2021.Layer1.Config
         #region Public methods
 
         /// <summary>
-        /// Добавить из JSON-файла.
+        /// Добавить конфигурацию из JSON-файла.
         /// </summary>
         /// <param name="builder">Построитель конфигурации.</param>
         /// <param name="absolutePathToFileWithoutExtension">Абсолютный путь к файлу без расширения.</param>
         /// <param name="environmentName">Имя окружения.</param>
         /// <returns>Построитель конфигурации.</returns>
-        public static IConfigurationBuilder AddFromJsonFile(
+        public static IConfigurationBuilder AddConfigFromJsonFile(
             this IConfigurationBuilder builder,
             string absolutePathToFileWithoutExtension,
             string environmentName = null

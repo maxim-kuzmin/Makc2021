@@ -13,8 +13,8 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.UserToken
         #region Constructors
 
         /// <inheritdoc/>
-        public UserTokenEntityEFSchema(EntitiesSettings settings)
-            : base(settings)
+        public UserTokenEntityEFSchema(EntitiesSettings entitiesSettings)
+            : base(entitiesSettings)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.UserToken
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<UserTokenEntityEFObject> builder)
         {
-            var setting = Settings.UserToken;
+            var setting = EntitiesSettings.UserToken;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

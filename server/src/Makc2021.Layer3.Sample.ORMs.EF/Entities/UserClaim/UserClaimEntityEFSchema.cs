@@ -13,8 +13,8 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.UserClaim
         #region Constructors
 
         /// <inheritdoc/>
-        public UserClaimEntityEFSchema(EntitiesSettings settings)
-            : base(settings)
+        public UserClaimEntityEFSchema(EntitiesSettings entitiesSettings)
+            : base(entitiesSettings)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.UserClaim
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<UserClaimEntityEFObject> builder)
         {
-            var setting = Settings.UserClaim;
+            var setting = EntitiesSettings.UserClaim;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

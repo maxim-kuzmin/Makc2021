@@ -8,17 +8,17 @@ namespace Makc2021.Layer2.ORMs.EF
     /// <summary>
     /// ORM "Entity Framework". Схема.
     /// </summary>
-    /// <typeparam name="TEntity">Тип сущности.</typeparam>
-    /// <typeparam name="TSettings">Тип настроек.</typeparam>
-    public abstract class EFSchema<TEntity, TSettings> : IEntityTypeConfiguration<TEntity>
-        where TEntity : class
+    /// <typeparam name="TEntityObject">Тип объекта сущности.</typeparam>
+    /// <typeparam name="TEntitiesSettings">Тип настроек сущностей.</typeparam>
+    public abstract class EFSchema<TEntityObject, TEntitiesSettings> : IEntityTypeConfiguration<TEntityObject>
+        where TEntityObject : class
     {
         #region Properties
 
         /// <summary>
-        /// Настройки.
+        /// Настройки сущностей.
         /// </summary>
-        protected TSettings Settings { get; private set; }
+        protected TEntitiesSettings EntitiesSettings { get; private set; }
 
         #endregion Properties
 
@@ -27,10 +27,10 @@ namespace Makc2021.Layer2.ORMs.EF
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="settings">Настройки.</param>
-        public EFSchema(TSettings settings)
+        /// <param name="entitiesSettings">Настройки сущностей.</param>
+        public EFSchema(TEntitiesSettings entitiesSettings)
         {
-            Settings = settings;
+            EntitiesSettings = entitiesSettings;
         }
 
         #endregion Constructors
@@ -38,7 +38,7 @@ namespace Makc2021.Layer2.ORMs.EF
         #region Public methods
 
         /// <inheritdoc/>
-        public abstract void Configure(EntityTypeBuilder<TEntity> builder);
+        public abstract void Configure(EntityTypeBuilder<TEntityObject> builder);
 
         #endregion Public methods
     }

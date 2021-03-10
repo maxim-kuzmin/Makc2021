@@ -45,16 +45,16 @@ namespace Makc2021.Layer1.Config.Providers
         {
             var configurationBuilder = new ConfigurationBuilder();
 
-            var isAbsolutePath = FilePath.StartsWith(
+            bool isAbsolutePath = FilePath.StartsWith(
                 Environment.BasePath,
                 StringComparison.InvariantCultureIgnoreCase
                 );
 
-            var absolutePathToFile = isAbsolutePath
+            string absolutePathToFile = isAbsolutePath
                 ? FilePath
                 : Path.Combine(Environment.BasePath, FilePath);
 
-            var isPathToFileWithExtension = FilePath.EndsWith(
+            bool isPathToFileWithExtension = FilePath.EndsWith(
                 ".json",
                 StringComparison.InvariantCultureIgnoreCase
                 );
@@ -65,23 +65,18 @@ namespace Makc2021.Layer1.Config.Providers
             }
             else
             {
-                configurationBuilder.AddFromJsonFile(
-                    absolutePathToFile,
-                    Environment.Name
-                    );
+                configurationBuilder.AddConfigFromJsonFile(absolutePathToFile, Environment.Name);
             }
 
-            var configuration = configurationBuilder.AddEnvironmentVariables().Build();
-
-            configuration.Bind(Settings);
+            configurationBuilder.AddEnvironmentVariables().Build().Bind(Settings);
         }
 
         /// <inheritdoc/>
         public sealed override void Save()
         {
-            var contents = Settings.SerializeToJson(JsonSerialization.OptionsForConfig);
+            string json = Settings.SerializeToJson(JsonSerialization.OptionsForConfig);
 
-            File.WriteAllText(FilePath, contents);
+            File.WriteAllText(FilePath, json);
         }
 
         #endregion Public methods

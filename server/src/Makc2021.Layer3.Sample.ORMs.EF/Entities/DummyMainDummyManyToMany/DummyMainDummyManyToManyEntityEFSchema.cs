@@ -13,8 +13,8 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.DummyMainDummyManyToMany
         #region Constructors
 
         /// <inheritdoc/>
-        public DummyMainDummyManyToManyEntityEFSchema(EntitiesSettings settings)
-            : base(settings)
+        public DummyMainDummyManyToManyEntityEFSchema(EntitiesSettings entitiesSettings)
+            : base(entitiesSettings)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.DummyMainDummyManyToMany
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<DummyMainDummyManyToManyEntityEFObject> builder)
         {
-            var setting = Settings.DummyMainDummyManyToMany;
+            var setting = EntitiesSettings.DummyMainDummyManyToMany;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

@@ -68,6 +68,17 @@ namespace Makc2021.Layer1.Serializations
         }
 
         /// <summary>
+        /// Сериализовать в JSON.
+        /// </summary>
+        /// <param name="value">Значение.</param>
+        /// <param name="options">Опции.</param>
+        /// <returns>Строка в формате JSON.</returns>
+        public static string SerializeToJson(this object value, JsonSerializerOptions options)
+        {
+            return JsonSerializer.Serialize(value, options);
+        }
+
+        /// <summary>
         /// Ядро. Основа. Расширение. JSON. Попробовать десериализовать.
         /// </summary>
         /// <typeparam name="T">Тип значения.</typeparam>
@@ -83,7 +94,7 @@ namespace Makc2021.Layer1.Serializations
             T defaultValue = default
             )
         {
-            var result = true;
+            bool result = true;
 
             value = defaultValue;
 
@@ -104,17 +115,6 @@ namespace Makc2021.Layer1.Serializations
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// Сериализовать в JSON.
-        /// </summary>
-        /// <param name="obj">Сериализуемый объект.</param>
-        /// <param name="options">Опции.</param>
-        /// <returns>Строка в формате JSON.</returns>
-        public static string SerializeToJson(this object obj, JsonSerializerOptions options)
-        {
-            return JsonSerializer.Serialize(obj, options);
         }
 
         /// <summary>

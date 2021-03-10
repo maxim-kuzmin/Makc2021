@@ -42,13 +42,13 @@ namespace Makc2021.Layer2
         /// <summary>
         /// Гарантировать ненулевое значение.
         /// </summary>
-        /// <param name="props">Загружаемые свойства.</param>
+        /// <param name="loadableProperties">Загружаемые свойства.</param>
         /// <returns>Ненулевое значение.</returns>
-        protected HashSet<string> EnsureNotNullValue(HashSet<string> props)
+        protected HashSet<string> EnsureNotNullValue(HashSet<string> loadableProperties)
         {
-            if (props != null)
+            if (loadableProperties != null)
             {
-                return props;
+                return loadableProperties;
             }
             else
             {
