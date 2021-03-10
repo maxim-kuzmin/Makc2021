@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
     /// <summary>
     /// Сущность "DummyTreeLink". Загрузчик.
     /// </summary>
-    public class DummyTreeLinkEntityLoader : Loader<DummyTreeLinkEntityObject>
+    public class DummyTreeLinkEntityLoader : EntityLoader<DummyTreeLinkEntityObject>
     {
         #region Constructors
 
@@ -33,14 +33,14 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Data.Id)))
+            if (props.Contains(nameof(Entity.Id)))
             {
-                Data.Id = source.Id;
+                Entity.Id = source.Id;
             }
 
-            if (props.Contains(nameof(Data.ParentId)))
+            if (props.Contains(nameof(Entity.ParentId)))
             {
-                Data.ParentId = source.ParentId;
+                Entity.ParentId = source.ParentId;
             }
         }
 
@@ -49,12 +49,12 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableDataProperties()
+        protected override HashSet<string> CreateLoadableEntityProperties()
         {
             return new HashSet<string>
             {
-                nameof(Data.Id),
-                nameof(Data.ParentId)
+                nameof(Entity.Id),
+                nameof(Entity.ParentId)
             };
         }
 

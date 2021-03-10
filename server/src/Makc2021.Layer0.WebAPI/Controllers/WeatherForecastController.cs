@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Makc2021.Layer3.Sample.ORMs.EF.Config;
+using Makc2021.Layer3.Sample.ORMs.EF.Db;
+using Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer.Config;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -17,9 +20,22 @@ namespace Makc2021.Layer0.WebAPI.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        private IEFConfigSettings ConfigSettingsOfEF { get; }
+        private IEFSqlServerConfigSettings ConfigSettingsOfEFSqlServer { get; }        
+        private IEFDbFactory DbFactory { get; }
+
+        public WeatherForecastController(
+            ILogger<WeatherForecastController> logger,
+            IEFConfigSettings configSettingsOfEF,
+            IEFSqlServerConfigSettings configSettingsOfEFSqlServer,
+            IEFDbFactory dbFactory
+            )
         {
             _logger = logger;
+
+            ConfigSettingsOfEF = configSettingsOfEF;
+            ConfigSettingsOfEFSqlServer = configSettingsOfEFSqlServer;
+            DbFactory = dbFactory;
         }
 
         [HttpGet]
@@ -33,6 +49,20 @@ namespace Makc2021.Layer0.WebAPI.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpGet, Route("test")]
+        public object Test()
+        {
+            using var dbContext = DbFactory.CreateDbContext();
+
+            return new
+            {
+                ConfigSettingsOfEF,
+                ConfigSettingsOfEFSqlServer,
+                DbFactory.Settings,
+                dbContext.Database.ProviderName
+            };
         }
     }
 }

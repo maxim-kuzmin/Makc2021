@@ -13,7 +13,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.User
         #region Constructors
 
         /// <inheritdoc/>
-        public UserEntityEFSchema(Settings settings)
+        public UserEntityEFSchema(EntitiesSettings settings)
             : base(settings)
         {
         }

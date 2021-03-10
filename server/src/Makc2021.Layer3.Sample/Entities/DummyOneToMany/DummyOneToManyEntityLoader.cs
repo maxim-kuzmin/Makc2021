@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.DummyOneToMany
     /// <summary>
     /// Сущность "DummyOneToMany". Загрузчик.
     /// </summary>
-    public class DummyOneToManyEntityLoader : Loader<DummyOneToManyEntityObject>
+    public class DummyOneToManyEntityLoader : EntityLoader<DummyOneToManyEntityObject>
     {
         #region Constructors
 
@@ -33,14 +33,14 @@ namespace Makc2021.Layer3.Sample.Entities.DummyOneToMany
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Data.Id)))
+            if (props.Contains(nameof(Entity.Id)))
             {
-                Data.Id = source.Id;
+                Entity.Id = source.Id;
             }
 
-            if (props.Contains(nameof(Data.Name)))
+            if (props.Contains(nameof(Entity.Name)))
             {
-                Data.Name = source.Name;
+                Entity.Name = source.Name;
             }
         }
 
@@ -49,12 +49,12 @@ namespace Makc2021.Layer3.Sample.Entities.DummyOneToMany
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableDataProperties()
+        protected override HashSet<string> CreateLoadableEntityProperties()
         {
             return new HashSet<string>
             {
-                nameof(Data.Id),
-                nameof(Data.Name)
+                nameof(Entity.Id),
+                nameof(Entity.Name)
             };
         }
 

@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMain
     /// <summary>
     /// Сущность "DummyMain". Настройка.
     /// </summary>
-    public class DummyMainEntitySetting : Setting
+    public class DummyMainEntitySetting : EntitySetting
     {
         #region Properties
 
@@ -140,8 +140,8 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMain
             )
             : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = defaults.ColumnNameForId;
-            DbColumnForName = defaults.ColumnNameForName;
+            DbColumnForId = defaults.DbColumnForId;
+            DbColumnForName = defaults.DbColumnForName;
 
             DbColumnForDummyOneToManyEntityId = CreateNameOfColumn(
                 settingOfDummyOneToManyEntity.DbTable,

@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.Role
     /// <summary>
     /// Сущность "Role". Загрузчик.
     /// </summary>
-    public class RoleEntityLoader : Loader<RoleEntityObject>
+    public class RoleEntityLoader : EntityLoader<RoleEntityObject>
     {
         #region Constructors
 
@@ -33,24 +33,24 @@ namespace Makc2021.Layer3.Sample.Entities.Role
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Data.ConcurrencyStamp)))
+            if (props.Contains(nameof(Entity.ConcurrencyStamp)))
             {
-                Data.ConcurrencyStamp = source.ConcurrencyStamp;
+                Entity.ConcurrencyStamp = source.ConcurrencyStamp;
             }
 
-            if (props.Contains(nameof(Data.Id)))
+            if (props.Contains(nameof(Entity.Id)))
             {
-                Data.Id = source.Id;
+                Entity.Id = source.Id;
             }
 
-            if (props.Contains(nameof(Data.Name)))
+            if (props.Contains(nameof(Entity.Name)))
             {
-                Data.Name = source.Name;
+                Entity.Name = source.Name;
             }
 
-            if (props.Contains(nameof(Data.NormalizedName)))
+            if (props.Contains(nameof(Entity.NormalizedName)))
             {
-                Data.NormalizedName = source.NormalizedName;
+                Entity.NormalizedName = source.NormalizedName;
             }
         }
 
@@ -59,14 +59,14 @@ namespace Makc2021.Layer3.Sample.Entities.Role
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableDataProperties()
+        protected override HashSet<string> CreateLoadableEntityProperties()
         {
             return new HashSet<string>
             {
-                nameof(Data.ConcurrencyStamp),
-                nameof(Data.Id),
-                nameof(Data.Name),
-                nameof(Data.NormalizedName)
+                nameof(Entity.ConcurrencyStamp),
+                nameof(Entity.Id),
+                nameof(Entity.Name),
+                nameof(Entity.NormalizedName)
             };
         }
 

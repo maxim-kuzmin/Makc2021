@@ -3,7 +3,7 @@
 namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer.Config
 {
     /// <summary>
-    /// ORM "Entity Framework". База данных "Microsoft SQL Server". Настройки. Интерфейс.
+    /// ORM "Entity Framework". База данных "Microsoft SQL Server". Конфигурация. Настройки. Интерфейс.
     /// </summary>
     public interface IEFSqlServerConfigSettings
     {

@@ -5,7 +5,7 @@ namespace Makc2021.Layer3.Sample.Entities.User
     /// <summary>
     /// Сущность "User". Настройка.
     /// </summary>
-    public class UserEntitySetting : Setting
+    public class UserEntitySetting : EntitySetting
     {
         #region Properties
 
@@ -125,7 +125,7 @@ namespace Makc2021.Layer3.Sample.Entities.User
             )
             : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = defaults.ColumnNameForId;
+            DbColumnForId = defaults.DbColumnForId;
 
             DbColumnForNormalizedEmail = dbColumnNameForNormalizedEmail
                 ?? nameof(UserEntityObject.NormalizedEmail);

@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.UserToken
     /// <summary>
     /// Сущность "UserToken". Настройка.
     /// </summary>
-    public class UserTokenEntitySetting : Setting
+    public class UserTokenEntitySetting : EntitySetting
     {
         #region Properties
 
@@ -60,7 +60,7 @@ namespace Makc2021.Layer3.Sample.Entities.UserToken
             )
             : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForName = defaults.ColumnNameForName;
+            DbColumnForName = defaults.DbColumnForName;
 
             DbForeignKeyToUserEntity = CreateNameOfForeignKey(DbTable, settingOfUserEntity.DbTable);
 

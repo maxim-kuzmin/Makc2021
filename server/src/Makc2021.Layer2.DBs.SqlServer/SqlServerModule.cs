@@ -9,14 +9,14 @@ namespace Makc2021.Layer2.DBs.SqlServer
     /// <summary>
     /// База данных "Microsoft SQL Server". Модуль.
     /// </summary>
-    public class SqlServerModule : IModule
+    public class SqlServerModule 
     {
         #region Properties
 
         /// <summary>
         /// Контекст.
         /// </summary>
-        public SqlServerContext Context { get; private set; } = new SqlServerContext();
+        public SqlServerContext Context { get; private set; } = new();
 
         #endregion Properties
 

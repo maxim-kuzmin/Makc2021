@@ -8,7 +8,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Db
     /// <summary>
     /// ORM "Entity Framework". Фабрика базы данных.
     /// </summary>
-    public abstract class EFDbFactory
+    public abstract class EFDbFactory : IEFDbFactory
     {
         #region Properties
 
@@ -22,15 +22,11 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Db
         /// </summary>
         protected Environment Environment { get; private set; }
 
-        /// <summary>
-        /// Опции.
-        /// </summary>
+        /// <inheritdoc/>
         public DbContextOptions<EFDbContext> Options { get; private set; }
 
-        /// <summary>
-        /// Настройки.
-        /// </summary>
-        public Settings Settings { get; private set; }
+        /// <inheritdoc/>
+        public EntitiesSettings Settings { get; private set; }
 
         #endregion Properties
 
@@ -50,11 +46,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Db
         /// <param name="connectionString">Строка подключения.</param>
         /// <param name="settings">Настройки.</param>
         /// <param name="environment">Окружение.</param>
-        public EFDbFactory(
-            string connectionString,
-            Settings settings,
-            Environment environment
-            )
+        public EFDbFactory(string connectionString, EntitiesSettings settings, Environment environment)
         {
             Initialize(connectionString, settings, environment);
         }
@@ -63,10 +55,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Db
 
         #region Public methods
 
-        /// <summary>
-        /// Создать контекст базы данных.
-        /// </summary>
-        /// <returns>Контекст базы данных.</returns>
+        /// <inheritdoc/>
         public abstract EFDbContext CreateDbContext();
 
         #endregion Public methods
@@ -83,7 +72,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Db
         /// Создать настройки.
         /// </summary>
         /// <returns>Настройки.</returns>
-        protected abstract Settings CreateSettings();
+        protected abstract EntitiesSettings CreateSettings();
 
         /// <summary>
         /// Построить опции контекста базы данных.
@@ -104,17 +93,9 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Db
             return builder.Options;
         }
 
-        private void Initialize(
-            string connectionString,
-            Settings settings,
-            Environment environment
-            )
+        private void Initialize(string connectionString, EntitiesSettings settings, Environment environment)
         {
-            Environment = environment ?? new Environment
-            {
-                BasePath = System.AppContext.BaseDirectory
-            };
-
+            Environment = environment ?? new();
             Settings = settings ?? CreateSettings();
             ConnectionString = connectionString ?? CreateConnectionString();
             Options = CreateDbContextOptions();

@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.UserClaim
     /// <summary>
     /// Сущность "UserClaim". Настройка.
     /// </summary>
-    public class UserClaimEntitySetting : Setting
+    public class UserClaimEntitySetting : EntitySetting
     {
         #region Properties
 
@@ -67,7 +67,7 @@ namespace Makc2021.Layer3.Sample.Entities.UserClaim
             )
             : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = defaults.ColumnNameForId;
+            DbColumnForId = defaults.DbColumnForId;
             DbColumnForUserEntityId = dbColumnNameForUserId ?? nameof(UserClaimEntityObject.UserId);
 
             DbForeignKeyToUserEntity = CreateNameOfForeignKey(DbTable, settingOfUserEntity.DbTable);

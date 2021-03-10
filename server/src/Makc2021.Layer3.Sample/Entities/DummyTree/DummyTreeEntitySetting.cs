@@ -5,7 +5,7 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTree
     /// <summary>
     /// Сущность "DummyTree". Настройка.
     /// </summary>
-    public class DummyTreeEntitySetting : Setting
+    public class DummyTreeEntitySetting : EntitySetting
     {
         #region Properties
 
@@ -116,15 +116,15 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTree
             )
             : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = defaults.ColumnNameForId;
-            DbColumnForName = defaults.ColumnNameForName;
-            DbColumnForDummyTreeEntityParentId = defaults.ColumnNameForParentId;
-            DbColumnForTreeChildCount = defaults.ColumnNameForTreeChildCount;
-            DbColumnForTreeDescendantCount = defaults.ColumnNameForTreeDescendantCount;
-            DbColumnForTreeLevel = defaults.ColumnNameForTreeLevel;
-            DbColumnForTreePath = defaults.ColumnNameForTreePath;
-            DbColumnForTreePosition = defaults.ColumnNameForTreePosition;
-            DbColumnForTreeSort = defaults.ColumnNameForTreeSort;
+            DbColumnForId = defaults.DbColumnForId;
+            DbColumnForName = defaults.DbColumnForName;
+            DbColumnForDummyTreeEntityParentId = defaults.DbColumnForParentId;
+            DbColumnForTreeChildCount = defaults.DbColumnForTreeChildCount;
+            DbColumnForTreeDescendantCount = defaults.DbColumnForTreeDescendantCount;
+            DbColumnForTreeLevel = defaults.DbColumnForTreeLevel;
+            DbColumnForTreePath = defaults.DbColumnForTreePath;
+            DbColumnForTreePosition = defaults.DbColumnForTreePosition;
+            DbColumnForTreeSort = defaults.DbColumnForTreeSort;
 
             DbForeignKeyToDummyTreeEntityParent = CreateNameOfForeignKey(DbTable, DbTable, DbColumnForDummyTreeEntityParentId);
 

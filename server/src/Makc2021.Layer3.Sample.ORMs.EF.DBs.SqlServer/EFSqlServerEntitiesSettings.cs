@@ -20,12 +20,12 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer
     /// <summary>
     /// ORM "Entity Framework". База данных "Microsoft SQL Server". Настройки.
     /// </summary>
-    public sealed class EFSqlServerSettings : Settings
+    public sealed class EFSqlServerEntitiesSettings : EntitiesSettings
     {
         #region Fields
 
-        private static readonly Lazy<EFSqlServerSettings> _lazy =
-            new Lazy<EFSqlServerSettings>(() => new EFSqlServerSettings());
+        private static readonly Lazy<EFSqlServerEntitiesSettings> _lazy =
+            new Lazy<EFSqlServerEntitiesSettings>(() => new EFSqlServerEntitiesSettings());
 
         #endregion Fields
 
@@ -34,7 +34,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer
         /// <summary>
         /// Экземпляр.
         /// </summary>
-        public static Settings Instance
+        public static EntitiesSettings Instance
         {
             get
             {
@@ -46,20 +46,20 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer
 
         #region Constructors
 
-        private EFSqlServerSettings()
+        private EFSqlServerEntitiesSettings()
         {
             var defaults = new Defaults
             {
-                ColumnNameForId = "Id",
-                ColumnNameForName = "Name",
-                ColumnNameForParentId = "ParentId",
-                ColumnNameForTreeChildCount = "TreeChildCount",
-                ColumnNameForTreeDescendantCount = "TreeDescendantCount",
-                ColumnNameForTreeLevel = "TreeLevel",
-                ColumnNameForTreePath = "TreePath",
-                ColumnNameForTreePosition = "TreePosition",
-                ColumnNameForTreeSort = "TreeSort",
-                ColumnNamePartsSeparator = "",
+                DbColumnForId = "Id",
+                DbColumnForName = "Name",
+                DbColumnForParentId = "ParentId",
+                DbColumnForTreeChildCount = "TreeChildCount",
+                DbColumnForTreeDescendantCount = "TreeDescendantCount",
+                DbColumnForTreeLevel = "TreeLevel",
+                DbColumnForTreePath = "TreePath",
+                DbColumnForTreePosition = "TreePosition",
+                DbColumnForTreeSort = "TreeSort",
+                DbColumnPartsSeparator = "",
                 ForeignKeyPrefix = "FK",
                 FullNamePartsSeparator = ".",
                 IndexPrefix = "IX",

@@ -17,9 +17,9 @@ using Makc2021.Layer3.Sample.Entities.UserToken;
 namespace Makc2021.Layer3.Sample
 {
     /// <summary>
-    /// Настройки.
+    /// Настройки сущностей.
     /// </summary>
-    public abstract class Settings
+    public abstract class EntitiesSettings
     {
         #region Properties
 

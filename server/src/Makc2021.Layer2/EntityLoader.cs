@@ -5,22 +5,22 @@ using System.Collections.Generic;
 namespace Makc2021.Layer2
 {
     /// <summary>
-    /// Загрузчик.
+    /// Загрузчик сущности.
     /// </summary>
-    /// <typeparam name="TData">Тип загружаемых данных.</typeparam>
-    public abstract class Loader<TData>
+    /// <typeparam name="TEntity">Тип сущности.</typeparam>
+    public abstract class EntityLoader<TEntity>
     {
         #region Properties
 
         /// <summary>
-        /// Загружаемые свойства.
+        /// Загружаемые свойства сущности.
         /// </summary>
-        protected HashSet<string> LoadableDataProperties { get; set; }
+        protected HashSet<string> LoadableEntityProperties { get; set; }
 
         /// <summary>
-        /// Данные.
+        /// Сущность.
         /// </summary>
-        public TData Data { get; set; }
+        public TEntity Entity { get; set; }
 
         #endregion Properties
 
@@ -29,10 +29,10 @@ namespace Makc2021.Layer2
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="data">Данные.</param>
-        public Loader(TData data)
+        /// <param name="entity">Сущность.</param>
+        public EntityLoader(TEntity entity)
         {
-            Data = data;
+            Entity = entity;
         }
 
         #endregion Constructors
@@ -52,12 +52,12 @@ namespace Makc2021.Layer2
             }
             else
             {
-                if (LoadableDataProperties == null)
+                if (LoadableEntityProperties == null)
                 {
-                    LoadableDataProperties = CreateLoadableDataProperties();
+                    LoadableEntityProperties = CreateLoadableEntityProperties();
                 }
 
-                return LoadableDataProperties;
+                return LoadableEntityProperties;
             }
         }
 
@@ -65,7 +65,7 @@ namespace Makc2021.Layer2
         /// Создать загружаемые свойства.
         /// </summary>
         /// <returns>Загружаемые свойства.</returns>
-        protected virtual HashSet<string> CreateLoadableDataProperties()
+        protected virtual HashSet<string> CreateLoadableEntityProperties()
         {
             return null;
         }

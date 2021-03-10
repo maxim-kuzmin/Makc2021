@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
     /// <summary>
     /// Сущность "DummyMainDummyManyToMany". Загрузчик.
     /// </summary>
-    public class DummyMainDummyManyToManyEntityLoader : Loader<DummyMainDummyManyToManyEntityObject>
+    public class DummyMainDummyManyToManyEntityLoader : EntityLoader<DummyMainDummyManyToManyEntityObject>
     {
         #region Constructors
 
@@ -33,14 +33,14 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Data.ObjectDummyMainId)))
+            if (props.Contains(nameof(Entity.ObjectDummyMainId)))
             {
-                Data.ObjectDummyMainId = source.ObjectDummyMainId;
+                Entity.ObjectDummyMainId = source.ObjectDummyMainId;
             }
 
-            if (props.Contains(nameof(Data.ObjectDummyManyToManyId)))
+            if (props.Contains(nameof(Entity.ObjectDummyManyToManyId)))
             {
-                Data.ObjectDummyManyToManyId = source.ObjectDummyManyToManyId;
+                Entity.ObjectDummyManyToManyId = source.ObjectDummyManyToManyId;
             }
         }
 
@@ -49,12 +49,12 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableDataProperties()
+        protected override HashSet<string> CreateLoadableEntityProperties()
         {
             return new HashSet<string>
             {
-                nameof(Data.ObjectDummyMainId),
-                nameof(Data.ObjectDummyManyToManyId)
+                nameof(Entity.ObjectDummyMainId),
+                nameof(Entity.ObjectDummyManyToManyId)
             };
         }
 

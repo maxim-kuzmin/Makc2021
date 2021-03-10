@@ -15,7 +15,7 @@ namespace Makc2021.Layer2.Queries.Tree
         /// <summary>
         /// Идентификаторы.
         /// </summary>
-        public List<DbParameter> Ids { get; private set; } = new List<DbParameter>();
+        public List<DbParameter> Ids { get; private set; } = new();
 
         #endregion Properties
     }

@@ -10,54 +10,54 @@ namespace Makc2021.Layer2
         #region Properties
 
         /// <summary>
-        /// Имя колонки для поля "Id".
+        /// Колонка в базе данных для поля "Id".
         /// </summary>
-        public string ColumnNameForId { get; set; }
+        public string DbColumnForId { get; set; }
 
         /// <summary>
-        /// Имя колонки для поля "Name".
+        /// Колонка в базе данных для поля "Name".
         /// </summary>
-        public string ColumnNameForName { get; set; }
+        public string DbColumnForName { get; set; }
 
         /// <summary>
-        /// Имя колонки для поля "ParentId".
+        /// Колонка в базе данных для поля "ParentId".
         /// </summary>
-        public string ColumnNameForParentId { get; set; }
+        public string DbColumnForParentId { get; set; }
 
         /// <summary>
-        /// Имя колонки для поля "TreeChildCount".
+        /// Колонка в базе данных для поля "TreeChildCount".
         /// </summary>
-        public string ColumnNameForTreeChildCount { get; set; }
+        public string DbColumnForTreeChildCount { get; set; }
 
         /// <summary>
-        /// Имя колонки для поля "TreeDescendantCount".
+        /// Колонка в базе данных для поля "TreeDescendantCount".
         /// </summary>
-        public string ColumnNameForTreeDescendantCount { get; set; }
+        public string DbColumnForTreeDescendantCount { get; set; }
 
         /// <summary>
-        /// Имя колонки для поля "TreeLevel".
+        /// Колонка в базе данных для поля "TreeLevel".
         /// </summary>
-        public string ColumnNameForTreeLevel { get; set; }
+        public string DbColumnForTreeLevel { get; set; }
 
         /// <summary>
-        /// Имя колонки для поля "TreePath".
+        /// Колонка в базе данных для поля "TreePath".
         /// </summary>
-        public string ColumnNameForTreePath { get; set; }
+        public string DbColumnForTreePath { get; set; }
 
         /// <summary>
-        /// Имя колонки для поля "TreePosition".
+        /// Колонка в базе данных для поля "TreePosition".
         /// </summary>
-        public string ColumnNameForTreePosition { get; set; }
+        public string DbColumnForTreePosition { get; set; }
 
         /// <summary>
-        /// Имя колонки для поля "TreeSort".
+        /// Колонка в базе данных для поля "TreeSort".
         /// </summary>
-        public string ColumnNameForTreeSort { get; set; }
+        public string DbColumnForTreeSort { get; set; }
 
         /// <summary>
         /// Разделитель частей имени столбца.
         /// </summary>
-        public string ColumnNamePartsSeparator { get; set; }
+        public string DbColumnPartsSeparator { get; set; }
 
         /// <summary>
         /// Префикс внешнего ключа.

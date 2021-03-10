@@ -13,7 +13,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.DummyMain
         #region Constructors
 
         /// <inheritdoc/>
-        public DummyMainEntityEFSchema(Settings settings)
+        public DummyMainEntityEFSchema(EntitiesSettings settings)
             : base(settings)
         {
         }

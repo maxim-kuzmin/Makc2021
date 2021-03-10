@@ -15,7 +15,7 @@ namespace Makc2021.Layer1.Serializations
         /// <summary>
         /// Опции для конфигурации.
         /// </summary>
-        public static JsonSerializerOptions OptionsForConfig { get; } = new JsonSerializerOptions
+        public static JsonSerializerOptions OptionsForConfig { get; } = new()
         {
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             IgnoreNullValues = true
@@ -24,7 +24,7 @@ namespace Makc2021.Layer1.Serializations
         /// <summary>
         /// Опции для JavaScript.
         /// </summary>
-        public static JsonSerializerOptions OptionsForJavaScript { get; } = new JsonSerializerOptions
+        public static JsonSerializerOptions OptionsForJavaScript { get; } = new()
         {
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -34,7 +34,7 @@ namespace Makc2021.Layer1.Serializations
         /// <summary>
         /// Опции для регистратора.
         /// </summary>
-        public static JsonSerializerOptions OptionsForLogger { get; } = new JsonSerializerOptions
+        public static JsonSerializerOptions OptionsForLogger { get; } = new()
         {
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             IgnoreNullValues = false

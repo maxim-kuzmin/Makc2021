@@ -1,28 +1,32 @@
 ﻿//Author Maxim Kuzmin//makc//
 
 using Makc2021.Layer3.Sample.ORMs.EF.Db;
+using Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer.Config;
 using Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer.Db;
 
 namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer
 {
+    /// <summary>
+    /// ORM "Entity Framework". База данных "Microsoft SQL Server". Контекст.
+    /// </summary>
     public class EFSqlServerContext
     {
         #region Properties
 
         /// <summary>
-        /// Конфигурация.
+        /// Конфигурационные настройки.
         /// </summary>
-        public EFSqlServerConfig Config { get; private set; }
+        public IEFSqlServerConfigSettings ConfigSettings { get; private set; }
 
         /// <summary>
         /// Фабрика базы данных.
         /// </summary>
-        public EFDbFactory DbFactory { get; private set; }
+        public IEFDbFactory DbFactory { get; private set; }
 
         /// <summary>
-        /// Настройки.
+        /// Настройки сущностей.
         /// </summary>
-        public Settings Settings { get; } = EFSqlServerSettings.Instance;
+        public EntitiesSettings EntitiesSettings { get; } = EFSqlServerEntitiesSettings.Instance;
 
         #endregion Properties
 
@@ -31,19 +35,15 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="config">Конфигурация.</param>
+        /// <param name="configSettings">Конфигурационные настройки.</param>
         /// <param name="externals">Внешнее.</param>
-        public EFSqlServerContext(
-            EFSqlServerConfig
-            config,
-            EFSqlServerExternals externals
-            )
+        public EFSqlServerContext(IEFSqlServerConfigSettings configSettings, EFSqlServerExternals externals)
         {
-            Config = config;
+            ConfigSettings = configSettings;
 
             DbFactory = new EFSqlServerDbFactory(
-                Config.Settings.ConnectionString,
-                Settings,
+                ConfigSettings.ConnectionString,
+                EntitiesSettings,
                 externals.Environment
                 );
         }

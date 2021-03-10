@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.RoleClaim
     /// <summary>
     /// Сущность "RoleClaim". Настройка.
     /// </summary>
-    public class RoleClaimEntitySetting : Setting
+    public class RoleClaimEntitySetting : EntitySetting
     {
         #region Properties
 
@@ -65,7 +65,7 @@ namespace Makc2021.Layer3.Sample.Entities.RoleClaim
             )
             : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = defaults.ColumnNameForId;
+            DbColumnForId = defaults.DbColumnForId;
 
             DbColumnForRoleEntityId = CreateNameOfColumn(
                 settingOfRoleEntity.DbTable,

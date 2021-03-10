@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
     /// <summary>
     /// Сущность "DummyTreeLink". Настройка.
     /// </summary>
-    public class DummyTreeLinkEntitySetting : Setting
+    public class DummyTreeLinkEntitySetting : EntitySetting
     {
         #region Properties
 
@@ -50,8 +50,8 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
             )
             : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = defaults.ColumnNameForId;
-            DbColumnForDummyTreeEntityParentId = defaults.ColumnNameForParentId;
+            DbColumnForId = defaults.DbColumnForId;
+            DbColumnForDummyTreeEntityParentId = defaults.DbColumnForParentId;
 
             DbForeignKeyToDummyTreeEntity = CreateNameOfForeignKey(DbTable, settingOfDummyTreeEntity.DbTable);
 

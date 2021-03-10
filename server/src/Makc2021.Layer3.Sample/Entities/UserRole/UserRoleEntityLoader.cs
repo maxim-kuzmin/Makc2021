@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.UserRole
     /// <summary>
     /// Сущность "UserRole". Загрузчик.
     /// </summary>
-    public class UserRoleEntityLoader : Loader<UserRoleEntityObject>
+    public class UserRoleEntityLoader : EntityLoader<UserRoleEntityObject>
     {
         #region Constructors
 
@@ -33,14 +33,14 @@ namespace Makc2021.Layer3.Sample.Entities.UserRole
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Data.UserId)))
+            if (props.Contains(nameof(Entity.UserId)))
             {
-                Data.UserId = source.UserId;
+                Entity.UserId = source.UserId;
             }
 
-            if (props.Contains(nameof(Data.RoleId)))
+            if (props.Contains(nameof(Entity.RoleId)))
             {
-                Data.RoleId = source.RoleId;
+                Entity.RoleId = source.RoleId;
             }
         }
 
@@ -49,12 +49,12 @@ namespace Makc2021.Layer3.Sample.Entities.UserRole
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableDataProperties()
+        protected override HashSet<string> CreateLoadableEntityProperties()
         {
             return new HashSet<string>
             {
-                nameof(Data.UserId),
-                nameof(Data.RoleId)
+                nameof(Entity.UserId),
+                nameof(Entity.RoleId)
             };
         }
 

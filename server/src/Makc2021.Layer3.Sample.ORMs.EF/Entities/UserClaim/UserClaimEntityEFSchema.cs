@@ -13,7 +13,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.UserClaim
         #region Constructors
 
         /// <inheritdoc/>
-        public UserClaimEntityEFSchema(Settings settings)
+        public UserClaimEntityEFSchema(EntitiesSettings settings)
             : base(settings)
         {
         }

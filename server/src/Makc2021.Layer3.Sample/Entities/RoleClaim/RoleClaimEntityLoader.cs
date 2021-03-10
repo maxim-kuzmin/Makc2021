@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.RoleClaim
     /// <summary>
     /// Сущность "RoleClaim". Загрузчик.
     /// </summary>
-    public class RoleClaimEntityLoader : Loader<RoleClaimEntityObject>
+    public class RoleClaimEntityLoader : EntityLoader<RoleClaimEntityObject>
     {
         #region Constructors
 
@@ -33,24 +33,24 @@ namespace Makc2021.Layer3.Sample.Entities.RoleClaim
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Data.ClaimType)))
+            if (props.Contains(nameof(Entity.ClaimType)))
             {
-                Data.ClaimType = source.ClaimType;
+                Entity.ClaimType = source.ClaimType;
             }
 
-            if (props.Contains(nameof(Data.ClaimValue)))
+            if (props.Contains(nameof(Entity.ClaimValue)))
             {
-                Data.ClaimValue = source.ClaimValue;
+                Entity.ClaimValue = source.ClaimValue;
             }
 
-            if (props.Contains(nameof(Data.Id)))
+            if (props.Contains(nameof(Entity.Id)))
             {
-                Data.Id = source.Id;
+                Entity.Id = source.Id;
             }
 
-            if (props.Contains(nameof(Data.RoleId)))
+            if (props.Contains(nameof(Entity.RoleId)))
             {
-                Data.RoleId = source.RoleId;
+                Entity.RoleId = source.RoleId;
             }
         }
 
@@ -59,14 +59,14 @@ namespace Makc2021.Layer3.Sample.Entities.RoleClaim
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableDataProperties()
+        protected override HashSet<string> CreateLoadableEntityProperties()
         {
             return new HashSet<string>
             {
-                nameof(Data.ClaimType),
-                nameof(Data.ClaimValue),
-                nameof(Data.Id),
-                nameof(Data.RoleId)
+                nameof(Entity.ClaimType),
+                nameof(Entity.ClaimValue),
+                nameof(Entity.Id),
+                nameof(Entity.RoleId)
             };
         }
 

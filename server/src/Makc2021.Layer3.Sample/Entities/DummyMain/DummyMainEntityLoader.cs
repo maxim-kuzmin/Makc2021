@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMain
     /// <summary>
     /// Сущность "DummyMain". Загрузчик.
     /// </summary>
-    public class DummyMainEntityLoader : Loader<DummyMainEntityObject>
+    public class DummyMainEntityLoader : EntityLoader<DummyMainEntityObject>
     {
         #region Constructors
 
@@ -33,89 +33,89 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMain
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Data.Id)))
+            if (props.Contains(nameof(Entity.Id)))
             {
-                Data.Id = source.Id;
+                Entity.Id = source.Id;
             }
 
-            if (props.Contains(nameof(Data.Name)))
+            if (props.Contains(nameof(Entity.Name)))
             {
-                Data.Name = source.Name ?? string.Empty;
+                Entity.Name = source.Name ?? string.Empty;
             }
 
-            if (props.Contains(nameof(Data.ObjectDummyOneToManyId)))
+            if (props.Contains(nameof(Entity.ObjectDummyOneToManyId)))
             {
-                Data.ObjectDummyOneToManyId = source.ObjectDummyOneToManyId;
+                Entity.ObjectDummyOneToManyId = source.ObjectDummyOneToManyId;
             }
 
-            if (props.Contains(nameof(Data.PropBoolean)))
+            if (props.Contains(nameof(Entity.PropBoolean)))
             {
-                Data.PropBoolean = source.PropBoolean;
+                Entity.PropBoolean = source.PropBoolean;
             }
 
-            if (props.Contains(nameof(Data.PropBooleanNullable)))
+            if (props.Contains(nameof(Entity.PropBooleanNullable)))
             {
-                Data.PropBooleanNullable = source.PropBooleanNullable;
+                Entity.PropBooleanNullable = source.PropBooleanNullable;
             }
 
-            if (props.Contains(nameof(Data.PropDate)))
+            if (props.Contains(nameof(Entity.PropDate)))
             {
-                Data.PropDate = source.PropDate;
+                Entity.PropDate = source.PropDate;
             }
 
-            if (props.Contains(nameof(Data.PropDateNullable)))
+            if (props.Contains(nameof(Entity.PropDateNullable)))
             {
-                Data.PropDateNullable = source.PropDateNullable;
+                Entity.PropDateNullable = source.PropDateNullable;
             }
 
-            if (props.Contains(nameof(Data.PropDateTimeOffset)))
+            if (props.Contains(nameof(Entity.PropDateTimeOffset)))
             {
-                Data.PropDateTimeOffset = source.PropDateTimeOffset;
+                Entity.PropDateTimeOffset = source.PropDateTimeOffset;
             }
 
-            if (props.Contains(nameof(Data.PropDateTimeOffsetNullable)))
+            if (props.Contains(nameof(Entity.PropDateTimeOffsetNullable)))
             {
-                Data.PropDateTimeOffsetNullable = source.PropDateTimeOffsetNullable;
+                Entity.PropDateTimeOffsetNullable = source.PropDateTimeOffsetNullable;
             }
 
-            if (props.Contains(nameof(Data.PropDecimal)))
+            if (props.Contains(nameof(Entity.PropDecimal)))
             {
-                Data.PropDecimal = source.PropDecimal;
+                Entity.PropDecimal = source.PropDecimal;
             }
 
-            if (props.Contains(nameof(Data.PropDecimalNullable)))
+            if (props.Contains(nameof(Entity.PropDecimalNullable)))
             {
-                Data.PropDecimalNullable = source.PropDecimalNullable;
+                Entity.PropDecimalNullable = source.PropDecimalNullable;
             }
 
-            if (props.Contains(nameof(Data.PropInt32)))
+            if (props.Contains(nameof(Entity.PropInt32)))
             {
-                Data.PropInt32 = source.PropInt32;
+                Entity.PropInt32 = source.PropInt32;
             }
 
-            if (props.Contains(nameof(Data.PropInt32Nullable)))
+            if (props.Contains(nameof(Entity.PropInt32Nullable)))
             {
-                Data.PropInt32Nullable = source.PropInt32Nullable;
+                Entity.PropInt32Nullable = source.PropInt32Nullable;
             }
 
-            if (props.Contains(nameof(Data.PropInt64)))
+            if (props.Contains(nameof(Entity.PropInt64)))
             {
-                Data.PropInt64 = source.PropInt64;
+                Entity.PropInt64 = source.PropInt64;
             }
 
-            if (props.Contains(nameof(Data.PropInt64Nullable)))
+            if (props.Contains(nameof(Entity.PropInt64Nullable)))
             {
-                Data.PropInt64Nullable = source.PropInt64Nullable;
+                Entity.PropInt64Nullable = source.PropInt64Nullable;
             }
 
-            if (props.Contains(nameof(Data.PropString)))
+            if (props.Contains(nameof(Entity.PropString)))
             {
-                Data.PropString = source.PropString ?? string.Empty;
+                Entity.PropString = source.PropString ?? string.Empty;
             }
 
-            if (props.Contains(nameof(Data.PropStringNullable)))
+            if (props.Contains(nameof(Entity.PropStringNullable)))
             {
-                Data.PropStringNullable = source.PropStringNullable;
+                Entity.PropStringNullable = source.PropStringNullable;
             }
         }
 
@@ -124,27 +124,27 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMain
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableDataProperties()
+        protected override HashSet<string> CreateLoadableEntityProperties()
         {
             return new HashSet<string>
             {
-                nameof(Data.Id),
-                nameof(Data.Name),
-                nameof(Data.ObjectDummyOneToManyId),
-                nameof(Data.PropBoolean),
-                nameof(Data.PropBooleanNullable),
-                nameof(Data.PropDate),
-                nameof(Data.PropDateNullable),
-                nameof(Data.PropDateTimeOffset),
-                nameof(Data.PropDateTimeOffsetNullable),
-                nameof(Data.PropDecimal),
-                nameof(Data.PropDecimalNullable),
-                nameof(Data.PropInt32),
-                nameof(Data.PropInt32Nullable),
-                nameof(Data.PropInt64),
-                nameof(Data.PropInt64Nullable),
-                nameof(Data.PropString),
-                nameof(Data.PropStringNullable)
+                nameof(Entity.Id),
+                nameof(Entity.Name),
+                nameof(Entity.ObjectDummyOneToManyId),
+                nameof(Entity.PropBoolean),
+                nameof(Entity.PropBooleanNullable),
+                nameof(Entity.PropDate),
+                nameof(Entity.PropDateNullable),
+                nameof(Entity.PropDateTimeOffset),
+                nameof(Entity.PropDateTimeOffsetNullable),
+                nameof(Entity.PropDecimal),
+                nameof(Entity.PropDecimalNullable),
+                nameof(Entity.PropInt32),
+                nameof(Entity.PropInt32Nullable),
+                nameof(Entity.PropInt64),
+                nameof(Entity.PropInt64Nullable),
+                nameof(Entity.PropString),
+                nameof(Entity.PropStringNullable)
             };
         }
 

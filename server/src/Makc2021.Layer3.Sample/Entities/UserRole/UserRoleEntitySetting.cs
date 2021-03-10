@@ -8,7 +8,7 @@ namespace Makc2021.Layer3.Sample.Entities.UserRole
     /// <summary>
     /// Сущность "UserRole". Настройка.
     /// </summary>
-    public class UserRoleEntitySetting : Setting
+    public class UserRoleEntitySetting : EntitySetting
     {
         #region Properties
 

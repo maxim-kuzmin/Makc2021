@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.UserToken
     /// <summary>
     /// Сущность "UserToken". Загрузчик.
     /// </summary>
-    public class UserTokenEntityLoader : Loader<UserTokenEntityObject>
+    public class UserTokenEntityLoader : EntityLoader<UserTokenEntityObject>
     {
         #region Constructors
 
@@ -33,24 +33,24 @@ namespace Makc2021.Layer3.Sample.Entities.UserToken
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Data.LoginProvider)))
+            if (props.Contains(nameof(Entity.LoginProvider)))
             {
-                Data.LoginProvider = source.LoginProvider;
+                Entity.LoginProvider = source.LoginProvider;
             }
 
-            if (props.Contains(nameof(Data.Name)))
+            if (props.Contains(nameof(Entity.Name)))
             {
-                Data.Name = source.Name;
+                Entity.Name = source.Name;
             }
 
-            if (props.Contains(nameof(Data.UserId)))
+            if (props.Contains(nameof(Entity.UserId)))
             {
-                Data.UserId = source.UserId;
+                Entity.UserId = source.UserId;
             }
 
-            if (props.Contains(nameof(Data.Value)))
+            if (props.Contains(nameof(Entity.Value)))
             {
-                Data.Value = source.Value;
+                Entity.Value = source.Value;
             }
         }
 
@@ -59,14 +59,14 @@ namespace Makc2021.Layer3.Sample.Entities.UserToken
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableDataProperties()
+        protected override HashSet<string> CreateLoadableEntityProperties()
         {
             return new HashSet<string>
             {
-                nameof(Data.LoginProvider),
-                nameof(Data.Name),
-                nameof(Data.UserId),
-                nameof(Data.Value)
+                nameof(Entity.LoginProvider),
+                nameof(Entity.Name),
+                nameof(Entity.UserId),
+                nameof(Entity.Value)
             };
         }
 

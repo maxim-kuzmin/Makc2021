@@ -13,7 +13,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.DummyManyToMany
         #region Constructors
 
         /// <inheritdoc/>
-        public DummyManyToManyEntityEFSchema(Settings settings)
+        public DummyManyToManyEntityEFSchema(EntitiesSettings settings)
             : base(settings)
         {
         }

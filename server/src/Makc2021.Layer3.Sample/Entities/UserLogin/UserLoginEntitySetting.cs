@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.UserLogin
     /// <summary>
     /// Сущность "UserLogin". Настройка.
     /// </summary>
-    public class UserLoginEntitySetting : Setting
+    public class UserLoginEntitySetting : EntitySetting
     {
         #region Properties
 

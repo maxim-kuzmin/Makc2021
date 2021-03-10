@@ -53,18 +53,5 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer
         }
 
         #endregion Internal methods
-
-        #region Рublic methods
-
-        /// <summary>
-        /// Создать поставщика.
-        /// </summary>
-        /// <param name="settings">Настройки.</param>
-        public EFSqlServerConfigProvider CreateProvider(EFSqlServerConfigSettings settings)
-        {
-            return new EFSqlServerConfigProvider(settings, FilePath, Environment);
-        }
-
-        #endregion Рublic methods
     }
 }

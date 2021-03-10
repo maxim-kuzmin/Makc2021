@@ -3,10 +3,10 @@
 namespace Makc2021.Layer2
 {
     /// <summary>
-    /// Настройка.
+    /// Настройка сущности.
     /// </summary>
     /// <typeparam name="TDefaults">Тип значений по умолчанию.</typeparam>
-    public abstract class Setting<TDefaults>
+    public abstract class EntitySetting<TDefaults>
         where TDefaults : Defaults
     {
         #region Properties
@@ -38,7 +38,7 @@ namespace Makc2021.Layer2
         /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public Setting(TDefaults defaults, string dbTable, string dbSchema = null)
+        public EntitySetting(TDefaults defaults, string dbTable, string dbSchema = null)
         {
             Defaults = defaults;
             DbTable = dbTable;
@@ -69,9 +69,9 @@ namespace Makc2021.Layer2
         /// <returns>Имя.</returns>
         protected string CreateNameOfColumn(params string[] parts)
         {
-            return string.IsNullOrEmpty(Defaults.ColumnNamePartsSeparator)
+            return string.IsNullOrEmpty(Defaults.DbColumnPartsSeparator)
                 ? string.Concat(parts)
-                : string.Join(Defaults.ColumnNamePartsSeparator, parts);
+                : string.Join(Defaults.DbColumnPartsSeparator, parts);
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ namespace Makc2021.Layer3.Sample.Entities.DummyOneToMany
     /// <summary>
     /// Сущность "DummyOneToMany". Настройка.
     /// </summary>
-    public class DummyOneToManyEntitySetting : Setting
+    public class DummyOneToManyEntitySetting : EntitySetting
     {
         #region Properties
 
@@ -51,8 +51,8 @@ namespace Makc2021.Layer3.Sample.Entities.DummyOneToMany
             )
             : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = defaults.ColumnNameForId;
-            DbColumnForName = defaults.ColumnNameForName;
+            DbColumnForId = defaults.DbColumnForId;
+            DbColumnForName = defaults.DbColumnForName;
 
             DbMaxLengthForName = 256;
 

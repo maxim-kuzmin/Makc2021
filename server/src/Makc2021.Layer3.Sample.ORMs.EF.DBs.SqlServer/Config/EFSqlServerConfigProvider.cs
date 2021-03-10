@@ -18,11 +18,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer.Config
         /// <param name="settings">Настройки.</param>
         /// <param name="filePath">Путь к файлу.</param>
         /// <param name="environment">Окружение.</param>
-        public EFSqlServerConfigProvider(
-            EFSqlServerConfigSettings settings,
-            string filePath,
-            Environment environment
-            )
+        public EFSqlServerConfigProvider(EFSqlServerConfigSettings settings, string filePath, Environment environment)
             : base(settings, filePath, environment)
         {
         }

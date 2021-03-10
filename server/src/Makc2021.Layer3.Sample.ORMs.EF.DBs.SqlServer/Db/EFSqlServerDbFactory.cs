@@ -19,7 +19,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer.Db
         /// <summary>
         /// Экземпляр по умолчанию.
         /// </summary>
-        public static EFSqlServerDbFactory Default { get; } = new EFSqlServerDbFactory();
+        public static EFSqlServerDbFactory Default { get; } = new();
 
         #endregion Properties
 
@@ -34,7 +34,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer.Db
         /// <inheritdoc/>
         public EFSqlServerDbFactory(
             string connectionString,
-            Settings settings,
+            EntitiesSettings settings,
             Environment environment
             )
             : base(connectionString, settings, environment)
@@ -72,9 +72,9 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer.Db
         }
 
         /// <inheritdoc/>
-        protected sealed override Settings CreateSettings()
+        protected sealed override EntitiesSettings CreateSettings()
         {
-            return EFSqlServerSettings.Instance;
+            return EFSqlServerEntitiesSettings.Instance;
         }
 
         /// <inheritdoc/>

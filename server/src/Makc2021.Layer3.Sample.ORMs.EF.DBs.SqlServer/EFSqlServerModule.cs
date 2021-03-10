@@ -13,10 +13,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer
     {
         #region Properties
 
-        /// <summary>
-        /// Конфигурация.
-        /// </summary>
-        public EFSqlServerConfig Config { get; private set; }
+        private EFSqlServerConfig Config { get; set; }
 
         /// <summary>
         /// Контекст.
@@ -33,10 +30,9 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer
         /// <param name="services">Сервисы.</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient(x => Config);
-            services.AddTransient(x => Config.Settings);
+            services.AddTransient(x => Context.ConfigSettings);
             services.AddTransient(x => Context.DbFactory);
-            services.AddTransient(x => Context.Settings);
+            services.AddTransient(x => Context.EntitiesSettings);
         }
 
         /// <summary>
@@ -54,7 +50,9 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer
         /// <param name="externals">Внешнее.</param>
         public void InitContext(EFSqlServerExternals externals)
         {
-            Context = new EFSqlServerContext(Config, externals);
+            Context = new EFSqlServerContext(Config.Settings, externals);
+
+            Config = null;
         }
 
         #endregion Public methods

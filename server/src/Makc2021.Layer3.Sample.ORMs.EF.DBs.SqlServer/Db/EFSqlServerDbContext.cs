@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer.Db
     {
         #region Properties
 
-        private Settings Settings { get; set; }
+        private EntitiesSettings Settings { get; set; }
 
         #endregion Properties
 
@@ -53,7 +53,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer.Db
         /// <param name="settings">Настройки.</param>
         public EFSqlServerDbContext(
             DbContextOptions<EFDbContext> options,
-            Settings settings
+            EntitiesSettings settings
             )
             : base(options)
         {

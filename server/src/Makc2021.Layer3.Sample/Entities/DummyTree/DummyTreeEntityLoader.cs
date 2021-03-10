@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTree
     /// <summary>
     /// Сущность "DummyTree". Загрузчик.
     /// </summary>
-    public class DummyTreeEntityLoader : Loader<DummyTreeEntityObject>
+    public class DummyTreeEntityLoader : EntityLoader<DummyTreeEntityObject>
     {
         #region Constructors
 
@@ -33,49 +33,49 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTree
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Data.Id)))
+            if (props.Contains(nameof(Entity.Id)))
             {
-                Data.Id = source.Id;
+                Entity.Id = source.Id;
             }
 
-            if (props.Contains(nameof(Data.Name)))
+            if (props.Contains(nameof(Entity.Name)))
             {
-                Data.Name = source.Name;
+                Entity.Name = source.Name;
             }
 
-            if (props.Contains(nameof(Data.ParentId)))
+            if (props.Contains(nameof(Entity.ParentId)))
             {
-                Data.ParentId = source.ParentId;
+                Entity.ParentId = source.ParentId;
             }
 
-            if (props.Contains(nameof(Data.TreeChildCount)))
+            if (props.Contains(nameof(Entity.TreeChildCount)))
             {
-                Data.TreeChildCount = source.TreeChildCount;
+                Entity.TreeChildCount = source.TreeChildCount;
             }
 
-            if (props.Contains(nameof(Data.TreeDescendantCount)))
+            if (props.Contains(nameof(Entity.TreeDescendantCount)))
             {
-                Data.TreeDescendantCount = source.TreeDescendantCount;
+                Entity.TreeDescendantCount = source.TreeDescendantCount;
             }
 
-            if (props.Contains(nameof(Data.TreeLevel)))
+            if (props.Contains(nameof(Entity.TreeLevel)))
             {
-                Data.TreeLevel = source.TreeLevel;
+                Entity.TreeLevel = source.TreeLevel;
             }
 
-            if (props.Contains(nameof(Data.TreePath)))
+            if (props.Contains(nameof(Entity.TreePath)))
             {
-                Data.TreePath = source.TreePath;
+                Entity.TreePath = source.TreePath;
             }
 
-            if (props.Contains(nameof(Data.TreePosition)))
+            if (props.Contains(nameof(Entity.TreePosition)))
             {
-                Data.TreePosition = source.TreePosition;
+                Entity.TreePosition = source.TreePosition;
             }
 
-            if (props.Contains(nameof(Data.TreeSort)))
+            if (props.Contains(nameof(Entity.TreeSort)))
             {
-                Data.TreeSort = source.TreeSort;
+                Entity.TreeSort = source.TreeSort;
             }
         }
 
@@ -84,18 +84,18 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTree
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableDataProperties()
+        protected override HashSet<string> CreateLoadableEntityProperties()
         {
             return new HashSet<string>
             {
-                nameof(Data.Id),
-                nameof(Data.Name),
-                nameof(Data.ParentId),
-                nameof(Data.TreeChildCount),
-                nameof(Data.TreeDescendantCount),
-                nameof(Data.TreeLevel),
-                nameof(Data.TreePath),
-                nameof(Data.TreeSort)
+                nameof(Entity.Id),
+                nameof(Entity.Name),
+                nameof(Entity.ParentId),
+                nameof(Entity.TreeChildCount),
+                nameof(Entity.TreeDescendantCount),
+                nameof(Entity.TreeLevel),
+                nameof(Entity.TreePath),
+                nameof(Entity.TreeSort)
             };
         }
 

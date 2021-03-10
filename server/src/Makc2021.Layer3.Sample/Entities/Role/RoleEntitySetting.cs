@@ -5,7 +5,7 @@ namespace Makc2021.Layer3.Sample.Entities.Role
     /// <summary>
     /// Сущность "Role". Настройка.
     /// </summary>
-    public class RoleEntitySetting : Setting
+    public class RoleEntitySetting : EntitySetting
     {
         #region Properties
 
@@ -57,8 +57,8 @@ namespace Makc2021.Layer3.Sample.Entities.Role
             )
             : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = defaults.ColumnNameForId;
-            DbColumnForName = defaults.ColumnNameForName;
+            DbColumnForId = defaults.DbColumnForId;
+            DbColumnForName = defaults.DbColumnForName;
             DbColumnForNormalizedName = dbColumnNameForNormalizedName ?? nameof(RoleEntityObject.NormalizedName);
 
             DbPrimaryKey = CreateNameOfPrimaryKey(DbTable);

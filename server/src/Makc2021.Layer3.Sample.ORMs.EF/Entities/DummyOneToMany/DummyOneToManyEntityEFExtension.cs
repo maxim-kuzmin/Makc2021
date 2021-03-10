@@ -39,7 +39,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.DummyOneToMany
 
             loader.LoadDataFrom(source);
             
-            return loader.Data;
+            return loader.Entity;
         }
 
         #endregion Public methods

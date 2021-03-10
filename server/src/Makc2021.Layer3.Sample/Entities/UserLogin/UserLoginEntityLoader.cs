@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Entities.UserLogin
     /// <summary>
     /// Сущность "UserLogin". Загрузчик.
     /// </summary>
-    public class UserLoginEntityLoader : Loader<UserLoginEntityObject>
+    public class UserLoginEntityLoader : EntityLoader<UserLoginEntityObject>
     {
         #region Constructors
 
@@ -33,24 +33,24 @@ namespace Makc2021.Layer3.Sample.Entities.UserLogin
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Data.LoginProvider)))
+            if (props.Contains(nameof(Entity.LoginProvider)))
             {
-                Data.LoginProvider = source.LoginProvider;
+                Entity.LoginProvider = source.LoginProvider;
             }
 
-            if (props.Contains(nameof(Data.ProviderDisplayName)))
+            if (props.Contains(nameof(Entity.ProviderDisplayName)))
             {
-                Data.ProviderDisplayName = source.ProviderDisplayName;
+                Entity.ProviderDisplayName = source.ProviderDisplayName;
             }
 
-            if (props.Contains(nameof(Data.ProviderKey)))
+            if (props.Contains(nameof(Entity.ProviderKey)))
             {
-                Data.ProviderKey = source.ProviderKey;
+                Entity.ProviderKey = source.ProviderKey;
             }
 
-            if (props.Contains(nameof(Data.UserId)))
+            if (props.Contains(nameof(Entity.UserId)))
             {
-                Data.UserId = source.UserId;
+                Entity.UserId = source.UserId;
             }
         }
 
@@ -59,14 +59,14 @@ namespace Makc2021.Layer3.Sample.Entities.UserLogin
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableDataProperties()
+        protected override HashSet<string> CreateLoadableEntityProperties()
         {
             return new HashSet<string>
             {
-                nameof(Data.LoginProvider),
-                nameof(Data.ProviderDisplayName),
-                nameof(Data.ProviderKey),
-                nameof(Data.UserId)
+                nameof(Entity.LoginProvider),
+                nameof(Entity.ProviderDisplayName),
+                nameof(Entity.ProviderKey),
+                nameof(Entity.UserId)
             };
         }
 
