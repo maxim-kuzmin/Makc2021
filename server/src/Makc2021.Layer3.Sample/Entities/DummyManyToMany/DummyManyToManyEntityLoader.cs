@@ -11,12 +11,9 @@ namespace Makc2021.Layer3.Sample.Entities.DummyManyToMany
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="data">Данные.</param>
-        public DummyManyToManyEntityLoader(DummyManyToManyEntityObject data = null)
-            : base(data ?? new DummyManyToManyEntityObject())
+        /// <inheritdoc/>
+        public DummyManyToManyEntityLoader(DummyManyToManyEntityObject entityObject = null)
+            : base(entityObject ?? new DummyManyToManyEntityObject())
         {
         }
 
@@ -33,14 +30,14 @@ namespace Makc2021.Layer3.Sample.Entities.DummyManyToMany
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Entity.Id)))
+            if (props.Contains(nameof(EntityObject.Id)))
             {
-                Entity.Id = source.Id;
+                EntityObject.Id = source.Id;
             }
 
-            if (props.Contains(nameof(Entity.Name)))
+            if (props.Contains(nameof(EntityObject.Name)))
             {
-                Entity.Name = source.Name;
+                EntityObject.Name = source.Name;
             }
         }
 
@@ -49,12 +46,12 @@ namespace Makc2021.Layer3.Sample.Entities.DummyManyToMany
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableEntityProperties()
+        protected override HashSet<string> CreateLoadableProperties()
         {
             return new HashSet<string>
             {
-                nameof(Entity.Id),
-                nameof(Entity.Name)
+                nameof(EntityObject.Id),
+                nameof(EntityObject.Name)
             };
         }
 

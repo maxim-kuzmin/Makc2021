@@ -11,12 +11,9 @@ namespace Makc2021.Layer3.Sample.Entities.User
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="data">Данные.</param>
-        public UserEntityLoader(UserEntityObject data = null)
-            : base(data ?? new UserEntityObject())
+        /// <inheritdoc/>
+        public UserEntityLoader(UserEntityObject entityObject = null)
+            : base(entityObject ?? new UserEntityObject())
         {
         }
 
@@ -29,84 +26,84 @@ namespace Makc2021.Layer3.Sample.Entities.User
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Entity.AccessFailedCount)))
+            if (props.Contains(nameof(EntityObject.AccessFailedCount)))
             {
-                Entity.AccessFailedCount = source.AccessFailedCount;
+                EntityObject.AccessFailedCount = source.AccessFailedCount;
             }
 
-            if (props.Contains(nameof(Entity.ConcurrencyStamp)))
+            if (props.Contains(nameof(EntityObject.ConcurrencyStamp)))
             {
-                Entity.ConcurrencyStamp = source.ConcurrencyStamp;
+                EntityObject.ConcurrencyStamp = source.ConcurrencyStamp;
             }
 
-            if (props.Contains(nameof(Entity.Email)))
+            if (props.Contains(nameof(EntityObject.Email)))
             {
-                Entity.Email = source.Email;
+                EntityObject.Email = source.Email;
             }
 
-            if (props.Contains(nameof(Entity.EmailConfirmed)))
+            if (props.Contains(nameof(EntityObject.EmailConfirmed)))
             {
-                Entity.EmailConfirmed = source.EmailConfirmed;
+                EntityObject.EmailConfirmed = source.EmailConfirmed;
             }
 
-            if (props.Contains(nameof(Entity.FullName)))
+            if (props.Contains(nameof(EntityObject.FullName)))
             {
-                Entity.FullName = source.FullName;
+                EntityObject.FullName = source.FullName;
             }
 
-            if (props.Contains(nameof(Entity.Id)))
+            if (props.Contains(nameof(EntityObject.Id)))
             {
-                Entity.Id = source.Id;
+                EntityObject.Id = source.Id;
             }
 
-            if (props.Contains(nameof(Entity.LockoutEnabled)))
+            if (props.Contains(nameof(EntityObject.LockoutEnabled)))
             {
-                Entity.LockoutEnabled = source.LockoutEnabled;
+                EntityObject.LockoutEnabled = source.LockoutEnabled;
             }
 
-            if (props.Contains(nameof(Entity.LockoutEnd)))
+            if (props.Contains(nameof(EntityObject.LockoutEnd)))
             {
-                Entity.LockoutEnd = source.LockoutEnd;
+                EntityObject.LockoutEnd = source.LockoutEnd;
             }
 
-            if (props.Contains(nameof(Entity.NormalizedEmail)))
+            if (props.Contains(nameof(EntityObject.NormalizedEmail)))
             {
-                Entity.NormalizedEmail = source.NormalizedEmail;
+                EntityObject.NormalizedEmail = source.NormalizedEmail;
             }
 
-            if (props.Contains(nameof(Entity.NormalizedUserName)))
+            if (props.Contains(nameof(EntityObject.NormalizedUserName)))
             {
-                Entity.NormalizedUserName = source.NormalizedUserName;
+                EntityObject.NormalizedUserName = source.NormalizedUserName;
             }
 
-            if (props.Contains(nameof(Entity.PasswordHash)))
+            if (props.Contains(nameof(EntityObject.PasswordHash)))
             {
-                Entity.PasswordHash = source.PasswordHash;
+                EntityObject.PasswordHash = source.PasswordHash;
             }
 
-            if (props.Contains(nameof(Entity.PhoneNumber)))
+            if (props.Contains(nameof(EntityObject.PhoneNumber)))
             {
-                Entity.PhoneNumber = source.PhoneNumber;
+                EntityObject.PhoneNumber = source.PhoneNumber;
             }
 
-            if (props.Contains(nameof(Entity.PhoneNumberConfirmed)))
+            if (props.Contains(nameof(EntityObject.PhoneNumberConfirmed)))
             {
-                Entity.PhoneNumberConfirmed = source.PhoneNumberConfirmed;
+                EntityObject.PhoneNumberConfirmed = source.PhoneNumberConfirmed;
             }
 
-            if (props.Contains(nameof(Entity.SecurityStamp)))
+            if (props.Contains(nameof(EntityObject.SecurityStamp)))
             {
-                Entity.SecurityStamp = source.SecurityStamp;
+                EntityObject.SecurityStamp = source.SecurityStamp;
             }
 
-            if (props.Contains(nameof(Entity.TwoFactorEnabled)))
+            if (props.Contains(nameof(EntityObject.TwoFactorEnabled)))
             {
-                Entity.TwoFactorEnabled = source.TwoFactorEnabled;
+                EntityObject.TwoFactorEnabled = source.TwoFactorEnabled;
             }
 
-            if (props.Contains(nameof(Entity.UserName)))
+            if (props.Contains(nameof(EntityObject.UserName)))
             {
-                Entity.UserName = source.UserName;
+                EntityObject.UserName = source.UserName;
             }
         }
 
@@ -118,26 +115,26 @@ namespace Makc2021.Layer3.Sample.Entities.User
         /// Создать загружаемые свойства данных.
         /// </summary>
         /// <returns>Загружаемые свойства данных.</returns>
-        protected override HashSet<string> CreateLoadableEntityProperties()
+        protected override HashSet<string> CreateLoadableProperties()
         {
             return new HashSet<string>
             {
-                nameof(Entity.AccessFailedCount),
-                nameof(Entity.ConcurrencyStamp),
-                nameof(Entity.Email),
-                nameof(Entity.EmailConfirmed),
-                nameof(Entity.FullName),
-                nameof(Entity.Id),
-                nameof(Entity.LockoutEnabled),
-                nameof(Entity.LockoutEnd),
-                nameof(Entity.NormalizedEmail),
-                nameof(Entity.NormalizedUserName),
-                nameof(Entity.PasswordHash),
-                nameof(Entity.PhoneNumber),
-                nameof(Entity.PhoneNumberConfirmed),
-                nameof(Entity.SecurityStamp),
-                nameof(Entity.TwoFactorEnabled),
-                nameof(Entity.UserName)
+                nameof(EntityObject.AccessFailedCount),
+                nameof(EntityObject.ConcurrencyStamp),
+                nameof(EntityObject.Email),
+                nameof(EntityObject.EmailConfirmed),
+                nameof(EntityObject.FullName),
+                nameof(EntityObject.Id),
+                nameof(EntityObject.LockoutEnabled),
+                nameof(EntityObject.LockoutEnd),
+                nameof(EntityObject.NormalizedEmail),
+                nameof(EntityObject.NormalizedUserName),
+                nameof(EntityObject.PasswordHash),
+                nameof(EntityObject.PhoneNumber),
+                nameof(EntityObject.PhoneNumberConfirmed),
+                nameof(EntityObject.SecurityStamp),
+                nameof(EntityObject.TwoFactorEnabled),
+                nameof(EntityObject.UserName)
             };
         }
 

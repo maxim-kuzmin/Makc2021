@@ -39,7 +39,7 @@ namespace Makc2021.Layer3.Sample.ORMs.EF.Entities.UserLogin
 
             loader.LoadDataFrom(source);
             
-            return loader.Entity;
+            return loader.EntityObject;
         }
 
         #endregion Public methods

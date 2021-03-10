@@ -11,12 +11,9 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="data">Данные.</param>
-        public DummyTreeLinkEntityLoader(DummyTreeLinkEntityObject data = null)
-            : base(data ?? new DummyTreeLinkEntityObject())
+        /// <inheritdoc/>
+        public DummyTreeLinkEntityLoader(DummyTreeLinkEntityObject entityObject = null)
+            : base(entityObject ?? new DummyTreeLinkEntityObject())
         {
         }
 
@@ -33,14 +30,14 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Entity.Id)))
+            if (props.Contains(nameof(EntityObject.Id)))
             {
-                Entity.Id = source.Id;
+                EntityObject.Id = source.Id;
             }
 
-            if (props.Contains(nameof(Entity.ParentId)))
+            if (props.Contains(nameof(EntityObject.ParentId)))
             {
-                Entity.ParentId = source.ParentId;
+                EntityObject.ParentId = source.ParentId;
             }
         }
 
@@ -49,12 +46,12 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableEntityProperties()
+        protected override HashSet<string> CreateLoadableProperties()
         {
             return new HashSet<string>
             {
-                nameof(Entity.Id),
-                nameof(Entity.ParentId)
+                nameof(EntityObject.Id),
+                nameof(EntityObject.ParentId)
             };
         }
 

@@ -11,12 +11,9 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="data">Данные.</param>
-        public DummyMainDummyManyToManyEntityLoader(DummyMainDummyManyToManyEntityObject data = null)
-            : base(data ?? new DummyMainDummyManyToManyEntityObject())
+        /// <inheritdoc/>
+        public DummyMainDummyManyToManyEntityLoader(DummyMainDummyManyToManyEntityObject entityObject = null)
+            : base(entityObject ?? new DummyMainDummyManyToManyEntityObject())
         {
         }
 
@@ -33,14 +30,14 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Entity.ObjectDummyMainId)))
+            if (props.Contains(nameof(EntityObject.ObjectDummyMainId)))
             {
-                Entity.ObjectDummyMainId = source.ObjectDummyMainId;
+                EntityObject.ObjectDummyMainId = source.ObjectDummyMainId;
             }
 
-            if (props.Contains(nameof(Entity.ObjectDummyManyToManyId)))
+            if (props.Contains(nameof(EntityObject.ObjectDummyManyToManyId)))
             {
-                Entity.ObjectDummyManyToManyId = source.ObjectDummyManyToManyId;
+                EntityObject.ObjectDummyManyToManyId = source.ObjectDummyManyToManyId;
             }
         }
 
@@ -49,12 +46,12 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableEntityProperties()
+        protected override HashSet<string> CreateLoadableProperties()
         {
             return new HashSet<string>
             {
-                nameof(Entity.ObjectDummyMainId),
-                nameof(Entity.ObjectDummyManyToManyId)
+                nameof(EntityObject.ObjectDummyMainId),
+                nameof(EntityObject.ObjectDummyManyToManyId)
             };
         }
 

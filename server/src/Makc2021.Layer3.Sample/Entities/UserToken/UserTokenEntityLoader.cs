@@ -11,12 +11,9 @@ namespace Makc2021.Layer3.Sample.Entities.UserToken
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="data">Данные.</param>
-        public UserTokenEntityLoader(UserTokenEntityObject data = null)
-            : base(data ?? new UserTokenEntityObject())
+        /// <inheritdoc/>
+        public UserTokenEntityLoader(UserTokenEntityObject entityObject = null)
+            : base(entityObject ?? new UserTokenEntityObject())
         {
         }
 
@@ -33,24 +30,24 @@ namespace Makc2021.Layer3.Sample.Entities.UserToken
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Entity.LoginProvider)))
+            if (props.Contains(nameof(EntityObject.LoginProvider)))
             {
-                Entity.LoginProvider = source.LoginProvider;
+                EntityObject.LoginProvider = source.LoginProvider;
             }
 
-            if (props.Contains(nameof(Entity.Name)))
+            if (props.Contains(nameof(EntityObject.Name)))
             {
-                Entity.Name = source.Name;
+                EntityObject.Name = source.Name;
             }
 
-            if (props.Contains(nameof(Entity.UserId)))
+            if (props.Contains(nameof(EntityObject.UserId)))
             {
-                Entity.UserId = source.UserId;
+                EntityObject.UserId = source.UserId;
             }
 
-            if (props.Contains(nameof(Entity.Value)))
+            if (props.Contains(nameof(EntityObject.Value)))
             {
-                Entity.Value = source.Value;
+                EntityObject.Value = source.Value;
             }
         }
 
@@ -59,14 +56,14 @@ namespace Makc2021.Layer3.Sample.Entities.UserToken
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableEntityProperties()
+        protected override HashSet<string> CreateLoadableProperties()
         {
             return new HashSet<string>
             {
-                nameof(Entity.LoginProvider),
-                nameof(Entity.Name),
-                nameof(Entity.UserId),
-                nameof(Entity.Value)
+                nameof(EntityObject.LoginProvider),
+                nameof(EntityObject.Name),
+                nameof(EntityObject.UserId),
+                nameof(EntityObject.Value)
             };
         }
 

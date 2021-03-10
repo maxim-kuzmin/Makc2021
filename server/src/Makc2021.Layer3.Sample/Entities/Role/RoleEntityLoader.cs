@@ -11,12 +11,9 @@ namespace Makc2021.Layer3.Sample.Entities.Role
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="data">Данные.</param>
-        public RoleEntityLoader(RoleEntityObject data = null)
-            : base(data ?? new RoleEntityObject())
+        /// <inheritdoc/>
+        public RoleEntityLoader(RoleEntityObject entityObject = null)
+            : base(entityObject ?? new RoleEntityObject())
         {
         }
 
@@ -33,24 +30,24 @@ namespace Makc2021.Layer3.Sample.Entities.Role
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Entity.ConcurrencyStamp)))
+            if (props.Contains(nameof(EntityObject.ConcurrencyStamp)))
             {
-                Entity.ConcurrencyStamp = source.ConcurrencyStamp;
+                EntityObject.ConcurrencyStamp = source.ConcurrencyStamp;
             }
 
-            if (props.Contains(nameof(Entity.Id)))
+            if (props.Contains(nameof(EntityObject.Id)))
             {
-                Entity.Id = source.Id;
+                EntityObject.Id = source.Id;
             }
 
-            if (props.Contains(nameof(Entity.Name)))
+            if (props.Contains(nameof(EntityObject.Name)))
             {
-                Entity.Name = source.Name;
+                EntityObject.Name = source.Name;
             }
 
-            if (props.Contains(nameof(Entity.NormalizedName)))
+            if (props.Contains(nameof(EntityObject.NormalizedName)))
             {
-                Entity.NormalizedName = source.NormalizedName;
+                EntityObject.NormalizedName = source.NormalizedName;
             }
         }
 
@@ -59,14 +56,14 @@ namespace Makc2021.Layer3.Sample.Entities.Role
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableEntityProperties()
+        protected override HashSet<string> CreateLoadableProperties()
         {
             return new HashSet<string>
             {
-                nameof(Entity.ConcurrencyStamp),
-                nameof(Entity.Id),
-                nameof(Entity.Name),
-                nameof(Entity.NormalizedName)
+                nameof(EntityObject.ConcurrencyStamp),
+                nameof(EntityObject.Id),
+                nameof(EntityObject.Name),
+                nameof(EntityObject.NormalizedName)
             };
         }
 

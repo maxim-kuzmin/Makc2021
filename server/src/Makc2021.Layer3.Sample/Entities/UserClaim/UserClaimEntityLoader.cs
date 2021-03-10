@@ -11,12 +11,9 @@ namespace Makc2021.Layer3.Sample.Entities.UserClaim
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="data">Данные.</param>
-        public UserClaimEntityLoader(UserClaimEntityObject data = null)
-            : base(data ?? new UserClaimEntityObject())
+        /// <inheritdoc/>
+        public UserClaimEntityLoader(UserClaimEntityObject entityObject = null)
+            : base(entityObject ?? new UserClaimEntityObject())
         {
         }
 
@@ -33,24 +30,24 @@ namespace Makc2021.Layer3.Sample.Entities.UserClaim
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Entity.ClaimType)))
+            if (props.Contains(nameof(EntityObject.ClaimType)))
             {
-                Entity.ClaimType = source.ClaimType;
+                EntityObject.ClaimType = source.ClaimType;
             }
 
-            if (props.Contains(nameof(Entity.ClaimValue)))
+            if (props.Contains(nameof(EntityObject.ClaimValue)))
             {
-                Entity.ClaimValue = source.ClaimValue;
+                EntityObject.ClaimValue = source.ClaimValue;
             }
 
-            if (props.Contains(nameof(Entity.Id)))
+            if (props.Contains(nameof(EntityObject.Id)))
             {
-                Entity.Id = source.Id;
+                EntityObject.Id = source.Id;
             }
 
-            if (props.Contains(nameof(Entity.UserId)))
+            if (props.Contains(nameof(EntityObject.UserId)))
             {
-                Entity.UserId = source.UserId;
+                EntityObject.UserId = source.UserId;
             }
         }
 
@@ -59,14 +56,14 @@ namespace Makc2021.Layer3.Sample.Entities.UserClaim
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableEntityProperties()
+        protected override HashSet<string> CreateLoadableProperties()
         {
             return new HashSet<string>
             {
-                nameof(Entity.ClaimType),
-                nameof(Entity.ClaimValue),
-                nameof(Entity.Id),
-                nameof(Entity.UserId)
+                nameof(EntityObject.ClaimType),
+                nameof(EntityObject.ClaimValue),
+                nameof(EntityObject.Id),
+                nameof(EntityObject.UserId)
             };
         }
 

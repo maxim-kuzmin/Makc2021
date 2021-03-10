@@ -11,12 +11,9 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTree
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="data">Данные.</param>
-        public DummyTreeEntityLoader(DummyTreeEntityObject data = null)
-            : base(data ?? new DummyTreeEntityObject())
+        /// <inheritdoc/>
+        public DummyTreeEntityLoader(DummyTreeEntityObject entityObject = null)
+            : base(entityObject ?? new DummyTreeEntityObject())
         {
         }
 
@@ -33,49 +30,49 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTree
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Entity.Id)))
+            if (props.Contains(nameof(EntityObject.Id)))
             {
-                Entity.Id = source.Id;
+                EntityObject.Id = source.Id;
             }
 
-            if (props.Contains(nameof(Entity.Name)))
+            if (props.Contains(nameof(EntityObject.Name)))
             {
-                Entity.Name = source.Name;
+                EntityObject.Name = source.Name;
             }
 
-            if (props.Contains(nameof(Entity.ParentId)))
+            if (props.Contains(nameof(EntityObject.ParentId)))
             {
-                Entity.ParentId = source.ParentId;
+                EntityObject.ParentId = source.ParentId;
             }
 
-            if (props.Contains(nameof(Entity.TreeChildCount)))
+            if (props.Contains(nameof(EntityObject.TreeChildCount)))
             {
-                Entity.TreeChildCount = source.TreeChildCount;
+                EntityObject.TreeChildCount = source.TreeChildCount;
             }
 
-            if (props.Contains(nameof(Entity.TreeDescendantCount)))
+            if (props.Contains(nameof(EntityObject.TreeDescendantCount)))
             {
-                Entity.TreeDescendantCount = source.TreeDescendantCount;
+                EntityObject.TreeDescendantCount = source.TreeDescendantCount;
             }
 
-            if (props.Contains(nameof(Entity.TreeLevel)))
+            if (props.Contains(nameof(EntityObject.TreeLevel)))
             {
-                Entity.TreeLevel = source.TreeLevel;
+                EntityObject.TreeLevel = source.TreeLevel;
             }
 
-            if (props.Contains(nameof(Entity.TreePath)))
+            if (props.Contains(nameof(EntityObject.TreePath)))
             {
-                Entity.TreePath = source.TreePath;
+                EntityObject.TreePath = source.TreePath;
             }
 
-            if (props.Contains(nameof(Entity.TreePosition)))
+            if (props.Contains(nameof(EntityObject.TreePosition)))
             {
-                Entity.TreePosition = source.TreePosition;
+                EntityObject.TreePosition = source.TreePosition;
             }
 
-            if (props.Contains(nameof(Entity.TreeSort)))
+            if (props.Contains(nameof(EntityObject.TreeSort)))
             {
-                Entity.TreeSort = source.TreeSort;
+                EntityObject.TreeSort = source.TreeSort;
             }
         }
 
@@ -84,18 +81,18 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTree
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableEntityProperties()
+        protected override HashSet<string> CreateLoadableProperties()
         {
             return new HashSet<string>
             {
-                nameof(Entity.Id),
-                nameof(Entity.Name),
-                nameof(Entity.ParentId),
-                nameof(Entity.TreeChildCount),
-                nameof(Entity.TreeDescendantCount),
-                nameof(Entity.TreeLevel),
-                nameof(Entity.TreePath),
-                nameof(Entity.TreeSort)
+                nameof(EntityObject.Id),
+                nameof(EntityObject.Name),
+                nameof(EntityObject.ParentId),
+                nameof(EntityObject.TreeChildCount),
+                nameof(EntityObject.TreeDescendantCount),
+                nameof(EntityObject.TreeLevel),
+                nameof(EntityObject.TreePath),
+                nameof(EntityObject.TreeSort)
             };
         }
 

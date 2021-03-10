@@ -3,15 +3,15 @@
 namespace Makc2021.Layer3.Sample
 {
     /// <inheritdoc/>
-    public abstract class EntityLoader<TData> : Layer2.EntityLoader<TData>
+    public abstract class EntityLoader<TEntityObject> : Layer2.EntityLoader<TEntityObject>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public EntityLoader(TData data)
-            : base(data)
+        public EntityLoader(TEntityObject entityObject)
+            : base(entityObject)
         {
-            Entity = data;
+            EntityObject = entityObject;
         }
 
         #endregion Constructors

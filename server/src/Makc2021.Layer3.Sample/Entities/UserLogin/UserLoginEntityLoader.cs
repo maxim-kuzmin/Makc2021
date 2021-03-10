@@ -11,12 +11,9 @@ namespace Makc2021.Layer3.Sample.Entities.UserLogin
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="data">Данные.</param>
-        public UserLoginEntityLoader(UserLoginEntityObject data = null)
-            : base(data ?? new UserLoginEntityObject())
+        /// <inheritdoc/>
+        public UserLoginEntityLoader(UserLoginEntityObject entityObject = null)
+            : base(entityObject ?? new UserLoginEntityObject())
         {
         }
 
@@ -33,24 +30,24 @@ namespace Makc2021.Layer3.Sample.Entities.UserLogin
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Entity.LoginProvider)))
+            if (props.Contains(nameof(EntityObject.LoginProvider)))
             {
-                Entity.LoginProvider = source.LoginProvider;
+                EntityObject.LoginProvider = source.LoginProvider;
             }
 
-            if (props.Contains(nameof(Entity.ProviderDisplayName)))
+            if (props.Contains(nameof(EntityObject.ProviderDisplayName)))
             {
-                Entity.ProviderDisplayName = source.ProviderDisplayName;
+                EntityObject.ProviderDisplayName = source.ProviderDisplayName;
             }
 
-            if (props.Contains(nameof(Entity.ProviderKey)))
+            if (props.Contains(nameof(EntityObject.ProviderKey)))
             {
-                Entity.ProviderKey = source.ProviderKey;
+                EntityObject.ProviderKey = source.ProviderKey;
             }
 
-            if (props.Contains(nameof(Entity.UserId)))
+            if (props.Contains(nameof(EntityObject.UserId)))
             {
-                Entity.UserId = source.UserId;
+                EntityObject.UserId = source.UserId;
             }
         }
 
@@ -59,14 +56,14 @@ namespace Makc2021.Layer3.Sample.Entities.UserLogin
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableEntityProperties()
+        protected override HashSet<string> CreateLoadableProperties()
         {
             return new HashSet<string>
             {
-                nameof(Entity.LoginProvider),
-                nameof(Entity.ProviderDisplayName),
-                nameof(Entity.ProviderKey),
-                nameof(Entity.UserId)
+                nameof(EntityObject.LoginProvider),
+                nameof(EntityObject.ProviderDisplayName),
+                nameof(EntityObject.ProviderKey),
+                nameof(EntityObject.UserId)
             };
         }
 

@@ -11,12 +11,9 @@ namespace Makc2021.Layer3.Sample.Entities.UserRole
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="data">Данные.</param>
-        public UserRoleEntityLoader(UserRoleEntityObject data = null)
-            : base(data ?? new UserRoleEntityObject())
+        /// <inheritdoc/>
+        public UserRoleEntityLoader(UserRoleEntityObject entityObject = null)
+            : base(entityObject ?? new UserRoleEntityObject())
         {
         }
 
@@ -33,14 +30,14 @@ namespace Makc2021.Layer3.Sample.Entities.UserRole
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(Entity.UserId)))
+            if (props.Contains(nameof(EntityObject.UserId)))
             {
-                Entity.UserId = source.UserId;
+                EntityObject.UserId = source.UserId;
             }
 
-            if (props.Contains(nameof(Entity.RoleId)))
+            if (props.Contains(nameof(EntityObject.RoleId)))
             {
-                Entity.RoleId = source.RoleId;
+                EntityObject.RoleId = source.RoleId;
             }
         }
 
@@ -49,12 +46,12 @@ namespace Makc2021.Layer3.Sample.Entities.UserRole
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableEntityProperties()
+        protected override HashSet<string> CreateLoadableProperties()
         {
             return new HashSet<string>
             {
-                nameof(Entity.UserId),
-                nameof(Entity.RoleId)
+                nameof(EntityObject.UserId),
+                nameof(EntityObject.RoleId)
             };
         }
 
