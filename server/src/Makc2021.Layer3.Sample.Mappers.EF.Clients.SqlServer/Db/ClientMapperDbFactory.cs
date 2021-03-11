@@ -19,7 +19,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
         /// <summary>
         /// Экземпляр по умолчанию.
         /// </summary>
-        public static ClientMapperDbFactory Default { get; } = new();
+        public static IMapperDbFactory Default { get; } = new ClientMapperDbFactory();
 
         #endregion Properties
 
@@ -32,11 +32,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
         }
 
         /// <inheritdoc/>
-        public ClientMapperDbFactory(
-            string connectionString,
-            EntitiesSettings settings,
-            Environment environment
-            )
+        public ClientMapperDbFactory(string connectionString, EntitiesSettings settings, Environment environment)
             : base(connectionString, settings, environment)
         {
         }
@@ -48,7 +44,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
         /// <inheritdoc/>
         public ClientMapperDbContext CreateDbContext(string[] args)
         {
-            return new ClientMapperDbContext(Options, Settings);
+            return new ClientMapperDbContext(Options, EntitiesSettings);
         }
 
         /// <inheritdoc/>
@@ -64,15 +60,13 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
         /// <inheritdoc/>
         protected sealed override string CreateConnectionString()
         {
-            var configFilePath = ClientMapperConfig.CreateFilePath();
-
-            var configSettings = ClientMapperConfigSettings.Create(configFilePath, Environment);
+            var configSettings = ClientMapperConfigSettings.Create(ClientMapperConfig.FilePath, Environment);
 
             return configSettings.ConnectionString;
         }
 
         /// <inheritdoc/>
-        protected sealed override EntitiesSettings CreateSettings()
+        protected sealed override EntitiesSettings CreateEntitiesSettings()
         {
             return ClientMapperEntitiesSettings.Instance;
         }
@@ -80,7 +74,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
         /// <inheritdoc/>
         public sealed override void BuildDbContextOptions(DbContextOptionsBuilder builder)
         {
-            var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+            string assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
 
             builder.UseSqlServer(ConnectionString, b => b.MigrationsAssembly(assemblyName));
         }

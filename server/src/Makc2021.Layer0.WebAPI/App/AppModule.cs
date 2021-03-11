@@ -13,14 +13,14 @@ namespace Makc2021.Layer0.WebAPI.App
         #region Properties
 
         /// <summary>
-        /// ORM "Entity Framework".
+        /// ORM.
         /// </summary>
-        public MapperModule EF { get; } = new();
+        public MapperModule Mapper { get; } = new();
 
         /// <summary>
-        /// ORM "Entity Framework". База данных "Microsoft SQL Server".
+        /// ORM клиента.
         /// </summary>
-        public ClientMapperModule EFSqlServer { get; } = new();
+        public ClientMapperModule ClientMapper { get; } = new();
 
         #endregion Properties
     }

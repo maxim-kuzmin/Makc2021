@@ -13,9 +13,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
     {
         #region Properties
 
-        private Environment Environment { get; set; }
-
-        private string FilePath { get; set; }
+        /// <summary>
+        /// Путь к файлу.
+        /// </summary>
+        internal static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer3.Sample.Mappers.EF.config");
 
         /// <summary>
         /// Настройки.
@@ -32,26 +33,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// <param name="environment">Окружение.</param>
         public MapperConfig(Environment environment)
         {
-            Environment = environment;
-
-            FilePath = CreateFilePath();
-
-            Settings = MapperConfigSettings.Create(FilePath, Environment);
+            Settings = MapperConfigSettings.Create(FilePath, environment);
         }
 
         #endregion Constructors
-
-        #region Internal methods
-
-        /// <summary>
-        /// Создать путь к файлу.
-        /// </summary>
-        /// <returns>Путь к файлу.</returns>
-        internal static string CreateFilePath()
-        {
-            return Path.Combine("ConfigFiles", "Layer3.Sample.Mappers.EF.config");
-        }
-
-        #endregion Internal methods
     }
 }

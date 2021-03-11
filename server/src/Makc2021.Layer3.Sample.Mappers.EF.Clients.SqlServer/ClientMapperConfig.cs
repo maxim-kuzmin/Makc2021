@@ -13,9 +13,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
     {
         #region Properties
 
-        private Environment Environment { get; set; }
-
-        private string FilePath { get; set; }
+        /// <summary>
+        /// Путь к файлу.
+        /// </summary>
+        internal static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer3.Sample.Mappers.EF.Clients.SqlServer.config");
 
         /// <summary>
         /// Настройки.
@@ -32,26 +33,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
         /// <param name="environment">Окружение.</param>
         public ClientMapperConfig(Environment environment)
         {
-            Environment = environment;
-
-            FilePath = CreateFilePath();
-
-            Settings = ClientMapperConfigSettings.Create(FilePath, Environment);
+            Settings = ClientMapperConfigSettings.Create(FilePath, environment);
         }
 
         #endregion Constructors
-
-        #region Internal methods
-
-        /// <summary>
-        /// Создать путь к файлу.
-        /// </summary>
-        /// <returns>Путь к файлу.</returns>
-        internal static string CreateFilePath()
-        {
-            return Path.Combine("ConfigFiles", "Layer3.Sample.Mappers.EF.Clients.SqlServer.config");
-        }
-
-        #endregion Internal methods
     }
 }

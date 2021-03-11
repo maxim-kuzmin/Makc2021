@@ -23,10 +23,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Db
         protected Environment Environment { get; private set; }
 
         /// <inheritdoc/>
-        public DbContextOptions<MapperDbContext> Options { get; private set; }
+        public EntitiesSettings EntitiesSettings { get; private set; }
 
         /// <inheritdoc/>
-        public EntitiesSettings Settings { get; private set; }
+        public DbContextOptions<MapperDbContext> Options { get; private set; }
 
         #endregion Properties
 
@@ -69,10 +69,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Db
         protected abstract string CreateConnectionString();
 
         /// <summary>
-        /// Создать настройки.
+        /// Создать настройки сущностей.
         /// </summary>
-        /// <returns>Настройки.</returns>
-        protected abstract EntitiesSettings CreateSettings();
+        /// <returns>Настройки сущностей.</returns>
+        protected abstract EntitiesSettings CreateEntitiesSettings();
 
         /// <summary>
         /// Построить опции контекста базы данных.
@@ -96,7 +96,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Db
         private void Initialize(string connectionString, EntitiesSettings settings, Environment environment)
         {
             Environment = environment ?? new();
-            Settings = settings ?? CreateSettings();
+            EntitiesSettings = settings ?? CreateEntitiesSettings();
             ConnectionString = connectionString ?? CreateConnectionString();
             Options = CreateDbContextOptions();
         }

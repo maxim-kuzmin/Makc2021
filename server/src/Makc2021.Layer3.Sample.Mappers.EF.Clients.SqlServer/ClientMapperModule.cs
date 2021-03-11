@@ -41,7 +41,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
         /// <param name="environment">Окружение.</param>
         public void InitConfig(Environment environment)
         {
-            Config = new ClientMapperConfig(environment);
+            Config = new(environment);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
         /// <param name="externals">Внешнее.</param>
         public void InitContext(ClientMapperExternals externals)
         {
-            Context = new ClientMapperContext(Config.Settings, externals);
+            Context = new(Config.Settings, externals);
 
             Config = null;
         }

@@ -36,7 +36,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
         /// Конструктор.
         /// </summary>
         /// <param name="configSettings">Конфигурационные настройки.</param>
-        /// <param name="externals">Внешнее.</param>
+        /// <param name="externals">Внешние зависимости.</param>
         public ClientMapperContext(IClientMapperConfigSettings configSettings, ClientMapperExternals externals)
         {
             ConfigSettings = configSettings;

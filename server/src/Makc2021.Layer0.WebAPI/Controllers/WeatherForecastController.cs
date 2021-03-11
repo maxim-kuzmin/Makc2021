@@ -60,7 +60,7 @@ namespace Makc2021.Layer0.WebAPI.Controllers
             {
                 ConfigSettingsOfEF,
                 ConfigSettingsOfEFSqlServer,
-                DbFactory.Settings,
+                DbFactory.EntitiesSettings,
                 dbContext.Database.ProviderName
             };
         }

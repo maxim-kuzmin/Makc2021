@@ -12,13 +12,12 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Config
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="settings">Настройки.</param>
-        /// <param name="filePath">Путь к файлу.</param>
-        /// <param name="environment">Окружение.</param>
-        public ClientMapperConfigProvider(ClientMapperConfigSettings settings, string filePath, Environment environment)
+        /// <inheritdoc/>
+        public ClientMapperConfigProvider(
+            ClientMapperConfigSettings settings,
+            string filePath,
+            Environment environment
+            )
             : base(settings, filePath, environment)
         {
         }

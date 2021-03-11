@@ -23,26 +23,23 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
     /// </summary>
     public class ClientMapperDbContext : MapperDbContext
     {
-        #region Properties
+        #region Fields
 
-        private EntitiesSettings Settings { get; set; }
+        private readonly EntitiesSettings _entitiesSettings;
 
-        #endregion Properties
+        #endregion Fields
 
         #region Constructors
 
         /// <inheritdoc/>
         public ClientMapperDbContext()
-            : this(
-                  ClientMapperDbFactory.Default.Options,
-                  ClientMapperDbFactory.Default.Settings
-                  )
+            : this( ClientMapperDbFactory.Default.Options, ClientMapperDbFactory.Default.EntitiesSettings)
         {
         }
 
         /// <inheritdoc/>
         public ClientMapperDbContext(DbContextOptions<MapperDbContext> options)
-            : this(options, ClientMapperDbFactory.Default.Settings)
+            : this(options, ClientMapperDbFactory.Default.EntitiesSettings)
         {
         }
 
@@ -50,43 +47,37 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
         /// Конструктор.
         /// </summary>
         /// <param name="options">Опции.</param>
-        /// <param name="settings">Настройки.</param>
-        public ClientMapperDbContext(
-            DbContextOptions<MapperDbContext> options,
-            EntitiesSettings settings
-            )
+        /// <param name="entitiesSettings">Настройки сущностей.</param>
+        public ClientMapperDbContext(DbContextOptions<MapperDbContext> options, EntitiesSettings entitiesSettings)
             : base(options)
         {
-            Settings = settings;
+            _entitiesSettings = entitiesSettings;
         }
 
         #endregion Constructors
 
         #region Protected methods
 
-        /// <summary>
-        /// Обработать событие создания модели.
-        /// </summary>
-        /// <param name="modelBuilder">Построитель модели.</param>
+        /// <inheritdoc/>
         protected sealed override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new DummyMainEntityMapperSchema(Settings));
-            modelBuilder.ApplyConfiguration(new DummyManyToManyEntityMapperSchema(Settings));
-            modelBuilder.ApplyConfiguration(new DummyMainDummyManyToManyEntityMapperSchema(Settings));
-            modelBuilder.ApplyConfiguration(new DummyOneToManyEntityMapperSchema(Settings));
-            modelBuilder.ApplyConfiguration(new DummyTreeEntityMapperSchema(Settings));
-            modelBuilder.ApplyConfiguration(new DummyTreeLinkEntityMapperSchema(Settings));
+            modelBuilder.ApplyConfiguration(new DummyMainEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new DummyManyToManyEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new DummyMainDummyManyToManyEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new DummyOneToManyEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new DummyTreeEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new DummyTreeLinkEntityMapperSchema(_entitiesSettings));
 
-            modelBuilder.ApplyConfiguration(new RoleEntityMapperSchema(Settings));
-            modelBuilder.ApplyConfiguration(new RoleClaimEntityMapperSchema(Settings));
+            modelBuilder.ApplyConfiguration(new RoleEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new RoleClaimEntityMapperSchema(_entitiesSettings));
 
-            modelBuilder.ApplyConfiguration(new UserEntityMapperSchema(Settings));
-            modelBuilder.ApplyConfiguration(new UserClaimEntityMapperSchema(Settings));
-            modelBuilder.ApplyConfiguration(new UserLoginEntityMapperSchema(Settings));
-            modelBuilder.ApplyConfiguration(new UserRoleEntityMapperSchema(Settings));
-            modelBuilder.ApplyConfiguration(new UserTokenEntityMapperSchema(Settings));
+            modelBuilder.ApplyConfiguration(new UserEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new UserClaimEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new UserLoginEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new UserRoleEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new UserTokenEntityMapperSchema(_entitiesSettings));
         }
 
         #endregion Protected methods

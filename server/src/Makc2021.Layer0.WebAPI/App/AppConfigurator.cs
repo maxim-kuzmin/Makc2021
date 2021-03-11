@@ -39,8 +39,8 @@ namespace Makc2021.Layer0.WebAPI.App
             InitConfigs();
             InitContexts();
 
-            Module.EF.ConfigureServices(services);
-            Module.EFSqlServer.ConfigureServices(services);
+            Module.Mapper.ConfigureServices(services);
+            Module.ClientMapper.ConfigureServices(services);
         }
 
         #endregion Public methods
@@ -49,22 +49,22 @@ namespace Makc2021.Layer0.WebAPI.App
 
         private void InitContexts()
         {
-            Module.EFSqlServer.InitContext(new ClientMapperExternals
+            Module.ClientMapper.InitContext(new ClientMapperExternals
             {
                 Environment = Environment
             });
 
-            Module.EF.InitContext(new MapperExternals
+            Module.Mapper.InitContext(new MapperExternals
             {
-                DbFactory = Module.EFSqlServer.Context.DbFactory,
-                EntitiesSettings = Module.EFSqlServer.Context.EntitiesSettings
+                DbFactory = Module.ClientMapper.Context.DbFactory,
+                EntitiesSettings = Module.ClientMapper.Context.EntitiesSettings
             });
         }
 
         private void InitConfigs()
         {
-            Module.EF.InitConfig(Environment);
-            Module.EFSqlServer.InitConfig(Environment);
+            Module.Mapper.InitConfig(Environment);
+            Module.ClientMapper.InitConfig(Environment);
         }
 
         #endregion Private methods

@@ -12,14 +12,14 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Db
         #region Properties
 
         /// <summary>
+        /// Настройки сущностей.
+        /// </summary>
+        EntitiesSettings EntitiesSettings { get; }
+
+        /// <summary>
         /// Опции.
         /// </summary>
         DbContextOptions<MapperDbContext> Options { get; }
-
-        /// <summary>
-        /// Настройки.
-        /// </summary>
-        EntitiesSettings Settings { get; }
 
         #endregion Properties
 

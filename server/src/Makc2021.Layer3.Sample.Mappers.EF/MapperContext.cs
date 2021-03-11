@@ -24,7 +24,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// Конструктор.
         /// </summary>
         /// <param name="configSettings">Конфигурационные настройки.</param>
-        /// <param name="externals">Внешнее.</param>
+        /// <param name="externals">Внешние зависимости.</param>
         public MapperContext(IMapperConfigSettings configSettings, MapperExternals externals)
         {
             ConfigSettings = configSettings;

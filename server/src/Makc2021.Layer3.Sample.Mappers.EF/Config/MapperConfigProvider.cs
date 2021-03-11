@@ -12,12 +12,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Config
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="settings">Настройки.</param>
-        /// <param name="filePath">Путь к файлу.</param>
-        /// <param name="environment">Окружение.</param>
+        /// <inheritdoc/>
         public MapperConfigProvider(MapperConfigSettings settings, string filePath, Environment environment)
             : base(settings, filePath, environment)
         {

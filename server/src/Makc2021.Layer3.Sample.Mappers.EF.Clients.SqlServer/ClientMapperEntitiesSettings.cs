@@ -24,8 +24,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
     {
         #region Fields
 
-        private static readonly Lazy<ClientMapperEntitiesSettings> _lazy =
-            new Lazy<ClientMapperEntitiesSettings>(() => new ClientMapperEntitiesSettings());
+        private static readonly Lazy<EntitiesSettings> _lazy = new(() => new ClientMapperEntitiesSettings());
 
         #endregion Fields
 
@@ -34,13 +33,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
         /// <summary>
         /// Экземпляр.
         /// </summary>
-        public static EntitiesSettings Instance
-        {
-            get
-            {
-                return _lazy.Value;
-            }
-        }
+        public static EntitiesSettings Instance => _lazy.Value;
 
         #endregion Properties
 
@@ -61,12 +54,12 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
                 DbColumnForTreeSort = "TreeSort",
                 DbColumnPartsSeparator = "",
                 DbForeignKeyPrefix = "FK",
-                FullNamePartsSeparator = ".",
                 DbIndexPrefix = "IX",
-                NamePartsSeparator = "_",
                 DbPrimaryKeyPrefix = "PK",
                 DbSchema = "dbo",
-                DbUniqueIndexPrefix = "UX"
+                DbUniqueIndexPrefix = "UX",
+                FullNamePartsSeparator = ".",                
+                NamePartsSeparator = "_"
             };
 
             DummyOneToMany = new DummyOneToManyEntitySetting(defaults, "DummyOneToMany");
