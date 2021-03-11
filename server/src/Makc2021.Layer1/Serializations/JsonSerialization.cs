@@ -6,7 +6,7 @@ using System.Text.Json;
 namespace Makc2021.Layer1.Serializations
 {
     /// <summary>
-    /// Json сериализация.
+    /// Сериализация JSON.
     /// </summary>
     public static class JsonSerialization
     {

@@ -1,7 +1,7 @@
 ﻿//Author Maxim Kuzmin//makc//
 
-using Makc2021.Layer3.Sample.ORMs.EF;
-using Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer;
+using Makc2021.Layer3.Sample.Mappers.EF;
+using Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Makc2021.Layer0.WebAPI.App
@@ -9,7 +9,7 @@ namespace Makc2021.Layer0.WebAPI.App
     using Makc2021.Layer1;
 
     /// <summary>
-    /// Приложение. Конфигуратор.
+    /// Конфигуратор приложения.
     /// </summary>
     public class AppConfigurator
     {
@@ -49,12 +49,12 @@ namespace Makc2021.Layer0.WebAPI.App
 
         private void InitContexts()
         {
-            Module.EFSqlServer.InitContext(new EFSqlServerExternals
+            Module.EFSqlServer.InitContext(new ClientMapperExternals
             {
                 Environment = Environment
             });
 
-            Module.EF.InitContext(new EFExternals
+            Module.EF.InitContext(new MapperExternals
             {
                 DbFactory = Module.EFSqlServer.Context.DbFactory,
                 EntitiesSettings = Module.EFSqlServer.Context.EntitiesSettings

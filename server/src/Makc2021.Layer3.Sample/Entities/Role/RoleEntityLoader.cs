@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Entities.Role
 {
     /// <summary>
-    /// Сущность "Role". Загрузчик.
+    /// Загрузчик сущности "Role".
     /// </summary>
     public class RoleEntityLoader : EntityLoader<RoleEntityObject>
     {

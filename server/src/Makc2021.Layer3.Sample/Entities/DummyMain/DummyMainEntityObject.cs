@@ -5,7 +5,7 @@ using System;
 namespace Makc2021.Layer3.Sample.Entities.DummyMain
 {
     /// <summary>
-    /// Сущность "DummyMain". Объект.
+    /// Объект сущности "DummyMain".
     /// </summary>
     public class DummyMainEntityObject
     {

@@ -6,7 +6,7 @@ using Makc2021.Layer3.Sample.Entities.DummyManyToMany;
 namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
 {
     /// <summary>
-    /// Сущность "DummyMainDummyManyToMany". Настройка.
+    /// Настройка сущности "DummyMainDummyManyToMany".
     /// </summary>
     public class DummyMainDummyManyToManyEntitySetting : EntitySetting
     {

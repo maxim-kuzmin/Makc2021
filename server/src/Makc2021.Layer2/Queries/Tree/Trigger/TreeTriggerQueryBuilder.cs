@@ -5,7 +5,7 @@ using Makc2021.Layer2.Trigger;
 namespace Makc2021.Layer2.Queries.Tree.Trigger
 {
     /// <summary>
-    /// Запрос триггера дерева. Построитель.
+    /// Построитель запроса триггера дерева.
     /// </summary>
     public abstract class TreeTriggerQueryBuilder : TreeQueryBuilder
     {

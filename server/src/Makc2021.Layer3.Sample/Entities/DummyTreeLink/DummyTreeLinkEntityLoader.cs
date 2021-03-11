@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
 {
     /// <summary>
-    /// Сущность "DummyTreeLink". Загрузчик.
+    /// Загрузчик сущности "DummyTreeLink".
     /// </summary>
     public class DummyTreeLinkEntityLoader : EntityLoader<DummyTreeLinkEntityObject>
     {

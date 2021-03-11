@@ -3,7 +3,7 @@
 namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
 {
     /// <summary>
-    /// Сущность "DummyTreeLink". Объект.
+    /// Объект сущности "DummyTreeLink".
     /// </summary>
     public class DummyTreeLinkEntityObject
     {

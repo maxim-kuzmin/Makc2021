@@ -3,7 +3,7 @@
 namespace Makc2021.Layer3.Sample.Entities.DummyOneToMany
 {
     /// <summary>
-    /// Сущность "DummyOneToMany". Объект.
+    /// Объект сущности "DummyOneToMany".
     /// </summary>
     public class DummyOneToManyEntityObject
     {

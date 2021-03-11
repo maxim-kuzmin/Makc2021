@@ -3,7 +3,7 @@
 namespace Makc2021.Layer3.Sample.Entities.DummyTree
 {
     /// <summary>
-    /// Сущность "DummyTree". Настройка.
+    /// Настройка сущности "DummyTree".
     /// </summary>
     public class DummyTreeEntitySetting : EntitySetting
     {

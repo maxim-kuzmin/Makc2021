@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Entities.UserLogin
 {
     /// <summary>
-    /// Сущность "UserLogin". Загрузчик.
+    /// Загрузчик сущности "UserLogin".
     /// </summary>
     public class UserLoginEntityLoader : EntityLoader<UserLoginEntityObject>
     {

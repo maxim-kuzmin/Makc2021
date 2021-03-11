@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 namespace Makc2021.Layer3.Sample.Entities.User
 {
     /// <summary>
-    /// Сущность "User". Объект.
+    /// Объект сущности "User".
     /// </summary>
     public class UserEntityObject : IdentityUser<long>
     {

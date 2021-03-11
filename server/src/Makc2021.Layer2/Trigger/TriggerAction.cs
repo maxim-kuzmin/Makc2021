@@ -3,7 +3,7 @@
 namespace Makc2021.Layer2.Trigger
 {
     /// <summary>
-    ///  Основа. Действие триггера.
+    /// Действие триггера.
     /// </summary>
     public enum TriggerAction
     {

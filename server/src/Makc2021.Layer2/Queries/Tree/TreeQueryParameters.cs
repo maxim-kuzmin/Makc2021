@@ -6,7 +6,7 @@ using System.Data.Common;
 namespace Makc2021.Layer2.Queries.Tree
 {
     /// <summary>
-    /// Запрос дерева. Параметры.
+    /// Параметры запроса дерева.
     /// </summary>
     public class TreeQueryParameters
     {

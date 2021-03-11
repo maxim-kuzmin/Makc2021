@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Entities.DummyManyToMany
 {
     /// <summary>
-    /// Сущность "DummyManyToMany". Загрузчик.
+    /// Загрузчик сущности "DummyManyToMany".
     /// </summary>
     public class DummyManyToManyEntityLoader : EntityLoader<DummyManyToManyEntityObject>
     {

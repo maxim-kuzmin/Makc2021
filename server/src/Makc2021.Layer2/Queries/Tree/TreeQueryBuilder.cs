@@ -3,7 +3,7 @@
 namespace Makc2021.Layer2.Queries.Tree
 {
     /// <summary>
-    /// Запрос дерева. Построитель.
+    /// Построитель запроса дерева.
     /// </summary>
     public abstract class TreeQueryBuilder
     {

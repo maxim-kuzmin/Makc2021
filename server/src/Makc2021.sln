@@ -19,25 +19,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layer2", "Layer2", "{EED2B1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer2", "Makc2021.Layer2\Makc2021.Layer2.csproj", "{7440845C-31BC-4CD8-9D3E-D99DC39E24A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer2.DBs.Oracle", "Makc2021.Layer2.DBs.Oracle\Makc2021.Layer2.DBs.Oracle.csproj", "{6326B7A1-2A95-41B4-A290-4CD85A902D78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer2.Clients.Oracle", "Makc2021.Layer2.Clients.Oracle\Makc2021.Layer2.Clients.Oracle.csproj", "{6326B7A1-2A95-41B4-A290-4CD85A902D78}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer2.DBs.PostgreSql", "Makc2021.Layer2.DBs.PostgreSql\Makc2021.Layer2.DBs.PostgreSql.csproj", "{82038BD9-D474-40E9-932C-63A22EC7C380}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer2.Clients.PostgreSql", "Makc2021.Layer2.Clients.PostgreSql\Makc2021.Layer2.Clients.PostgreSql.csproj", "{82038BD9-D474-40E9-932C-63A22EC7C380}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer2.DBs.SqlServer", "Makc2021.Layer2.DBs.SqlServer\Makc2021.Layer2.DBs.SqlServer.csproj", "{63FCE05F-BC37-4D99-9CD2-CB3EBFDE5B81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer2.Clients.SqlServer", "Makc2021.Layer2.Clients.SqlServer\Makc2021.Layer2.Clients.SqlServer.csproj", "{63FCE05F-BC37-4D99-9CD2-CB3EBFDE5B81}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer2.ORMs.EF", "Makc2021.Layer2.ORMs.EF\Makc2021.Layer2.ORMs.EF.csproj", "{A43A743B-E9DF-441A-BA2F-FAA6F52704B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer2.Mappers.EF", "Makc2021.Layer2.Mappers.EF\Makc2021.Layer2.Mappers.EF.csproj", "{A43A743B-E9DF-441A-BA2F-FAA6F52704B1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layer3", "Layer3", "{47A6B3F1-6F00-4D69-9EE9-E23F1F6E08EE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer3.Sample", "Makc2021.Layer3.Sample\Makc2021.Layer3.Sample.csproj", "{E397244C-04C6-49F4-AD7F-15AB7B9F0513}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer3.Sample.ORMs.EF", "Makc2021.Layer3.Sample.ORMs.EF\Makc2021.Layer3.Sample.ORMs.EF.csproj", "{BE51D1FC-3F3F-445B-89D2-1049B117F8B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer3.Sample.Mappers.EF", "Makc2021.Layer3.Sample.Mappers.EF\Makc2021.Layer3.Sample.Mappers.EF.csproj", "{BE51D1FC-3F3F-445B-89D2-1049B117F8B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer3.Sample.ORMs.EF.DBs.Oracle", "Makc2021.Layer3.Sample.ORMs.EF.DBs.Oracle\Makc2021.Layer3.Sample.ORMs.EF.DBs.Oracle.csproj", "{42B46182-C1B2-46C5-AC32-9C53BDB05F4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer3.Sample.Mappers.EF.Clients.Oracle", "Makc2021.Layer3.Sample.Mappers.EF.Clients.Oracle\Makc2021.Layer3.Sample.Mappers.EF.Clients.Oracle.csproj", "{42B46182-C1B2-46C5-AC32-9C53BDB05F4C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer3.Sample.ORMs.EF.DBs.PostgreSql", "Makc2021.Layer3.Sample.ORMs.EF.DBs.PostgreSql\Makc2021.Layer3.Sample.ORMs.EF.DBs.PostgreSql.csproj", "{E00F81BB-74B6-4767-8DF7-9E6E16734E73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer3.Sample.Mappers.EF.Clients.PostgreSql", "Makc2021.Layer3.Sample.Mappers.EF.Clients.PostgreSql\Makc2021.Layer3.Sample.Mappers.EF.Clients.PostgreSql.csproj", "{E00F81BB-74B6-4767-8DF7-9E6E16734E73}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer", "Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer\Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer.csproj", "{F172DEB3-DC71-440D-B9B1-ACF2638083A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer", "Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer\Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.csproj", "{F172DEB3-DC71-440D-B9B1-ACF2638083A9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C443ADA-A9D6-44C8-8222-5FDF3E6F4FE3}"
 	ProjectSection(SolutionItems) = preProject

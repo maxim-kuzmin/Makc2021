@@ -3,7 +3,7 @@
 namespace Makc2021.Layer2.Queries.Tree.Calculate
 {
     /// <summary>
-    /// Запрос вычисления дерева. Построитель.
+    /// Построитель запроса вычисления дерева.
     /// </summary>
     public abstract class TreeCalculateQueryBuilder : TreeQueryBuilder
     {

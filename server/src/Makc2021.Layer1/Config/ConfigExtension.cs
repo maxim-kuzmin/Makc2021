@@ -7,7 +7,7 @@ namespace Makc2021.Layer1.Config
     using System;
 
     /// <summary>
-    /// Конфигурация. Расширение.
+    /// Расширение конфигурации.
     /// </summary>
     public static class ConfigExtension
     {

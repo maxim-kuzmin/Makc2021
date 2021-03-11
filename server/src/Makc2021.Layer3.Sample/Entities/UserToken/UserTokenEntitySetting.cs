@@ -5,7 +5,7 @@ using Makc2021.Layer3.Sample.Entities.User;
 namespace Makc2021.Layer3.Sample.Entities.UserToken
 {
     /// <summary>
-    /// Сущность "UserToken". Настройка.
+    /// Настройка сущности "UserToken".
     /// </summary>
     public class UserTokenEntitySetting : EntitySetting
     {

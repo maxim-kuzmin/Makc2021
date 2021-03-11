@@ -5,7 +5,7 @@ using Makc2021.Layer3.Sample.Entities.User;
 namespace Makc2021.Layer3.Sample.Entities.UserClaim
 {
     /// <summary>
-    /// Сущность "UserClaim". Настройка.
+    /// Настройка сущности "UserClaim".
     /// </summary>
     public class UserClaimEntitySetting : EntitySetting
     {

@@ -5,7 +5,7 @@ using Makc2021.Layer3.Sample.Entities.DummyTree;
 namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
 {
     /// <summary>
-    /// Сущность "DummyTreeLink". Настройка.
+    /// Настройка сущности "DummyTreeLink".
     /// </summary>
     public class DummyTreeLinkEntitySetting : EntitySetting
     {

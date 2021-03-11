@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Entities.UserToken
 {
     /// <summary>
-    /// Сущность "UserToken". Загрузчик.
+    /// Загрузчик сущности "UserToken".
     /// </summary>
     public class UserTokenEntityLoader : EntityLoader<UserTokenEntityObject>
     {

@@ -9,7 +9,7 @@ using System.Data.Common;
 namespace Makc2021.Layer2
 {
     /// <summary>
-    /// Поставщик. Интерфейс.
+    /// Интерфейс поставщика.
     /// </summary>
     public interface IProvider
     {

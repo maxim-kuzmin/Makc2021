@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Entities.RoleClaim
 {
     /// <summary>
-    /// Сущность "RoleClaim". Загрузчик.
+    /// Загрузчик сущности "RoleClaim".
     /// </summary>
     public class RoleClaimEntityLoader : EntityLoader<RoleClaimEntityObject>
     {

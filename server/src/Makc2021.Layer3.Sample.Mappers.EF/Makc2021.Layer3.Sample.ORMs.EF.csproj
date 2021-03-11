@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Makc2021.Layer2.Mappers.EF\Makc2021.Layer2.Mappers.EF.csproj" />
+    <ProjectReference Include="..\Makc2021.Layer3.Sample\Makc2021.Layer3.Sample.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ConfigFiles\Layer3.Sample.Mappers.EF.config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

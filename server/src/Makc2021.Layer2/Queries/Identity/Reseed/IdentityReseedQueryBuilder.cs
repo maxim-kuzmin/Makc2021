@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer2.Queries.Identity.Reseed
 {
     /// <summary>
-    /// Запрос перезаполнения идентичности. Построитель.
+    /// Построитель запроса повторного заполнения идентичности.
     /// </summary>
     public abstract class IdentityReseedQueryBuilder
     {

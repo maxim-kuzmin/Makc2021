@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Entities.DummyMain
 {
     /// <summary>
-    /// Сущность "DummyMain". Загрузчик.
+    /// Загрузчик сущности "DummyMain".
     /// </summary>
     public class DummyMainEntityLoader : EntityLoader<DummyMainEntityObject>
     {

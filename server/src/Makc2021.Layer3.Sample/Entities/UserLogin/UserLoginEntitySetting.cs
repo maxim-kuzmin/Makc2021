@@ -5,7 +5,7 @@ using Makc2021.Layer3.Sample.Entities.User;
 namespace Makc2021.Layer3.Sample.Entities.UserLogin
 {
     /// <summary>
-    /// Сущность "UserLogin". Настройка.
+    /// Настройка сущности "UserLogin".
     /// </summary>
     public class UserLoginEntitySetting : EntitySetting
     {

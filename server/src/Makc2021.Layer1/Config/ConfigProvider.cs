@@ -3,7 +3,7 @@
 namespace Makc2021.Layer1.Config
 {
     /// <summary>
-    /// Конфигурация. Поставщик.
+    /// Поставщик конфигурации.
     /// </summary>
     /// <typeparam name="TSettings">Тип настроек.</typeparam>
     public abstract class ConfigProvider<TSettings>

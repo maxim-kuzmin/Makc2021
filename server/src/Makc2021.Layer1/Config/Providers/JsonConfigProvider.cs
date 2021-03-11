@@ -8,7 +8,7 @@ using System.IO;
 namespace Makc2021.Layer1.Config.Providers
 {
     /// <summary>
-    /// Конфигурация. Поставщик JSON.
+    /// Поставщик конфигурации JSON.
     /// </summary>
     /// <typeparam name="TSettings">Тип настроек.</typeparam>
     public class JsonConfigProvider<TSettings> : ConfigProvider<TSettings>

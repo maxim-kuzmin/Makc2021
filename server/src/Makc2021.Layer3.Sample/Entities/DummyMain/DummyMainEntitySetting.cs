@@ -5,7 +5,7 @@ using Makc2021.Layer3.Sample.Entities.DummyOneToMany;
 namespace Makc2021.Layer3.Sample.Entities.DummyMain
 {
     /// <summary>
-    /// Сущность "DummyMain". Настройка.
+    /// Настройка сущности "DummyMain".
     /// </summary>
     public class DummyMainEntitySetting : EntitySetting
     {

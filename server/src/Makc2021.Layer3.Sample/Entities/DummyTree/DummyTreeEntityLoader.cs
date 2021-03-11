@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Entities.DummyTree
 {
     /// <summary>
-    /// Сущность "DummyTree". Загрузчик.
+    /// Загрузчик сущности "DummyTree".
     /// </summary>
     public class DummyTreeEntityLoader : EntityLoader<DummyTreeEntityObject>
     {

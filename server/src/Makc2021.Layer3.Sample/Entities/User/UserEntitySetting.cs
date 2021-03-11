@@ -3,7 +3,7 @@
 namespace Makc2021.Layer3.Sample.Entities.User
 {
     /// <summary>
-    /// Сущность "User". Настройка.
+    /// Настройка сущности "User".
     /// </summary>
     public class UserEntitySetting : EntitySetting
     {

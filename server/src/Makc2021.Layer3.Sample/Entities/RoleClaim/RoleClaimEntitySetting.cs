@@ -5,7 +5,7 @@ using Makc2021.Layer3.Sample.Entities.Role;
 namespace Makc2021.Layer3.Sample.Entities.RoleClaim
 {
     /// <summary>
-    /// Сущность "RoleClaim". Настройка.
+    /// Настройка сущности "RoleClaim".
     /// </summary>
     public class RoleClaimEntitySetting : EntitySetting
     {

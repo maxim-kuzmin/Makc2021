@@ -1,12 +1,12 @@
 ﻿//Author Maxim Kuzmin//makc//
 
-using Makc2021.Layer3.Sample.ORMs.EF;
-using Makc2021.Layer3.Sample.ORMs.EF.DBs.SqlServer;
+using Makc2021.Layer3.Sample.Mappers.EF;
+using Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer;
 
 namespace Makc2021.Layer0.WebAPI.App
 {
     /// <summary>
-    /// Приложение. Модуль.
+    /// Модуль приложения.
     /// </summary>
     public class AppModule
     {
@@ -15,12 +15,12 @@ namespace Makc2021.Layer0.WebAPI.App
         /// <summary>
         /// ORM "Entity Framework".
         /// </summary>
-        public EFModule EF { get; } = new();
+        public MapperModule EF { get; } = new();
 
         /// <summary>
         /// ORM "Entity Framework". База данных "Microsoft SQL Server".
         /// </summary>
-        public EFSqlServerModule EFSqlServer { get; } = new();
+        public ClientMapperModule EFSqlServer { get; } = new();
 
         #endregion Properties
     }
