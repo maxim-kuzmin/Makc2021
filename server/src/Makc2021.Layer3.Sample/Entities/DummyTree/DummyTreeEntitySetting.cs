@@ -126,19 +126,19 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTree
             DbColumnForTreePosition = defaults.DbColumnForTreePosition;
             DbColumnForTreeSort = defaults.DbColumnForTreeSort;
 
-            DbForeignKeyToDummyTreeEntityParent = CreateNameOfForeignKey(DbTable, DbTable, DbColumnForDummyTreeEntityParentId);
+            DbForeignKeyToDummyTreeEntityParent = CreateDbForeignKeyName(DbTable, DbTable, DbColumnForDummyTreeEntityParentId);
 
-            DbIndexForName = CreateNameOfIndex(DbTable, DbColumnForName);
-            DbIndexForDummyTreeEntityParentId = CreateNameOfIndex(DbTable, DbColumnForDummyTreeEntityParentId);
-            DbIndexForTreeSort = CreateNameOfIndex(DbTable, DbColumnForTreeSort);
+            DbIndexForName = CreateDbIndexName(DbTable, DbColumnForName);
+            DbIndexForDummyTreeEntityParentId = CreateDbIndexName(DbTable, DbColumnForDummyTreeEntityParentId);
+            DbIndexForTreeSort = CreateDbIndexName(DbTable, DbColumnForTreeSort);
 
             DbMaxLengthForName = 256;
             DbMaxLengthForTreePath = 900;
             DbMaxLengthForTreeSort = 900;
 
-            DbPrimaryKey = CreateNameOfPrimaryKey(DbTable);
+            DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
 
-            DbUniqueIndexForDummyTreeEntityParentIdAndName = CreateNameOfUniqueIndex(
+            DbUniqueIndexForDummyTreeEntityParentIdAndName = CreateDbUniqueIndexName(
                 DbTable,
                 DbColumnForDummyTreeEntityParentId,
                 DbColumnForName

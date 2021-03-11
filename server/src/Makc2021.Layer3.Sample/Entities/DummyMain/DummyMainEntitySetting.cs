@@ -143,20 +143,20 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMain
             DbColumnForId = defaults.DbColumnForId;
             DbColumnForName = defaults.DbColumnForName;
 
-            DbColumnForDummyOneToManyEntityId = CreateNameOfColumn(
+            DbColumnForDummyOneToManyEntityId = CreateDbColumnName(
                 settingOfDummyOneToManyEntity.DbTable,
                 settingOfDummyOneToManyEntity.DbColumnForId
                 );
 
-            DbForeignKeyToDummyOneToManyEntity = CreateNameOfForeignKey(DbTable, settingOfDummyOneToManyEntity.DbTable);
+            DbForeignKeyToDummyOneToManyEntity = CreateDbForeignKeyName(DbTable, settingOfDummyOneToManyEntity.DbTable);
 
-            DbIndexForDummyOneToManyEntityId = CreateNameOfIndex(DbTable, DbColumnForDummyOneToManyEntityId);
+            DbIndexForDummyOneToManyEntityId = CreateDbIndexName(DbTable, DbColumnForDummyOneToManyEntityId);
 
             DbMaxLengthForName = 256;
 
-            DbPrimaryKey = CreateNameOfPrimaryKey(DbTable);
+            DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
 
-            DbUniqueIndexForName = CreateNameOfUniqueIndex(DbTable, DbColumnForName);
+            DbUniqueIndexForName = CreateDbUniqueIndexName(DbTable, DbColumnForName);
         }
 
         #endregion Constructors

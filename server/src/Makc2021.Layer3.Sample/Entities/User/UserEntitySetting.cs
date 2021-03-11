@@ -133,14 +133,14 @@ namespace Makc2021.Layer3.Sample.Entities.User
             DbColumnForNormalizedUserName = dbColumnNameForNormalizedUserName
                 ?? nameof(UserEntityObject.NormalizedUserName);
 
-            DbIndexForNormalizedEmail = CreateNameOfIndex(
+            DbIndexForNormalizedEmail = CreateDbIndexName(
                 DbTable,
                 DbColumnForNormalizedEmail
                 );
 
-            DbPrimaryKey = CreateNameOfPrimaryKey(DbTable);
+            DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
 
-            DbUniqueIndexForNormalizedUserName = CreateNameOfUniqueIndex(
+            DbUniqueIndexForNormalizedUserName = CreateDbUniqueIndexName(
                 DbTable,
                 DbColumnForNormalizedUserName
                 );

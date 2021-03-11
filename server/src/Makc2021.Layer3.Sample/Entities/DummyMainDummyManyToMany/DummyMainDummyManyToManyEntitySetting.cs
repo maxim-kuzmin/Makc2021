@@ -63,22 +63,22 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
             )
             : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForDummyMainEntityId = CreateNameOfColumn(
+            DbColumnForDummyMainEntityId = CreateDbColumnName(
                 settingOfDummyMainEntity.DbTable,
                 settingOfDummyMainEntity.DbColumnForId
                 );
 
-            DbColumnForDummyManyToManyEntityId = CreateNameOfColumn(
+            DbColumnForDummyManyToManyEntityId = CreateDbColumnName(
                 settingOfDummyManyToManyEntity.DbTable,
                 settingOfDummyManyToManyEntity.DbColumnForId
                 );
 
-            DbForeignKeyToDummyMainEntity = CreateNameOfForeignKey(DbTable, settingOfDummyMainEntity.DbTable);
-            DbForeignKeyToDummyManyToManyEntity = CreateNameOfForeignKey(DbTable, settingOfDummyManyToManyEntity.DbTable);
+            DbForeignKeyToDummyMainEntity = CreateDbForeignKeyName(DbTable, settingOfDummyMainEntity.DbTable);
+            DbForeignKeyToDummyManyToManyEntity = CreateDbForeignKeyName(DbTable, settingOfDummyManyToManyEntity.DbTable);
 
-            DbIndexForDummyManyToManyEntityId = CreateNameOfIndex(DbTable, DbColumnForDummyManyToManyEntityId);
+            DbIndexForDummyManyToManyEntityId = CreateDbIndexName(DbTable, DbColumnForDummyManyToManyEntityId);
 
-            DbPrimaryKey = CreateNameOfPrimaryKey(DbTable);
+            DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
         }
 
         #endregion Constructors

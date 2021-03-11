@@ -67,16 +67,16 @@ namespace Makc2021.Layer3.Sample.Entities.RoleClaim
         {
             DbColumnForId = defaults.DbColumnForId;
 
-            DbColumnForRoleEntityId = CreateNameOfColumn(
+            DbColumnForRoleEntityId = CreateDbColumnName(
                 settingOfRoleEntity.DbTable,
                 settingOfRoleEntity.DbColumnForId
                 );
 
-            DbForeignKeyToRoleEntity = CreateNameOfForeignKey(DbTable, settingOfRoleEntity.DbTable);
+            DbForeignKeyToRoleEntity = CreateDbForeignKeyName(DbTable, settingOfRoleEntity.DbTable);
 
-            DbUniqueIndexForRoleEntityId = CreateNameOfUniqueIndex(DbTable, DbColumnForRoleEntityId);
+            DbUniqueIndexForRoleEntityId = CreateDbUniqueIndexName(DbTable, DbColumnForRoleEntityId);
 
-            DbPrimaryKey = CreateNameOfPrimaryKey(DbTable);
+            DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
         }
 
         #endregion Constructors

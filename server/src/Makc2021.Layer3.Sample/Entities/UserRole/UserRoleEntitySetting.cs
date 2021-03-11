@@ -63,15 +63,15 @@ namespace Makc2021.Layer3.Sample.Entities.UserRole
             )
             : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForRoleEntityId = CreateNameOfColumn(settingOfRoleEntity.DbTable, settingOfRoleEntity.DbColumnForId);
-            DbColumnForUserEntityId = CreateNameOfColumn(settingOfUserEntity.DbTable, settingOfUserEntity.DbColumnForId);
+            DbColumnForRoleEntityId = CreateDbColumnName(settingOfRoleEntity.DbTable, settingOfRoleEntity.DbColumnForId);
+            DbColumnForUserEntityId = CreateDbColumnName(settingOfUserEntity.DbTable, settingOfUserEntity.DbColumnForId);
 
-            DbForeignKeyToRoleEntity = CreateNameOfForeignKey(DbTable, settingOfRoleEntity.DbTable);
-            DbForeignKeyToUserEntity = CreateNameOfForeignKey(DbTable, settingOfUserEntity.DbTable);
+            DbForeignKeyToRoleEntity = CreateDbForeignKeyName(DbTable, settingOfRoleEntity.DbTable);
+            DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, settingOfUserEntity.DbTable);
 
-            DbIndexForRoleEntityId = CreateNameOfIndex(DbTable, DbColumnForRoleEntityId);
+            DbIndexForRoleEntityId = CreateDbIndexName(DbTable, DbColumnForRoleEntityId);
 
-            DbPrimaryKey = CreateNameOfPrimaryKey(DbTable);
+            DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
         }
 
         #endregion Constructors

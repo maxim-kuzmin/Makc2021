@@ -61,9 +61,9 @@ namespace Makc2021.Layer3.Sample.Entities.Role
             DbColumnForName = defaults.DbColumnForName;
             DbColumnForNormalizedName = dbColumnNameForNormalizedName ?? nameof(RoleEntityObject.NormalizedName);
 
-            DbPrimaryKey = CreateNameOfPrimaryKey(DbTable);
+            DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
 
-            DbUniqueIndexForNormalizedName = CreateNameOfUniqueIndex(DbTable, DbColumnForNormalizedName);
+            DbUniqueIndexForNormalizedName = CreateDbUniqueIndexName(DbTable, DbColumnForNormalizedName);
         }
 
         #endregion Constructors

@@ -62,9 +62,9 @@ namespace Makc2021.Layer3.Sample.Entities.UserToken
         {
             DbColumnForName = defaults.DbColumnForName;
 
-            DbForeignKeyToUserEntity = CreateNameOfForeignKey(DbTable, settingOfUserEntity.DbTable);
+            DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, settingOfUserEntity.DbTable);
 
-            DbPrimaryKey = CreateNameOfPrimaryKey(DbTable);
+            DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
         }
 
         #endregion Constructors

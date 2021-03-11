@@ -1,4 +1,4 @@
-﻿//Author Maxim Kuzmin//makc//
+﻿ //Author Maxim Kuzmin//makc//
 
 namespace Makc2021.Layer2
 {
@@ -42,7 +42,7 @@ namespace Makc2021.Layer2
         {
             Defaults = defaults;
             DbTable = dbTable;
-            DbSchema = dbSchema ?? CreateNameOfSchema();
+            DbSchema = dbSchema ?? CreateDbSchemaName();
             DbTableWithSchema = string.IsNullOrWhiteSpace(DbSchema) ? DbTable : CreateFullName(DbSchema, DbTable);
         }
 
@@ -51,10 +51,10 @@ namespace Makc2021.Layer2
         #region Protected methods
 
         /// <summary>
-        /// Создать полное имя в базе данных.
+        /// Создать полное имя.
         /// </summary>
         /// <param name="parts">Части имени.</param>
-        /// <returns>Имя.</returns>
+        /// <returns>Полное имя.</returns>
         protected string CreateFullName(params string[] parts)
         {
             return string.IsNullOrEmpty(Defaults.FullNamePartsSeparator)
@@ -66,8 +66,8 @@ namespace Makc2021.Layer2
         /// Создать имя колонки в базе данных.
         /// </summary>
         /// <param name="parts">Части имени.</param>
-        /// <returns>Имя.</returns>
-        protected string CreateNameOfColumn(params string[] parts)
+        /// <returns>Имя колонки в базе данных.</returns>
+        protected string CreateDbColumnName(params string[] parts)
         {
             return string.IsNullOrEmpty(Defaults.DbColumnPartsSeparator)
                 ? string.Concat(parts)
@@ -78,50 +78,50 @@ namespace Makc2021.Layer2
         /// Создать имя внешнего ключа в базе данных.
         /// </summary>
         /// <param name="parts">Части имени.</param>
-        /// <returns>Имя.</returns>
-        protected string CreateNameOfForeignKey(params string[] parts)
+        /// <returns>Имя внешнего ключа в базе данных.</returns>
+        protected string CreateDbForeignKeyName(params string[] parts)
         {
-            return CreateName(Defaults.ForeignKeyPrefix, parts);
+            return CreateName(Defaults.DbForeignKeyPrefix, parts);
         }
 
         /// <summary>
         /// Создать имя индекса в базе данных.
         /// </summary>
         /// <param name="parts">Части имени.</param>
-        /// <returns>Имя.</returns>
-        protected string CreateNameOfIndex(params string[] parts)
+        /// <returns>Имя индекса в базе данных.</returns>
+        protected string CreateDbIndexName(params string[] parts)
         {
-            return CreateName(Defaults.IndexPrefix, parts);
+            return CreateName(Defaults.DbIndexPrefix, parts);
         }
 
         /// <summary>
         /// Создать имя первичного ключа в базе данных.
         /// </summary>
         /// <param name="parts">Части имени.</param>
-        /// <returns>Имя.</returns>
-        protected string CreateNameOfPrimaryKey(params string[] parts)
+        /// <returns>Имя первичного ключа в базе данных.</returns>
+        protected string CreateDbPrimaryKeyName(params string[] parts)
         {
-            return CreateName(Defaults.PrimaryKeyPrefix, parts);
+            return CreateName(Defaults.DbPrimaryKeyPrefix, parts);
         }
 
         /// <summary>
         /// Создать имя схемы в базе данных.
         /// </summary>
         /// <param name="parts">Части имени.</param>
-        /// <returns>Имя.</returns>
-        protected string CreateNameOfSchema(params string[] parts)
+        /// <returns>Имя схемы в базе данных.</returns>
+        protected string CreateDbSchemaName(params string[] parts)
         {
-            return parts.Length > 0 ? CreateName(null, parts) : Defaults.Schema;
+            return parts.Length > 0 ? CreateName(null, parts) : Defaults.DbSchema;
         }
 
         /// <summary>
         /// Создать имя уникального индекса в базе данных.
         /// </summary>
         /// <param name="parts">Части имени.</param>
-        /// <returns>Имя.</returns>
-        protected string CreateNameOfUniqueIndex(params string[] parts)
+        /// <returns>Имя уникального индекса в базе данных.</returns>
+        protected string CreateDbUniqueIndexName(params string[] parts)
         {
-            return CreateName(Defaults.UniqueIndexPrefix, parts);
+            return CreateName(Defaults.DbUniqueIndexPrefix, parts);
         }
 
         #endregion Protected methods
@@ -130,9 +130,9 @@ namespace Makc2021.Layer2
 
         private string CreateName(string prefix, params string[] parts)
         {
-            var isNullOrEmptyNamePartsSeparator = string.IsNullOrEmpty(Defaults.NamePartsSeparator);
+            bool isNullOrEmptyNamePartsSeparator = string.IsNullOrEmpty(Defaults.NamePartsSeparator);
 
-            var result = isNullOrEmptyNamePartsSeparator
+            string result = isNullOrEmptyNamePartsSeparator
                 ? string.Concat(parts)
                 : string.Join(Defaults.NamePartsSeparator, parts);
 

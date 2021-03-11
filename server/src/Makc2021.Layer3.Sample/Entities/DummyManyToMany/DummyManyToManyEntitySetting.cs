@@ -56,9 +56,9 @@ namespace Makc2021.Layer3.Sample.Entities.DummyManyToMany
 
             DbMaxLengthForName = 256;
 
-            DbPrimaryKey = CreateNameOfPrimaryKey(DbTable);
+            DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
 
-            DbUniqueIndexForName = CreateNameOfUniqueIndex(DbTable, DbColumnForName);
+            DbUniqueIndexForName = CreateDbUniqueIndexName(DbTable, DbColumnForName);
         }
 
         #endregion Constructors

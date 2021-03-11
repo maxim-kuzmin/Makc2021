@@ -60,13 +60,13 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
                 DbColumnForTreePosition = "TreePosition",
                 DbColumnForTreeSort = "TreeSort",
                 DbColumnPartsSeparator = "",
-                ForeignKeyPrefix = "FK",
+                DbForeignKeyPrefix = "FK",
                 FullNamePartsSeparator = ".",
-                IndexPrefix = "IX",
+                DbIndexPrefix = "IX",
                 NamePartsSeparator = "_",
-                PrimaryKeyPrefix = "PK",
-                Schema = "dbo",
-                UniqueIndexPrefix = "UX"
+                DbPrimaryKeyPrefix = "PK",
+                DbSchema = "dbo",
+                DbUniqueIndexPrefix = "UX"
             };
 
             DummyOneToMany = new DummyOneToManyEntitySetting(defaults, "DummyOneToMany");

@@ -55,14 +55,34 @@ namespace Makc2021.Layer2
         public string DbColumnForTreeSort { get; set; }
 
         /// <summary>
-        /// Разделитель частей имени столбца.
+        /// Разделитель частей имени колонки в базе данных.
         /// </summary>
         public string DbColumnPartsSeparator { get; set; }
 
         /// <summary>
-        /// Префикс внешнего ключа.
+        /// Префикс внешнего ключа в базе данных.
         /// </summary>
-        public string ForeignKeyPrefix { get; set; }
+        public string DbForeignKeyPrefix { get; set; }
+
+        /// <summary>
+        /// Префикс индекса в базе данных.
+        /// </summary>
+        public string DbIndexPrefix { get; set; }
+
+        /// <summary>
+        /// Префикс первичного ключа в базе данных.
+        /// </summary>
+        public string DbPrimaryKeyPrefix { get; set; }
+
+        /// <summary>
+        /// Схема в базе данных.
+        /// </summary>
+        public string DbSchema { get; set; }
+
+        /// <summary>
+        /// Префикс уникального индекса в базе данных.
+        /// </summary>
+        public string DbUniqueIndexPrefix { get; set; }
 
         /// <summary>
         /// Разделитель частей полного имени.
@@ -70,29 +90,9 @@ namespace Makc2021.Layer2
         public string FullNamePartsSeparator { get; set; }
 
         /// <summary>
-        /// Префикс индекса в базе данных.
-        /// </summary>
-        public string IndexPrefix { get; set; }
-
-        /// <summary>
         /// Разделитель частей имени.
         /// </summary>
         public string NamePartsSeparator { get; set; }
-
-        /// <summary>
-        /// Префикс первичного ключа.
-        /// </summary>
-        public string PrimaryKeyPrefix { get; set; }
-
-        /// <summary>
-        /// Схема.
-        /// </summary>
-        public string Schema { get; set; }
-
-        /// <summary>
-        /// Префикс уникального индекса.
-        /// </summary>
-        public string UniqueIndexPrefix { get; set; }
 
         #endregion Properties
     }

@@ -68,11 +68,11 @@ namespace Makc2021.Layer3.Sample.Entities.UserLogin
         {
             DbColumnForUserEntityId = dbColumnNameForUserId ?? nameof(UserLoginEntityObject.UserId);
 
-            DbForeignKeyToUserEntity = CreateNameOfForeignKey(DbTable, settingOfUserEntity.DbTable);
+            DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, settingOfUserEntity.DbTable);
 
-            DbIndexForUserEntityId = CreateNameOfIndex(DbTable, DbColumnForUserEntityId);
+            DbIndexForUserEntityId = CreateDbIndexName(DbTable, DbColumnForUserEntityId);
 
-            DbPrimaryKey = CreateNameOfPrimaryKey(DbTable);
+            DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
         }
 
         #endregion Constructors

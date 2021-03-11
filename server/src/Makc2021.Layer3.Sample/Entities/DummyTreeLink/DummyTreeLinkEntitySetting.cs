@@ -53,9 +53,9 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
             DbColumnForId = defaults.DbColumnForId;
             DbColumnForDummyTreeEntityParentId = defaults.DbColumnForParentId;
 
-            DbForeignKeyToDummyTreeEntity = CreateNameOfForeignKey(DbTable, settingOfDummyTreeEntity.DbTable);
+            DbForeignKeyToDummyTreeEntity = CreateDbForeignKeyName(DbTable, settingOfDummyTreeEntity.DbTable);
 
-            DbPrimaryKey = CreateNameOfPrimaryKey(DbTable);
+            DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
         }
 
         #endregion Constructors
