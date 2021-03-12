@@ -8,7 +8,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
     /// <summary>
     /// Поставщик конфигурации клиента.
     /// </summary>
-    public class ClientConfigProvider : JsonConfigProvider<ClientConfigSettings>
+    internal class ClientConfigProvider : JsonConfigProvider<ClientConfigSettings>
     {
         #region Constructors
 

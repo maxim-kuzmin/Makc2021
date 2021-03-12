@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
     /// <summary>
     /// Настройки конфигурации клиента.
     /// </summary>
-    public class ClientConfigSettings : IClientConfigSettings
+    internal class ClientConfigSettings : IClientConfigSettings
     {
         #region Properties
 
@@ -16,7 +16,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
 
         #endregion Properties
 
-        #region Internal methods
+        #region Public methods
 
         /// <summary>
         /// Создать.
@@ -24,7 +24,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
         /// <param name="configFilePath">Путь к файлу конфигурации.</param>
         /// <param name="environment">Окружение.</param>
         /// <returns>Конфигурационные настройки.</returns>
-        internal static IClientConfigSettings Create(
+        public static IClientConfigSettings Create(
             string configFilePath,
             Environment environment
             )
@@ -38,6 +38,6 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
             return result;
         }
 
-        #endregion Internal methods
+        #endregion Public methods
     }
 }

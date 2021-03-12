@@ -7,7 +7,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Config
     /// <summary>
     /// Настройки конфигурации ORM.
     /// </summary>
-    public class MapperConfigSettings : IMapperConfigSettings
+    internal class MapperConfigSettings : IMapperConfigSettings
     {
         #region Properties
 
@@ -16,7 +16,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Config
 
         #endregion Properties
 
-        #region Internal methods
+        #region Public methods
 
         /// <summary>
         /// Создать.
@@ -35,6 +35,6 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Config
             return result;
         }
 
-        #endregion Internal methods
+        #endregion Public methods
     }
 }

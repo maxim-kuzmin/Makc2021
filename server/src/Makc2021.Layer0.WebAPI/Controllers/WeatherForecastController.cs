@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config;
-using Makc2021.Layer3.Sample.Mappers.EF.Config;
-using Makc2021.Layer3.Sample.Mappers.EF.Db;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SampleClient = Makc2021.Layer3.Sample.Clients.SqlServer.EF;
+using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
 
 namespace Makc2021.Layer0.WebAPI.Controllers
 {
@@ -13,29 +12,31 @@ namespace Makc2021.Layer0.WebAPI.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
+        private static string[] Summaries { get; } = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        private IMapperConfigSettings ConfigSettingsOfEF { get; }
-        private IClientConfigSettings ConfigSettingsOfEFSqlServer { get; }
-        private IMapperDbFactory DbFactory { get; }
+        private SampleClient::Config.IClientConfigSettings ConfigSettingsOfSampleClient { get; }
+
+        private SampleMapper::Config.IMapperConfigSettings ConfigSettingsOfSampleMapper { get; }
+             
+        private SampleMapper::Db.IMapperDbFactory DbFactoryOfSampleMapper { get; }
 
         public WeatherForecastController(
-            ILogger<WeatherForecastController> logger,
-            IMapperConfigSettings configSettingsOfEF,
-            IClientConfigSettings configSettingsOfEFSqlServer,
-            IMapperDbFactory dbFactory
+            ILogger<WeatherForecastController> logger,            
+            SampleClient::Config.IClientConfigSettings configSettingsOfSampleClient,
+            SampleMapper::Config.IMapperConfigSettings configSettingsOfSampleMapper,
+            SampleMapper::Db.IMapperDbFactory dbFactoryOfSampleMapper
             )
         {
             _logger = logger;
 
-            ConfigSettingsOfEF = configSettingsOfEF;
-            ConfigSettingsOfEFSqlServer = configSettingsOfEFSqlServer;
-            DbFactory = dbFactory;
+            ConfigSettingsOfSampleClient = configSettingsOfSampleClient;
+            ConfigSettingsOfSampleMapper = configSettingsOfSampleMapper;            
+            DbFactoryOfSampleMapper = dbFactoryOfSampleMapper;
         }
 
         [HttpGet]
@@ -54,15 +55,28 @@ namespace Makc2021.Layer0.WebAPI.Controllers
         [HttpGet, Route("test")]
         public object Test()
         {
-            using MapperDbContext dbContext = DbFactory.CreateDbContext();
-
-            return new
+            try
             {
-                ConfigSettingsOfEF,
-                ConfigSettingsOfEFSqlServer,
-                DbFactory.EntitiesSettings,
-                dbContext.Database.ProviderName
-            };
+                using var dbContext = DbFactoryOfSampleMapper.CreateDbContext();
+
+                return new
+                {
+                    ConfigSettingsOfSampleClient,
+                    ConfigSettingsOfSampleMapper,
+                    dbContext.Database.ProviderName,
+                    DbFactoryOfSampleMapper.EntitiesSettings
+                };
+            }
+            catch (Exception ex)
+            {
+                string errorCode = Guid.NewGuid().ToString("N");
+
+                string errorMessage = $"Error code: {errorCode}";
+
+                _logger.LogError(ex, errorMessage);
+
+                throw new Exception(errorMessage);
+            }
         }
     }
 }

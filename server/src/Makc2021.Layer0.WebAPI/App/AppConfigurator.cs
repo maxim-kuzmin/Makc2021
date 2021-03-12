@@ -45,6 +45,12 @@ namespace Makc2021.Layer0.WebAPI.App
 
         #region Private methods
 
+        private void InitConfigs()
+        {
+            Module.SampleMapper.InitConfig(Environment);
+            Module.SampleClient.InitConfig(Environment);
+        }
+
         private void InitContexts()
         {
             Module.SampleClient.InitContext(new()
@@ -53,12 +59,6 @@ namespace Makc2021.Layer0.WebAPI.App
             });
 
             Module.SampleMapper.InitContext();
-        }
-
-        private void InitConfigs()
-        {
-            Module.SampleMapper.InitConfig(Environment);
-            Module.SampleClient.InitConfig(Environment);
         }
 
         #endregion Private methods

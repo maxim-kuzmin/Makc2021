@@ -20,7 +20,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
     /// <summary>
     /// Настройки сущностей клиента.
     /// </summary>
-    public sealed class ClientEntitiesSettings : EntitiesSettings
+    internal class ClientEntitiesSettings : EntitiesSettings
     {
         #region Fields
 

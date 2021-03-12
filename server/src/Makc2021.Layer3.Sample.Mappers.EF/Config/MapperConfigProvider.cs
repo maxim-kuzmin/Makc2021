@@ -8,7 +8,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Config
     /// <summary>
     /// Поставщик конфигурации ORM.
     /// </summary>
-    public class MapperConfigProvider : JsonConfigProvider<MapperConfigSettings>
+    internal class MapperConfigProvider : JsonConfigProvider<MapperConfigSettings>
     {
         #region Constructors
 

@@ -9,7 +9,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
     /// <summary>
     /// Конфигурация клиента.
     /// </summary>
-    public class ClientConfig
+    internal class ClientConfig
     {
         #region Properties
 

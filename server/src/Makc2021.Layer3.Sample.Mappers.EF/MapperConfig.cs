@@ -10,7 +10,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
     /// <summary>
     /// Конфигурация ORM.
     /// </summary>
-    public class MapperConfig
+    internal class MapperConfig
     {
         #region Properties
 
