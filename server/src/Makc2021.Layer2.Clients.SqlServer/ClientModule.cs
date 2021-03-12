@@ -1,7 +1,9 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using Makc2021.Layer1;
+
 using Microsoft.Extensions.DependencyInjection;
+
 using System;
 
 namespace Makc2021.Layer2.Clients.SqlServer
@@ -9,7 +11,7 @@ namespace Makc2021.Layer2.Clients.SqlServer
     /// <summary>
     /// Модуль клиента.
     /// </summary>
-    public class ClientModule 
+    public class ClientModule
     {
         #region Properties
 

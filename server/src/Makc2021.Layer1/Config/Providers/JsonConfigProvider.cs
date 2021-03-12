@@ -1,7 +1,9 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using Makc2021.Layer1.Serializations;
+
 using Microsoft.Extensions.Configuration;
+
 using System;
 using System.IO;
 
@@ -33,7 +35,7 @@ namespace Makc2021.Layer1.Config.Providers
             : base(settings)
         {
             FilePath = filePath;
-            Environment = environment;            
+            Environment = environment;
         }
 
         #endregion Constructors
@@ -43,7 +45,7 @@ namespace Makc2021.Layer1.Config.Providers
         /// <inheritdoc/>
         public sealed override void Load()
         {
-            var configurationBuilder = new ConfigurationBuilder();
+            ConfigurationBuilder configurationBuilder = new();
 
             bool isAbsolutePath = FilePath.StartsWith(
                 Environment.BasePath,

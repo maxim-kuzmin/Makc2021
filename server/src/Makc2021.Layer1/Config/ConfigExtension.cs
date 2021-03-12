@@ -43,7 +43,7 @@ namespace Makc2021.Layer1.Config
                     );
             }
 
-            var machineName = Environment.MachineName.ToUpper();
+            string machineName = Environment.MachineName.ToUpper();
 
             builder.AddJsonFile(
                 $"{absolutePathToFileWithoutExtension}.m.{machineName}{fileExtension}",

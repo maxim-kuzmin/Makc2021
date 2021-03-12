@@ -45,10 +45,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// <summary>
         /// Инициализировать контекст.
         /// </summary>
-        /// <param name="externals">Внешнее.</param>
-        public void InitContext(MapperExternals externals)
+        public void InitContext()
         {
-            Context = new MapperContext(Config.Settings, externals);
+            Context = new MapperContext(Config.Settings);
 
             Config = null;
         }

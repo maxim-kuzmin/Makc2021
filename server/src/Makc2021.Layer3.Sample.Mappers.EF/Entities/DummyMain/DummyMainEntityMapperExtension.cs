@@ -20,10 +20,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMain
             this DummyMainEntityObject source
             )
         {
-            var result = new DummyMainEntityMapperObject();
+            DummyMainEntityMapperObject result = new();
 
             new DummyMainEntityLoader(result).LoadDataFrom(source);
-            
+
             return result;
         }
 
@@ -35,10 +35,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMain
             this DummyMainEntityMapperObject source
             )
         {
-            var loader = new DummyMainEntityLoader();
+            DummyMainEntityLoader loader = new();
 
             loader.LoadDataFrom(source);
-            
+
             return loader.EntityObject;
         }
 

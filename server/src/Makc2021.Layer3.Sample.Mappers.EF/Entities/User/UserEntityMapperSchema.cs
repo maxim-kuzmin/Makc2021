@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.User
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<UserEntityMapperObject> builder)
         {
-            var setting = EntitiesSettings.User;
+            Sample.Entities.User.UserEntitySetting setting = EntitiesSettings.User;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

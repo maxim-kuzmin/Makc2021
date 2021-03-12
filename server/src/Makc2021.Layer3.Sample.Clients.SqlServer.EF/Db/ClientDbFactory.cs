@@ -60,7 +60,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Db
         /// <inheritdoc/>
         protected sealed override string CreateConnectionString()
         {
-            var configSettings = ClientConfigSettings.Create(ClientConfig.FilePath, Environment);
+            IClientConfigSettings configSettings = ClientConfigSettings.Create(ClientConfig.FilePath, Environment);
 
             return configSettings.ConnectionString;
         }

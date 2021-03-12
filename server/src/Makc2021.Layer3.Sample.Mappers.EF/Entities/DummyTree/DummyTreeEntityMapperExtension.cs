@@ -20,10 +20,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyTree
             this DummyTreeEntityObject source
             )
         {
-            var result = new DummyTreeEntityMapperObject();
+            DummyTreeEntityMapperObject result = new();
 
             new DummyTreeEntityLoader(result).LoadDataFrom(source);
-            
+
             return result;
         }
 
@@ -35,10 +35,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyTree
             this DummyTreeEntityMapperObject source
             )
         {
-            var loader = new DummyTreeEntityLoader();
+            DummyTreeEntityLoader loader = new();
 
             loader.LoadDataFrom(source);
-            
+
             return loader.EntityObject;
         }
 

@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyTreeLink
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<DummyTreeLinkEntityMapperObject> builder)
         {
-            var setting = EntitiesSettings.DummyTreeLink;
+            Sample.Entities.DummyTreeLink.DummyTreeLinkEntitySetting setting = EntitiesSettings.DummyTreeLink;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

@@ -20,10 +20,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.Role
             this RoleEntityObject source
             )
         {
-            var result = new RoleEntityMapperObject();
+            RoleEntityMapperObject result = new();
 
             new RoleEntityLoader(result).LoadDataFrom(source);
-            
+
             return result;
         }
 
@@ -35,10 +35,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.Role
             this RoleEntityMapperObject source
             )
         {
-            var loader = new RoleEntityLoader();
+            RoleEntityLoader loader = new();
 
             loader.LoadDataFrom(source);
-            
+
             return loader.EntityObject;
         }
 

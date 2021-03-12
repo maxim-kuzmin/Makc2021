@@ -20,10 +20,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.User
             this UserEntityObject source
             )
         {
-            var result = new UserEntityMapperObject();
+            UserEntityMapperObject result = new();
 
             new UserEntityLoader(result).LoadDataFrom(source);
-            
+
             return result;
         }
 
@@ -35,10 +35,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.User
             this UserEntityMapperObject source
             )
         {
-            var loader = new UserEntityLoader();
+            UserEntityLoader loader = new();
 
             loader.LoadDataFrom(source);
-            
+
             return loader.EntityObject;
         }
 

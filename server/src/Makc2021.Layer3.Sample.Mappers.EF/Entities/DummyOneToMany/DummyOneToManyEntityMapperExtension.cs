@@ -20,10 +20,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyOneToMany
             this DummyOneToManyEntityObject source
             )
         {
-            var result = new DummyOneToManyEntityMapperObject();
+            DummyOneToManyEntityMapperObject result = new();
 
             new DummyOneToManyEntityLoader(result).LoadDataFrom(source);
-            
+
             return result;
         }
 
@@ -35,10 +35,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyOneToMany
             this DummyOneToManyEntityMapperObject source
             )
         {
-            var loader = new DummyOneToManyEntityLoader();
+            DummyOneToManyEntityLoader loader = new();
 
             loader.LoadDataFrom(source);
-            
+
             return loader.EntityObject;
         }
 

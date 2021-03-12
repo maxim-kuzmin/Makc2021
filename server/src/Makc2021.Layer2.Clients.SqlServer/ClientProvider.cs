@@ -7,7 +7,9 @@ using Makc2021.Layer2.Clients.SqlServer.Queries.Tree.Trigger;
 using Makc2021.Layer2.Queries.Identity.Reseed;
 using Makc2021.Layer2.Queries.Tree.Calculate;
 using Makc2021.Layer2.Queries.Tree.Trigger;
+
 using Microsoft.Win32.SafeHandles;
+
 using System;
 using System.Data;
 using System.Data.Common;
@@ -34,17 +36,17 @@ namespace Makc2021.Layer2.Clients.SqlServer
         {
             SqlCommand result = null;
 
-            if (!(connection is SqlConnection cn)) return result;
+            if (connection is not SqlConnection cn) return result;
 
             result = cn.CreateCommand();
 
             if (parameters == null) return result;
 
-            foreach (var parameter in parameters)
+            foreach (DbParameter parameter in parameters)
             {
-                var par = result.CreateParameter();
+                SqlParameter par = result.CreateParameter();
 
-                var name = parameter.ParameterName;
+                string name = parameter.ParameterName;
 
                 if (!string.IsNullOrEmpty(name))
                 {

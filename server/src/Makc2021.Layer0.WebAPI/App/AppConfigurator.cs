@@ -2,9 +2,6 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
-using Sample = Makc2021.Layer3.Sample;
-using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
-
 namespace Makc2021.Layer0.WebAPI.App
 {
     using Makc2021.Layer1;
@@ -55,27 +52,13 @@ namespace Makc2021.Layer0.WebAPI.App
                 Environment = Environment
             });
 
-            Module.SampleMapper.InitContext(new()
-            {
-                DbFactory = GetSampleDbFactory(),
-                EntitiesSettings = GetSampleEntitiesSettings()
-            });
+            Module.SampleMapper.InitContext();
         }
 
         private void InitConfigs()
         {
             Module.SampleMapper.InitConfig(Environment);
             Module.SampleClient.InitConfig(Environment);
-        }
-
-        private SampleMapper::Db.IMapperDbFactory GetSampleDbFactory()
-        {
-            return Module.SampleClient.Context.DbFactory;
-        }
-
-        private Sample::EntitiesSettings GetSampleEntitiesSettings()
-        {
-            return Module.SampleClient.Context.EntitiesSettings;
         }
 
         #endregion Private methods

@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserLogin
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<UserLoginEntityMapperObject> builder)
         {
-            var setting = EntitiesSettings.UserLogin;
+            Sample.Entities.UserLogin.UserLoginEntitySetting setting = EntitiesSettings.UserLogin;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

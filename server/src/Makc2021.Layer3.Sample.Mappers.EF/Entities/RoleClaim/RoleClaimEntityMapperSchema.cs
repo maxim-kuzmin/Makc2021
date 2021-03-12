@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.RoleClaim
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<RoleClaimEntityMapperObject> builder)
         {
-            var setting = EntitiesSettings.RoleClaim;
+            Sample.Entities.RoleClaim.RoleClaimEntitySetting setting = EntitiesSettings.RoleClaim;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

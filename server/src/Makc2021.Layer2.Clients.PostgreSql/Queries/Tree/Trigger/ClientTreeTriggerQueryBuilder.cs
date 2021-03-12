@@ -3,6 +3,7 @@
 using Makc2021.Layer2.Clients.PostgreSql.Queries.Tree.Calculate;
 using Makc2021.Layer2.Queries.Tree.Trigger;
 using Makc2021.Layer2.Trigger;
+
 using System.Linq;
 using System.Text;
 
@@ -12,79 +13,79 @@ namespace Makc2021.Layer2.Clients.PostgreSql.Queries.Tree.Trigger
     /// База данных "PostgreSQL". Запрос триггера дерева. Построитель.
     /// </summary>
     public class ClientTreeTriggerQueryBuilder : TreeTriggerQueryBuilder
-	{
-		#region Public methods
+    {
+        #region Public methods
 
-		/// <inheritdoc/>
-		public sealed override string GetResultSql()
-		{
-			var aliasForIds = $"\"{Prefix}ids\"";
-			var aliasForAncestors = $"\"{Prefix}a\"";
-			var aliasForTree = $"\"{Prefix}t\"";
+        /// <inheritdoc/>
+        public sealed override string GetResultSql()
+        {
+            string aliasForIds = $"\"{Prefix}ids\"";
+            string aliasForAncestors = $"\"{Prefix}a\"";
+            string aliasForTree = $"\"{Prefix}t\"";
 
-			var cteForAll = $"\"{Prefix}cte_All\"";
-			var cteForAncestors = $"\"{Prefix}cte_Ancestors\"";
+            string cteForAll = $"\"{Prefix}cte_All\"";
+            string cteForAncestors = $"\"{Prefix}cte_Ancestors\"";
 
-			var linkTableFieldNameForId = $"\"{LinkTableFieldNameForId}\"";
-			var linkTableFieldNameForParentId = $"\"{LinkTableFieldNameForParentId}\"";
+            string linkTableFieldNameForId = $"\"{LinkTableFieldNameForId}\"";
+            string linkTableFieldNameForParentId = $"\"{LinkTableFieldNameForParentId}\"";
 
-			var linkTableName = $"\"{LinkTableSchema}\".\"{LinkTableNameWithoutSchema}\"";
+            string linkTableName = $"\"{LinkTableSchema}\".\"{LinkTableNameWithoutSchema}\"";
 
-			var tableNameForIds = $"_{Prefix}Ids";
-			var tableNameForIdsAncestor = $"_{Prefix}IdsAncestor";
-			var tableNameForIdsBroken = $"_{Prefix}IdsBroken";
-			var tableNameForIdsCalculated = $"_{Prefix}IdsCalculated";
-			var tableNameForIdsDescendant = $"_{Prefix}IdsDescendant";
-			var tableNameForIdsLinked = $"_{Prefix}IdsLinked";
+            string tableNameForIds = $"_{Prefix}Ids";
+            string tableNameForIdsAncestor = $"_{Prefix}IdsAncestor";
+            string tableNameForIdsBroken = $"_{Prefix}IdsBroken";
+            string tableNameForIdsCalculated = $"_{Prefix}IdsCalculated";
+            string tableNameForIdsDescendant = $"_{Prefix}IdsDescendant";
+            string tableNameForIdsLinked = $"_{Prefix}IdsLinked";
 
-			var treeTableFieldNameForId = $"\"{TreeTableFieldNameForId}\"";
-			var treeTableFieldNameForParentId = $"\"{TreeTableFieldNameForParentId}\"";
+            string treeTableFieldNameForId = $"\"{TreeTableFieldNameForId}\"";
+            string treeTableFieldNameForParentId = $"\"{TreeTableFieldNameForParentId}\"";
 
-			var treeTableName = $"\"{TreeTableSchema}\".\"{TreeTableNameWithoutSchema}\"";
+            string treeTableName = $"\"{TreeTableSchema}\".\"{TreeTableNameWithoutSchema}\"";
 
-			var val = "\"val\"";
+            string val = "\"val\"";
 
-			var sqlForIdsSelectQuery = string.Empty;
+            string sqlForIdsSelectQuery = string.Empty;
 
-			var parIds = Parameters.Ids;
+            System.Collections.Generic.List<System.Data.Common.DbParameter> parIds = Parameters.Ids;
 
-			if (parIds.Any() || !string.IsNullOrWhiteSpace(SqlForIdsSelectQuery))
-			{
-				sqlForIdsSelectQuery = parIds.Any()
-					?
-					"values (" + string.Join("), (", parIds.Select(x => x.ParameterName)) + ")"
-					:
-					SqlForIdsSelectQuery;
-			}
-			else
-			{
-				sqlForIdsSelectQuery = $"select {treeTableFieldNameForId} from {treeTableName}";
-			}
+            if (parIds.Any() || !string.IsNullOrWhiteSpace(SqlForIdsSelectQuery))
+            {
+                sqlForIdsSelectQuery = parIds.Any()
+                    ?
+                    "values (" + string.Join("), (", parIds.Select(x => x.ParameterName)) + ")"
+                    :
+                    SqlForIdsSelectQuery;
+            }
+            else
+            {
+                sqlForIdsSelectQuery = $"select {treeTableFieldNameForId} from {treeTableName}";
+            }
 
-			var sqlForCalculate = CreateSqlForCalculate($"select distinct {val} from {tableNameForIdsCalculated}");
+            string sqlForCalculate = CreateSqlForCalculate($"select distinct {val} from {tableNameForIdsCalculated}");
 
-			var variableNameForAction = $"_{Prefix}Action";
+            string variableNameForAction = $"_{Prefix}Action";
 
-			var valueForActionDelete = "'D'";
-			var valueForActionInsert = "'I'";
-			var valueForActionUpdate = "'U'";
+            string valueForActionDelete = "'D'";
+            string valueForActionInsert = "'I'";
+            string valueForActionUpdate = "'U'";
 
-			var variableValueForAction = "''";
+            string variableValueForAction = "''";
 
-			switch (Action)
-			{
-				case TriggerAction.Delete:
-					variableValueForAction = valueForActionDelete;
-					break;
-				case TriggerAction.Insert:
-					variableValueForAction = valueForActionInsert;
-					break;
-				case TriggerAction.Update:
-					variableValueForAction = valueForActionUpdate;
-					break;
-			}
+            switch (Action)
+            {
+                case TriggerAction.Delete:
+                    variableValueForAction = valueForActionDelete;
+                    break;
+                case TriggerAction.Insert:
+                    variableValueForAction = valueForActionInsert;
+                    break;
+                case TriggerAction.Update:
+                    variableValueForAction = valueForActionUpdate;
+                    break;
+            }
 
-			var result = new StringBuilder($@"
+            StringBuilder result = new($@"
 do $$
 declare
 	{variableNameForAction} char := {variableValueForAction};
@@ -313,35 +314,35 @@ end $$;
 {sqlForCalculate}
 ");
 
-			return result.ToString();
-		}
+            return result.ToString();
+        }
 
-		#endregion Public methods
+        #endregion Public methods
 
-		#region Private methods
+        #region Private methods
 
-		private string CreateSqlForCalculate(string sqlForIdsSelectQuery)
-		{
-			return new ClientTreeCalculateQueryBuilder
-			{
-				LinkTableFieldNameForId = LinkTableFieldNameForId,
-				LinkTableFieldNameForParentId = LinkTableFieldNameForParentId,
-				LinkTableNameWithoutSchema = LinkTableNameWithoutSchema,
-				LinkTableSchema = LinkTableSchema,
-				SqlForIdsSelectQuery = sqlForIdsSelectQuery,
-				TreeTableFieldNameForId = TreeTableFieldNameForId,
-				TreeTableFieldNameForParentId = TreeTableFieldNameForParentId,
-				TreeTableFieldNameForTreeChildCount = TreeTableFieldNameForTreeChildCount,
-				TreeTableFieldNameForTreeDescendantCount = TreeTableFieldNameForTreeDescendantCount,
-				TreeTableFieldNameForTreeLevel = TreeTableFieldNameForTreeLevel,
-				TreeTableFieldNameForTreePath = TreeTableFieldNameForTreePath,
-				TreeTableFieldNameForTreePosition = TreeTableFieldNameForTreePosition,
-				TreeTableFieldNameForTreeSort = TreeTableFieldNameForTreeSort,
-				TreeTableNameWithoutSchema = TreeTableNameWithoutSchema,
-				TreeTableSchema = TreeTableSchema
-			}.GetResultSql();
-		}
+        private string CreateSqlForCalculate(string sqlForIdsSelectQuery)
+        {
+            return new ClientTreeCalculateQueryBuilder
+            {
+                LinkTableFieldNameForId = LinkTableFieldNameForId,
+                LinkTableFieldNameForParentId = LinkTableFieldNameForParentId,
+                LinkTableNameWithoutSchema = LinkTableNameWithoutSchema,
+                LinkTableSchema = LinkTableSchema,
+                SqlForIdsSelectQuery = sqlForIdsSelectQuery,
+                TreeTableFieldNameForId = TreeTableFieldNameForId,
+                TreeTableFieldNameForParentId = TreeTableFieldNameForParentId,
+                TreeTableFieldNameForTreeChildCount = TreeTableFieldNameForTreeChildCount,
+                TreeTableFieldNameForTreeDescendantCount = TreeTableFieldNameForTreeDescendantCount,
+                TreeTableFieldNameForTreeLevel = TreeTableFieldNameForTreeLevel,
+                TreeTableFieldNameForTreePath = TreeTableFieldNameForTreePath,
+                TreeTableFieldNameForTreePosition = TreeTableFieldNameForTreePosition,
+                TreeTableFieldNameForTreeSort = TreeTableFieldNameForTreeSort,
+                TreeTableNameWithoutSchema = TreeTableNameWithoutSchema,
+                TreeTableSchema = TreeTableSchema
+            }.GetResultSql();
+        }
 
-		#endregion Private methods
-	}
+        #endregion Private methods
+    }
 }

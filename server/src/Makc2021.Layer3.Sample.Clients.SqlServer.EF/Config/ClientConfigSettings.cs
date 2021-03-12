@@ -29,9 +29,9 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
             Environment environment
             )
         {
-            var result = new ClientConfigSettings();
+            ClientConfigSettings result = new();
 
-            var configProvider = new ClientConfigProvider(result, configFilePath, environment);
+            ClientConfigProvider configProvider = new(result, configFilePath, environment);
 
             configProvider.Load();
 

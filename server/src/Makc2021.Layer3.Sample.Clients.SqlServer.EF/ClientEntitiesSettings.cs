@@ -13,6 +13,7 @@ using Makc2021.Layer3.Sample.Entities.UserClaim;
 using Makc2021.Layer3.Sample.Entities.UserLogin;
 using Makc2021.Layer3.Sample.Entities.UserRole;
 using Makc2021.Layer3.Sample.Entities.UserToken;
+
 using System;
 
 namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
@@ -41,7 +42,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
 
         private ClientEntitiesSettings()
         {
-            var defaults = new Defaults
+            Defaults defaults = new()
             {
                 DbColumnForId = "Id",
                 DbColumnForName = "Name",
@@ -58,7 +59,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
                 DbPrimaryKeyPrefix = "PK",
                 DbSchema = "dbo",
                 DbUniqueIndexPrefix = "UX",
-                FullNamePartsSeparator = ".",                
+                FullNamePartsSeparator = ".",
                 NamePartsSeparator = "_"
             };
 

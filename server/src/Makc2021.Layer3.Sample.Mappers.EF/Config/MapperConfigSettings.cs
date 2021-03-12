@@ -26,9 +26,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Config
         /// <returns>Конфигурационные настройки.</returns>
         internal static IMapperConfigSettings Create(string configFilePath, Environment environment)
         {
-            var result = new MapperConfigSettings();
+            MapperConfigSettings result = new();
 
-            var configProvider = new MapperConfigProvider(result, configFilePath, environment);
+            MapperConfigProvider configProvider = new(result, configFilePath, environment);
 
             configProvider.Load();
 

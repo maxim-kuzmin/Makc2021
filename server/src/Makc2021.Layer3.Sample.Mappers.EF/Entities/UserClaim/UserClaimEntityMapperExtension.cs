@@ -20,10 +20,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserClaim
             this UserClaimEntityObject source
             )
         {
-            var result = new UserClaimEntityMapperObject();
+            UserClaimEntityMapperObject result = new();
 
             new UserClaimEntityLoader(result).LoadDataFrom(source);
-            
+
             return result;
         }
 
@@ -35,10 +35,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserClaim
             this UserClaimEntityMapperObject source
             )
         {
-            var loader = new UserClaimEntityLoader();
+            UserClaimEntityLoader loader = new();
 
             loader.LoadDataFrom(source);
-            
+
             return loader.EntityObject;
         }
 

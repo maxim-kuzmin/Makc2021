@@ -21,7 +21,7 @@ namespace Makc2021.Layer0.WebAPI.Controllers
         private readonly ILogger<WeatherForecastController> _logger;
 
         private IMapperConfigSettings ConfigSettingsOfEF { get; }
-        private IClientConfigSettings ConfigSettingsOfEFSqlServer { get; }        
+        private IClientConfigSettings ConfigSettingsOfEFSqlServer { get; }
         private IMapperDbFactory DbFactory { get; }
 
         public WeatherForecastController(
@@ -41,7 +41,7 @@ namespace Makc2021.Layer0.WebAPI.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var rng = new Random();
+            Random rng = new();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
@@ -54,7 +54,7 @@ namespace Makc2021.Layer0.WebAPI.Controllers
         [HttpGet, Route("test")]
         public object Test()
         {
-            using var dbContext = DbFactory.CreateDbContext();
+            using MapperDbContext dbContext = DbFactory.CreateDbContext();
 
             return new
             {

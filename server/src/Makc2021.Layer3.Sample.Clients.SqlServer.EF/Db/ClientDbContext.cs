@@ -14,6 +14,7 @@ using Makc2021.Layer3.Sample.Mappers.EF.Entities.UserClaim;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.UserLogin;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.UserRole;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.UserToken;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Db
@@ -33,7 +34,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Db
 
         /// <inheritdoc/>
         public ClientDbContext()
-            : this( ClientDbFactory.Default.Options, ClientDbFactory.Default.EntitiesSettings)
+            : this(ClientDbFactory.Default.Options, ClientDbFactory.Default.EntitiesSettings)
         {
         }
 

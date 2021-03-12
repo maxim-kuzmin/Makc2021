@@ -20,10 +20,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserRole
             this UserRoleEntityObject source
             )
         {
-            var result = new UserRoleEntityMapperObject();
+            UserRoleEntityMapperObject result = new();
 
             new UserRoleEntityLoader(result).LoadDataFrom(source);
-            
+
             return result;
         }
 
@@ -35,10 +35,10 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserRole
             this UserRoleEntityMapperObject source
             )
         {
-            var loader = new UserRoleEntityLoader();
+            UserRoleEntityLoader loader = new();
 
             loader.LoadDataFrom(source);
-            
+
             return loader.EntityObject;
         }
 
