@@ -16,12 +16,12 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
         /// <summary>
         /// Конфигурационные настройки.
         /// </summary>
-        public IClientConfigSettings ConfigSettings { get; init; }
+        public IClientConfigSettings ConfigSettings { get; }
 
         /// <summary>
         /// Фабрика базы данных.
         /// </summary>
-        public IMapperDbFactory DbFactory { get; init; }
+        public IMapperDbFactory DbFactory { get; }
 
         /// <summary>
         /// Настройки сущностей.

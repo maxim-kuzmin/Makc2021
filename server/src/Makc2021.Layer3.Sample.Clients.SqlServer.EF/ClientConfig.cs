@@ -21,7 +21,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
         /// <summary>
         /// Настройки.
         /// </summary>
-        public IClientConfigSettings Settings { get; init; }
+        public IClientConfigSettings Settings { get; }
 
         #endregion Properties
 
