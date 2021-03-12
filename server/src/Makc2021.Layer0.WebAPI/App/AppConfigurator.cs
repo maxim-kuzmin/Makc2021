@@ -1,7 +1,5 @@
 ﻿//Author Maxim Kuzmin//makc//
 
-using Makc2021.Layer3.Sample.Mappers.EF;
-using Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Makc2021.Layer0.WebAPI.App
@@ -39,8 +37,8 @@ namespace Makc2021.Layer0.WebAPI.App
             InitConfigs();
             InitContexts();
 
-            Module.Mapper.ConfigureServices(services);
-            Module.ClientMapper.ConfigureServices(services);
+            Module.SampleMapper.ConfigureServices(services);
+            Module.SampleClient.ConfigureServices(services);
         }
 
         #endregion Public methods
@@ -49,22 +47,32 @@ namespace Makc2021.Layer0.WebAPI.App
 
         private void InitContexts()
         {
-            Module.ClientMapper.InitContext(new ClientMapperExternals
+            Module.SampleClient.InitContext(new()
             {
                 Environment = Environment
             });
 
-            Module.Mapper.InitContext(new MapperExternals
+            Module.SampleMapper.InitContext(new()
             {
-                DbFactory = Module.ClientMapper.Context.DbFactory,
-                EntitiesSettings = Module.ClientMapper.Context.EntitiesSettings
+                DbFactory = GetSampleDbFactory(),
+                EntitiesSettings = GetSampleEntitiesSettings()
             });
         }
 
         private void InitConfigs()
         {
-            Module.Mapper.InitConfig(Environment);
-            Module.ClientMapper.InitConfig(Environment);
+            Module.SampleMapper.InitConfig(Environment);
+            Module.SampleClient.InitConfig(Environment);
+        }
+
+        private Layer3.Sample.Mappers.EF.Db.IMapperDbFactory GetSampleDbFactory()
+        {
+            return Module.SampleClient.Context.DbFactory;
+        }
+
+        private Layer3.Sample.EntitiesSettings GetSampleEntitiesSettings()
+        {
+            return Module.SampleClient.Context.EntitiesSettings;
         }
 
         #endregion Private methods

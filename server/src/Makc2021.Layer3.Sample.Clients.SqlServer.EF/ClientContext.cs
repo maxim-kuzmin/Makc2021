@@ -1,32 +1,32 @@
 ﻿//Author Maxim Kuzmin//makc//
 
 using Makc2021.Layer3.Sample.Mappers.EF.Db;
-using Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Config;
-using Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db;
+using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config;
+using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Db;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
 {
     /// <summary>
-    /// Контекст ORM клиента.
+    /// Контекст клиента.
     /// </summary>
-    public class ClientMapperContext
+    public class ClientContext
     {
         #region Properties
 
         /// <summary>
         /// Конфигурационные настройки.
         /// </summary>
-        public IClientMapperConfigSettings ConfigSettings { get; private set; }
+        public IClientConfigSettings ConfigSettings { get; init; }
 
         /// <summary>
         /// Фабрика базы данных.
         /// </summary>
-        public IMapperDbFactory DbFactory { get; private set; }
+        public IMapperDbFactory DbFactory { get; init; }
 
         /// <summary>
         /// Настройки сущностей.
         /// </summary>
-        public EntitiesSettings EntitiesSettings { get; } = ClientMapperEntitiesSettings.Instance;
+        public EntitiesSettings EntitiesSettings { get; } = ClientEntitiesSettings.Instance;
 
         #endregion Properties
 
@@ -37,11 +37,11 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
         /// </summary>
         /// <param name="configSettings">Конфигурационные настройки.</param>
         /// <param name="externals">Внешние зависимости.</param>
-        public ClientMapperContext(IClientMapperConfigSettings configSettings, ClientMapperExternals externals)
+        public ClientContext(IClientConfigSettings configSettings, ClientExternals externals)
         {
             ConfigSettings = configSettings;
 
-            DbFactory = new ClientMapperDbFactory(
+            DbFactory = new ClientDbFactory(
                 ConfigSettings.ConnectionString,
                 EntitiesSettings,
                 externals.Environment

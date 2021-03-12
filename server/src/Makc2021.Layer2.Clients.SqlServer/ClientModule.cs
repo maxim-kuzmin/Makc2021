@@ -16,7 +16,7 @@ namespace Makc2021.Layer2.Clients.SqlServer
         /// <summary>
         /// Контекст.
         /// </summary>
-        public ClientContext Context { get; private set; } = new();
+        public ClientContext Context { get; } = new();
 
         #endregion Properties
 

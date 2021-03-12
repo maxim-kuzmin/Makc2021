@@ -2,23 +2,23 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
 {
     using Makc2021.Layer1;
 
     /// <summary>
-    /// Модуль ORM клиента.
+    /// Модуль клиента.
     /// </summary>
-    public class ClientMapperModule
+    public class ClientModule
     {
         #region Properties
 
-        private ClientMapperConfig Config { get; set; }
+        private ClientConfig Config { get; set; }
 
         /// <summary>
         /// Контекст.
         /// </summary>
-        public ClientMapperContext Context { get; private set; }
+        public ClientContext Context { get; private set; }
 
         #endregion Properties
 
@@ -48,7 +48,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
         /// Инициализировать контекст.
         /// </summary>
         /// <param name="externals">Внешнее.</param>
-        public void InitContext(ClientMapperExternals externals)
+        public void InitContext(ClientExternals externals)
         {
             Context = new(Config.Settings, externals);
 

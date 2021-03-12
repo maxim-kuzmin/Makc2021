@@ -2,37 +2,37 @@
 
 using Makc2021.Layer1;
 using Makc2021.Layer3.Sample.Mappers.EF.Db;
-using Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Config;
+using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System.Reflection;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Db
 {
     /// <summary>
-    /// Фабрика базы данных ORM клиента.
+    /// Фабрика базы данных клиента.
     /// </summary>
-    public class ClientMapperDbFactory : MapperDbFactory, IDesignTimeDbContextFactory<ClientMapperDbContext>
+    public class ClientDbFactory : MapperDbFactory, IDesignTimeDbContextFactory<ClientDbContext>
     {
         #region Properties
 
         /// <summary>
         /// Экземпляр по умолчанию.
         /// </summary>
-        public static IMapperDbFactory Default { get; } = new ClientMapperDbFactory();
+        public static IMapperDbFactory Default { get; } = new ClientDbFactory();
 
         #endregion Properties
 
         #region Constructors
 
         /// <inheritdoc/>
-        public ClientMapperDbFactory()
+        public ClientDbFactory()
             : base()
         {
         }
 
         /// <inheritdoc/>
-        public ClientMapperDbFactory(string connectionString, EntitiesSettings settings, Environment environment)
+        public ClientDbFactory(string connectionString, EntitiesSettings settings, Environment environment)
             : base(connectionString, settings, environment)
         {
         }
@@ -42,9 +42,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
         #region Public methods
 
         /// <inheritdoc/>
-        public ClientMapperDbContext CreateDbContext(string[] args)
+        public ClientDbContext CreateDbContext(string[] args)
         {
-            return new ClientMapperDbContext(Options, EntitiesSettings);
+            return new ClientDbContext(Options, EntitiesSettings);
         }
 
         /// <inheritdoc/>
@@ -60,7 +60,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
         /// <inheritdoc/>
         protected sealed override string CreateConnectionString()
         {
-            var configSettings = ClientMapperConfigSettings.Create(ClientMapperConfig.FilePath, Environment);
+            var configSettings = ClientConfigSettings.Create(ClientConfig.FilePath, Environment);
 
             return configSettings.ConnectionString;
         }
@@ -68,7 +68,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
         /// <inheritdoc/>
         protected sealed override EntitiesSettings CreateEntitiesSettings()
         {
-            return ClientMapperEntitiesSettings.Instance;
+            return ClientEntitiesSettings.Instance;
         }
 
         /// <inheritdoc/>

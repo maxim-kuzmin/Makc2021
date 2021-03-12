@@ -1,8 +1,5 @@
 ﻿//Author Maxim Kuzmin//makc//
 
-using Makc2021.Layer3.Sample.Mappers.EF;
-using Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer;
-
 namespace Makc2021.Layer0.WebAPI.App
 {
     /// <summary>
@@ -13,14 +10,14 @@ namespace Makc2021.Layer0.WebAPI.App
         #region Properties
 
         /// <summary>
-        /// ORM.
+        /// ORM "Sample".
         /// </summary>
-        public MapperModule Mapper { get; } = new();
+        public Layer3.Sample.Mappers.EF.MapperModule SampleMapper { get; } = new();
 
         /// <summary>
-        /// ORM клиента.
+        /// Клиент "Sample".
         /// </summary>
-        public ClientMapperModule ClientMapper { get; } = new();
+        public Layer3.Sample.Clients.SqlServer.EF.ClientModule SampleClient { get; } = new();
 
         #endregion Properties
     }

@@ -2,12 +2,12 @@
 
 using Makc2021.Layer1;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Config
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
 {
     /// <summary>
-    /// Настройки конфигурации ORM клиента.
+    /// Настройки конфигурации клиента.
     /// </summary>
-    public class ClientMapperConfigSettings : IClientMapperConfigSettings
+    public class ClientConfigSettings : IClientConfigSettings
     {
         #region Properties
 
@@ -24,14 +24,14 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Config
         /// <param name="configFilePath">Путь к файлу конфигурации.</param>
         /// <param name="environment">Окружение.</param>
         /// <returns>Конфигурационные настройки.</returns>
-        internal static IClientMapperConfigSettings Create(
+        internal static IClientConfigSettings Create(
             string configFilePath,
             Environment environment
             )
         {
-            var result = new ClientMapperConfigSettings();
+            var result = new ClientConfigSettings();
 
-            var configProvider = new ClientMapperConfigProvider(result, configFilePath, environment);
+            var configProvider = new ClientConfigProvider(result, configFilePath, environment);
 
             configProvider.Load();
 

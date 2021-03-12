@@ -1,11 +1,11 @@
 ﻿//Author Maxim Kuzmin//makc//
 
-namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Config
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
 {
     /// <summary>
-    /// Интерфейс настроек конфигурации ORM клиента.
+    /// Интерфейс настроек конфигурации клиента.
     /// </summary>
-    public interface IClientMapperConfigSettings
+    public interface IClientConfigSettings
     {
         #region Properties
 

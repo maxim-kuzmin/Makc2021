@@ -12,7 +12,7 @@ namespace Makc2021.Layer2.Clients.SqlServer
         /// <summary>
         /// Поставщик.
         /// </summary>
-        public IProvider Provider { get; private set; } = new ClientProvider();
+        public IProvider Provider { get; } = new ClientProvider();
 
         #endregion Properties
     }

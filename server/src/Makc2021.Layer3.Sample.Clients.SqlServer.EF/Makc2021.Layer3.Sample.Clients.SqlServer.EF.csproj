@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ConfigFiles\Layer3.Sample.Mappers.EF.Clients.SqlServer.config.json">
+    <None Update="ConfigFiles\Layer3.Sample.Clients.SqlServer.EF.config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

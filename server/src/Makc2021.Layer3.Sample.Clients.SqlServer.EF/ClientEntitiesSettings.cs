@@ -15,16 +15,16 @@ using Makc2021.Layer3.Sample.Entities.UserRole;
 using Makc2021.Layer3.Sample.Entities.UserToken;
 using System;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
 {
     /// <summary>
-    /// Настройки сущностей ORM клиента.
+    /// Настройки сущностей клиента.
     /// </summary>
-    public sealed class ClientMapperEntitiesSettings : EntitiesSettings
+    public sealed class ClientEntitiesSettings : EntitiesSettings
     {
         #region Fields
 
-        private static readonly Lazy<EntitiesSettings> _lazy = new(() => new ClientMapperEntitiesSettings());
+        private static readonly Lazy<EntitiesSettings> _lazy = new(() => new ClientEntitiesSettings());
 
         #endregion Fields
 
@@ -39,7 +39,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
 
         #region Constructors
 
-        private ClientMapperEntitiesSettings()
+        private ClientEntitiesSettings()
         {
             var defaults = new Defaults
             {

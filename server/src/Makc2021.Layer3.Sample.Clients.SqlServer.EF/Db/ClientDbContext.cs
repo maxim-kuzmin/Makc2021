@@ -16,12 +16,12 @@ using Makc2021.Layer3.Sample.Mappers.EF.Entities.UserRole;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.UserToken;
 using Microsoft.EntityFrameworkCore;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Db
 {
     /// <summary>
-    /// Контекст базы данных ORM клиента.
+    /// Контекст базы данных клиента.
     /// </summary>
-    public class ClientMapperDbContext : MapperDbContext
+    public class ClientDbContext : MapperDbContext
     {
         #region Fields
 
@@ -32,14 +32,14 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
         #region Constructors
 
         /// <inheritdoc/>
-        public ClientMapperDbContext()
-            : this( ClientMapperDbFactory.Default.Options, ClientMapperDbFactory.Default.EntitiesSettings)
+        public ClientDbContext()
+            : this( ClientDbFactory.Default.Options, ClientDbFactory.Default.EntitiesSettings)
         {
         }
 
         /// <inheritdoc/>
-        public ClientMapperDbContext(DbContextOptions<MapperDbContext> options)
-            : this(options, ClientMapperDbFactory.Default.EntitiesSettings)
+        public ClientDbContext(DbContextOptions<MapperDbContext> options)
+            : this(options, ClientDbFactory.Default.EntitiesSettings)
         {
         }
 
@@ -48,7 +48,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Db
         /// </summary>
         /// <param name="options">Опции.</param>
         /// <param name="entitiesSettings">Настройки сущностей.</param>
-        public ClientMapperDbContext(DbContextOptions<MapperDbContext> options, EntitiesSettings entitiesSettings)
+        public ClientDbContext(DbContextOptions<MapperDbContext> options, EntitiesSettings entitiesSettings)
             : base(options)
         {
             _entitiesSettings = entitiesSettings;

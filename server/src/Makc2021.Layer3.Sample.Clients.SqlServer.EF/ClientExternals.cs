@@ -2,12 +2,12 @@
 
 using Makc2021.Layer1;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
 {
     /// <summary>
-    /// Внешние зависимости ORM клиента.
+    /// Внешние зависимости клиента.
     /// </summary>
-    public class ClientMapperExternals
+    public class ClientExternals
     {
         #region Properties
 

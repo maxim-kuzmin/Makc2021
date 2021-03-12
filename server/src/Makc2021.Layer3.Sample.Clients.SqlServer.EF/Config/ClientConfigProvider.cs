@@ -3,18 +3,18 @@
 using Makc2021.Layer1;
 using Makc2021.Layer1.Config.Providers;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Config
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
 {
     /// <summary>
-    /// Поставщик конфигурации ORM клиента.
+    /// Поставщик конфигурации клиента.
     /// </summary>
-    public class ClientMapperConfigProvider : JsonConfigProvider<ClientMapperConfigSettings>
+    public class ClientConfigProvider : JsonConfigProvider<ClientConfigSettings>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public ClientMapperConfigProvider(
-            ClientMapperConfigSettings settings,
+        public ClientConfigProvider(
+            ClientConfigSettings settings,
             string filePath,
             Environment environment
             )

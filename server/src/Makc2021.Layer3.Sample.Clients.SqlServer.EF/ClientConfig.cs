@@ -1,27 +1,27 @@
 ﻿//Author Maxim Kuzmin//makc//
 
 using Makc2021.Layer1;
-using Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Config;
+using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config;
 using System.IO;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
 {
     /// <summary>
-    /// Конфигурация ORM клиента.
+    /// Конфигурация клиента.
     /// </summary>
-    public class ClientMapperConfig
+    public class ClientConfig
     {
         #region Properties
 
         /// <summary>
         /// Путь к файлу.
         /// </summary>
-        internal static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer3.Sample.Mappers.EF.Clients.SqlServer.config");
+        internal static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer3.Sample.Clients.SqlServer.EF.config");
 
         /// <summary>
         /// Настройки.
         /// </summary>
-        public IClientMapperConfigSettings Settings { get; private set; }
+        public IClientConfigSettings Settings { get; init; }
 
         #endregion Properties
 
@@ -31,9 +31,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer
         /// Конструктор.
         /// </summary>
         /// <param name="environment">Окружение.</param>
-        public ClientMapperConfig(Environment environment)
+        public ClientConfig(Environment environment)
         {
-            Settings = ClientMapperConfigSettings.Create(FilePath, environment);
+            Settings = ClientConfigSettings.Create(FilePath, environment);
         }
 
         #endregion Constructors

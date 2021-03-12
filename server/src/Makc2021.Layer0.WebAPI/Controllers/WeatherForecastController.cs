@@ -1,6 +1,6 @@
 ﻿using Makc2021.Layer3.Sample.Mappers.EF.Config;
 using Makc2021.Layer3.Sample.Mappers.EF.Db;
-using Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.Config;
+using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -21,13 +21,13 @@ namespace Makc2021.Layer0.WebAPI.Controllers
         private readonly ILogger<WeatherForecastController> _logger;
 
         private IMapperConfigSettings ConfigSettingsOfEF { get; }
-        private IClientMapperConfigSettings ConfigSettingsOfEFSqlServer { get; }        
+        private IClientConfigSettings ConfigSettingsOfEFSqlServer { get; }        
         private IMapperDbFactory DbFactory { get; }
 
         public WeatherForecastController(
             ILogger<WeatherForecastController> logger,
             IMapperConfigSettings configSettingsOfEF,
-            IClientMapperConfigSettings configSettingsOfEFSqlServer,
+            IClientConfigSettings configSettingsOfEFSqlServer,
             IMapperDbFactory dbFactory
             )
         {

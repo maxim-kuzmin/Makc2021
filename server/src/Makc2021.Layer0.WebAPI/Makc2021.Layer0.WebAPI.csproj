@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer\Makc2021.Layer3.Sample.Mappers.EF.Clients.SqlServer.csproj" />    
+    <ProjectReference Include="..\Makc2021.Layer3.Sample.Clients.SqlServer.EF\Makc2021.Layer3.Sample.Clients.SqlServer.EF.csproj" />    
   </ItemGroup>
 
 </Project>
