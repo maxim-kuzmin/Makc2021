@@ -1,3 +1,4 @@
+using Makc2021.Layer5.Apps.WebAPI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +10,7 @@ namespace Makc2021.Layer0.WebAPI
 {
     public class Startup
     {
-        private Module Module { get; } = new();
+        private AppModule App { get; } = new();
 
         public Startup(IConfiguration configuration)
         {
@@ -21,7 +22,7 @@ namespace Makc2021.Layer0.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Module.ConfigureServices(services);
+            App.ConfigureServices(services);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -33,7 +34,7 @@ namespace Makc2021.Layer0.WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            Module.Configure();
+            App.Configure();
 
             if (env.IsDevelopment())
             {

@@ -1,6 +1,10 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using Makc2021.Layer1;
+using Makc2021.Layer1.Exceptions;
+using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config;
+using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Db;
+using Makc2021.Layer3.Sample.Mappers.EF.Db;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
@@ -13,9 +17,9 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
         #region Properties
 
         /// <summary>
-        /// Контекст.
+        /// Признак готовности окружения.
         /// </summary>
-        public ClientContext Context { get; private set; }
+        public bool IsEnvironmentReady { get; set; }
 
         #endregion Properties
 
@@ -27,20 +31,20 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
         /// <param name="services">Сервисы.</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient(x => Context.ConfigSettings);
-            services.AddTransient(x => Context.DbFactory);
-            services.AddTransient(x => Context.EntitiesSettings);
-        }
+            if (!IsEnvironmentReady)
+            {
+                throw new TypeIsNotReadyException(typeof(Environment));
+            }
 
-        /// <summary>
-        /// Инициализировать.
-        /// </summary>
-        /// <param name="environment">Окружение.</param>
-        public void Init(Environment environment)
-        {
-            ClientConfig config = new(environment);
+            services.AddSingleton(x => new ClientConfig(x.GetRequiredService<Environment>()).Settings);
 
-            Context = new(config.Settings, environment);
+            services.AddSingleton(x => ClientEntitiesSettings.Instance);
+
+            services.AddSingleton<IMapperDbFactory>(x => new ClientDbFactory(
+                x.GetRequiredService<IClientConfigSettings>().ConnectionString,
+                x.GetRequiredService<EntitiesSettings>(),
+                x.GetRequiredService<Environment>()
+                ));
         }
 
         #endregion Public methods

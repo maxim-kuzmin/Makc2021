@@ -19,24 +19,24 @@ namespace Makc2021.Layer0.WebAPI.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        private SampleClient::Config.IClientConfigSettings ConfigSettingsOfSampleClient { get; }
+        private SampleClient::Config.IClientConfigSettings AppSampleClientConfigSettings { get; }
 
-        private SampleMapper::Config.IMapperConfigSettings ConfigSettingsOfSampleMapper { get; }
+        private SampleMapper::Config.IMapperConfigSettings AppSampleMapperConfigSettings { get; }
              
-        private SampleMapper::Db.IMapperDbFactory DbFactoryOfSampleMapper { get; }
+        private SampleMapper::Db.IMapperDbFactory AppSampleMapperDbFactory { get; }
 
         public WeatherForecastController(
             ILogger<WeatherForecastController> logger,            
-            SampleClient::Config.IClientConfigSettings configSettingsOfSampleClient,
-            SampleMapper::Config.IMapperConfigSettings configSettingsOfSampleMapper,
-            SampleMapper::Db.IMapperDbFactory dbFactoryOfSampleMapper
+            SampleClient::Config.IClientConfigSettings appSampleClientConfigSettings,
+            SampleMapper::Config.IMapperConfigSettings appSampleMapperConfigSettings,
+            SampleMapper::Db.IMapperDbFactory appSampleMapperDbFactory
             )
         {
             _logger = logger;
 
-            ConfigSettingsOfSampleClient = configSettingsOfSampleClient;
-            ConfigSettingsOfSampleMapper = configSettingsOfSampleMapper;            
-            DbFactoryOfSampleMapper = dbFactoryOfSampleMapper;
+            AppSampleClientConfigSettings = appSampleClientConfigSettings;
+            AppSampleMapperConfigSettings = appSampleMapperConfigSettings;            
+            AppSampleMapperDbFactory = appSampleMapperDbFactory;
         }
 
         [HttpGet]
@@ -57,14 +57,14 @@ namespace Makc2021.Layer0.WebAPI.Controllers
         {
             try
             {
-                using var dbContext = DbFactoryOfSampleMapper.CreateDbContext();
+                using var dbContext = AppSampleMapperDbFactory.CreateDbContext();
 
                 return new
                 {
-                    ConfigSettingsOfSampleClient,
-                    ConfigSettingsOfSampleMapper,
+                    AppSampleClientConfigSettings,
+                    AppSampleMapperConfigSettings,
                     dbContext.Database.ProviderName,
-                    DbFactoryOfSampleMapper.EntitiesSettings
+                    AppSampleMapperDbFactory.EntitiesSettings
                 };
             }
             catch (Exception ex)

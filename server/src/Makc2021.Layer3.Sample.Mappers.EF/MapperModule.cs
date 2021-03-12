@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using Makc2021.Layer1;
+using Makc2021.Layer1.Exceptions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Makc2021.Layer3.Sample.Mappers.EF
@@ -13,9 +14,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         #region Properties
 
         /// <summary>
-        /// Контекст.
+        /// Признак готовности окружения.
         /// </summary>
-        public MapperContext Context { get; private set; }
+        public bool IsEnvironmentReady { get; set; }
 
         #endregion Properties
 
@@ -27,18 +28,12 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// <param name="services">Сервисы.</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient(x => Context.ConfigSettings);
-        }
+            if (!IsEnvironmentReady)
+            {
+                throw new TypeIsNotReadyException(typeof(Environment));
+            }
 
-        /// <summary>
-        /// Инициализировать.
-        /// </summary>
-        /// <param name="environment">Окружение.</param>
-        public void Init(Environment environment)
-        {
-            MapperConfig config = new (environment);
-
-            Context = new MapperContext(config.Settings);
+            services.AddSingleton(x => new MapperConfig(x.GetRequiredService<Environment>()).Settings);
         }
 
         #endregion Public methods
