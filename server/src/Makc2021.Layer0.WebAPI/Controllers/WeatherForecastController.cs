@@ -1,11 +1,11 @@
-﻿using Makc2021.Layer3.Sample.Mappers.EF.Config;
-using Makc2021.Layer3.Sample.Mappers.EF.Db;
-using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config;
+using Makc2021.Layer3.Sample.Mappers.EF.Config;
+using Makc2021.Layer3.Sample.Mappers.EF.Db;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Makc2021.Layer0.WebAPI.Controllers
 {

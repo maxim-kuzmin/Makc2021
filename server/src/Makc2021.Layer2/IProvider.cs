@@ -1,11 +1,10 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using System;
+using System.Data.Common;
 using Makc2021.Layer2.Queries.Identity.Reseed;
 using Makc2021.Layer2.Queries.Tree.Calculate;
 using Makc2021.Layer2.Queries.Tree.Trigger;
-
-using System;
-using System.Data.Common;
 
 namespace Makc2021.Layer2
 {

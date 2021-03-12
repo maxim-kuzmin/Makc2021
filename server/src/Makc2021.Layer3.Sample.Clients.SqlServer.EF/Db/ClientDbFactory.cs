@@ -1,11 +1,11 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using System.Reflection;
 using Makc2021.Layer1;
-using Makc2021.Layer3.Sample.Mappers.EF.Db;
 using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config;
+using Makc2021.Layer3.Sample.Mappers.EF.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using System.Reflection;
 
 namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Db
 {

@@ -1,11 +1,9 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-using Makc2021.Layer1.Serializations;
-
-using Microsoft.Extensions.Configuration;
-
 using System;
 using System.IO;
+using Makc2021.Layer1.Serializations;
+using Microsoft.Extensions.Configuration;
 
 namespace Makc2021.Layer1.Config.Providers
 {

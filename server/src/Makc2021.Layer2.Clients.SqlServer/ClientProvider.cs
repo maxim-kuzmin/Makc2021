@@ -1,5 +1,10 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using System;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 using Makc2021.Layer2.Clients.SqlServer.Filestream;
 using Makc2021.Layer2.Clients.SqlServer.Queries.Identity.Reseed;
 using Makc2021.Layer2.Clients.SqlServer.Queries.Tree.Calculate;
@@ -7,14 +12,7 @@ using Makc2021.Layer2.Clients.SqlServer.Queries.Tree.Trigger;
 using Makc2021.Layer2.Queries.Identity.Reseed;
 using Makc2021.Layer2.Queries.Tree.Calculate;
 using Makc2021.Layer2.Queries.Tree.Trigger;
-
 using Microsoft.Win32.SafeHandles;
-
-using System;
-using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Runtime.InteropServices;
 
 namespace Makc2021.Layer2.Clients.SqlServer
 {

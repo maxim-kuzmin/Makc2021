@@ -1,8 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-using Makc2021.Layer2.Queries.Identity.Reseed;
-
 using System.Text;
+using Makc2021.Layer2.Queries.Identity.Reseed;
 
 namespace Makc2021.Layer2.Clients.SqlServer.Queries.Identity.Reseed
 {

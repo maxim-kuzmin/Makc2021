@@ -1,11 +1,10 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using System.Linq;
+using System.Text;
 using Makc2021.Layer2.Clients.PostgreSql.Queries.Tree.Calculate;
 using Makc2021.Layer2.Queries.Tree.Trigger;
 using Makc2021.Layer2.Trigger;
-
-using System.Linq;
-using System.Text;
 
 namespace Makc2021.Layer2.Clients.PostgreSql.Queries.Tree.Trigger
 {

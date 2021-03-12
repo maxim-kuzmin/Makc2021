@@ -1,5 +1,4 @@
 using Makc2021.Layer0.WebAPI.App;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
