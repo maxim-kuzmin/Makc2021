@@ -16,7 +16,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
         /// <summary>
         /// Путь к файлу.
         /// </summary>
-        internal static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer3.Sample.Clients.SqlServer.EF.config");
+        public static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer3.Sample.Clients.SqlServer.EF.config");
 
         /// <summary>
         /// Настройки.

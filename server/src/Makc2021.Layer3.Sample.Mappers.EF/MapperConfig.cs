@@ -1,9 +1,8 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using System.IO;
 using Makc2021.Layer1;
 using Makc2021.Layer3.Sample.Mappers.EF.Config;
-
-using System.IO;
 
 namespace Makc2021.Layer3.Sample.Mappers.EF
 {
@@ -17,7 +16,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// <summary>
         /// Путь к файлу.
         /// </summary>
-        internal static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer3.Sample.Mappers.EF.config");
+        public static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer3.Sample.Mappers.EF.config");
 
         /// <summary>
         /// Настройки.

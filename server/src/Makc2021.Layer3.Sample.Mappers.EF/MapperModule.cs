@@ -1,19 +1,16 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using Makc2021.Layer1;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Makc2021.Layer3.Sample.Mappers.EF
 {
-    using Makc2021.Layer1;
-
     /// <summary>
     /// Модуль ORM.
     /// </summary>
     public class MapperModule
     {
         #region Properties
-
-        private MapperConfig Config { get; set; }
 
         /// <summary>
         /// Контекст.
@@ -34,22 +31,14 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         }
 
         /// <summary>
-        /// Инициализировать конфигурацию.
+        /// Инициализировать.
         /// </summary>
         /// <param name="environment">Окружение.</param>
-        public void InitConfig(Environment environment)
+        public void Init(Environment environment)
         {
-            Config = new MapperConfig(environment);
-        }
+            MapperConfig config = new (environment);
 
-        /// <summary>
-        /// Инициализировать контекст.
-        /// </summary>
-        public void InitContext()
-        {
-            Context = new MapperContext(Config.Settings);
-
-            Config = null;
+            Context = new MapperContext(config.Settings);
         }
 
         #endregion Public methods

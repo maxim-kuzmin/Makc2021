@@ -1,19 +1,16 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using Makc2021.Layer1;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
 {
-    using Makc2021.Layer1;
-
     /// <summary>
     /// Модуль клиента.
     /// </summary>
     public class ClientModule
     {
         #region Properties
-
-        private ClientConfig Config { get; set; }
 
         /// <summary>
         /// Контекст.
@@ -36,23 +33,14 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
         }
 
         /// <summary>
-        /// Инициализировать конфигурацию.
+        /// Инициализировать.
         /// </summary>
         /// <param name="environment">Окружение.</param>
-        public void InitConfig(Environment environment)
+        public void Init(Environment environment)
         {
-            Config = new(environment);
-        }
+            ClientConfig config = new(environment);
 
-        /// <summary>
-        /// Инициализировать контекст.
-        /// </summary>
-        /// <param name="externals">Внешнее.</param>
-        public void InitContext(ClientExternals externals)
-        {
-            Context = new(Config.Settings, externals);
-
-            Config = null;
+            Context = new(config.Settings, environment);
         }
 
         #endregion Public methods
