@@ -1,4 +1,7 @@
-﻿//Author Maxim Kuzmin//makc//
+﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
+
+using SampleClient = Makc2021.Layer3.Sample.Clients.SqlServer.EF;
+using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
 
 namespace Makc2021.Layer0.WebAPI.App
 {
@@ -12,12 +15,12 @@ namespace Makc2021.Layer0.WebAPI.App
         /// <summary>
         /// ORM "Sample".
         /// </summary>
-        public Layer3.Sample.Mappers.EF.MapperModule SampleMapper { get; } = new();
+        public SampleMapper::MapperModule SampleMapper { get; } = new();
 
         /// <summary>
         /// Клиент "Sample".
         /// </summary>
-        public Layer3.Sample.Clients.SqlServer.EF.ClientModule SampleClient { get; } = new();
+        public SampleClient::ClientModule SampleClient { get; } = new();
 
         #endregion Properties
     }

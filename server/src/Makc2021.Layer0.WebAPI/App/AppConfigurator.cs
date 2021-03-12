@@ -1,6 +1,9 @@
-﻿//Author Maxim Kuzmin//makc//
+﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using Microsoft.Extensions.DependencyInjection;
+
+using Sample = Makc2021.Layer3.Sample;
+using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
 
 namespace Makc2021.Layer0.WebAPI.App
 {
@@ -65,12 +68,12 @@ namespace Makc2021.Layer0.WebAPI.App
             Module.SampleClient.InitConfig(Environment);
         }
 
-        private Layer3.Sample.Mappers.EF.Db.IMapperDbFactory GetSampleDbFactory()
+        private SampleMapper::Db.IMapperDbFactory GetSampleDbFactory()
         {
             return Module.SampleClient.Context.DbFactory;
         }
 
-        private Layer3.Sample.EntitiesSettings GetSampleEntitiesSettings()
+        private Sample::EntitiesSettings GetSampleEntitiesSettings()
         {
             return Module.SampleClient.Context.EntitiesSettings;
         }
