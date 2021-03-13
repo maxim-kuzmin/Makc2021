@@ -2,14 +2,14 @@
 
 using Microsoft.Extensions.Configuration;
 
-namespace Makc2021.Layer1.Config
+namespace Makc2021.Layer1.Config.Json
 {
     using System;
 
     /// <summary>
-    /// Расширение конфигурации.
+    /// Расширение конфигурации JSON.
     /// </summary>
-    public static class ConfigExtension
+    public static class JsonConfigExtension
     {
         #region Public methods
 

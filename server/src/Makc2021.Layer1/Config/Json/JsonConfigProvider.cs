@@ -5,7 +5,7 @@ using System.IO;
 using Makc2021.Layer1.Serializations;
 using Microsoft.Extensions.Configuration;
 
-namespace Makc2021.Layer1.Config.Providers
+namespace Makc2021.Layer1.Config.Json
 {
     /// <summary>
     /// Поставщик конфигурации JSON.

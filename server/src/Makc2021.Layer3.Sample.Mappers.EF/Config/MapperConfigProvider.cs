@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using Makc2021.Layer1;
-using Makc2021.Layer1.Config.Providers;
+using Makc2021.Layer1.Config.Json;
 
 namespace Makc2021.Layer3.Sample.Mappers.EF.Config
 {
