@@ -15,9 +15,15 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
     /// <summary>
     /// Сервис запроса на получение элемента в домене.
     /// </summary>
-    public class ItemGetQueryDomainService : AsyncQueryWithInputAndOutputService<ItemGetQueryDomainInput, ItemGetQueryDomainOutput>
+    public class ItemGetQueryDomainService :
+        AsyncQueryWithInputAndOutputService<ItemGetQueryDomainInput, ItemGetQueryDomainOutput>,
+        IItemGetQueryDomainService
     {
-        IDomainService Service { get; set; }
+        #region Properties
+
+        private IDomainService Service { get; set; }
+
+        #endregion Properties
 
         #region Constructors
 
@@ -31,6 +37,8 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
         {
             Service = service;
 
+            FunctionToExecute = OnExecute;
+
             QueryHandler.FunctionToGetErrorMessages = GetErrorMessages;
             QueryHandler.FunctionToTransformInput = TransformInput;
             QueryHandler.FunctionToTransformOutput = TransformOutput;
@@ -38,10 +46,14 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
 
         #endregion Constructors
 
-        #region Protected methods
+        #region Private methods
 
-        /// <inheritdoc/>
-        protected async sealed override Task<ItemGetQueryDomainOutput> DoExecute(ItemGetQueryDomainInput input)
+        private IEnumerable<string> GetErrorMessages(Exception exception)
+        {
+            return GetErrorMessagesOnInvalidInput(exception);
+        }
+
+        private async Task<ItemGetQueryDomainOutput> OnExecute(ItemGetQueryDomainInput input)
         {
             ItemGetQueryDomainOutput result = null;
 
@@ -80,15 +92,6 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
             }
 
             return result;
-        }
-
-        #endregion Protected methods
-
-        #region Private methods
-
-        private IEnumerable<string> GetErrorMessages(Exception exception)
-        {
-            return GetErrorMessagesOnInvalidInput(exception);
         }
 
         private ItemGetQueryDomainInput TransformInput(ItemGetQueryDomainInput input)

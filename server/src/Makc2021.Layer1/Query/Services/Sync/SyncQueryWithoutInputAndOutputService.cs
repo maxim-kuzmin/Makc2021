@@ -15,7 +15,7 @@ namespace Makc2021.Layer1.Query.Services.Sync
         /// <summary>
         /// Действие, предназначенное для выполнения.
         /// </summary>
-        public Action ActionToExecute { get; protected set; }
+        public Action ActionToExecute { get; set; }
 
         #endregion Properties
 
@@ -24,12 +24,10 @@ namespace Makc2021.Layer1.Query.Services.Sync
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="actionToExecute">Выполняемое.</param>
         /// <param name="resourceOfErrors">Ресурс ошибок.</param>
-        public SyncQueryWithoutInputAndOutputService(Action actionToExecute, IErrorsResource resourceOfErrors)
+        public SyncQueryWithoutInputAndOutputService(IErrorsResource resourceOfErrors)
             : base(resourceOfErrors)
         {
-            ActionToExecute = actionToExecute;
         }
 
         #endregion Constructors

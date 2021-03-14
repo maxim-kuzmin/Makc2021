@@ -16,7 +16,7 @@ namespace Makc2021.Layer1.Query.Services.Sync
         /// <summary>
         /// Функция, предназначенная для выполнения.
         /// </summary>
-        public Func<TOutput> FunctionToExecute { get; protected set; }
+        public Func<TOutput> FunctionToExecute { get; set; }
 
         #endregion Properties
 
@@ -25,12 +25,10 @@ namespace Makc2021.Layer1.Query.Services.Sync
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="functionToExecute">Функция, предназначенная для выполнения.</param>
         /// <param name="resourceOfErrors">Ресурс ошибок.</param>
-        public SyncQueryWithOutputService(Func<TOutput> functionToExecute, IErrorsResource resourceOfErrors)
+        public SyncQueryWithOutputService(IErrorsResource resourceOfErrors)
             : base(resourceOfErrors)
         {
-            FunctionToExecute = functionToExecute;
         }
 
         #endregion Constructors

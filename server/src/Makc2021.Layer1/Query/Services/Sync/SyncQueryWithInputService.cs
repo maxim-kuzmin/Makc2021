@@ -14,9 +14,9 @@ namespace Makc2021.Layer1.Query.Services.Sync
         #region Properties
 
         /// <summary>
-        /// Функция, предназначенная для выполнения.
+        /// Действие, предназначенное для выполнения.
         /// </summary>
-        public Action<TInput> FunctionToExecute { get; protected set; }
+        public Action<TInput> ActionToExecute { get; set; }
 
         #endregion Properties
 
@@ -25,12 +25,10 @@ namespace Makc2021.Layer1.Query.Services.Sync
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="functionToExecute">Выполняемое.</param>
         /// <param name="resourceOfErrors">Ядро. Основа. Ресурсы. Ошибки.</param>
-        public SyncQueryWithInputService(Action<TInput> functionToExecute, IErrorsResource resourceOfErrors)
+        public SyncQueryWithInputService(IErrorsResource resourceOfErrors)
             : base(resourceOfErrors)
         {
-            FunctionToExecute = functionToExecute;
         }
 
         #endregion Constructors
@@ -50,7 +48,7 @@ namespace Makc2021.Layer1.Query.Services.Sync
                 input = functionToTransformInput.Invoke(input);
             }
 
-            FunctionToExecute.Invoke(input);
+            ActionToExecute.Invoke(input);
         }
 
         #endregion Public methods

@@ -18,7 +18,7 @@ namespace Makc2021.Layer1.Query.Services.Async
         /// <summary>
         /// Выполняемое.
         /// </summary>
-        public Func<Task<TOutput>> FunctionToExecute { get; protected set; }
+        public Func<Task<TOutput>> FunctionToExecute { get; set; }
 
         #endregion Properties
 
@@ -27,12 +27,10 @@ namespace Makc2021.Layer1.Query.Services.Async
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="functionToExecute">Функция, предназначенная для выполнения.</param>
         /// <param name="resourceOfErrors">Ресурс ошибок.</param>
-        public AsyncQueryWithOutputService(Func<Task<TOutput>> functionToExecute, IErrorsResource resourceOfErrors)
+        public AsyncQueryWithOutputService(IErrorsResource resourceOfErrors)
             : base(resourceOfErrors)
         {
-            FunctionToExecute = functionToExecute;
         }
 
         #endregion Constructors
