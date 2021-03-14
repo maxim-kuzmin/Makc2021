@@ -5,7 +5,7 @@ using Makc2021.Layer3.Sample.Entities.DummyMain;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMain
 {
     /// <summary>
-    /// Расширение ORM сущности "DummyMain".
+    /// Расширение сущности "DummyMain" для сопоставителя.
     /// </summary>
     public static class DummyMainEntityMapperExtension
     {

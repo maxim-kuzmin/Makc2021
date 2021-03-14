@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyTree
 {
     /// <summary>
-    /// Схема ORM сущности "DummyTree".
+    /// Схема сущности "DummyTree" для сопоставителя.
     /// </summary>
     public class DummyTreeEntityMapperSchema : MapperSchema<DummyTreeEntityMapperObject>
     {

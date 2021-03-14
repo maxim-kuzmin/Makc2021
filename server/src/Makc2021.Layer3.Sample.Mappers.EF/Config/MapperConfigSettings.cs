@@ -5,7 +5,7 @@ using Makc2021.Layer1;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Config
 {
     /// <summary>
-    /// Настройки конфигурации ORM.
+    /// Настройки конфигурации сопоставителя.
     /// </summary>
     internal class MapperConfigSettings : IMapperConfigSettings
     {

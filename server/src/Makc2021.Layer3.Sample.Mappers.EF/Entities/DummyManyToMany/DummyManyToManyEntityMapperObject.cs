@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyManyToMany
 {
     /// <summary>
-    /// Объект ORM сущности "DummyManyToMany".
+    /// Объект сущности "DummyManyToMany" для сопоставителя.
     /// </summary>
     public class DummyManyToManyEntityMapperObject : DummyManyToManyEntityObject
     {

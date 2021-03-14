@@ -6,12 +6,12 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
 using Makc2021.Layer2.Clients.SqlServer.Filestream;
-using Makc2021.Layer2.Clients.SqlServer.Queries.Identity.Reseed;
-using Makc2021.Layer2.Clients.SqlServer.Queries.Tree.Calculate;
-using Makc2021.Layer2.Clients.SqlServer.Queries.Tree.Trigger;
-using Makc2021.Layer2.Queries.Identity.Reseed;
-using Makc2021.Layer2.Queries.Tree.Calculate;
-using Makc2021.Layer2.Queries.Tree.Trigger;
+using Makc2021.Layer2.Clients.SqlServer.Commands.Identity.Reseed;
+using Makc2021.Layer2.Clients.SqlServer.Commands.Tree.Calculate;
+using Makc2021.Layer2.Clients.SqlServer.Commands.Tree.Trigger;
+using Makc2021.Layer2.Commands.Identity.Reseed;
+using Makc2021.Layer2.Commands.Tree.Calculate;
+using Makc2021.Layer2.Commands.Tree.Trigger;
 using Microsoft.Win32.SafeHandles;
 
 namespace Makc2021.Layer2.Clients.SqlServer
@@ -89,21 +89,21 @@ namespace Makc2021.Layer2.Clients.SqlServer
         }
 
         /// <inheritdoc/>
-        public IdentityReseedQueryBuilder CreateQueryIdentityReseedBuilder()
+        public IdentityReseedCommandBuilder CreateQueryIdentityReseedBuilder()
         {
-            return new ClientIdentityReseedQueryBuilder();
+            return new IdentityReseedCommandClientBuilder();
         }
 
         /// <inheritdoc/>
-        public TreeCalculateQueryBuilder CreateQueryTreeCalculateBuilder()
+        public TreeCalculateCommandBuilder CreateQueryTreeCalculateBuilder()
         {
-            return new ClientTreeCalculateQueryBuilder();
+            return new TreeCalculateCommandClientBuilder();
         }
 
         /// <inheritdoc/>
-        public TreeTriggerQueryBuilder CreateQueryTreeTriggerBuilder()
+        public TreeTriggerCommandBuilder CreateQueryTreeTriggerBuilder()
         {
-            return new ClientTreeTriggerQueryBuilder();
+            return new TreeTriggerCommandClientBuilder();
         }
 
         /// <summary>

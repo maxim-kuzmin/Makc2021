@@ -6,7 +6,7 @@ using Makc2021.Layer3.Sample.Mappers.EF.Entities.User;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserToken
 {
     /// <summary>
-    /// Объект ORM сущности "UserToken".
+    /// Объект сущности "UserToken" для сопоставителя.
     /// </summary>
     public class UserTokenEntityMapperObject : UserTokenEntityObject
     {

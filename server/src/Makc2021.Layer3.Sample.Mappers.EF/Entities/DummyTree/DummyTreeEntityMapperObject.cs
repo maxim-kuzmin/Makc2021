@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyTree
 {
     /// <summary>
-    /// Объект ORM сущности "DummyTree".
+    /// Объект сущности "DummyTree" для сопоставителя.
     /// </summary>
     public class DummyTreeEntityMapperObject : DummyTreeEntityObject
     {

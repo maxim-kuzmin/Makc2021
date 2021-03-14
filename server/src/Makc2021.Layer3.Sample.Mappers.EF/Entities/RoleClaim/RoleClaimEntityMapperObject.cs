@@ -6,7 +6,7 @@ using Makc2021.Layer3.Sample.Mappers.EF.Entities.Role;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.RoleClaim
 {
     /// <summary>
-    /// Объект ORM сущности "RoleClaim".
+    /// Объект сущности "RoleClaim" для сопоставителя.
     /// </summary>
     public class RoleClaimEntityMapperObject : RoleClaimEntityObject
     {

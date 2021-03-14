@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.User
 {
     /// <summary>
-    /// Схема ORM сущности "User".
+    /// Схема сущности "User" для сопоставителя.
     /// </summary>
     public class UserEntityMapperSchema : MapperSchema<UserEntityMapperObject>
     {

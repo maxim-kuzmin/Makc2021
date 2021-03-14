@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.Role
 {
     /// <summary>
-    /// Объект ORM сущности "Role".
+    /// Объект сущности "Role" для сопоставителя.
     /// </summary>
     public class RoleEntityMapperObject : RoleEntityObject
     {

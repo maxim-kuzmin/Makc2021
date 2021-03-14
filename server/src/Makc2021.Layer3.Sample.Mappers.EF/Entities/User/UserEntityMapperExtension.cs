@@ -5,7 +5,7 @@ using Makc2021.Layer3.Sample.Entities.User;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.User
 {
     /// <summary>
-    /// Расширение ORM сущности "User".
+    /// Расширение сущности "User" для сопоставителя.
     /// </summary>
     public static class UserEntityMapperExtension
     {

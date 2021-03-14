@@ -19,7 +19,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Db
 {
     /// <summary>
-    /// Контекст базы данных ORM.
+    /// Контекст базы данных сопоставителя.
     /// </summary>
     public abstract class MapperDbContext : IdentityDbContext
         <

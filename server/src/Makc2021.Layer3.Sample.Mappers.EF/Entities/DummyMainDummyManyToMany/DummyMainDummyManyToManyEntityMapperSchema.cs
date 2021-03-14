@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMainDummyManyToMany
 {
     /// <summary>
-    /// Схема ORM сущности "DummyMainDummyManyToMany".
+    /// Схема сущности "DummyMainDummyManyToMany" для сопоставителя.
     /// </summary>
     public class DummyMainDummyManyToManyEntityMapperSchema : MapperSchema<DummyMainDummyManyToManyEntityMapperObject>
     {

@@ -5,7 +5,7 @@ using Makc2021.Layer3.Sample.Entities.UserClaim;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserClaim
 {
     /// <summary>
-    /// Расширение ORM сущности "UserClaim".
+    /// Расширение сущности "UserClaim" для сопоставителя.
     /// </summary>
     public static class UserClaimEntityMapperExtension
     {

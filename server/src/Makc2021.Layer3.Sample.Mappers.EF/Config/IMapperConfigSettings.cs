@@ -3,7 +3,7 @@
 namespace Makc2021.Layer3.Sample.Mappers.EF.Config
 {
     /// <summary>
-    /// Интерфейс настроек конфигурации ORM.
+    /// Интерфейс настроек конфигурации сопоставителя.
     /// </summary>
     public interface IMapperConfigSettings
     {

@@ -2,9 +2,9 @@
 
 using System;
 using System.Data.Common;
-using Makc2021.Layer2.Queries.Identity.Reseed;
-using Makc2021.Layer2.Queries.Tree.Calculate;
-using Makc2021.Layer2.Queries.Tree.Trigger;
+using Makc2021.Layer2.Commands.Identity.Reseed;
+using Makc2021.Layer2.Commands.Tree.Calculate;
+using Makc2021.Layer2.Commands.Tree.Trigger;
 
 namespace Makc2021.Layer2
 {
@@ -40,19 +40,19 @@ namespace Makc2021.Layer2
         /// <summary>
         /// Создать построитель запроса перезаполнения идентичности.
         /// </summary>
-        /// <returns>Построитель запроса.</returns>
-        IdentityReseedQueryBuilder CreateQueryIdentityReseedBuilder();
+        /// <returns>Построитель команды.</returns>
+        IdentityReseedCommandBuilder CreateQueryIdentityReseedBuilder();
 
         /// <summary>
         /// Создать построитель запроса вычисления дерева.
         /// </summary>
-        /// <returns>Построитель запроса.</returns>
-        TreeCalculateQueryBuilder CreateQueryTreeCalculateBuilder();
+        /// <returns>Построитель команды.</returns>
+        TreeCalculateCommandBuilder CreateQueryTreeCalculateBuilder();
 
         /// <summary>
         /// Создать построитель запроса триггера дерева.
         /// </summary>
-        /// <returns>Построитель запроса.</returns>
-        TreeTriggerQueryBuilder CreateQueryTreeTriggerBuilder();
+        /// <returns>Построитель команды.</returns>
+        TreeTriggerCommandBuilder CreateQueryTreeTriggerBuilder();
     }
 }

@@ -6,7 +6,7 @@ using Makc2021.Layer3.Sample.Mappers.EF.Entities.User;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserLogin
 {
     /// <summary>
-    /// Объект ORM сущности "UserLogin".
+    /// Объект сущности "UserLogin" для сопоставителя.
     /// </summary>
     public class UserLoginEntityMapperObject : UserLoginEntityObject
     {

@@ -4,4 +4,10 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Makc2021.Layer2\Makc2021.Layer2.csproj" />
+    <ProjectReference Include="..\Makc2021.Layer3.Sample.Mappers.EF\Makc2021.Layer3.Sample.Mappers.EF.csproj" />
+    <ProjectReference Include="..\Makc2021.Layer3.Sample\Makc2021.Layer3.Sample.csproj" />
+  </ItemGroup>
+
 </Project>

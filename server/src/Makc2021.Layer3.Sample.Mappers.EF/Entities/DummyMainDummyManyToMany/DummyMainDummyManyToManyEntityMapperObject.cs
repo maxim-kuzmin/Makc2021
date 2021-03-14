@@ -7,7 +7,7 @@ using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyManyToMany;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMainDummyManyToMany
 {
     /// <summary>
-    /// Объект ORM сущности "DummyMainDummyManyToMany".
+    /// Объект сущности "DummyMainDummyManyToMany" для сопоставителя.
     /// </summary>
     public class DummyMainDummyManyToManyEntityMapperObject : DummyMainDummyManyToManyEntityObject
     {

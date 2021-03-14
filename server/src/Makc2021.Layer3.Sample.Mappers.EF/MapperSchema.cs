@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Makc2021.Layer3.Sample.Mappers.EF
 {
     /// <summary>
-    /// Схема ORM.
+    /// Схема сопоставителя.
     /// </summary>
     /// <typeparam name="TEntityObject">Тип объекта сущности.</typeparam>
     public abstract class MapperSchema<TEntityObject> : IEntityTypeConfiguration<TEntityObject>

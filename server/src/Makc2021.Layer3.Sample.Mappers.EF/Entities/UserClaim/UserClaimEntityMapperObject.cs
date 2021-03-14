@@ -6,7 +6,7 @@ using Makc2021.Layer3.Sample.Mappers.EF.Entities.User;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserClaim
 {
     /// <summary>
-    /// Объект ORM сущности "UserClaim".
+    /// Объект сущности "UserClaim" для сопоставителя.
     /// </summary>
     public class UserClaimEntityMapperObject : UserClaimEntityObject
     {

@@ -7,7 +7,7 @@ using Makc2021.Layer3.Sample.Mappers.EF.Config;
 namespace Makc2021.Layer3.Sample.Mappers.EF
 {
     /// <summary>
-    /// Конфигурация ORM.
+    /// Конфигурация сопоставителя.
     /// </summary>
     internal class MapperConfig
     {

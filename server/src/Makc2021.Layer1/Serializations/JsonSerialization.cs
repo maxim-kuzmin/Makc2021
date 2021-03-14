@@ -79,7 +79,7 @@ namespace Makc2021.Layer1.Serializations
         }
 
         /// <summary>
-        /// Ядро. Основа. Расширение. JSON. Попробовать десериализовать.
+        /// Расширение. JSON. Попробовать десериализовать.
         /// </summary>
         /// <typeparam name="T">Тип значения.</typeparam>
         /// <param name="json">Строка в формате JSON.</param>

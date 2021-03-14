@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.User
 {
     /// <summary>
-    /// Объект ORM сущности "User".
+    /// Объект сущности "User" для сопоставителя.
     /// </summary>
     public class UserEntityMapperObject : UserEntityObject
     {

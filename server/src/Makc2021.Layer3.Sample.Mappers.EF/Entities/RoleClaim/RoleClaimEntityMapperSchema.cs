@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.RoleClaim
 {
     /// <summary>
-    /// Схема ORM сущности "RoleClaim".
+    /// Схема сущности "RoleClaim" для сопоставителя.
     /// </summary>
     public class RoleClaimEntityMapperSchema : MapperSchema<RoleClaimEntityMapperObject>
     {

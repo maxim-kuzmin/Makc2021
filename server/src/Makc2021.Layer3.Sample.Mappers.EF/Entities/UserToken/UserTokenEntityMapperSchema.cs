@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserToken
 {
     /// <summary>
-    /// Схема ORM сущности "UserToken".
+    /// Схема сущности "UserToken" для сопоставителя.
     /// </summary>
     public class UserTokenEntityMapperSchema : MapperSchema<UserTokenEntityMapperObject>
     {

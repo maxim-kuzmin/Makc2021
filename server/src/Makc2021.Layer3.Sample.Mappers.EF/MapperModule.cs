@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Makc2021.Layer3.Sample.Mappers.EF
 {
     /// <summary>
-    /// Модуль ORM.
+    /// Модуль сопоставителя.
     /// </summary>
     public class MapperModule
     {

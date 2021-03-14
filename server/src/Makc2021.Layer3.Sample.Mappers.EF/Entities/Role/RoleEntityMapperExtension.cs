@@ -5,7 +5,7 @@ using Makc2021.Layer3.Sample.Entities.Role;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.Role
 {
     /// <summary>
-    /// Расширение ORM сущности "Role".
+    /// Расширение сущности "Role" для сопоставителя.
     /// </summary>
     public static class RoleEntityMapperExtension
     {

@@ -6,7 +6,7 @@ using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyTree;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyTreeLink
 {
     /// <summary>
-    /// Объект ORM сущности "DummyTreeLink".
+    /// Объект сущности "DummyTreeLink" для сопоставителя.
     /// </summary>
     public class DummyTreeLinkEntityMapperObject : DummyTreeLinkEntityObject
     {

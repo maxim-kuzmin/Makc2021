@@ -23,7 +23,7 @@ namespace Makc2021.Layer5.Apps.WebAPI
         };
 
         /// <summary>
-        /// ORM "Sample".
+        /// Сопоставитель "Sample".
         /// </summary>
         public SampleMapper::MapperModule SampleMapper { get; } = new()
         {

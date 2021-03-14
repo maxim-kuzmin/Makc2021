@@ -6,7 +6,7 @@ using Makc2021.Layer1.Config.Json;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Config
 {
     /// <summary>
-    /// Поставщик конфигурации ORM.
+    /// Поставщик конфигурации сопоставителя.
     /// </summary>
     internal class MapperConfigProvider : JsonConfigProvider<MapperConfigSettings>
     {

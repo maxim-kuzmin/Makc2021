@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserRole
 {
     /// <summary>
-    /// Схема ORM сущности "UserRole".
+    /// Схема сущности "UserRole" для сопоставителя.
     /// </summary>
     public class UserRoleEntityMapperSchema : MapperSchema<UserRoleEntityMapperObject>
     {

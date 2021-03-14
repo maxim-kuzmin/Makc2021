@@ -5,7 +5,7 @@ using Makc2021.Layer3.Sample.Entities.UserRole;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserRole
 {
     /// <summary>
-    /// Расширение ORM сущности "UserRole".
+    /// Расширение сущности "UserRole" для сопоставителя.
     /// </summary>
     public static class UserRoleEntityMapperExtension
     {

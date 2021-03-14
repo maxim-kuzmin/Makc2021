@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Db
 {
     /// <summary>
-    /// Интерфейс фабрики базы данных ORM.
+    /// Интерфейс фабрики базы данных сопоставителя.
     /// </summary>
     public interface IMapperDbFactory
     {

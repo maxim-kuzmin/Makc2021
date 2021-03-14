@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMain
 {
     /// <summary>
-    /// Объект ORM сущности "DummyMain".
+    /// Объект сущности "DummyMain" для сопоставителя.
     /// </summary>
     public class DummyMainEntityMapperObject : DummyMainEntityObject
     {

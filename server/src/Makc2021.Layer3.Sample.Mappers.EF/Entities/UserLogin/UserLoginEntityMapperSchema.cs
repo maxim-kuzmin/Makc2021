@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserLogin
 {
     /// <summary>
-    /// Схема ORM сущности "UserLogin".
+    /// Схема сущности "UserLogin" для сопоставителя.
     /// </summary>
     public class UserLoginEntityMapperSchema : MapperSchema<UserLoginEntityMapperObject>
     {

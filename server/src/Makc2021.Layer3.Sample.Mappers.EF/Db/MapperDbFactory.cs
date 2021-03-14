@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Makc2021.Layer3.Sample.Mappers.EF.Db
 {
     /// <summary>
-    /// Фабрика базы данных ORM.
+    /// Фабрика базы данных сопоставителя.
     /// </summary>
     public abstract class MapperDbFactory : IMapperDbFactory
     {
