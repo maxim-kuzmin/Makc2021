@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using SampleClient = Makc2021.Layer3.Sample.Clients.SqlServer.EF;
 using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
 
-namespace Makc2021.Layer6.Apps.WebAPI.Controllers
+namespace Makc2021.Layer6.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]

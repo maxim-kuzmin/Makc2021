@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SampleClient = Makc2021.Layer3.Sample.Clients.SqlServer.EF;
 using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
 
-namespace Makc2021.Layer5.Apps.WebAPI
+namespace Makc2021.Layer5.WebAPI
 {
     /// <summary>
     /// Модуль приложения.

@@ -1,4 +1,4 @@
-using Makc2021.Layer5.Apps.WebAPI;
+using Makc2021.Layer5.WebAPI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace Makc2021.Layer6.Apps.WebAPI
+namespace Makc2021.Layer6.WebAPI
 {
     public class Startup
     {

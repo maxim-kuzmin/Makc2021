@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Makc2021.Layer5.Apps.WebAPI\Makc2021.Layer5.Apps.WebAPI.csproj" />
+    <ProjectReference Include="..\Makc2021.Layer5.WebAPI\Makc2021.Layer5.WebAPI.csproj" />
   </ItemGroup>
 
 </Project>

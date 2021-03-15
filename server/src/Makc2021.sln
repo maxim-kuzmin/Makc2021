@@ -35,11 +35,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer4.Domains.Dum
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layer5-Application", "Layer5-Application", "{E166F396-EF30-4C67-B941-3043B7772419}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer5.Apps.WebAPI", "Makc2021.Layer5.Apps.WebAPI\Makc2021.Layer5.Apps.WebAPI.csproj", "{88BABF9B-3633-42A7-894C-A32071AC301A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer5.WebAPI", "Makc2021.Layer5.WebAPI\Makc2021.Layer5.WebAPI.csproj", "{88BABF9B-3633-42A7-894C-A32071AC301A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layer6-Presentation", "Layer6-Presentation", "{12AF3C6F-D56C-4072-9D9B-236686840CEB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer6.Apps.WebAPI", "Makc2021.Layer6.Apps.WebAPI\Makc2021.Layer6.Apps.WebAPI.csproj", "{75BF35B5-ABDB-4A45-8218-7B09E550621C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer6.WebAPI", "Makc2021.Layer6.WebAPI\Makc2021.Layer6.WebAPI.csproj", "{75BF35B5-ABDB-4A45-8218-7B09E550621C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C443ADA-A9D6-44C8-8222-5FDF3E6F4FE3}"
 	ProjectSection(SolutionItems) = preProject

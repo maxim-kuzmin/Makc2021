@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Makc2021.Layer6.Apps.WebAPI
+namespace Makc2021.Layer6.WebAPI
 {
     public class Program
     {
