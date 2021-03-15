@@ -2,8 +2,8 @@
 
 using System;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Makc2021.Layer1.Awaiters;
 
 namespace Makc2021.Layer1.Extensions
 {
@@ -12,200 +12,66 @@ namespace Makc2021.Layer1.Extensions
     /// </summary>
     public static class TaskExtension
     {
-        /// <summary>
-        /// Настроить ожидание с сохранением текущей культуры.
-        /// </summary>
-        /// <typeparam name="T">Тип результата.</typeparam>
-        /// <param name="task">Задача.</param>
-        /// <param name="continueOnCapturedContext">Продолжить на захваченном контексте.</param>
-        /// <returns>Объект, который ожидает завершения асинхронной задачи.</returns>
-        public static CultureAwaiter<T> ConfigureAwaitWithCurrentCulture<T>(this Task<T> task, bool continueOnCapturedContext)
-        {
-            return new CultureAwaiter<T>(task, continueOnCapturedContext);
-        }
+        #region Public methods
 
         /// <summary>
         /// Настроить ожидание с сохранением текущей культуры.
         /// </summary>
         /// <param name="task">Задача.</param>
         /// <param name="continueOnCapturedContext">Продолжить на захваченном контексте.</param>
-        /// <returns>Объект, который ожидает завершения асинхронной задачи.</returns>
+        /// <returns>Объект ожидания завершения задачи.</returns>
         public static CultureAwaiter ConfigureAwaitWithCurrentCulture(this Task task, bool continueOnCapturedContext)
         {
             return new CultureAwaiter(task, continueOnCapturedContext);
         }
 
         /// <summary>
-        /// Объект, который ожидает завершения асинхронной задачи с сохранением текущей культуры.
+        /// Настроить ожидание с сохранением текущей культуры.
         /// </summary>
         /// <typeparam name="T">Тип результата выполнения задачи.</typeparam>
-        public struct CultureAwaiter<T> : ICriticalNotifyCompletion
+        /// <param name="task">Задача.</param>
+        /// <param name="continueOnCapturedContext">Продолжить на захваченном контексте.</param>
+        /// <returns>Объект ожидания завершения задачи.</returns>
+        public static CultureAwaiterWithResult<T> ConfigureAwaitWithCurrentCulture<T>(this Task<T> task, bool continueOnCapturedContext)
         {
-            private Task<T> Task { get; set; }
-
-            private bool ContinueOnCapturedContext { get; set; }
-
-            /// <summary>
-            /// Конструктор.
-            /// </summary>
-            /// <param name="task">Задача.</param>
-            /// <param name="continueOnCapturedContext">Продолжить на захваченном контексте.</param>
-            public CultureAwaiter(Task<T> task, bool continueOnCapturedContext)
-            {
-                Task = task;
-                ContinueOnCapturedContext = continueOnCapturedContext;
-            }
-
-            /// <summary>
-            /// Получить объект, который ожидает завершения асинхронной задачи с сохранением текущей культуры.
-            /// </summary>
-            /// <returns>объект, который ожидает завершения асинхронной задачи с сохранением текущей культуры.</returns>
-            public CultureAwaiter<T> GetAwaiter()
-            {
-                return this;
-            }
-
-            /// <summary>
-            /// Признак завершения задачи.
-            /// </summary>
-            public bool IsCompleted
-            {
-                get { return Task.IsCompleted; }
-            }
-
-            /// <summary>
-            /// Получить результат выполнения задачи.
-            /// </summary>
-            /// <returns>Результат выполнения задачи.</returns>
-            public T GetResult()
-            {
-                return Task.GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Обработчик завершения задачи.
-            /// </summary>
-            /// <param name="continuation">Действие, которое должно быть выполнено по завершению задачи.</param>
-            public void OnCompleted(Action continuation)
-            {
-                // The compiler will never call this method
-                throw new NotImplementedException();
-            }
-
-            /// <summary>
-            /// Небезопасный обработчик завершения задачи.
-            /// </summary>
-            /// <param name="continuation">Действие, которое должно быть выполнено по завершению задачи.</param>
-            public void UnsafeOnCompleted(Action continuation)
-            {
-                var currentCulture = CultureInfo.CurrentCulture;
-                var currentUICulture = CultureInfo.CurrentUICulture;
-
-                Task.ConfigureAwait(ContinueOnCapturedContext).GetAwaiter().UnsafeOnCompleted(() =>
-                {
-                    var originalCulture = CultureInfo.CurrentCulture;
-                    var originalUICulture = CultureInfo.CurrentUICulture;
-
-                    CultureInfo.CurrentCulture = currentCulture;
-                    CultureInfo.CurrentUICulture = currentUICulture;
-
-                    try
-                    {
-                        continuation();
-                    }
-                    finally
-                    {
-                        CultureInfo.CurrentCulture = originalCulture;
-                        CultureInfo.CurrentUICulture = originalUICulture;
-                    }
-                });
-            }
+            return new CultureAwaiterWithResult<T>(task, continueOnCapturedContext);
         }
+
+        #endregion Public methods
+
+        #region Internal methods
 
         /// <summary>
-        /// Объект, который ожидает завершения асинхронной задачи с сохранением текущей культуры.
+        /// Запланировать выполнение продолжения задачи.
         /// </summary>
-        public struct CultureAwaiter : ICriticalNotifyCompletion
+        /// <param name="task">Задача.</param>
+        /// <param name="continuation">Продолжение.</param>
+        /// <param name="continueOnCapturedContext">Продолжить на захваченном контексте.</param>
+        internal static void UnsafeOnCompleted(this Task task, Action continuation, bool continueOnCapturedContext)
         {
-            private Task Task { get; set; }
+            var currentCulture = CultureInfo.CurrentCulture;
+            var currentUICulture = CultureInfo.CurrentUICulture;
 
-            private bool ContinueOnCapturedContext { get; set; }
-
-            /// <summary>
-            /// Конструктор.
-            /// </summary>
-            /// <param name="task">Задача.</param>
-            /// <param name="continueOnCapturedContext">Продолжить на захваченном контексте.</param>
-            public CultureAwaiter(Task task, bool continueOnCapturedContext)
+            task.ConfigureAwait(continueOnCapturedContext).GetAwaiter().UnsafeOnCompleted(() =>
             {
-                Task = task;
-                ContinueOnCapturedContext = continueOnCapturedContext;
-            }
+                var originalCulture = CultureInfo.CurrentCulture;
+                var originalUICulture = CultureInfo.CurrentUICulture;
 
-            /// <summary>
-            /// Получить объект, который ожидает завершения асинхронной задачи с сохранением текущей культуры.
-            /// </summary>
-            /// <returns>объект, который ожидает завершения асинхронной задачи с сохранением текущей культуры.</returns>
-            public CultureAwaiter GetAwaiter()
-            {
-                return this;
-            }
+                CultureInfo.CurrentCulture = currentCulture;
+                CultureInfo.CurrentUICulture = currentUICulture;
 
-            /// <summary>
-            /// Признак завершения задачи.
-            /// </summary>
-            public bool IsCompleted
-            {
-                get { return Task.IsCompleted; }
-            }
-
-            /// <summary>
-            /// Получить результат выполнения задачи.
-            /// </summary>
-            /// <returns>Результат выполнения задачи.</returns>
-            public void GetResult()
-            {
-                Task.GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Обработчик завершения задачи.
-            /// </summary>
-            /// <param name="continuation">Действие, которое должно быть выполнено по завершению задачи.</param>
-            public void OnCompleted(Action continuation)
-            {
-                // The compiler will never call this method
-                throw new NotImplementedException();
-            }
-
-            /// <summary>
-            /// Небезопасный обработчик завершения задачи.
-            /// </summary>
-            /// <param name="continuation">Действие, которое должно быть выполнено по завершению задачи.</param>
-            public void UnsafeOnCompleted(Action continuation)
-            {
-                var currentCulture = CultureInfo.CurrentCulture;
-                var currentUICulture = CultureInfo.CurrentUICulture;
-
-                Task.ConfigureAwait(ContinueOnCapturedContext).GetAwaiter().UnsafeOnCompleted(() =>
+                try
                 {
-                    var originalCulture = CultureInfo.CurrentCulture;
-                    var originalUICulture = CultureInfo.CurrentUICulture;
-
-                    CultureInfo.CurrentCulture = currentCulture;
-                    CultureInfo.CurrentUICulture = currentUICulture;
-
-                    try
-                    {
-                        continuation();
-                    }
-                    finally
-                    {
-                        CultureInfo.CurrentCulture = originalCulture;
-                        CultureInfo.CurrentUICulture = originalUICulture;
-                    }
-                });
-            }
+                    continuation();
+                }
+                finally
+                {
+                    CultureInfo.CurrentCulture = originalCulture;
+                    CultureInfo.CurrentUICulture = originalUICulture;
+                }
+            });
         }
+
+        #endregion Internal methods
     }
 }
