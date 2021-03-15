@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace Makc2021.Layer6.WebAPI
+namespace Makc2021.Layer6.Apps.WebAPI
 {
     public class Startup
     {

@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layer1-Infrastructure", "La
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer1", "Makc2021.Layer1\Makc2021.Layer1.csproj", "{38E8AD9A-9BBE-444C-90C1-46FFF7E088C9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layer2-Infrastructure Data", "Layer2-Infrastructure Data", "{EED2B151-0684-4186-939D-5B1772A30216}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layer2-Data", "Layer2-Data", "{EED2B151-0684-4186-939D-5B1772A30216}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer2", "Makc2021.Layer2\Makc2021.Layer2.csproj", "{7440845C-31BC-4CD8-9D3E-D99DC39E24A6}"
 EndProject
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer2.Clients.Pos
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer2.Clients.SqlServer", "Makc2021.Layer2.Clients.SqlServer\Makc2021.Layer2.Clients.SqlServer.csproj", "{63FCE05F-BC37-4D99-9CD2-CB3EBFDE5B81}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layer3-Infrastructure Data Access", "Layer3-Infrastructure Data Access", "{47A6B3F1-6F00-4D69-9EE9-E23F1F6E08EE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layer3-Data Access", "Layer3-Data Access", "{47A6B3F1-6F00-4D69-9EE9-E23F1F6E08EE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer3.Sample", "Makc2021.Layer3.Sample\Makc2021.Layer3.Sample.csproj", "{E397244C-04C6-49F4-AD7F-15AB7B9F0513}"
 EndProject
@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer5.Apps.WebAPI
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layer6-Presentation", "Layer6-Presentation", "{12AF3C6F-D56C-4072-9D9B-236686840CEB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer6.WebAPI", "Makc2021.Layer6.WebAPI\Makc2021.Layer6.WebAPI.csproj", "{75BF35B5-ABDB-4A45-8218-7B09E550621C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer6.Apps.WebAPI", "Makc2021.Layer6.Apps.WebAPI\Makc2021.Layer6.Apps.WebAPI.csproj", "{75BF35B5-ABDB-4A45-8218-7B09E550621C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C443ADA-A9D6-44C8-8222-5FDF3E6F4FE3}"
 	ProjectSection(SolutionItems) = preProject

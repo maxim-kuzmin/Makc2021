@@ -1,6 +1,6 @@
 using System;
 
-namespace Makc2021.Layer6.WebAPI
+namespace Makc2021.Layer6.Apps.WebAPI
 {
     public class WeatherForecast
     {
