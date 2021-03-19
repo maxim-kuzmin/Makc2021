@@ -5,13 +5,13 @@ using System;
 namespace Makc2021.Layer1.Exceptions
 {
     /// <summary>
-    /// Исключение, возникающее в случае, если тип не готов.
+    /// Исключение, возникающее в случае, если тип не импортирован.
     /// </summary>
-    public class TypeIsNotReadyException : Exception
+    public class TypeIsNotImportedException : Exception
     {
         #region Constructors
 
-        public TypeIsNotReadyException(Type type)
+        public TypeIsNotImportedException(Type type)
             : base($"{type} is not ready")
         {
         }

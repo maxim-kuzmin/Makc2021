@@ -1,7 +1,5 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-using Microsoft.Extensions.Localization;
-
 namespace Makc2021.Layer1.Resources.Converting
 {
     /// <summary>

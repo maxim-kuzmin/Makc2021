@@ -2,22 +2,22 @@
 
 using System;
 using System.Collections.Generic;
-using Makc2021.Layer3.Sample.Mappers.EF.Config;
-using Makc2021.Layer3.Sample.Mappers.EF.Db;
+using Makc2021.Layer1.Resources.Converting;
+using Makc2021.Layer1.Resources.Errors;
 using Microsoft.Extensions.DependencyInjection;
-using Layer1 = Makc2021.Layer1;
+using Microsoft.Extensions.Localization;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF
+namespace Makc2021.Layer1.Resources
 {
     /// <summary>
-    /// Модуль сопоставителя.
+    /// Модуль.
     /// </summary>
-    public class MapperModule : Layer1.Module
+    public class Module : Layer1.Module
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperModule(HashSet<Type> imports)
+        public Module(HashSet<Type> imports)
             : base(imports)
         {
         }
@@ -29,15 +29,14 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            ThrowExceptionIfTypeIsNotImported(typeof(Layer1::Environment));
+            ThrowExceptionIfTypeIsNotImported(typeof(IStringLocalizer));
 
-            services.AddSingleton(x => new MapperConfig(x.GetRequiredService<Layer1::Environment>()).Settings);
+            services.AddSingleton<IConvertingResource>(x => new ConvertingResource(
+                x.GetRequiredService<IStringLocalizer<ConvertingResource>>()
+                ));
 
-            ThrowExceptionIfTypeIsNotImported(typeof(IMapperDbFactory));
-
-            services.AddTransient<IMapperService>(x => new MapperService(
-                x.GetRequiredService<IMapperConfigSettings>(),
-                x.GetRequiredService<IMapperDbFactory>()
+            services.AddSingleton<IErrorsResource>(x => new ErrorsResource(
+                x.GetRequiredService<IStringLocalizer<ErrorsResource>>()
                 ));
         }
 
@@ -49,8 +48,8 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         {
             return new[]
             {
-                typeof(IMapperConfigSettings),
-                typeof(IMapperService)
+                typeof(IConvertingResource),
+                typeof(IErrorsResource)
             };
         }
 
