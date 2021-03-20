@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Makc2021.Layer1.Extensions;
+using Makc2021.Layer2.Queries.List.Get;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMain;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMainDummyManyToMany;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyManyToMany;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyOneToMany;
 using Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get;
+using Makc2021.Layer4.Domains.DummyMain.Queries.List.Get;
 using Microsoft.EntityFrameworkCore;
 using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
 
@@ -75,6 +77,64 @@ namespace Makc2021.Layer4.Domains.DummyMain
                         if (enitiesOfDummyManyToMany.Any())
                         {
                             InitItemDummyManyToMany(result, enitiesOfDummyManyToMany);
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <inheritdoc/>
+        public async Task<ListGetQueryDomainOutput> GetList(ListGetQueryDomainInput input)
+        {
+            var result = new ListGetQueryDomainOutput();
+
+            using var dbContext = AppSampleMapperService.CreateDbContext();
+            using var dbContextForTotalCount = AppSampleMapperService.CreateDbContext();
+
+            var queryOfItems = dbContext.DummyMain
+                .Include(x => x.ObjectOfDummyOneToManyEntity)
+                .Include(x => x.ObjectsOfDummyMainDummyManyToManyEntity)
+                .ApplyFiltering(input)
+                .ApplySorting(input)
+                .ApplyPagination(input);
+
+            var queryOfTotalCount = dbContextForTotalCount.DummyMain
+                .ApplyFiltering(input);
+
+            var taskOfItems = queryOfItems.ToArrayAsync();
+            var taskOfTotalCount = queryOfTotalCount.CountAsync();
+
+            await Task.WhenAll(taskOfItems, taskOfTotalCount).ConfigureAwaitWithCurrentCulture(false);
+
+            result.Items = taskOfItems.Result.Select(x => CreateItem(x)).ToArray();
+            result.TotalCount = taskOfTotalCount.Result;
+
+            if (result.Items.Any())
+            {
+                long[] idsDummyManyToMany = result.Items
+                    .Where(x => x.ObjectsOfDummyMainDummyManyToManyEntity != null)
+                    .SelectMany(x => x.ObjectsOfDummyMainDummyManyToManyEntity)
+                    .Select(x => x.ObjectDummyManyToManyId)
+                    .Distinct()
+                    .ToArray();
+
+                if (idsDummyManyToMany.Any())
+                {
+                    var lookupOfDummyManyToMany = await dbContext.DummyManyToMany
+                        .Where(x => idsDummyManyToMany.Contains(x.Id))
+                        .ToDictionaryAsync(x => x.Id)
+                        .ConfigureAwaitWithCurrentCulture(false);
+
+                    if (lookupOfDummyManyToMany.Any())
+                    {
+                        foreach (var item in result.Items)
+                        {
+                            if (item.ObjectsOfDummyMainDummyManyToManyEntity != null)
+                            {
+                                InitItemDummyManyToMany(item, lookupOfDummyManyToMany);
+                            }
                         }
                     }
                 }

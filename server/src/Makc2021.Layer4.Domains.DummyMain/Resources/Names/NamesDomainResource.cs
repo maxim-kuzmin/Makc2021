@@ -36,6 +36,12 @@ namespace Makc2021.Layer4.Domains.DummyMain.Resources.Names
             return Localizer["Запрос на получение элемента в домене 'DummyMain'"];
         }
 
+        /// <inheritdoc/>
+        public string GetForListGetQuery()
+        {
+            return Localizer["Запрос на получение списка в домене 'DummyMain'"];
+        }
+
         #endregion Public methods
     }
 }

@@ -2,6 +2,7 @@
 
 using System.Threading.Tasks;
 using Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get;
+using Makc2021.Layer4.Domains.DummyMain.Queries.List.Get;
 
 namespace Makc2021.Layer4.Domains.DummyMain
 {
@@ -18,6 +19,13 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// <param name="input">Входные данные.</param>
         /// <returns>Задача на выполнение запроса с выходными данными.</returns>
         Task<ItemGetQueryDomainOutput> GetItem(ItemGetQueryDomainInput input);
+
+        /// <summary>
+        /// Получить список.
+        /// </summary>
+        /// <param name="input">Входные данные.</param>
+        /// <returns>Задача на выполнение запроса с выходными данными.</returns>
+        Task<ListGetQueryDomainOutput> GetList(ListGetQueryDomainInput input);
 
         #endregion Methods
     }

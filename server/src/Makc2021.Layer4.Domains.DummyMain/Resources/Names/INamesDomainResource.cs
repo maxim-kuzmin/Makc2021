@@ -15,6 +15,12 @@ namespace Makc2021.Layer4.Domains.DummyMain.Resources.Names
         /// <returns>Имя.</returns>
         string GetForItemGetQuery();
 
+        /// <summary>
+        /// Получить для запроса на получение списка.
+        /// </summary>
+        /// <returns>Имя.</returns>
+        string GetForListGetQuery();
+
         #endregion Methods
     }
 }
