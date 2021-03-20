@@ -15,4 +15,10 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="ResourceFiles\Query\QueryResource.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

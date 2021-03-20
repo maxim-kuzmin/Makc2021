@@ -3,7 +3,8 @@
 using System;
 using System.Collections.Generic;
 using Makc2021.Layer1.Common;
-using Makc2021.Layer4.Domains.DummyMain.Resources.Names;
+using Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get;
+using Makc2021.Layer4.Domains.DummyMain.Queries.List.Get;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
@@ -32,8 +33,12 @@ namespace Makc2021.Layer4.Domains.DummyMain
         {
             ThrowExceptionIfTypeIsNotImported(typeof(IStringLocalizer));
 
-            services.AddSingleton<INamesDomainResource>(x => new NamesDomainResource(
-                x.GetRequiredService<IStringLocalizer<NamesDomainResource>>()
+            services.AddSingleton<IItemGetQueryDomainResource>(x => new ItemGetQueryDomainResource(
+                x.GetRequiredService<IStringLocalizer<ItemGetQueryDomainResource>>()
+                ));
+
+            services.AddSingleton<IListGetQueryDomainResource>(x => new ListGetQueryDomainResource(
+                x.GetRequiredService<IStringLocalizer<ListGetQueryDomainResource>>()
                 ));
 
             ThrowExceptionIfTypeIsNotImported(typeof(SampleMapper::IMapperService));
@@ -52,7 +57,8 @@ namespace Makc2021.Layer4.Domains.DummyMain
             return new[]
             {
                 typeof(IDomainService),
-                typeof(INamesDomainResource)
+                typeof(IItemGetQueryDomainResource),
+                typeof(IListGetQueryDomainResource)
             };
         }
 

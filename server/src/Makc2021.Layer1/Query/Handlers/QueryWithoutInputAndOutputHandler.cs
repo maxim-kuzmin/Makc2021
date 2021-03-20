@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using Makc2021.Layer1.Resources.Errors;
 using Microsoft.Extensions.Logging;
 
 namespace Makc2021.Layer1.Query.Handlers
@@ -34,8 +33,8 @@ namespace Makc2021.Layer1.Query.Handlers
         #region Constructors
 
         /// <inheritdoc/>
-        public QueryWithoutInputAndOutputHandler(string queryName, IErrorsResource appErrorsResource, ILogger extLogger)
-            : base(queryName, appErrorsResource, extLogger)
+        public QueryWithoutInputAndOutputHandler(string queryName, IQueryResource appQueryResource, ILogger extLogger)
+            : base(queryName, appQueryResource, extLogger)
         {
         }
 

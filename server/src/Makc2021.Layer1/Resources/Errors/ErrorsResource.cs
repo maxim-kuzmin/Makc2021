@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System;
-using System.Collections.Generic;
 using Microsoft.Extensions.Localization;
 
 namespace Makc2021.Layer1.Resources.Errors
@@ -33,24 +32,6 @@ namespace Makc2021.Layer1.Resources.Errors
         #region Public methods
 
         /// <summary>
-        /// Получить строку форматирования ". URL: {2}".
-        /// </summary>
-        /// <returns>Строка.</returns>
-        public string GetStringFormatMessagePartWithUrl()
-        {
-            return Localizer[". URL: {2}"];
-        }
-
-        /// <summary>
-        /// Получить строку форматирования "{0}. Код ошибки: {1}".
-        /// </summary>
-        /// <returns>Строка.</returns>
-        public string GetStringFormatMessageWithCode()
-        {
-            return Localizer["{0}. Код ошибки: {1}"];
-        }
-
-        /// <summary>
         /// Получить строку "Доступ запрещён".
         /// </summary>
         /// <returns>Строка.</returns>
@@ -66,38 +47,6 @@ namespace Makc2021.Layer1.Resources.Errors
         public string GetStringHttp404()
         {
             return Localizer["Страница не найдена"];
-        }
-
-        /// <summary>
-        /// Получить строку "Неизвестная ошибка".
-        /// </summary>
-        /// <returns>Строка.</returns>
-        public string GetStringUnknownError()
-        {
-            return Localizer["Неизвестная ошибка"];
-        }
-
-        /// <inheritdoc/>
-        public string GetForInvalidProperties(IEnumerable<string> invalidProperties)
-        {
-            string invalidPropertiesString = string.Join(", ", invalidProperties);
-
-            string key = string.Format("Недопустимые значения в свойствах: {0}", invalidPropertiesString);
-
-            return Localizer[key];
-        }
-
-        /// <inheritdoc/>
-        public string GetForIvalidQueryInput(IEnumerable<string> invalidProperties)
-        {
-            string invalidPropertiesString = string.Join(", ", invalidProperties);
-
-            string key = string.Format(
-                "Входные данные запроса содержит недопустимые значения в свойствах: {0}",
-                invalidPropertiesString
-                );
-
-            return Localizer[key];
         }
 
         /// <inheritdoc/>

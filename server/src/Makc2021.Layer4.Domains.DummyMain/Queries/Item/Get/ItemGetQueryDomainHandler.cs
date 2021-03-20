@@ -1,12 +1,9 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
+using Makc2021.Layer1.Query;
 using Makc2021.Layer1.Query.Exceptions;
 using Makc2021.Layer1.Query.Handlers;
-using Makc2021.Layer1.Resources.Errors;
-using Makc2021.Layer4.Domains.DummyMain.Resources.Names;
 using Microsoft.Extensions.Logging;
 
 namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
@@ -20,17 +17,16 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
 
         /// <inheritdoc/>
         public ItemGetQueryDomainHandler(
-            INamesDomainResource appNamesDomainResource,
-            IErrorsResource appErrorsResource,
+            IItemGetQueryDomainResource appResource,
+            IQueryResource appQueryResource,
             ILogger<ItemGetQueryDomainHandler> extLogger
             )
             : base(
-                  appNamesDomainResource.GetForItemGetQuery(),
-                  appErrorsResource,
+                  appResource.GetQueryName(),
+                  appQueryResource,
                   extLogger
                   )
         {
-            FunctionToGetErrorMessages = GetErrorMessages;
             FunctionToTransformQueryInput = TransformInput;
             FunctionToTransformQueryOutput = TransformOutput;
         }
@@ -38,11 +34,6 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
         #endregion Constructors
 
         #region Private methods
-
-        private IEnumerable<string> GetErrorMessages(Exception exception)
-        {
-            return GetErrorMessagesOnInvalidQueryInput(exception);
-        }
 
         private ItemGetQueryDomainInput TransformInput(ItemGetQueryDomainInput input)
         {
@@ -57,7 +48,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
 
             if (invalidProperties.Any())
             {
-                throw new InvalidPropertiesException(AppErrorsResource, invalidProperties);
+                throw new InvalidQueryInputException(AppQueryResource, invalidProperties);
             }
 
             return input;

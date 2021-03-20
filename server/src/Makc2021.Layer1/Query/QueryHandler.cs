@@ -3,9 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Makc2021.Layer1.Common;
 using Makc2021.Layer1.Extensions;
-using Makc2021.Layer1.Query.Exceptions;
-using Makc2021.Layer1.Resources.Errors;
 using Makc2021.Layer1.Serializations;
 using Microsoft.Extensions.Logging;
 
@@ -21,9 +20,9 @@ namespace Makc2021.Layer1.Query
         private string QueryName { get; }
 
         /// <summary>
-        /// Ресурс ошибок.
+        /// Ресурс запроса.
         /// </summary>
-        protected IErrorsResource AppErrorsResource { get; }
+        protected IQueryResource AppQueryResource { get; }
 
         /// <summary>
         /// Регистратор.
@@ -43,12 +42,12 @@ namespace Makc2021.Layer1.Query
         /// Конструктор.
         /// </summary>
         /// <param name="queryName">Имя запроса.</param>
-        /// <param name="appErrorsResource">Ресурс ошибок.</param>
+        /// <param name="appQueryResource">Ресурс запроса.</param>
         /// <param name="extLogger">Регистратор.</param>
-        public QueryHandler(string queryName, IErrorsResource appErrorsResource, ILogger extLogger)
+        public QueryHandler(string queryName, IQueryResource appQueryResource, ILogger extLogger)
         {
             QueryName = queryName;
-            AppErrorsResource = appErrorsResource;
+            AppQueryResource = appQueryResource;
             ExtLogger = extLogger;
         }
 
@@ -76,7 +75,7 @@ namespace Makc2021.Layer1.Query
             }
             else
             {
-                var error = new Error(exception, AppErrorsResource);
+                var error = new QueryError(exception, AppQueryResource);
 
                 errorMessage = error.CreateMessageWithCode();
 
@@ -148,26 +147,6 @@ namespace Makc2021.Layer1.Query
         }
 
         /// <summary>
-        /// Получить сообщения об ошибках на недействительный ввод запроса.
-        /// </summary>
-        /// <param name="exception">Исключение.</param>
-        /// <returns>Сообщения об ошибках.</returns>
-        protected IEnumerable<string> GetErrorMessagesOnInvalidQueryInput(Exception exception)
-        {
-            if (exception is InvalidPropertiesException ex)
-            {
-                var ivalidProperties = ex.InvalidProperties;
-
-                return new[]
-                {
-                    AppErrorsResource.GetForIvalidQueryInput(ivalidProperties)
-                };
-            }
-
-            return null;
-        }
-
-        /// <summary>
         /// Получить входные данные запроса.
         /// </summary>
         /// <returns>Входные данные запроса.</returns>
@@ -196,7 +175,7 @@ namespace Makc2021.Layer1.Query
             {
                 string errorMessage = null;
 
-                if (exception is LocalizedException)
+                if (exception is CommonException)
                 {
                     errorMessage = exception.Message;
                 }

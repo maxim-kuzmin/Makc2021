@@ -117,10 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Запрос на получение списка в домене 'DummyMain'" xml:space="preserve">
-    <value>The query to get a list in the domain 'DummyMain'</value>
+  <data name=". URL: {2}" xml:space="preserve">
+    <value>. URL: {2}</value>
   </data>
-  <data name="Запрос на получение элемента в домене 'DummyMain'" xml:space="preserve">
-    <value>The query to get an item in the domain 'DummyMain'</value>
+  <data name="{0}. Код ошибки: {1}" xml:space="preserve">
+    <value>{0}. Error code: {1}</value>
+  </data>
+  <data name="Входные данные запроса содержит недопустимые значения в свойствах: {0}" xml:space="preserve">
+    <value>The query input has invalid values in its properties: {0}</value>
+  </data>
+  <data name="Неизвестная ошибка" xml:space="preserve">
+    <value>Unknown error</value>
   </data>
 </root>

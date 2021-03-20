@@ -2,17 +2,17 @@
 
 using System;
 
-namespace Makc2021.Layer1.Query.Exceptions
+namespace Makc2021.Layer1.Common
 {
     /// <summary>
-    /// Локализованное исключение.
+    /// Общее исключение.
     /// </summary>
-    public class LocalizedException : Exception
+    public class CommonException : Exception
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public LocalizedException(string message)
+        public CommonException(string message)
             : base(message)
         {
         }

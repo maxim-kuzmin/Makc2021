@@ -3,14 +3,13 @@
 using System;
 using System.Net;
 using System.Net.Http;
-using Makc2021.Layer1.Resources.Errors;
 
-namespace Makc2021.Layer1
+namespace Makc2021.Layer1.Query
 {
     /// <summary>
     /// Ошибка запроса.
     /// </summary>
-    public class Error
+    public class QueryError
     {
         #region Properties
 
@@ -70,15 +69,15 @@ namespace Makc2021.Layer1
         /// Если исключение равно нулю, признак того, что нужно спрятать код и URL, устанавливается в true, иначе - в false. 
         /// </summary>
         /// <param name="exception">Исключение.</param>
-        /// <param name="resourceOfErrors">Ресурс ошибок.</param>
-        public Error(Exception exception, IErrorsResource resourceOfErrors)
+        /// <param name="resource">Ресурс.</param>
+        public QueryError(Exception exception, IQueryResource resource)
         {
             Exception = exception;
             ShouldBeLogged = exception != null;
             HideCodeAndUrl = exception == null;
-            MessagePartWithUrlTmpl = resourceOfErrors.GetStringFormatMessagePartWithUrl();
-            MessageWithCodeTmpl = resourceOfErrors.GetStringFormatMessageWithCode();
-            Message = resourceOfErrors.GetStringUnknownError();
+            MessagePartWithUrlTmpl = resource.GetStringFormatMessagePartWithUrl();
+            MessageWithCodeTmpl = resource.GetStringFormatMessageWithCode();
+            Message = resource.GetStringUnknownError();
             Code = Guid.NewGuid().ToString("N").ToUpper();
             HttpStatusCode = HttpStatusCode.InternalServerError;
         }

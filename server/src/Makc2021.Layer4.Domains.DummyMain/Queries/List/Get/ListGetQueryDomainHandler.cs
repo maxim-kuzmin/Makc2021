@@ -1,8 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using Makc2021.Layer1.Query;
 using Makc2021.Layer1.Query.Handlers;
-using Makc2021.Layer1.Resources.Errors;
-using Makc2021.Layer4.Domains.DummyMain.Resources.Names;
 using Microsoft.Extensions.Logging;
 
 namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
@@ -16,13 +15,13 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
 
         /// <inheritdoc/>
         public ListGetQueryDomainHandler(
-            INamesDomainResource appNamesDomainResource,
-            IErrorsResource appErrorsResource,
+            IListGetQueryDomainResource appResource,
+            IQueryResource appQueryResource,
             ILogger<ListGetQueryDomainHandler> extLogger
             )
             : base(
-                  appNamesDomainResource.GetForListGetQuery(),
-                  appErrorsResource,
+                  appResource.GetQueryName(),
+                  appQueryResource,
                   extLogger
                   )
         {
