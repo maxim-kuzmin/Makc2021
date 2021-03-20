@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Makc2021.Layer1.Resources\Makc2021.Layer1.Resources.csproj" />
     <ProjectReference Include="..\Makc2021.Layer3.Sample.Clients.SqlServer.EF\Makc2021.Layer3.Sample.Clients.SqlServer.EF.csproj" />
+    <ProjectReference Include="..\Makc2021.Layer4.Domains.DummyMain\Makc2021.Layer4.Domains.DummyMain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Makc2021.Layer2.Queries.Item.Get
 {
     /// <summary>
-    /// Ввод запроса на получение элемента.
+    /// Входные данные запроса на получение элемента.
     /// </summary>
     public class ItemGetQueryInput
     {

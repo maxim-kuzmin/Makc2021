@@ -3,7 +3,7 @@
 namespace Makc2021.Layer2.Queries.List.Get
 {
     /// <summary>
-    /// Ввод запроса на получение списка.
+    /// Входные данные запроса на получение списка.
     /// </summary>
     public abstract class ListGetQueryInput
     {

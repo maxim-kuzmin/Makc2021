@@ -1,5 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using System.Collections.Generic;
+
 namespace Makc2021.Layer1.Resources.Errors
 {
     /// <summary>
@@ -40,10 +42,11 @@ namespace Makc2021.Layer1.Resources.Errors
         string GetStringUnknownError();
 
         /// <summary>
-        /// Получить строку "Ввод содержит недопустимые значения в свойствах: {0}".
+        /// Получить сообщение о недействительных входных данных запроса.
         /// </summary>
+        /// <param name="invalidProperties">Недействительные свойства.</param>
         /// <returns>Строка.</returns>
-        string GetStringFormatMessageIvalidInput();
+        string GetIvalidQueryInputMessage(IEnumerable<string> invalidProperties);
 
         #endregion Methods
     }

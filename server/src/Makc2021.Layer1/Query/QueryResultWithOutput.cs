@@ -3,15 +3,15 @@
 namespace Makc2021.Layer1.Query
 {
     /// <summary>
-    /// Результат запроса с выводом.
+    /// Результат запроса с выходными данными.
     /// </summary>
-    /// <typeparam name="TOutput">Тип вывода.</typeparam>
+    /// <typeparam name="TOutput">Тип выходных данных.</typeparam>
     public class QueryResultWithOutput<TOutput> : QueryResult
     {
         #region Properties
 
         /// <summary>
-        /// Вывод.
+        /// Выходные данные.
         /// </summary>
         public TOutput Output { get; set; }
 

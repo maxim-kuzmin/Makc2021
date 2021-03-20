@@ -1,5 +1,6 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using System.Collections.Generic;
 using Microsoft.Extensions.Localization;
 
 namespace Makc2021.Layer1.Resources.Errors
@@ -79,9 +80,18 @@ namespace Makc2021.Layer1.Resources.Errors
         /// Получить строку "Ввод содержит недопустимые значения в свойствах: {0}".
         /// </summary>
         /// <returns>Строка.</returns>
-        public string GetStringFormatMessageIvalidInput()
+        public string GetStringFormatMessageIvalidQueryInput()
         {
             return Localizer["Ввод содержит недопустимые значения в свойствах: {0}"];
+        }
+
+        /// <inheritdoc/>
+        public string GetIvalidQueryInputMessage(IEnumerable<string> invalidProperties)
+        {
+            string par = string.Join(", ", invalidProperties);
+            string key = string.Format("Входные данные запроса содержит недопустимые значения в свойствах: {0}", par);
+
+            return Localizer[key];
         }
 
         #endregion Public methods

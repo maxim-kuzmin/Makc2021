@@ -14,19 +14,24 @@ namespace Makc2021.Layer1.Query
     /// <summary>
     /// Обработчик запроса.
     /// </summary>
-    public class QueryHandler
+    public abstract class QueryHandler
     {
         #region Properties
+
+        /// <summary>
+        /// Ресурс ошибок.
+        /// </summary>
+        protected IErrorsResource AppErrorsResource { get; }
+
+        /// <summary>
+        /// Регистратор.
+        /// </summary>
+        protected ILogger ExtLogger { get; }
 
         /// <summary>
         /// Функция получения сообщений об ошибках.
         /// </summary>
         public Func<Exception, IEnumerable<string>> FunctionToGetErrorMessages { get; set; }
-
-        /// <summary>
-        /// Ресурс ошибок.
-        /// </summary>
-        public IErrorsResource ResourceOfErrors { get; set; }
 
         #endregion Properties
 
@@ -35,30 +40,80 @@ namespace Makc2021.Layer1.Query
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="resourceOfErrors">Ресурс ошибок.</param>
-        public QueryHandler(IErrorsResource resourceOfErrors)
+        /// <param name="appErrorsResource">Ресурс ошибок.</param>
+        /// <param name="extLogger">Регистратор.</param>
+        public QueryHandler(IErrorsResource appErrorsResource, ILogger extLogger)
         {
-            ResourceOfErrors = resourceOfErrors;
+            AppErrorsResource = appErrorsResource;
+            ExtLogger = extLogger;
         }
 
         #endregion Constructors
 
+        #region Public methods
+
+        /// <summary>
+        /// Обработать ошибку запроса.
+        /// </summary>
+        /// <param name="exception">Исключение.</param>
+        public void OnError(Exception exception)
+        {
+            var queryResult = GetQueryResult();
+
+            queryResult.IsOk = false;
+
+            string errorMessage = null;
+
+            var errorMessages = GetErrorMessages(exception);
+
+            if (errorMessages != null && errorMessages.Any())
+            {
+                queryResult.ErrorMessages.AddRange(errorMessages);
+            }
+            else
+            {
+                var error = new Error(exception, AppErrorsResource);
+
+                errorMessage = error.CreateMessageWithCode();
+
+                queryResult.ErrorMessages.Add(errorMessage);
+            }
+
+            if (ExtLogger != null)
+            {
+                if (errorMessage == null && errorMessages != null && errorMessages.Any())
+                {
+                    errorMessage = string.Join(". ", errorMessages);
+                }
+
+                ExtLogger.LogError(exception, errorMessage);
+            }
+        }
+
+        #endregion Public methods
+
         #region Protected methods
 
         /// <summary>
-        /// Сделать в случае успеха.
+        /// Сделать в начале запроса.
         /// </summary>
         /// <param name="logger">Регистратор.</param>
-        /// <param name="queryResult">Результат запроса.</param>
+        protected virtual void DoOnStart()
+        {
+        }
+
+        /// <summary>
+        /// Сделать в случае успешного выполнения запроса.
+        /// </summary>
         /// <param name="functionToGetSuccessMessages">Функция получения сообщений об успехах.</param>
         /// <param name="functionToGetWarningMessages">Функция получения сообщений о предупреждениях.</param>
         protected void DoOnSuccess(
-            ILogger logger,
-            QueryResult queryResult,
             Func<IEnumerable<string>> functionToGetSuccessMessages,
             Func<IEnumerable<string>> functionToGetWarningMessages
             )
         {
+            var queryResult = GetQueryResult();
+
             queryResult.IsOk = true;
 
             if (functionToGetSuccessMessages != null)
@@ -82,51 +137,37 @@ namespace Makc2021.Layer1.Query
             }
 
 #if TEST || DEBUG
-            LogResultOnTestOrDebug(logger, queryResult);
+            LogResultOnTestOrDebug(queryResult);
 #endif        
         }
 
-        #endregion Protected methods
-
-        #region Public methods
-
         /// <summary>
-        /// Обработать событие возникновения ошибки.
+        /// Получить сообщения об ошибках на недействительный ввод запроса.
         /// </summary>
         /// <param name="exception">Исключение.</param>
-        /// <param name="logger">Регистратор.</param>
-        /// <param name="queryResult">Результат запроса.</param>
-        public void OnError(Exception exception, ILogger logger, QueryResult queryResult)
+        /// <returns>Сообщения об ошибках.</returns>
+        protected IEnumerable<string> GetErrorMessagesOnInvalidQueryInput(Exception exception)
         {
-            string errorMessage = null;
-
-            var errorMessages = GetErrorMessages(exception);
-
-            if (errorMessages != null && errorMessages.Any())
+            if (exception is InvalidPropertiesException ex)
             {
-                queryResult.ErrorMessages.AddRange(errorMessages);
-            }
-            else
-            {
-                var error = new Error(exception, ResourceOfErrors);
+                var ivalidProperties = ex.InvalidProperties;
 
-                errorMessage = error.CreateMessageWithCode();
-
-                queryResult.ErrorMessages.Add(errorMessage);
-            }
-
-            if (logger != null)
-            {
-                if (errorMessage == null && errorMessages != null && errorMessages.Any())
+                return new[]
                 {
-                    errorMessage = string.Join(". ", errorMessages);
-                }
-
-                logger.LogError(exception, errorMessage);
+                    AppErrorsResource.GetIvalidQueryInputMessage(ivalidProperties)
+                };
             }
+
+            return null;
         }
 
-        #endregion Public methods
+        /// <summary>
+        /// Получить результат выполнения запроса.
+        /// </summary>
+        /// <returns>Результат выполнения запроса.</returns>
+        protected abstract QueryResult GetQueryResult();
+
+        #endregion Protected methods
 
         #region Private methods
 
@@ -157,13 +198,13 @@ namespace Makc2021.Layer1.Query
             return errorMessages;
         }
 
-        private void LogResultOnTestOrDebug(ILogger logger, QueryResult queryResult)
+        private void LogResultOnTestOrDebug(QueryResult queryResult)
         {
-            if (logger != null)
+            if (ExtLogger != null)
             {
                 string msg = queryResult.SerializeToJson(JsonSerialization.OptionsForLogger);
 
-                logger.LogDebug(msg);
+                ExtLogger.LogDebug(msg);
             }
         }
 

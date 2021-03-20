@@ -1,10 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-using System.Collections.Generic;
-using Makc2021.Layer3.Sample.Entities.DummyMain;
-using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyManyToMany;
+using System.Threading.Tasks;
 using Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get;
-using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
 
 namespace Makc2021.Layer4.Domains.DummyMain
 {
@@ -15,11 +12,12 @@ namespace Makc2021.Layer4.Domains.DummyMain
     {
         #region Methods
 
-        SampleMapper.Db.MapperDbContext CreateSampleDbContext();
-
-        ItemGetQueryDomainOutput CreateItem(DummyMainEntityObject entity);
-
-        void InitItemDummyManyToMany(ItemGetQueryDomainOutput item, IEnumerable<DummyManyToManyEntityMapperObject> enities);
+        /// <summary>
+        /// Получить элемент.
+        /// </summary>
+        /// <param name="input">Входные данные.</param>
+        /// <returns>Задача на выполнение запроса с выходными данными.</returns>
+        Task<ItemGetQueryDomainOutput> GetItem(ItemGetQueryDomainInput input);
 
         #endregion Methods
     }

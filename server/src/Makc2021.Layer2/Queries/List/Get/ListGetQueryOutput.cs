@@ -3,7 +3,7 @@
 namespace Makc2021.Layer2.Queries.List.Get
 {
     /// <summary>
-    /// Вывод запроса на получение списка.
+    /// Выходные данные запроса на получение списка.
     /// </summary>
     /// <typeparam name="TItem">Тип элемента.</typeparam>
     public class ListGetQueryOutput<TItem>

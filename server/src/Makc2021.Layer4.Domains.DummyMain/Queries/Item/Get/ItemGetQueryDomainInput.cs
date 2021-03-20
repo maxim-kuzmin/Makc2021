@@ -7,7 +7,7 @@ using Makc2021.Layer2.Queries.Item.Get;
 namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
 {
     /// <summary>
-    /// Ввод запроса на получение элемента в домене.
+    /// Входные данные запроса на получение элемента в домене.
     /// </summary>
     public class ItemGetQueryDomainInput : ItemGetQueryInput
     {

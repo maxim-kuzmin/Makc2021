@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using Makc2021.Layer1.Resources.Errors;
 using Microsoft.Extensions.Logging;
 
-namespace Makc2021.Layer1.Query.Executions
+namespace Makc2021.Layer1.Query.Handlers
 {
     /// <summary>
-    /// Обработчик запроса без ввода и вывода.
+    /// Обработчик запроса без входных и выходных данных.
     /// </summary>
     public class QueryWithoutInputAndOutputHandler : QueryHandler
     {
@@ -17,23 +17,25 @@ namespace Makc2021.Layer1.Query.Executions
         /// <summary>
         /// Функция получения сообщений об успехах.
         /// </summary>
-        public Func<IEnumerable<string>> FunctionToGetSuccessMessages { get; set; }
+        protected Func<IEnumerable<string>> FunctionToGetSuccessMessages { get; set; }
 
         /// <summary>
         /// Функция получения сообщений о предупреждениях.
         /// </summary>
-        public Func<IEnumerable<string>> FunctionToGetWarningMessages { get; set; }
+        protected Func<IEnumerable<string>> FunctionToGetWarningMessages { get; set; }
+
+        /// <summary>
+        /// Результат выполнения запроса.
+        /// </summary>
+        protected QueryResult QueryResult { get; } = new QueryResult();
 
         #endregion Properties
 
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="resourceOfErrors">Ресурс ошибок.</param>
-        public QueryWithoutInputAndOutputHandler(IErrorsResource resourceOfErrors)
-            : base(resourceOfErrors)
+        /// <inheritdoc/>
+        public QueryWithoutInputAndOutputHandler(IErrorsResource appErrorsResource, ILogger extLogger)
+            : base(appErrorsResource, extLogger)
         {
         }
 
@@ -42,20 +44,31 @@ namespace Makc2021.Layer1.Query.Executions
         #region Public methods
 
         /// <summary>
-        /// В случае успеха.
+        /// Обработать начало запроса.
         /// </summary>
-        /// <param name="logger">Регистратор.</param>
-        /// <param name="queryResult">Результат запроса.</param>
-        public void OnSuccess(ILogger logger, QueryResult queryResult)
+        public void OnStart()
         {
-            DoOnSuccess(
-                logger,
-                queryResult,
-                FunctionToGetSuccessMessages,
-                FunctionToGetWarningMessages
-                );
+            DoOnStart();
+        }
+
+        /// <summary>
+        /// Обработать успешное выполнение запроса.
+        /// </summary>
+        public void OnSuccess()
+        {
+            DoOnSuccess(FunctionToGetSuccessMessages, FunctionToGetWarningMessages);
         }
 
         #endregion Public methods
+
+        #region Protected methods
+
+        /// <inheritdoc/>
+        protected sealed override QueryResult GetQueryResult()
+        {
+            return QueryResult;
+        }
+
+        #endregion Protected methods
     }
 }

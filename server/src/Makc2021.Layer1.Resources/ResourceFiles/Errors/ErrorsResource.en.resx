@@ -120,8 +120,8 @@
   <data name="{0}. Код ошибки: {1}" xml:space="preserve">
     <value>{0}. Error code: {1}</value>
   </data>
-  <data name="Ввод содержит недопустимые значения в свойствах: {0}" xml:space="preserve">
-    <value>Input data has invalid values in properties: {0}</value>
+  <data name="Входные данные запроса содержит недопустимые значения в свойствах: {0}" xml:space="preserve">
+    <value>The query input has invalid values in its properties: {0}</value>
   </data>
   <data name="Доступ запрещён" xml:space="preserve">
     <value>Forbidden</value>

@@ -9,7 +9,7 @@ using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMain;
 namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
 {
     /// <summary>
-    /// Ввод запроса на получение списка в домене.
+    /// Входные данные запроса на получение списка в домене.
     /// </summary>
     public class ListGetQueryDomainInput : ListGetQueryInput
     {

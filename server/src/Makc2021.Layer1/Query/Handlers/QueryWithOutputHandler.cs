@@ -5,41 +5,43 @@ using System.Collections.Generic;
 using Makc2021.Layer1.Resources.Errors;
 using Microsoft.Extensions.Logging;
 
-namespace Makc2021.Layer1.Query.Executions
+namespace Makc2021.Layer1.Query.Handlers
 {
     /// <summary>
-    /// Обработчик запроса с выводом.
+    /// Обработчик запроса с выходными данными.
     /// </summary>
-    /// <typeparam name="TOutput">Тип вывода.</typeparam>    
-    public class QueryWithOutputHandler<TOutput> : QueryHandler
+    /// <typeparam name="TQueryOutput">Тип выходных данных запроса.</typeparam>    
+    public class QueryWithOutputHandler<TQueryOutput> : QueryHandler
     {
         #region Properties
 
         /// <summary>
-        /// Функция преобразования вывода.
+        /// Функция преобразования вывода запроса.
         /// </summary>
-        public Func<TOutput, TOutput> FunctionToTransformOutput { get; set; }
+        protected Func<TQueryOutput, TQueryOutput> FunctionToTransformQueryOutput { get; set; }
 
         /// <summary>
         /// Функция получения сообщений об успехах.
         /// </summary>
-        public Func<TOutput, IEnumerable<string>> FunctionToGetSuccessMessages { get; set; }
+        protected Func<TQueryOutput, IEnumerable<string>> FunctionToGetSuccessMessages { get; set; }
 
         /// <summary>
         /// Функция получения сообщений о предупреждениях.
         /// </summary>
-        public Func<TOutput, IEnumerable<string>> FunctionToGetWarningMessages { get; set; }
+        protected Func<TQueryOutput, IEnumerable<string>> FunctionToGetWarningMessages { get; set; }
+
+        /// <summary>
+        /// Результат выполнения запроса.
+        /// </summary>
+        public QueryResultWithOutput<TQueryOutput> QueryResult { get; } = new QueryResultWithOutput<TQueryOutput>();
 
         #endregion Properties
 
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="resourceOfErrors">Ресурс ошибок.</param>
-        public QueryWithOutputHandler(IErrorsResource resourceOfErrors)
-            : base(resourceOfErrors)
+        /// <inheritdoc/>
+        public QueryWithOutputHandler(IErrorsResource appErrorsResource, ILogger extLogger)
+            : base(appErrorsResource, extLogger)
         {
         }
 
@@ -48,34 +50,53 @@ namespace Makc2021.Layer1.Query.Executions
         #region Public methods
 
         /// <summary>
-        /// В случае успеха.
+        /// Обработать начало запроса.
         /// </summary>
-        /// <param name="logger">Регистратор.</param>
-        /// <param name="queryResult">Результат запроса.</param>   
-        public void OnSuccess(ILogger logger, QueryResultWithOutput<TOutput> queryResult)
+        public void OnStart()
         {
-            Func<IEnumerable<string>> funcGetSuccessMessages = null;
+            DoOnStart();
+        }
+
+        /// <summary>
+        /// Обработать успешное выполнение запроса.
+        /// </summary>
+        /// <param name="queryOutput">Выходные данные запроса.</param>
+        public void OnSuccess(TQueryOutput queryOutput)
+        {
+            if (FunctionToTransformQueryOutput != null)
+            {
+                queryOutput = FunctionToTransformQueryOutput.Invoke(queryOutput);
+            }
+
+            QueryResult.Output = queryOutput;
+
+            Func<IEnumerable<string>> functionToGetSuccessMessages = null;
 
             if (FunctionToGetSuccessMessages != null)
             {
-                funcGetSuccessMessages = () => FunctionToGetSuccessMessages.Invoke(queryResult.Output);
+                functionToGetSuccessMessages = () => FunctionToGetSuccessMessages.Invoke(queryOutput);
             }
 
-            Func<IEnumerable<string>> funcGetWarningMessages = null;
+            Func<IEnumerable<string>> functionToGetWarningMessages = null;
 
             if (FunctionToGetWarningMessages != null)
             {
-                funcGetWarningMessages = () => FunctionToGetWarningMessages.Invoke(queryResult.Output);
+                functionToGetWarningMessages = () => FunctionToGetWarningMessages.Invoke(queryOutput);
             }
 
-            DoOnSuccess(
-                logger,
-                queryResult,
-                funcGetSuccessMessages,
-                funcGetWarningMessages
-                );
+            DoOnSuccess(functionToGetSuccessMessages, functionToGetWarningMessages);
         }
 
         #endregion Public methods
+
+        #region Protected methods
+
+        /// <inheritdoc/>
+        protected sealed override QueryResult GetQueryResult()
+        {
+            return QueryResult;
+        }
+
+        #endregion Protected methods
     }
 }

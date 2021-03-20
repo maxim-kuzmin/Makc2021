@@ -20,7 +20,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// Применить. Фильтрацию.
         /// </summary>
         /// <param name="query">Запрос.</param>
-        /// <param name="input">Ввод.</param>
+        /// <param name="input">Входные данные.</param>
         /// <returns>Запрос с учётом фильтрации.</returns>
         public static IQueryable<DummyMainEntityMapperObject> ApplyFiltering(
             this IQueryable<DummyMainEntityMapperObject> query,
@@ -44,7 +44,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// Применить. Фильтрацию.
         /// </summary>
         /// <param name="query">Запрос.</param>
-        /// <param name="input">Ввод.</param>
+        /// <param name="input">Входные данные.</param>
         /// <returns>Запрос с учётом фильтрации.</returns>
         public static IQueryable<DummyMainEntityMapperObject> ApplyFiltering(
             this IQueryable<DummyMainEntityMapperObject> query,
@@ -101,7 +101,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// Применить. Сортировку.
         /// </summary>
         /// <param name="query">Запрос.</param>
-        /// <param name="input">Ввод.</param>
+        /// <param name="input">Входные данные.</param>
         /// <returns>Запрос с учётом сортировки.</returns>
         public static IQueryable<DummyMainEntityMapperObject> ApplySorting(
             this IQueryable<DummyMainEntityMapperObject> query,

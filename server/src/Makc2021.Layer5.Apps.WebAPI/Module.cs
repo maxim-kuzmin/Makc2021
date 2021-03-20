@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
+using DummyMainDomain = Makc2021.Layer4.Domains.DummyMain;
 using Layer1 = Makc2021.Layer1;
 using SampleClient = Makc2021.Layer3.Sample.Clients.SqlServer.EF;
 using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
@@ -17,6 +18,11 @@ namespace Makc2021.Layer5.Apps.WebAPI
     public class Module : Layer1.Module
     {
         #region Properties
+
+        /// <summary>
+        /// Домен "DummyMain".
+        /// </summary>
+        private DummyMainDomain::DomainModule DummyMainDomain { get; }
 
         /// <summary>
         /// Ресурсы.
@@ -41,6 +47,7 @@ namespace Makc2021.Layer5.Apps.WebAPI
         private Module(HashSet<Type> imports)
             : base(imports)
         {
+            DummyMainDomain = new(imports);
             Resources = new(imports);
             SampleClient = new(imports);
             SampleMapper = new(imports);
@@ -62,8 +69,9 @@ namespace Makc2021.Layer5.Apps.WebAPI
         {
             services.AddLocalization(options => { options.ResourcesPath = "ResourceFiles"; });
 
-            services.AddSingleton(new Layer1::Environment());            
+            services.AddSingleton(new Layer1::Environment());
 
+            DummyMainDomain.ConfigureServices(services);
             Resources.ConfigureServices(services);
             SampleClient.ConfigureServices(services);
             SampleMapper.ConfigureServices(services);            
@@ -80,6 +88,7 @@ namespace Makc2021.Layer5.Apps.WebAPI
                 typeof(IStringLocalizer),
                 typeof(Layer1.Environment)
             }
+            .Union(DummyMainDomain::DomainModule.GetExports())
             .Union(Layer1::Resources.Module.GetExports())
             .Union(SampleClient::ClientModule.GetExports())
             .Union(SampleMapper::MapperModule.GetExports())

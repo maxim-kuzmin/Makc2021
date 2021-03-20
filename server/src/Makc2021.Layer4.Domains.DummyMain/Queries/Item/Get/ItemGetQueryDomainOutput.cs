@@ -8,7 +8,7 @@ using Makc2021.Layer3.Sample.Entities.DummyOneToMany;
 namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
 {
     /// <summary>
-    /// Вывод запроса на получение элемента в домене.
+    /// Выходные данные запроса на получение элемента в домене.
     /// </summary>
     public class ItemGetQueryDomainOutput
     {
