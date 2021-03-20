@@ -2,7 +2,10 @@
 
 using System;
 using System.Collections.Generic;
+using Makc2021.Layer1.Common;
+using Makc2021.Layer4.Domains.DummyMain.Resources.Names;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
 using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
 
 namespace Makc2021.Layer4.Domains.DummyMain
@@ -10,7 +13,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
     /// <summary>
     /// Модуль домена.
     /// </summary>
-    public class DomainModule : Layer1.Module
+    public class DomainModule : CommonModule
     {
         #region Constructors
 
@@ -27,6 +30,12 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
+            ThrowExceptionIfTypeIsNotImported(typeof(IStringLocalizer));
+
+            services.AddSingleton<INamesDomainResource>(x => new NamesDomainResource(
+                x.GetRequiredService<IStringLocalizer<NamesDomainResource>>()
+                ));
+
             ThrowExceptionIfTypeIsNotImported(typeof(SampleMapper::IMapperService));
 
             services.AddTransient<IDomainService>(x => new DomainService(
@@ -42,7 +51,8 @@ namespace Makc2021.Layer4.Domains.DummyMain
         {
             return new[]
             {
-                typeof(IDomainService)
+                typeof(IDomainService),
+                typeof(INamesDomainResource)
             };
         }
 

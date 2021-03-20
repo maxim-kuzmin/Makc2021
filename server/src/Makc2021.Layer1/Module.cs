@@ -2,56 +2,58 @@
 
 using System;
 using System.Collections.Generic;
-using Makc2021.Layer1.Exceptions;
+using Makc2021.Layer1.Common;
+using Makc2021.Layer1.Resources.Converting;
+using Makc2021.Layer1.Resources.Errors;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
 
 namespace Makc2021.Layer1
 {
-    public abstract class Module
+    /// <summary>
+    /// Модуль.
+    /// </summary>
+    public class Module : CommonModule
     {
-        #region Fields
-
-        private readonly HashSet<Type> _imports;
-
-        #endregion Fields
-
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="imports">Импортируемые типы.</param>
+        /// <inheritdoc/>
         public Module(HashSet<Type> imports)
+            : base(imports)
         {
-            _imports = imports;
         }
 
         #endregion Constructors
 
         #region Public methods
 
-        /// <summary>
-        /// Настроить сервисы.
-        /// </summary>
-        /// <param name="services">Сервисы.</param>
-        public abstract void ConfigureServices(IServiceCollection services);
-
-        #endregion Public methods
-
-        #region Protected methods
-
-        /// <summary>
-        /// Выбросить исключение, если тип не импортирован.
-        /// </summary>
-        /// <param name="type">Тип.</param>
-        protected void ThrowExceptionIfTypeIsNotImported(Type type)
+        /// <inheritdoc/>
+        public sealed override void ConfigureServices(IServiceCollection services)
         {
-            if (!_imports.Contains(type))
-            {
-                throw new TypeIsNotImportedException(type);
-            }
+            ThrowExceptionIfTypeIsNotImported(typeof(IStringLocalizer));
+
+            services.AddSingleton<IConvertingResource>(x => new ConvertingResource(
+                x.GetRequiredService<IStringLocalizer<ConvertingResource>>()
+                ));
+
+            services.AddSingleton<IErrorsResource>(x => new ErrorsResource(
+                x.GetRequiredService<IStringLocalizer<ErrorsResource>>()
+                ));
         }
 
-        #endregion Protected methods
+        /// <summary>
+        /// Получить экспортируемые типы.
+        /// </summary>
+        /// <returns>Экспортируемые типы.</returns>
+        public static IEnumerable<Type> GetExports()
+        {
+            return new[]
+            {
+                typeof(IConvertingResource),
+                typeof(IErrorsResource)
+            };
+        }
+
+        #endregion Public methods
     }
 }

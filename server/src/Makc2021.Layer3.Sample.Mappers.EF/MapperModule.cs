@@ -2,17 +2,17 @@
 
 using System;
 using System.Collections.Generic;
+using Makc2021.Layer1.Common;
 using Makc2021.Layer3.Sample.Mappers.EF.Config;
 using Makc2021.Layer3.Sample.Mappers.EF.Db;
 using Microsoft.Extensions.DependencyInjection;
-using Layer1 = Makc2021.Layer1;
 
 namespace Makc2021.Layer3.Sample.Mappers.EF
 {
     /// <summary>
     /// Модуль сопоставителя.
     /// </summary>
-    public class MapperModule : Layer1.Module
+    public class MapperModule : CommonModule
     {
         #region Constructors
 
@@ -29,9 +29,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            ThrowExceptionIfTypeIsNotImported(typeof(Layer1::Environment));
+            ThrowExceptionIfTypeIsNotImported(typeof(Layer1.Environment));
 
-            services.AddSingleton(x => new MapperConfig(x.GetRequiredService<Layer1::Environment>()).Settings);
+            services.AddSingleton(x => new MapperConfig(x.GetRequiredService<Layer1.Environment>()).Settings);
 
             ThrowExceptionIfTypeIsNotImported(typeof(IMapperDbFactory));
 

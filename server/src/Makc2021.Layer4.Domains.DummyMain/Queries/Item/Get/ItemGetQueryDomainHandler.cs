@@ -6,6 +6,7 @@ using System.Linq;
 using Makc2021.Layer1.Query.Exceptions;
 using Makc2021.Layer1.Query.Handlers;
 using Makc2021.Layer1.Resources.Errors;
+using Makc2021.Layer4.Domains.DummyMain.Resources.Names;
 using Microsoft.Extensions.Logging;
 
 namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
@@ -18,8 +19,16 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
         #region Constructors
 
         /// <inheritdoc/>
-        public ItemGetQueryDomainHandler(IErrorsResource appErrorsResource, ILogger extLogger)
-            : base(appErrorsResource, extLogger)
+        public ItemGetQueryDomainHandler(
+            INamesDomainResource appNamesDomainResource,
+            IErrorsResource appErrorsResource,
+            ILogger<ItemGetQueryDomainHandler> extLogger
+            )
+            : base(
+                  appNamesDomainResource.GetForItemGetQuery(),
+                  appErrorsResource,
+                  extLogger
+                  )
         {
             FunctionToGetErrorMessages = GetErrorMessages;
             FunctionToTransformQueryInput = TransformInput;
@@ -48,7 +57,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
 
             if (invalidProperties.Any())
             {
-                throw new InvalidPropertiesException(invalidProperties);
+                throw new InvalidPropertiesException(AppErrorsResource, invalidProperties);
             }
 
             return input;

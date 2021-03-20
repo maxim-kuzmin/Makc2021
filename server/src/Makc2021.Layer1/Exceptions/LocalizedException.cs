@@ -11,10 +11,7 @@ namespace Makc2021.Layer1.Query.Exceptions
     {
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="message">Сообщение.</param>
+        /// <inheritdoc/>
         public LocalizedException(string message)
             : base(message)
         {

@@ -48,8 +48,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makc2021.Layer4.Domains.DummyTree", "Makc2021.Layer4.Domains.DummyTree\Makc2021.Layer4.Domains.DummyTree.csproj", "{B70DC64C-1455-4DDA-B464-8B2B45C0A007}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Makc2021.Layer1.Resources", "Makc2021.Layer1.Resources\Makc2021.Layer1.Resources.csproj", "{5640369D-D45A-4A76-9D51-721BC30928A2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -112,10 +110,6 @@ Global
 		{B70DC64C-1455-4DDA-B464-8B2B45C0A007}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B70DC64C-1455-4DDA-B464-8B2B45C0A007}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B70DC64C-1455-4DDA-B464-8B2B45C0A007}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5640369D-D45A-4A76-9D51-721BC30928A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5640369D-D45A-4A76-9D51-721BC30928A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5640369D-D45A-4A76-9D51-721BC30928A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5640369D-D45A-4A76-9D51-721BC30928A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,7 +129,6 @@ Global
 		{88BABF9B-3633-42A7-894C-A32071AC301A} = {E166F396-EF30-4C67-B941-3043B7772419}
 		{75BF35B5-ABDB-4A45-8218-7B09E550621C} = {12AF3C6F-D56C-4072-9D9B-236686840CEB}
 		{B70DC64C-1455-4DDA-B464-8B2B45C0A007} = {68AF6A82-37BD-421D-BB84-695C48D9FD08}
-		{5640369D-D45A-4A76-9D51-721BC30928A2} = {341212C3-32A8-405D-BD54-1F5A67CBFB73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {289D4C1C-1685-4872-8BAC-DA4C0585D110}

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Localization;
 
@@ -76,20 +77,33 @@ namespace Makc2021.Layer1.Resources.Errors
             return Localizer["Неизвестная ошибка"];
         }
 
-        /// <summary>
-        /// Получить строку "Ввод содержит недопустимые значения в свойствах: {0}".
-        /// </summary>
-        /// <returns>Строка.</returns>
-        public string GetStringFormatMessageIvalidQueryInput()
+        /// <inheritdoc/>
+        public string GetForInvalidProperties(IEnumerable<string> invalidProperties)
         {
-            return Localizer["Ввод содержит недопустимые значения в свойствах: {0}"];
+            string invalidPropertiesString = string.Join(", ", invalidProperties);
+
+            string key = string.Format("Недопустимые значения в свойствах: {0}", invalidPropertiesString);
+
+            return Localizer[key];
         }
 
         /// <inheritdoc/>
-        public string GetIvalidQueryInputMessage(IEnumerable<string> invalidProperties)
+        public string GetForIvalidQueryInput(IEnumerable<string> invalidProperties)
         {
-            string par = string.Join(", ", invalidProperties);
-            string key = string.Format("Входные данные запроса содержит недопустимые значения в свойствах: {0}", par);
+            string invalidPropertiesString = string.Join(", ", invalidProperties);
+
+            string key = string.Format(
+                "Входные данные запроса содержит недопустимые значения в свойствах: {0}",
+                invalidPropertiesString
+                );
+
+            return Localizer[key];
+        }
+
+        /// <inheritdoc/>
+        public string GetForTypeIsNotImported(Type type)
+        {
+            string key = string.Format("Тип '{0}' не импортирован", type.FullName);
 
             return Localizer[key];
         }

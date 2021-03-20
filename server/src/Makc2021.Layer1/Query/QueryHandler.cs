@@ -18,6 +18,8 @@ namespace Makc2021.Layer1.Query
     {
         #region Properties
 
+        private string QueryName { get; }
+
         /// <summary>
         /// Ресурс ошибок.
         /// </summary>
@@ -40,10 +42,12 @@ namespace Makc2021.Layer1.Query
         /// <summary>
         /// Конструктор.
         /// </summary>
+        /// <param name="queryName">Имя запроса.</param>
         /// <param name="appErrorsResource">Ресурс ошибок.</param>
         /// <param name="extLogger">Регистратор.</param>
-        public QueryHandler(IErrorsResource appErrorsResource, ILogger extLogger)
+        public QueryHandler(string queryName, IErrorsResource appErrorsResource, ILogger extLogger)
         {
+            QueryName = queryName;
             AppErrorsResource = appErrorsResource;
             ExtLogger = extLogger;
         }
@@ -86,7 +90,7 @@ namespace Makc2021.Layer1.Query
                     errorMessage = string.Join(". ", errorMessages);
                 }
 
-                ExtLogger.LogError(exception, errorMessage);
+                ExtLogger.LogError(exception, $"{QueryName}. {errorMessage}");
             }
         }
 
@@ -97,9 +101,11 @@ namespace Makc2021.Layer1.Query
         /// <summary>
         /// Сделать в начале запроса.
         /// </summary>
-        /// <param name="logger">Регистратор.</param>
         protected virtual void DoOnStart()
         {
+#if TEST || DEBUG
+            LogQueryInputOnTestOrDebug();
+#endif
         }
 
         /// <summary>
@@ -137,8 +143,8 @@ namespace Makc2021.Layer1.Query
             }
 
 #if TEST || DEBUG
-            LogResultOnTestOrDebug(queryResult);
-#endif        
+            LogQueryResultOnTestOrDebug();
+#endif
         }
 
         /// <summary>
@@ -154,12 +160,18 @@ namespace Makc2021.Layer1.Query
 
                 return new[]
                 {
-                    AppErrorsResource.GetIvalidQueryInputMessage(ivalidProperties)
+                    AppErrorsResource.GetForIvalidQueryInput(ivalidProperties)
                 };
             }
 
             return null;
         }
+
+        /// <summary>
+        /// Получить входные данные запроса.
+        /// </summary>
+        /// <returns>Входные данные запроса.</returns>
+        protected abstract object GetQueryInput();
 
         /// <summary>
         /// Получить результат выполнения запроса.
@@ -198,14 +210,37 @@ namespace Makc2021.Layer1.Query
             return errorMessages;
         }
 
-        private void LogResultOnTestOrDebug(QueryResult queryResult)
+        private void LogQueryInputOnTestOrDebug()
         {
-            if (ExtLogger != null)
+            if (ExtLogger == null)
             {
-                string msg = queryResult.SerializeToJson(JsonSerialization.OptionsForLogger);
-
-                ExtLogger.LogDebug(msg);
+                return;
             }
+
+            object queryInput = GetQueryInput();
+
+            string msg = null;
+
+            if (queryInput != null)
+            {
+                msg = queryInput.SerializeToJson(JsonSerialization.OptionsForLogger);
+            }
+
+            msg = !string.IsNullOrEmpty(msg) ? $". Input: {msg}" : string.Empty;
+
+            ExtLogger.LogDebug($"{QueryName}{msg}");
+        }
+
+        private void LogQueryResultOnTestOrDebug()
+        {
+            if (ExtLogger == null)
+            {
+                return;
+            }    
+            
+            string msg = GetQueryResult().SerializeToJson(JsonSerialization.OptionsForLogger);
+
+            ExtLogger.LogDebug($"{QueryName}. Result: {msg}");
         }
 
         #endregion Private methods

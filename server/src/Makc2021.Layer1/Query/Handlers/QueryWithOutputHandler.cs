@@ -40,8 +40,8 @@ namespace Makc2021.Layer1.Query.Handlers
         #region Constructors
 
         /// <inheritdoc/>
-        public QueryWithOutputHandler(IErrorsResource appErrorsResource, ILogger extLogger)
-            : base(appErrorsResource, extLogger)
+        public QueryWithOutputHandler(string queryName, IErrorsResource appErrorsResource, ILogger extLogger)
+            : base(queryName, appErrorsResource, extLogger)
         {
         }
 
@@ -90,6 +90,12 @@ namespace Makc2021.Layer1.Query.Handlers
         #endregion Public methods
 
         #region Protected methods
+
+        /// <inheritdoc/>
+        protected sealed override object GetQueryInput()
+        {
+            return null;
+        }
 
         /// <inheritdoc/>
         protected sealed override QueryResult GetQueryResult()

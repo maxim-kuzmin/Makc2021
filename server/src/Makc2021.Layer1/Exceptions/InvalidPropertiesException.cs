@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using Makc2021.Layer1.Resources.Errors;
 
 namespace Makc2021.Layer1.Query.Exceptions
 {
@@ -24,22 +25,14 @@ namespace Makc2021.Layer1.Query.Exceptions
         /// <summary>
         /// Конструктор.
         /// </summary>
+        /// <param name="resource">Ресурс.</param>
         /// <param name="invalidProperties">Список свойств с недействительными значениями.</param>
-        public InvalidPropertiesException(List<string> invalidProperties)
-            : base(CreateErrorMessage(invalidProperties))
+        public InvalidPropertiesException(IErrorsResource resource, List<string> invalidProperties)
+            : base(resource.GetForInvalidProperties(invalidProperties))
         {
             InvalidProperties = invalidProperties;
         }
 
         #endregion Constructors
-
-        #region Private methods
-
-        private static string CreateErrorMessage(List<string> invalidProperties)
-        {
-            return $"Invalid properties: {string.Join(", ", invalidProperties)}";
-        }
-
-        #endregion Private methods
     }
 }
