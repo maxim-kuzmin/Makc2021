@@ -1,11 +1,11 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-namespace Makc2021.Layer2
+namespace Makc2021.Layer2.Common.Db
 {
     /// <summary>
-    /// Значения по умолчанию.
+    /// Общие значения по умолчанию в базе данных.
     /// </summary>
-    public class Defaults
+    public class CommonDbDefaults
     {
         #region Properties
 

@@ -1,7 +1,9 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using Makc2021.Layer3.Sample.Db;
 using Makc2021.Layer3.Sample.Entities.Role;
 using Makc2021.Layer3.Sample.Entities.User;
+using Makc2021.Layer3.Sample.Entity;
 
 namespace Makc2021.Layer3.Sample.Entities.UserRole
 {
@@ -51,17 +53,17 @@ namespace Makc2021.Layer3.Sample.Entities.UserRole
         /// </summary>
         /// <param name="settingOfRoleEntity">Настройка сущности "Role".</param>
         /// <param name="settingOfUserEntity">Настройка сущности "User".</param>
-        /// <param name="defaults">Значения по умолчанию.</param>
+        /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
         public UserRoleEntitySetting(
             RoleEntitySetting settingOfRoleEntity,
             UserEntitySetting settingOfUserEntity,
-            Defaults defaults,
+            DbDefaults dbDefaults,
             string dbTable,
             string dbSchema = null
             )
-            : base(defaults, dbTable, dbSchema)
+            : base(dbDefaults, dbTable, dbSchema)
         {
             DbColumnForRoleEntityId = CreateDbColumnName(settingOfRoleEntity.DbTable, settingOfRoleEntity.DbColumnForId);
             DbColumnForUserEntityId = CreateDbColumnName(settingOfUserEntity.DbTable, settingOfUserEntity.DbColumnForId);

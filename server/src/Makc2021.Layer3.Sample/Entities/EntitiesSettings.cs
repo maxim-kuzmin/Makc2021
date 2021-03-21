@@ -14,7 +14,7 @@ using Makc2021.Layer3.Sample.Entities.UserLogin;
 using Makc2021.Layer3.Sample.Entities.UserRole;
 using Makc2021.Layer3.Sample.Entities.UserToken;
 
-namespace Makc2021.Layer3.Sample
+namespace Makc2021.Layer3.Sample.Entities
 {
     /// <summary>
     /// Настройки сущностей.

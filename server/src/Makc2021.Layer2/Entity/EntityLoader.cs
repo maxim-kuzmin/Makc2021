@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace Makc2021.Layer2
+namespace Makc2021.Layer2.Entity
 {
     /// <summary>
     /// Загрузчик сущности.

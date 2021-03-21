@@ -1,5 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using Makc2021.Layer2.Common;
+
 namespace Makc2021.Layer2.Clients.SqlServer
 {
     /// <summary>
@@ -12,7 +14,7 @@ namespace Makc2021.Layer2.Clients.SqlServer
         /// <summary>
         /// Поставщик.
         /// </summary>
-        public IProvider Provider { get; } = new ClientProvider();
+        public ICommonProvider Provider { get; } = new ClientProvider();
 
         #endregion Properties
     }

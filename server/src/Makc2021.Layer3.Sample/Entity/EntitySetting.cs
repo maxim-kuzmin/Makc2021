@@ -1,14 +1,16 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-namespace Makc2021.Layer3.Sample
+using Makc2021.Layer3.Sample.Db;
+
+namespace Makc2021.Layer3.Sample.Entity
 {
     /// <inheritdoc/>
-    public class EntitySetting : Layer2.EntitySetting<Defaults>
+    public class EntitySetting : Layer2.Entity.EntitySetting<DbDefaults>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public EntitySetting(Defaults defaults, string dbTable, string dbSchema = null)
+        public EntitySetting(DbDefaults defaults, string dbTable, string dbSchema = null)
             : base(defaults, dbTable, dbSchema)
         {
         }

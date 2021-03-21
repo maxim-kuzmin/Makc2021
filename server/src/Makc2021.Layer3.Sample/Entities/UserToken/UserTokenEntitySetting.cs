@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using Makc2021.Layer3.Sample.Db;
 using Makc2021.Layer3.Sample.Entities.User;
+using Makc2021.Layer3.Sample.Entity;
 
 namespace Makc2021.Layer3.Sample.Entities.UserToken
 {
@@ -49,18 +51,18 @@ namespace Makc2021.Layer3.Sample.Entities.UserToken
         /// Конструктор.
         /// </summary>
         /// <param name="settingOfUserEntity">Настройка сущности "User".</param>
-        /// <param name="defaults">Значения по умолчанию.</param>
+        /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
         public UserTokenEntitySetting(
             UserEntitySetting settingOfUserEntity,
-            Defaults defaults,
+            DbDefaults dbDefaults,
             string dbTable,
             string dbSchema = null
             )
-            : base(defaults, dbTable, dbSchema)
+            : base(dbDefaults, dbTable, dbSchema)
         {
-            DbColumnForName = defaults.DbColumnForName;
+            DbColumnForName = dbDefaults.DbColumnForName;
 
             DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, settingOfUserEntity.DbTable);
 

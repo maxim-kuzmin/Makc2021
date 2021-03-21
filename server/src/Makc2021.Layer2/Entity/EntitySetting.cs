@@ -1,13 +1,15 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-namespace Makc2021.Layer2
+using Makc2021.Layer2.Common.Db;
+
+namespace Makc2021.Layer2.Entity
 {
     /// <summary>
     /// Настройка сущности.
     /// </summary>
     /// <typeparam name="TDefaults">Тип значений по умолчанию.</typeparam>
     public abstract class EntitySetting<TDefaults>
-        where TDefaults : Defaults
+        where TDefaults : CommonDbDefaults
     {
         #region Properties
 

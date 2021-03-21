@@ -6,12 +6,12 @@ using Makc2021.Layer2.Commands.Identity.Reseed;
 using Makc2021.Layer2.Commands.Tree.Calculate;
 using Makc2021.Layer2.Commands.Tree.Trigger;
 
-namespace Makc2021.Layer2
+namespace Makc2021.Layer2.Common
 {
     /// <summary>
-    /// Интерфейс поставщика.
+    /// Интерфейс общего поставщика.
     /// </summary>
-    public interface IProvider
+    public interface ICommonProvider
     {
         /// <summary>
         /// Создать параметр команды базы данных.

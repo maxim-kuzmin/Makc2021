@@ -13,13 +13,14 @@ using Makc2021.Layer2.Commands.Identity.Reseed;
 using Makc2021.Layer2.Commands.Tree.Calculate;
 using Makc2021.Layer2.Commands.Tree.Trigger;
 using Microsoft.Win32.SafeHandles;
+using Makc2021.Layer2.Common;
 
 namespace Makc2021.Layer2.Clients.SqlServer
 {
     /// <summary>
     /// Поставщик клиента.
     /// </summary>
-    public class ClientProvider : IProvider
+    public class ClientProvider : ICommonProvider
     {
         #region Public methods
 

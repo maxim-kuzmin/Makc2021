@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System.Collections.Generic;
+using Makc2021.Layer3.Sample.Entity;
 
 namespace Makc2021.Layer3.Sample.Entities.UserToken
 {

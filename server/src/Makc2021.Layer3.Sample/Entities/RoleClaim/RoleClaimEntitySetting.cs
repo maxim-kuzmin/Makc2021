@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using Makc2021.Layer3.Sample.Db;
 using Makc2021.Layer3.Sample.Entities.Role;
+using Makc2021.Layer3.Sample.Entity;
 
 namespace Makc2021.Layer3.Sample.Entities.RoleClaim
 {
@@ -54,18 +56,18 @@ namespace Makc2021.Layer3.Sample.Entities.RoleClaim
         /// Конструктор.
         /// </summary>
         /// <param name="settingOfRoleEntity">Настройка сущности "Role".</param>
-        /// <param name="defaults">Значения по умолчанию.</param>
+        /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
         public RoleClaimEntitySetting(
             RoleEntitySetting settingOfRoleEntity,
-            Defaults defaults,
+            DbDefaults dbDefaults,
             string dbTable,
             string dbSchema = null
             )
-            : base(defaults, dbTable, dbSchema)
+            : base(dbDefaults, dbTable, dbSchema)
         {
-            DbColumnForId = defaults.DbColumnForId;
+            DbColumnForId = dbDefaults.DbColumnForId;
 
             DbColumnForRoleEntityId = CreateDbColumnName(
                 settingOfRoleEntity.DbTable,

@@ -1,5 +1,8 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using Makc2021.Layer3.Sample.Db;
+using Makc2021.Layer3.Sample.Entity;
+
 namespace Makc2021.Layer3.Sample.Entities.DummyManyToMany
 {
     /// <summary>
@@ -45,7 +48,7 @@ namespace Makc2021.Layer3.Sample.Entities.DummyManyToMany
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
         public DummyManyToManyEntitySetting(
-            Defaults defaults,
+            DbDefaults defaults,
             string dbTable,
             string dbSchema = null
             )

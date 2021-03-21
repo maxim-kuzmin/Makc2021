@@ -1,5 +1,6 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using Makc2021.Layer3.Sample.Entities;
 using Makc2021.Layer3.Sample.Mappers.EF.Db;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMain;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMainDummyManyToMany;
