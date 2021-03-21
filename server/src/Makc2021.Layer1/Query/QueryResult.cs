@@ -17,6 +17,11 @@ namespace Makc2021.Layer1.Query
         public bool IsOk { get; set; }
 
         /// <summary>
+        /// Код ошибки.
+        /// </summary>
+        public string ErrorCode { get; set; }
+
+        /// <summary>
         /// Сообщения об ошибках.
         /// </summary>
         public HashSet<string> ErrorMessages { get; } = new HashSet<string>();

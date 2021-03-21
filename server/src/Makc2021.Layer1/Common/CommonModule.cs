@@ -2,8 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using Makc2021.Layer1.Exceptions;
-using Makc2021.Layer1.Resources.Errors;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -75,11 +73,11 @@ namespace Makc2021.Layer1.Common
 
             var factory = new ResourceManagerStringLocalizerFactory(options, NullLoggerFactory.Instance);
 
-            var localizer = new StringLocalizer<ErrorsResource>(factory);
+            var localizer = new StringLocalizer<CommonResource>(factory);
 
-            var resource = new ErrorsResource(localizer);
+            var resource = new CommonResource(localizer);
 
-            throw new TypeIsNotImportedException(resource, type);
+            throw new Exception(resource.GetTypeIsNotImportedErrorMessage(type));
         }
 
         #endregion Protected methods

@@ -32,7 +32,7 @@ namespace Makc2021.Layer1.Query
         #region Public methods
 
         /// <inheritdoc/>
-        public string GetInvalidQueryInputErrorMessage(IEnumerable<string> invalidProperties)
+        public string GetInvalidInputErrorMessage(IEnumerable<string> invalidProperties)
         {
             string invalidPropertiesString = string.Join(", ", invalidProperties);
 
@@ -45,27 +45,11 @@ namespace Makc2021.Layer1.Query
         }
 
         /// <inheritdoc/>
-        public string GetErrorMessageWithCodeAndUrl(string prefix, string code, string url)
+        public string GetErrorMessageWithCode(string errorMessage, string code)
         {
-            string result = prefix;
+            string errorCode = string.Format(Localizer["Код ошибки: {0}"], code);
 
-            if (!string.IsNullOrWhiteSpace(code))
-            {
-                string msg = string.Format(Localizer["Код ошибки: {0}"], code);
-
-                result = $"{result}. {msg}";
-            }
-
-            if (!string.IsNullOrWhiteSpace(url))
-            {
-                string msg = string.Format(Localizer["URL: {0}"], url);
-
-                result = $"{result}. {msg}";
-            }
-
-            result = result.Replace("!.", "!").Replace("?.", "?");
-
-            return result;
+            return $"{errorMessage}. {errorCode}".Replace("!.", "!").Replace("?.", "?");
         }
 
         /// <inheritdoc/>

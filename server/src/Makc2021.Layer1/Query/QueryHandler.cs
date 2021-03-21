@@ -65,32 +65,33 @@ namespace Makc2021.Layer1.Query
 
             queryResult.IsOk = false;
 
-            string errorMessage = null;
+            string errorMessage;
 
             var errorMessages = GetErrorMessages(exception);
 
             if (errorMessages != null && errorMessages.Any())
             {
                 queryResult.ErrorMessages.AddRange(errorMessages);
+
+                errorMessage = string.Join(". ", errorMessages);
             }
             else
             {
-                var error = new QueryError(exception, AppQueryResource);
-
-                errorMessage = error.CreateMessageWithCode();
+                errorMessage = AppQueryResource.GetUnknownErrorMessage();
 
                 queryResult.ErrorMessages.Add(errorMessage);
             }
 
             if (ExtLogger != null)
             {
-                if (errorMessage == null && errorMessages != null && errorMessages.Any())
-                {
-                    errorMessage = string.Join(". ", errorMessages);
-                }
-
-                ExtLogger.LogError(exception, $"{QueryName}. {errorMessage}");
+                return;
             }
+
+            queryResult.ErrorCode = Guid.NewGuid().ToString("N").ToUpper();
+
+            errorMessage = AppQueryResource.GetErrorMessageWithCode(errorMessage, queryResult.ErrorCode);
+
+            ExtLogger.LogError(exception, $"{QueryName}. {errorMessage}");
         }
 
         #endregion Public methods
@@ -215,8 +216,8 @@ namespace Makc2021.Layer1.Query
             if (ExtLogger == null)
             {
                 return;
-            }    
-            
+            }
+
             string msg = GetQueryResult().SerializeToJson(JsonSerialization.OptionsForLogger);
 
             ExtLogger.LogDebug($"{QueryName}. Result: {msg}");

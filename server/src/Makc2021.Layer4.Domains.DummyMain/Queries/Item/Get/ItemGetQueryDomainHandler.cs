@@ -1,8 +1,8 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using System;
 using System.Linq;
 using Makc2021.Layer1.Query;
-using Makc2021.Layer1.Query.Exceptions;
 using Makc2021.Layer1.Query.Handlers;
 using Microsoft.Extensions.Logging;
 
@@ -48,7 +48,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
 
             if (invalidProperties.Any())
             {
-                throw new InvalidQueryInputException(AppQueryResource, invalidProperties);
+                throw new Exception(AppQueryResource.GetInvalidInputErrorMessage(invalidProperties));
             }
 
             return input;

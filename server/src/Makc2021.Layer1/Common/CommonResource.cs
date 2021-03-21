@@ -3,16 +3,16 @@
 using System;
 using Microsoft.Extensions.Localization;
 
-namespace Makc2021.Layer1.Resources.Errors
+namespace Makc2021.Layer1.Common
 {
     /// <summary>
-    /// Ресурс ошибок.
+    /// Общий ресурс.
     /// </summary>
-    public class ErrorsResource : IErrorsResource
+    public class CommonResource : ICommonResource
     {
         #region Properties
 
-        private IStringLocalizer<ErrorsResource> Localizer { get; }
+        private IStringLocalizer<CommonResource> Localizer { get; }
 
         #endregion Properties
 
@@ -22,7 +22,7 @@ namespace Makc2021.Layer1.Resources.Errors
         /// Конструктор.
         /// </summary>
         /// <param name="localizer">Локализатор.</param>
-        public ErrorsResource(IStringLocalizer<ErrorsResource> localizer)
+        public CommonResource(IStringLocalizer<CommonResource> localizer)
         {
             Localizer = localizer;
         }
@@ -30,18 +30,6 @@ namespace Makc2021.Layer1.Resources.Errors
         #endregion Constructors
 
         #region Public methods
-
-        /// <inheritdoc/>
-        public string GetHttp403ErrorMessage()
-        {
-            return Localizer["Доступ запрещён"];
-        }
-
-        /// <inheritdoc/>
-        public string GetHttp404ErrorMessage()
-        {
-            return Localizer["Страница не найдена"];
-        }
 
         /// <inheritdoc/>
         public string GetTypeIsNotImportedErrorMessage(Type type)

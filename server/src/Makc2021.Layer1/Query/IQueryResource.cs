@@ -12,20 +12,19 @@ namespace Makc2021.Layer1.Query
         #region Methods
 
         /// <summary>
-        /// Получить сообщение об ошибке с кодом и URL.
+        /// Получить сообщение об ошибке с кодом.
         /// </summary>
         /// <param name="prefix">Префикс.</param>
         /// <param name="code">Код.</param>
-        /// <param name="url">URL.</param>
         /// <returns>Сообщение об ошибке.</returns>
-        string GetErrorMessageWithCodeAndUrl(string prefix, string code, string url);
+        string GetErrorMessageWithCode(string prefix, string code);
 
         /// <summary>
         /// Получить сообщение об ошибке при наличии недействительных входных данных.
         /// </summary>
         /// <param name="invalidProperties">Недействительные свойства.</param>
         /// <returns>Сообщение об ошибке.</returns>
-        string GetInvalidQueryInputErrorMessage(IEnumerable<string> invalidProperties);
+        string GetInvalidInputErrorMessage(IEnumerable<string> invalidProperties);
 
         /// <summary>
         /// Получить сообщение о неизвестной ошибке.
