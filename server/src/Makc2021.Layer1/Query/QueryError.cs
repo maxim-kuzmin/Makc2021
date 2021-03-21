@@ -13,25 +13,12 @@ namespace Makc2021.Layer1.Query
     {
         #region Properties
 
-        /// <summary>
-        /// Шаблон для формирования сообщения с URL.
-        /// </summary>
-        private string MessagePartWithUrlTmpl { get; set; }
+        private IQueryResource Resource { get; }
 
         /// <summary>
-        /// Шаблон для формирования сообщения с кодом.
+        /// Код.
         /// </summary>
-        private string MessageWithCodeTmpl { get; set; }
-
-        /// <summary>
-        /// Сообщение об ошибке.
-        /// </summary>
-        public string Message { get; set; }
-
-        /// <summary>
-        /// Признак того, что сообщение об ошибке должно быть занесено в журнал.
-        /// </summary>
-        public bool ShouldBeLogged { get; set; }
+        public string Code { get; set; }
 
         /// <summary>
         /// Исключение, приведшее к возникновению ошибки.
@@ -39,24 +26,29 @@ namespace Makc2021.Layer1.Query
         public Exception Exception { get; set; }
 
         /// <summary>
-        /// Код ошибки.
-        /// </summary>
-        public string Code { get; set; }
-
-        /// <summary>
         /// Код HTTP-статуса.
         /// </summary>
         public HttpStatusCode HttpStatusCode { get; set; }
 
         /// <summary>
+        /// Признак того, что код и URL спрятаны.
+        /// </summary>
+        public bool IsCodeAndUrlHidden { get; set; }
+
+        /// <summary>
+        /// Признак того, что сообщение об ошибке должно быть зарегистрировано в журнале.
+        /// </summary>
+        public bool IsLoggable { get; set; }
+
+        /// <summary>
+        /// Сообщение об ошибке.
+        /// </summary>
+        public string Message { get; set; }
+
+        /// <summary>
         /// URL.
         /// </summary>
         public string Url { get; set; }
-
-        /// <summary>
-        /// Признак того, что нужно спрятать код и URL.
-        /// </summary>
-        public bool HideCodeAndUrl { get; set; }
 
         #endregion Properties
 
@@ -64,20 +56,21 @@ namespace Makc2021.Layer1.Query
 
         /// <summary>
         /// Конструктор информации об ошибке. 
-        /// Если исключение равно нулю, признак того, что сообщение об ошибке должно быть занесено в журнал,
+        /// Если исключение равно нулю, признак того, что сообщение об ошибке должно быть зарегистрировано в журнале,
         /// устанавливается в false, иначе - в true.
-        /// Если исключение равно нулю, признак того, что нужно спрятать код и URL, устанавливается в true, иначе - в false. 
+        /// Если исключение равно нулю, признак того, что код и URL спрятаны, устанавливается в true, иначе - в false. 
         /// </summary>
         /// <param name="exception">Исключение.</param>
         /// <param name="resource">Ресурс.</param>
         public QueryError(Exception exception, IQueryResource resource)
         {
             Exception = exception;
-            ShouldBeLogged = exception != null;
-            HideCodeAndUrl = exception == null;
-            MessagePartWithUrlTmpl = resource.GetStringFormatMessagePartWithUrl();
-            MessageWithCodeTmpl = resource.GetStringFormatMessageWithCode();
-            Message = resource.GetStringUnknownError();
+            Resource = resource;
+
+            IsLoggable = exception != null;
+            IsCodeAndUrlHidden = exception == null;
+
+            Message = resource.GetUnknownErrorMessage();
             Code = Guid.NewGuid().ToString("N").ToUpper();
             HttpStatusCode = HttpStatusCode.InternalServerError;
         }
@@ -105,30 +98,7 @@ namespace Makc2021.Layer1.Query
         /// <returns>Сообщение с кодом ошибки.</returns>
         public string CreateMessageWithCode()
         {
-            string result;
-
-            if (HideCodeAndUrl)
-            {
-                result = Message;
-            }
-            else
-            {
-                result = string.IsNullOrWhiteSpace(Code)
-                    ?
-                    Message
-                    :
-                    (
-                        string.IsNullOrWhiteSpace(Url)
-                        ?
-                        string.Format(MessageWithCodeTmpl, Message, Code)
-                        :
-                        string.Format(MessageWithCodeTmpl + MessagePartWithUrlTmpl, Message, Code, Url)
-                    );
-
-                result = result.Replace("!.", "!").Replace("?.", "?");
-            }
-
-            return result;
+            return IsCodeAndUrlHidden ? Message : Resource.GetErrorMessageWithCodeAndUrl(Message, Code, Url);
         }
 
         #endregion Public methods

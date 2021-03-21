@@ -2,7 +2,7 @@
 
 using Microsoft.Extensions.Localization;
 
-namespace Makc2021.Layer1.Resources.Converting
+namespace Makc2021.Layer1.Converting
 {
     /// <summary>
     /// Ресурс преобразования.

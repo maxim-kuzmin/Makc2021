@@ -12,30 +12,27 @@ namespace Makc2021.Layer1.Query
         #region Methods
 
         /// <summary>
-        /// Получить строку "Неизвестная ошибка".
+        /// Получить сообщение об ошибке с кодом и URL.
         /// </summary>
-        /// <returns>Строка.</returns>
-        string GetStringUnknownError();
+        /// <param name="prefix">Префикс.</param>
+        /// <param name="code">Код.</param>
+        /// <param name="url">URL.</param>
+        /// <returns>Сообщение об ошибке.</returns>
+        string GetErrorMessageWithCodeAndUrl(string prefix, string code, string url);
 
         /// <summary>
-        /// Получить строку форматирования "{0}. Код ошибки: {1}".
-        /// </summary>
-        /// <returns>Строка.</returns>
-        string GetStringFormatMessageWithCode();
-
-        /// <summary>
-        /// Получить строку форматирования ". URL: {2}".
-        /// </summary>
-        /// <returns>Строка.</returns>
-        string GetStringFormatMessagePartWithUrl();
-
-        /// <summary>
-        /// Получить для недействительных входных данных запроса.
+        /// Получить сообщение об ошибке при наличии недействительных входных данных.
         /// </summary>
         /// <param name="invalidProperties">Недействительные свойства.</param>
         /// <returns>Сообщение об ошибке.</returns>
-        string GetForIvalidQueryInput(IEnumerable<string> invalidProperties);
+        string GetInvalidQueryInputErrorMessage(IEnumerable<string> invalidProperties);
 
+        /// <summary>
+        /// Получить сообщение о неизвестной ошибке.
+        /// </summary>
+        /// <returns>Сообщение об ошибке.</returns>
+        string GetUnknownErrorMessage();
+        
         #endregion Methods
     }
 }

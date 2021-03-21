@@ -6,9 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
-using Makc2021.Layer1.Resources.Converting;
 
-namespace Makc2021.Layer1.Extensions
+namespace Makc2021.Layer1.Converting
 {
     /// <summary>
     /// Расширение преобразования.

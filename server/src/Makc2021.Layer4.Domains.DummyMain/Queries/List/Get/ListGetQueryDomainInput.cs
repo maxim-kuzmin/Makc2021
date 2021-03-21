@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System.Linq;
-using Makc2021.Layer1.Extensions;
+using Makc2021.Layer1.Converting;
 using Makc2021.Layer1.Query;
 using Makc2021.Layer2.Queries.List.Get;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMain;

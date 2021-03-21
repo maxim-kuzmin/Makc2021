@@ -19,7 +19,7 @@ namespace Makc2021.Layer1.Exceptions
         /// <param name="resource">Ресурс.</param>
         /// <param name="type">Тип.</param>
         public TypeIsNotImportedException(IErrorsResource resource, Type type)
-            : base(resource.GetForTypeIsNotImported(type))
+            : base(resource.GetTypeIsNotImportedErrorMessage(type))
         {
         }
 

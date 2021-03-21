@@ -32,25 +32,7 @@ namespace Makc2021.Layer1.Query
         #region Public methods
 
         /// <inheritdoc/>
-        public string GetStringUnknownError()
-        {
-            return Localizer["Неизвестная ошибка"];
-        }
-
-        /// <inheritdoc/>
-        public string GetStringFormatMessageWithCode()
-        {
-            return Localizer["{0}. Код ошибки: {1}"];
-        }
-
-        /// <inheritdoc/>
-        public string GetStringFormatMessagePartWithUrl()
-        {
-            return Localizer[". URL: {2}"];
-        }
-
-        /// <inheritdoc/>
-        public string GetForIvalidQueryInput(IEnumerable<string> invalidProperties)
+        public string GetInvalidQueryInputErrorMessage(IEnumerable<string> invalidProperties)
         {
             string invalidPropertiesString = string.Join(", ", invalidProperties);
 
@@ -60,6 +42,36 @@ namespace Makc2021.Layer1.Query
                 );
 
             return Localizer[key];
+        }
+
+        /// <inheritdoc/>
+        public string GetErrorMessageWithCodeAndUrl(string prefix, string code, string url)
+        {
+            string result = prefix;
+
+            if (!string.IsNullOrWhiteSpace(code))
+            {
+                string msg = string.Format(Localizer["Код ошибки: {0}"], code);
+
+                result = $"{result}. {msg}";
+            }
+
+            if (!string.IsNullOrWhiteSpace(url))
+            {
+                string msg = string.Format(Localizer["URL: {0}"], url);
+
+                result = $"{result}. {msg}";
+            }
+
+            result = result.Replace("!.", "!").Replace("?.", "?");
+
+            return result;
+        }
+
+        /// <inheritdoc/>
+        public string GetUnknownErrorMessage()
+        {
+            return Localizer["Неизвестная ошибка"];
         }
 
         #endregion Public methods

@@ -1,6 +1,6 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-namespace Makc2021.Layer1.Resources.Converting
+namespace Makc2021.Layer1.Converting
 {
     /// <summary>
     /// Интерфейс ресурса преобразования.

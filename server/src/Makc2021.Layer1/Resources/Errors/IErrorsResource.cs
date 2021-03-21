@@ -12,23 +12,23 @@ namespace Makc2021.Layer1.Resources.Errors
         #region Methods
 
         /// <summary>
-        /// Получить строку "Доступ запрещён".
+        /// Получить сообщение об ошибке HTTP "Доступ запрещён".
         /// </summary>
-        /// <returns>Строка.</returns>
-        string GetStringHttp403();
+        /// <returns>Сообщение об ошибке.</returns>
+        string GetHttp403ErrorMessage();
 
         /// <summary>
-        /// Получить строку "Страница не найдена".
+        /// Получить сообщение об ошибке HTTP "Страница не найдена".
         /// </summary>
-        /// <returns>Строка.</returns>
-        string GetStringHttp404();
+        /// <returns>Сообщение об ошибке.</returns>
+        string GetHttp404ErrorMessage();
 
         /// <summary>
-        /// Получить сообщение для исключения, возникающего в случае, если тип не импортирован.
+        /// Получить сообщение об ошибке при попытке использования неимпортированного типа.
         /// </summary>
         /// <param name="type">Тип.</param>
-        /// <returns>Сообщение.</returns>
-        string GetForTypeIsNotImported(Type type);
+        /// <returns>Сообщение об ошибке.</returns>
+        string GetTypeIsNotImportedErrorMessage(Type type);
 
         #endregion Methods
     }

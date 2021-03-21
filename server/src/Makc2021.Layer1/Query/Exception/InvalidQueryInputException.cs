@@ -18,7 +18,7 @@ namespace Makc2021.Layer1.Query.Exceptions
         /// <param name="resource">Ресурс.</param>
         /// <param name="invalidProperties">Список свойств с недействительными значениями.</param>
         public InvalidQueryInputException(IQueryResource resource, List<string> invalidProperties)
-            : base(resource.GetForIvalidQueryInput(invalidProperties))
+            : base(resource.GetInvalidQueryInputErrorMessage(invalidProperties))
         {
         }
 

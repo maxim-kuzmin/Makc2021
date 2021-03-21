@@ -31,26 +31,20 @@ namespace Makc2021.Layer1.Resources.Errors
 
         #region Public methods
 
-        /// <summary>
-        /// Получить строку "Доступ запрещён".
-        /// </summary>
-        /// <returns>Строка.</returns>
-        public string GetStringHttp403()
+        /// <inheritdoc/>
+        public string GetHttp403ErrorMessage()
         {
             return Localizer["Доступ запрещён"];
         }
 
-        /// <summary>
-        /// Получить строку "Страница не найдена".
-        /// </summary>
-        /// <returns>Строка.</returns>
-        public string GetStringHttp404()
+        /// <inheritdoc/>
+        public string GetHttp404ErrorMessage()
         {
             return Localizer["Страница не найдена"];
         }
 
         /// <inheritdoc/>
-        public string GetForTypeIsNotImported(Type type)
+        public string GetTypeIsNotImportedErrorMessage(Type type)
         {
             string key = string.Format("Тип '{0}' не импортирован", type.FullName);
 
