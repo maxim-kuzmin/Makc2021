@@ -32,7 +32,7 @@ namespace Makc2021.Layer1.Common
         #region Public methods
 
         /// <inheritdoc/>
-        public string GetTypeIsNotImportedErrorMessage(Type type)
+        public string GetErrorMessageForTypeIsNotImported(Type type)
         {
             string key = string.Format("Тип '{0}' не импортирован", type.FullName);
 

@@ -30,11 +30,8 @@ namespace Makc2021.Layer1.Converting
 
         #region Public methods
 
-        /// <summary>
-        /// Получить строку "dd.MM.yyyy".
-        /// </summary>
-        /// <returns>Строка.</returns>
-        public string GetStringDateFormat()
+        /// <inheritdoc/>
+        public string GetFormatForDate()
         {
             return Localizer["dd.MM.yyyy"];
         }

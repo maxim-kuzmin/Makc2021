@@ -32,12 +32,12 @@ namespace Makc2021.Layer1
         {
             ThrowExceptionIfTypeIsNotImported(typeof(IStringLocalizer));
 
-            services.AddSingleton<IConvertingResource>(x => new ConvertingResource(
-                x.GetRequiredService<IStringLocalizer<ConvertingResource>>()
-                ));
-
             services.AddSingleton<ICommonResource>(x => new CommonResource(
                 x.GetRequiredService<IStringLocalizer<CommonResource>>()
+                ));
+
+            services.AddSingleton<IConvertingResource>(x => new ConvertingResource(
+                x.GetRequiredService<IStringLocalizer<ConvertingResource>>()
                 ));
 
             services.AddSingleton<IQueryResource>(x => new QueryResource(
@@ -53,8 +53,8 @@ namespace Makc2021.Layer1
         {
             return new[]
             {
-                typeof(IConvertingResource),
                 typeof(ICommonResource),
+                typeof(IConvertingResource),                
                 typeof(IQueryResource)
             };
         }

@@ -90,7 +90,7 @@ namespace Makc2021.Layer1.Converting
         /// <returns>Строковое представление даты.</returns>        
         public static string ConvertFromDateToString(this DateTime value, IConvertingResource resource)
         {
-            return value.ToString(resource.GetStringDateFormat(), CultureInfo.InvariantCulture);
+            return value.ToString(resource.GetFormatForDate(), CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Makc2021.Layer1.Converting
         /// <returns>Дата.</returns>
         public static DateTime ConvertToDate(this string value, IConvertingResource resource)
         {
-            return DateTime.ParseExact(value.Trim(), resource.GetStringDateFormat(), CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(value.Trim(), resource.GetFormatForDate(), CultureInfo.InvariantCulture);
         }
 
         /// <summary>

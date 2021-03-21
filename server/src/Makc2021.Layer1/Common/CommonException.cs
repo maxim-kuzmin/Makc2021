@@ -6,6 +6,8 @@ namespace Makc2021.Layer1.Common
 {
     /// <summary>
     /// Общее исключение.
+    /// Сообщение, передаваемое в это исключение, должно быть переведено на язык,
+    /// соответствующий текущей культуре приложения.
     /// </summary>
     public class CommonException : Exception
     {

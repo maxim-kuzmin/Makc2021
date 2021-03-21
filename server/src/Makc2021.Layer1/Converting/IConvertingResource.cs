@@ -10,10 +10,10 @@ namespace Makc2021.Layer1.Converting
         #region Methods
 
         /// <summary>
-        /// Получить строку "dd.MM.yyyy".
+        /// Получить формат для даты.
         /// </summary>
-        /// <returns>Строка.</returns>
-        string GetStringDateFormat();
+        /// <returns>Формат.</returns>
+        string GetFormatForDate();
 
         #endregion Methods
     }

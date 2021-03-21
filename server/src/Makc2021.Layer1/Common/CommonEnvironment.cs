@@ -4,6 +4,7 @@ namespace Makc2021.Layer1.Common
 {
     /// <summary>
     /// Общее окружение.
+    /// Используется для извлечения конфигурационных настроек из файлов.
     /// </summary>
     public class CommonEnvironment
     {

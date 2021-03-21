@@ -77,7 +77,7 @@ namespace Makc2021.Layer1.Query
             }
             else
             {
-                errorMessage = AppQueryResource.GetUnknownErrorMessage();
+                errorMessage = AppQueryResource.GetErrorMessageForDefault();
 
                 queryResult.ErrorMessages.Add(errorMessage);
             }
@@ -199,16 +199,18 @@ namespace Makc2021.Layer1.Query
 
             object queryInput = GetQueryInput();
 
-            string msg = null;
+            string value = null;
 
             if (queryInput != null)
             {
-                msg = queryInput.SerializeToJson(JsonSerialization.OptionsForLogger);
+                value = queryInput.SerializeToJson(JsonSerialization.OptionsForLogger);
             }
 
-            msg = !string.IsNullOrEmpty(msg) ? $". Input: {msg}" : string.Empty;
+            string title = AppQueryResource.GetTitleForInput();
 
-            ExtLogger.LogDebug($"{QueryName}{msg}");
+            value = !string.IsNullOrEmpty(value) ? $". {title}: {value}" : string.Empty;
+
+            ExtLogger.LogDebug($"{QueryName}{value}");
         }
 
         private void LogQueryResultOnTestOrDebug()
@@ -218,9 +220,11 @@ namespace Makc2021.Layer1.Query
                 return;
             }
 
-            string msg = GetQueryResult().SerializeToJson(JsonSerialization.OptionsForLogger);
+            string title = AppQueryResource.GetTitleForResult();
 
-            ExtLogger.LogDebug($"{QueryName}. Result: {msg}");
+            string value = GetQueryResult().SerializeToJson(JsonSerialization.OptionsForLogger);
+
+            ExtLogger.LogDebug($"{QueryName}. {title}: {value}");
         }
 
         #endregion Private methods

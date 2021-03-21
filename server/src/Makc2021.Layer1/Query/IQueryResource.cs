@@ -12,25 +12,37 @@ namespace Makc2021.Layer1.Query
         #region Methods
 
         /// <summary>
-        /// Получить сообщение об ошибке с кодом.
+        /// Получить сообщение об ошибке по умолчанию.
         /// </summary>
-        /// <param name="prefix">Префикс.</param>
-        /// <param name="code">Код.</param>
         /// <returns>Сообщение об ошибке.</returns>
-        string GetErrorMessageWithCode(string prefix, string code);
+        string GetErrorMessageForDefault();
 
         /// <summary>
-        /// Получить сообщение об ошибке при наличии недействительных входных данных.
+        /// Получить сообщение об ошибке для недействительных входных данных.
         /// </summary>
         /// <param name="invalidProperties">Недействительные свойства.</param>
         /// <returns>Сообщение об ошибке.</returns>
-        string GetInvalidInputErrorMessage(IEnumerable<string> invalidProperties);
+        string GetErrorMessageForInvalidInput(IEnumerable<string> invalidProperties);
 
         /// <summary>
-        /// Получить сообщение о неизвестной ошибке.
+        /// Получить сообщение об ошибке с кодом.
         /// </summary>
+        /// <param name="errorMessage">Сообщение об ошибке.</param>
+        /// <param name="code">Код.</param>
         /// <returns>Сообщение об ошибке.</returns>
-        string GetUnknownErrorMessage();
+        string GetErrorMessageWithCode(string errorMessage, string code);
+
+        /// <summary>
+        /// Получить заголовок для входных данных.
+        /// </summary>
+        /// <returns>Заголовок.</returns>
+        string GetTitleForInput();
+
+        /// <summary>
+        /// Получить заголовок для результата.
+        /// </summary>
+        /// <returns>Заголовок.</returns>
+        string GetTitleForResult();
         
         #endregion Methods
     }

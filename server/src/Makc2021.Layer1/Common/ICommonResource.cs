@@ -12,11 +12,11 @@ namespace Makc2021.Layer1.Common
         #region Methods
 
         /// <summary>
-        /// Получить сообщение об ошибке при попытке использования неимпортированного типа.
+        /// Получить сообщение об ошибке для типа, который не импортирован.
         /// </summary>
         /// <param name="type">Тип.</param>
         /// <returns>Сообщение об ошибке.</returns>
-        string GetTypeIsNotImportedErrorMessage(Type type);
+        string GetErrorMessageForTypeIsNotImported(Type type);
 
         #endregion Methods
     }

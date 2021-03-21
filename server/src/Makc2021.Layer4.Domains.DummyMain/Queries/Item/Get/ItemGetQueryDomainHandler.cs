@@ -2,6 +2,7 @@
 
 using System;
 using System.Linq;
+using Makc2021.Layer1.Common;
 using Makc2021.Layer1.Query;
 using Makc2021.Layer1.Query.Handlers;
 using Microsoft.Extensions.Logging;
@@ -48,7 +49,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
 
             if (invalidProperties.Any())
             {
-                throw new Exception(AppQueryResource.GetInvalidInputErrorMessage(invalidProperties));
+                throw new CommonException(AppQueryResource.GetErrorMessageForInvalidInput(invalidProperties));
             }
 
             return input;

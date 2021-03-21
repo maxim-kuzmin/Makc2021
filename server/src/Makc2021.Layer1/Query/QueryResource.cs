@@ -32,7 +32,13 @@ namespace Makc2021.Layer1.Query
         #region Public methods
 
         /// <inheritdoc/>
-        public string GetInvalidInputErrorMessage(IEnumerable<string> invalidProperties)
+        public string GetErrorMessageForDefault()
+        {
+            return Localizer["Неизвестная ошибка"];
+        }
+
+        /// <inheritdoc/>
+        public string GetErrorMessageForInvalidInput(IEnumerable<string> invalidProperties)
         {
             string invalidPropertiesString = string.Join(", ", invalidProperties);
 
@@ -53,9 +59,15 @@ namespace Makc2021.Layer1.Query
         }
 
         /// <inheritdoc/>
-        public string GetUnknownErrorMessage()
+        public string GetTitleForInput()
         {
-            return Localizer["Неизвестная ошибка"];
+            return Localizer["Входные данные"];
+        }
+
+        /// <inheritdoc/>
+        public string GetTitleForResult()
+        {
+            return Localizer["Результат"];
         }
 
         #endregion Public methods

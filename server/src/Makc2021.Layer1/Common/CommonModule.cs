@@ -11,6 +11,9 @@ namespace Makc2021.Layer1.Common
 {
     /// <summary>
     /// Общий модуль.
+    /// Используется как базовый класс всех модулей - классов,
+    /// предназначенных для подготовки к работе различных частей приложения.
+    /// Методы модулей должны вызываться в обработчиках событий жизненного цикла приложения.
     /// </summary>
     public abstract class CommonModule
     {
@@ -77,7 +80,7 @@ namespace Makc2021.Layer1.Common
 
             var resource = new CommonResource(localizer);
 
-            throw new Exception(resource.GetTypeIsNotImportedErrorMessage(type));
+            throw new CommonException(resource.GetErrorMessageForTypeIsNotImported(type));
         }
 
         #endregion Protected methods
