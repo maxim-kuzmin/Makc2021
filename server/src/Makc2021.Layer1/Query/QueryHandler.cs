@@ -17,7 +17,9 @@ namespace Makc2021.Layer1.Query
     {
         #region Properties
 
-        private string QueryName { get; }
+        private string QueryCode { get; }
+
+        private string Title { get; }
 
         /// <summary>
         /// Ресурс запроса.
@@ -46,7 +48,12 @@ namespace Makc2021.Layer1.Query
         /// <param name="extLogger">Регистратор.</param>
         public QueryHandler(string queryName, IQueryResource appQueryResource, ILogger extLogger)
         {
-            QueryName = queryName;
+            QueryCode = Guid.NewGuid().ToString("N").ToUpper();
+
+            string titleForQueryCode = appQueryResource.GetTitleForQueryCode();
+
+            Title = $"{queryName}. {titleForQueryCode}: {QueryCode}. ";
+
             AppQueryResource = appQueryResource;
             ExtLogger = extLogger;
         }
@@ -62,8 +69,9 @@ namespace Makc2021.Layer1.Query
         public void OnError(Exception exception)
         {
             var queryResult = GetQueryResult();
-
+            
             queryResult.IsOk = false;
+            queryResult.QueryCode = QueryCode;
 
             string errorMessage;
 
@@ -73,7 +81,7 @@ namespace Makc2021.Layer1.Query
             {
                 queryResult.ErrorMessages.AddRange(errorMessages);
 
-                errorMessage = string.Join(". ", errorMessages);
+                errorMessage = string.Join(". ", errorMessages).Replace("!.", "!").Replace("?.", "?");
             }
             else
             {
@@ -84,14 +92,10 @@ namespace Makc2021.Layer1.Query
 
             if (ExtLogger != null)
             {
-                return;
+                string titleForError = AppQueryResource.GetTitleForError();
+
+                ExtLogger.LogError(exception, $"{Title}{titleForError}. {errorMessage}");
             }
-
-            queryResult.ErrorCode = Guid.NewGuid().ToString("N").ToUpper();
-
-            errorMessage = AppQueryResource.GetErrorMessageWithCode(errorMessage, queryResult.ErrorCode);
-
-            ExtLogger.LogError(exception, $"{QueryName}. {errorMessage}");
         }
 
         #endregion Public methods
@@ -104,7 +108,7 @@ namespace Makc2021.Layer1.Query
         protected virtual void DoOnStart()
         {
 #if TEST || DEBUG
-            LogQueryInputOnTestOrDebug();
+            LogStartIfTestOrDebugEnabled();
 #endif
         }
 
@@ -121,6 +125,7 @@ namespace Makc2021.Layer1.Query
             var queryResult = GetQueryResult();
 
             queryResult.IsOk = true;
+            queryResult.QueryCode = QueryCode;
 
             if (functionToGetSuccessMessages != null)
             {
@@ -143,7 +148,7 @@ namespace Makc2021.Layer1.Query
             }
 
 #if TEST || DEBUG
-            LogQueryResultOnTestOrDebug();
+            LogSuccessIfTestOrDebugEnabled();
 #endif
         }
 
@@ -190,41 +195,34 @@ namespace Makc2021.Layer1.Query
             return errorMessages;
         }
 
-        private void LogQueryInputOnTestOrDebug()
+        private void LogStartIfTestOrDebugEnabled()
         {
-            if (ExtLogger == null)
+            if (ExtLogger != null)
             {
-                return;
+                object queryInput = GetQueryInput();
+
+                string titleForStart = AppQueryResource.GetTitleForStart();
+                string titleForInput = AppQueryResource.GetTitleForInput();
+                string valueForInput = queryInput?.SerializeToJson(JsonSerialization.OptionsForLogger);
+
+                valueForInput = !string.IsNullOrEmpty(valueForInput)
+                    ? $". {titleForInput}: {valueForInput}"
+                    : string.Empty;
+
+                ExtLogger.LogDebug($"{Title}{titleForStart}{valueForInput}");
             }
-
-            object queryInput = GetQueryInput();
-
-            string value = null;
-
-            if (queryInput != null)
-            {
-                value = queryInput.SerializeToJson(JsonSerialization.OptionsForLogger);
-            }
-
-            string title = AppQueryResource.GetTitleForInput();
-
-            value = !string.IsNullOrEmpty(value) ? $". {title}: {value}" : string.Empty;
-
-            ExtLogger.LogDebug($"{QueryName}{value}");
         }
 
-        private void LogQueryResultOnTestOrDebug()
+        private void LogSuccessIfTestOrDebugEnabled()
         {
-            if (ExtLogger == null)
+            if (ExtLogger != null)
             {
-                return;
+                string titleForSuccess = AppQueryResource.GetTitleForSuccess();
+                string titleForResult = AppQueryResource.GetTitleForResult();
+                string valueForResult = GetQueryResult().SerializeToJson(JsonSerialization.OptionsForLogger);
+
+                ExtLogger.LogDebug($"{Title}{titleForSuccess}. {titleForResult}: {valueForResult}");
             }
-
-            string title = AppQueryResource.GetTitleForResult();
-
-            string value = GetQueryResult().SerializeToJson(JsonSerialization.OptionsForLogger);
-
-            ExtLogger.LogDebug($"{QueryName}. {title}: {value}");
         }
 
         #endregion Private methods

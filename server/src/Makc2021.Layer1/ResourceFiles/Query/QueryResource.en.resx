@@ -123,13 +123,22 @@
   <data name="Входные данные запроса содержит недопустимые значения в свойствах: {0}" xml:space="preserve">
     <value>The query input has invalid values in its properties: {0}</value>
   </data>
-  <data name="Код ошибки: {0}" xml:space="preserve">
-    <value>Error code: {0}</value>
+  <data name="Код запроса" xml:space="preserve">
+    <value>Query code</value>
+  </data>
+  <data name="Начало" xml:space="preserve">
+    <value>Start</value>
   </data>
   <data name="Неизвестная ошибка" xml:space="preserve">
     <value>Unknown error</value>
   </data>
+  <data name="Ошибка" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="Результат" xml:space="preserve">
     <value>Result</value>
+  </data>
+  <data name="Успех" xml:space="preserve">
+    <value>Success</value>
   </data>
 </root>

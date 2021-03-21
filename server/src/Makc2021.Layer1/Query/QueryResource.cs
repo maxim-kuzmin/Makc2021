@@ -59,15 +59,39 @@ namespace Makc2021.Layer1.Query
         }
 
         /// <inheritdoc/>
+        public string GetTitleForError()
+        {
+            return Localizer["Ошибка"];
+        }
+
+        /// <inheritdoc/>
         public string GetTitleForInput()
         {
             return Localizer["Входные данные"];
         }
 
         /// <inheritdoc/>
+        public string GetTitleForQueryCode()
+        {
+            return Localizer["Код запроса"];
+        }    
+
+        /// <inheritdoc/>
         public string GetTitleForResult()
         {
             return Localizer["Результат"];
+        }
+
+        /// <inheritdoc/>
+        public string GetTitleForStart()
+        {
+            return Localizer["Начало"];
+        }
+
+        /// <inheritdoc/>
+        public string GetTitleForSuccess()
+        {
+            return Localizer["Успех"];
         }
 
         #endregion Public methods

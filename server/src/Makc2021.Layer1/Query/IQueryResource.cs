@@ -25,12 +25,10 @@ namespace Makc2021.Layer1.Query
         string GetErrorMessageForInvalidInput(IEnumerable<string> invalidProperties);
 
         /// <summary>
-        /// Получить сообщение об ошибке с кодом.
+        /// Получить заголовок для ошибки.
         /// </summary>
-        /// <param name="errorMessage">Сообщение об ошибке.</param>
-        /// <param name="code">Код.</param>
-        /// <returns>Сообщение об ошибке.</returns>
-        string GetErrorMessageWithCode(string errorMessage, string code);
+        /// <returns>Заголовок.</returns>
+        string GetTitleForError();
 
         /// <summary>
         /// Получить заголовок для входных данных.
@@ -39,11 +37,29 @@ namespace Makc2021.Layer1.Query
         string GetTitleForInput();
 
         /// <summary>
+        /// Получить заголовок для кода запроса.
+        /// </summary>
+        /// <returns>Заголовок.</returns>
+        string GetTitleForQueryCode();
+
+        /// <summary>
         /// Получить заголовок для результата.
         /// </summary>
         /// <returns>Заголовок.</returns>
         string GetTitleForResult();
-        
+
+        /// <summary>
+        /// Получить заголовок для начала.
+        /// </summary>
+        /// <returns>Заголовок.</returns>
+        string GetTitleForStart();
+
+        /// <summary>
+        /// Получить заголовок для успеха.
+        /// </summary>
+        /// <returns>Заголовок.</returns>
+        string GetTitleForSuccess();
+
         #endregion Methods
     }
 }
