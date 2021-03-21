@@ -10,7 +10,7 @@ namespace Makc2021.Layer1.Query.Handlers
     /// Обработчик запроса с входными данными.
     /// </summary>
     /// <typeparam name="TQueryInput">Тип входных данных запроса.</typeparam>
-    public class QueryWithInputHandler<TQueryInput> : QueryHandler
+    public class QueryWithInputHandler<TQueryInput> : QueryHandler, IQueryWithInputHandler<TQueryInput>
     {
         #region Properties
 
@@ -29,14 +29,10 @@ namespace Makc2021.Layer1.Query.Handlers
         /// </summary>
         protected Func<TQueryInput, IEnumerable<string>> FunctionToGetWarningMessages { get; set; }
 
-        /// <summary>
-        /// Входные данные запроса.
-        /// </summary>
+        /// <inheritdoc/>
         public TQueryInput QueryInput { get; private set; }
 
-        /// <summary>
-        /// Результат выполнения запроса.
-        /// </summary>
+        /// <inheritdoc/>
         public QueryResult QueryResult { get; } = new QueryResult();
 
         #endregion Properties
@@ -53,10 +49,7 @@ namespace Makc2021.Layer1.Query.Handlers
 
         #region Public methods
 
-        /// <summary>
-        /// Обработать начало запроса.
-        /// </summary>
-        /// <param name="queryInput">Входные данные запроса.</param>        
+        /// <inheritdoc/>
         public void OnStart(TQueryInput queryInput)
         {
             QueryInput = FunctionToTransformQueryInput != null
@@ -66,9 +59,7 @@ namespace Makc2021.Layer1.Query.Handlers
             DoOnStart();
         }
 
-        /// <summary>
-        /// Обработать успешное выполнение запроса.
-        /// </summary>
+        /// <inheritdoc/>
         public void OnSuccess()
         {
             Func<IEnumerable<string>> functionToGetSuccessMessages = null;

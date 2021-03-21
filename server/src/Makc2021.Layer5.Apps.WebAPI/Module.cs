@@ -6,6 +6,7 @@ using System.Linq;
 using Makc2021.Layer1.Common;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
 
 namespace Makc2021.Layer5.Apps.WebAPI
 {
@@ -82,6 +83,7 @@ namespace Makc2021.Layer5.Apps.WebAPI
         {
             var imports = new[]
             {
+                typeof(ILogger),
                 typeof(IStringLocalizer),
                 typeof(Layer1.Environment)
             }

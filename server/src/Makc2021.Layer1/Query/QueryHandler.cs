@@ -13,7 +13,7 @@ namespace Makc2021.Layer1.Query
     /// <summary>
     /// Обработчик запроса.
     /// </summary>
-    public abstract class QueryHandler
+    public abstract class QueryHandler : IQueryHandler
     {
         #region Properties
 
@@ -32,7 +32,7 @@ namespace Makc2021.Layer1.Query
         /// <summary>
         /// Функция получения сообщений об ошибках.
         /// </summary>
-        public Func<Exception, IEnumerable<string>> FunctionToGetErrorMessages { get; set; }
+        protected Func<Exception, IEnumerable<string>> FunctionToGetErrorMessages { get; set; }
 
         #endregion Properties
 

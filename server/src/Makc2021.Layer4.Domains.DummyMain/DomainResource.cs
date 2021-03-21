@@ -2,16 +2,16 @@
 
 using Microsoft.Extensions.Localization;
 
-namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
+namespace Makc2021.Layer4.Domains.DummyMain
 {
     /// <summary>
-    /// Интерфейс ресурса запроса на получение списка в домене.
+    /// Ресурс домена.
     /// </summary>
-    public class ListGetQueryDomainResource : IListGetQueryDomainResource
+    public class DomainResource : IDomainResource
     {
         #region Properties
 
-        private IStringLocalizer<ListGetQueryDomainResource> Localizer { get; }
+        private IStringLocalizer<DomainResource> Localizer { get; }
 
         #endregion Properties
 
@@ -21,7 +21,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
         /// Конструктор.
         /// </summary>
         /// <param name="localizer">Локализатор.</param>
-        public ListGetQueryDomainResource(IStringLocalizer<ListGetQueryDomainResource> localizer)
+        public DomainResource(IStringLocalizer<DomainResource> localizer)
         {
             Localizer = localizer;
         }
@@ -31,7 +31,13 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
         #region Public methods
 
         /// <inheritdoc/>
-        public string GetQueryName()
+        public string GetItemGetQueryName()
+        {
+            return Localizer["Запрос на получение элемента в домене 'DummyMain'"];
+        }
+
+        /// <inheritdoc/>
+        public string GetListGetQueryName()
         {
             return Localizer["Запрос на получение списка в домене 'DummyMain'"];
         }

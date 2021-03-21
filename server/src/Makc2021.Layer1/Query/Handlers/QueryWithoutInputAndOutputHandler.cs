@@ -9,7 +9,7 @@ namespace Makc2021.Layer1.Query.Handlers
     /// <summary>
     /// Обработчик запроса без входных и выходных данных.
     /// </summary>
-    public class QueryWithoutInputAndOutputHandler : QueryHandler
+    public class QueryWithoutInputAndOutputHandler : QueryHandler, IQueryWithoutInputAndOutputHandler
     {
         #region Properties
 
@@ -23,10 +23,8 @@ namespace Makc2021.Layer1.Query.Handlers
         /// </summary>
         protected Func<IEnumerable<string>> FunctionToGetWarningMessages { get; set; }
 
-        /// <summary>
-        /// Результат выполнения запроса.
-        /// </summary>
-        protected QueryResult QueryResult { get; } = new QueryResult();
+        /// <inheritdoc/>
+        public QueryResult QueryResult { get; } = new QueryResult();
 
         #endregion Properties
 
@@ -42,17 +40,13 @@ namespace Makc2021.Layer1.Query.Handlers
 
         #region Public methods
 
-        /// <summary>
-        /// Обработать начало запроса.
-        /// </summary>
+        /// <inheritdoc/>
         public void OnStart()
         {
             DoOnStart();
         }
 
-        /// <summary>
-        /// Обработать успешное выполнение запроса.
-        /// </summary>
+        /// <inheritdoc/>
         public void OnSuccess()
         {
             DoOnSuccess(FunctionToGetSuccessMessages, FunctionToGetWarningMessages);

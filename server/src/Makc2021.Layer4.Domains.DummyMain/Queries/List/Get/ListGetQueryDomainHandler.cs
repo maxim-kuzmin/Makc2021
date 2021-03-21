@@ -9,18 +9,18 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
     /// <summary>
     /// Обработчик запроса на получение списка в домене.
     /// </summary>
-    public class ListGetQueryDomainHandler : QueryWithInputAndOutputHandler<ListGetQueryDomainInput, ListGetQueryDomainOutput>
+    public class ListGetQueryDomainHandler : QueryWithInputAndOutputHandler<ListGetQueryDomainInput, ListGetQueryDomainOutput>, IListGetQueryDomainHandler
     {
         #region Constructors
 
         /// <inheritdoc/>
         public ListGetQueryDomainHandler(
-            IListGetQueryDomainResource appResource,
+            IDomainResource appResource,
             IQueryResource appQueryResource,
             ILogger<ListGetQueryDomainHandler> extLogger
             )
             : base(
-                  appResource.GetQueryName(),
+                  appResource.GetListGetQueryName(),
                   appQueryResource,
                   extLogger
                   )

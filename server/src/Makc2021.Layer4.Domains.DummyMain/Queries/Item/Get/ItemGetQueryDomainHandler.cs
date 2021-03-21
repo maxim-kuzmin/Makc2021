@@ -11,18 +11,18 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
     /// <summary>
     /// Обработчик запроса на получение элемента в домене.
     /// </summary>
-    public class ItemGetQueryDomainHandler : QueryWithInputAndOutputHandler<ItemGetQueryDomainInput, ItemGetQueryDomainOutput>
+    public class ItemGetQueryDomainHandler : QueryWithInputAndOutputHandler<ItemGetQueryDomainInput, ItemGetQueryDomainOutput>, IItemGetQueryDomainHandler
     {
         #region Constructors
 
         /// <inheritdoc/>
         public ItemGetQueryDomainHandler(
-            IItemGetQueryDomainResource appResource,
+            IDomainResource appResource,
             IQueryResource appQueryResource,
             ILogger<ItemGetQueryDomainHandler> extLogger
             )
             : base(
-                  appResource.GetQueryName(),
+                  appResource.GetItemGetQueryName(),
                   appQueryResource,
                   extLogger
                   )

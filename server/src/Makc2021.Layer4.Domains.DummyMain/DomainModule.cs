@@ -3,11 +3,12 @@
 using System;
 using System.Collections.Generic;
 using Makc2021.Layer1.Common;
+using Makc2021.Layer1.Query;
 using Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get;
 using Makc2021.Layer4.Domains.DummyMain.Queries.List.Get;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
-using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
+using Microsoft.Extensions.Logging;
 
 namespace Makc2021.Layer4.Domains.DummyMain
 {
@@ -33,18 +34,28 @@ namespace Makc2021.Layer4.Domains.DummyMain
         {
             ThrowExceptionIfTypeIsNotImported(typeof(IStringLocalizer));
 
-            services.AddSingleton<IItemGetQueryDomainResource>(x => new ItemGetQueryDomainResource(
-                x.GetRequiredService<IStringLocalizer<ItemGetQueryDomainResource>>()
+            services.AddSingleton<IDomainResource>(x => new DomainResource(
+                x.GetRequiredService<IStringLocalizer<DomainResource>>()
                 ));
 
-            services.AddSingleton<IListGetQueryDomainResource>(x => new ListGetQueryDomainResource(
-                x.GetRequiredService<IStringLocalizer<ListGetQueryDomainResource>>()
-                ));
-
-            ThrowExceptionIfTypeIsNotImported(typeof(SampleMapper::IMapperService));
+            ThrowExceptionIfTypeIsNotImported(typeof(Layer3.Sample.Mappers.EF.IMapperService));
 
             services.AddTransient<IDomainService>(x => new DomainService(
-                x.GetRequiredService<SampleMapper::IMapperService>()
+                x.GetRequiredService<Layer3.Sample.Mappers.EF.IMapperService>()
+                ));
+
+            ThrowExceptionIfTypeIsNotImported(typeof(ILogger));
+
+            services.AddTransient<IItemGetQueryDomainHandler>(x => new ItemGetQueryDomainHandler(
+                x.GetRequiredService<IDomainResource>(),
+                x.GetRequiredService<IQueryResource>(),
+                x.GetRequiredService<ILogger<ItemGetQueryDomainHandler>>()
+                ));
+
+            services.AddTransient<IListGetQueryDomainHandler>(x => new ListGetQueryDomainHandler(
+                x.GetRequiredService<IDomainResource>(),
+                x.GetRequiredService<IQueryResource>(),
+                x.GetRequiredService<ILogger<ListGetQueryDomainHandler>>()
                 ));
         }
 
@@ -55,10 +66,11 @@ namespace Makc2021.Layer4.Domains.DummyMain
         public static IEnumerable<Type> GetExports()
         {
             return new[]
-            {
+            {                
+                typeof(IDomainResource),
                 typeof(IDomainService),
-                typeof(IItemGetQueryDomainResource),
-                typeof(IListGetQueryDomainResource)
+                typeof(IItemGetQueryDomainHandler),
+                typeof(IListGetQueryDomainHandler)
             };
         }
 

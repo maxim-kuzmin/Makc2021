@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Makc2021.Layer1.Common;
+using Makc2021.Layer1.Query;
 using Makc2021.Layer1.Resources.Converting;
 using Makc2021.Layer1.Resources.Errors;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +40,10 @@ namespace Makc2021.Layer1
             services.AddSingleton<IErrorsResource>(x => new ErrorsResource(
                 x.GetRequiredService<IStringLocalizer<ErrorsResource>>()
                 ));
+
+            services.AddSingleton<IQueryResource>(x => new QueryResource(
+                x.GetRequiredService<IStringLocalizer<QueryResource>>()
+                ));
         }
 
         /// <summary>
@@ -50,7 +55,8 @@ namespace Makc2021.Layer1
             return new[]
             {
                 typeof(IConvertingResource),
-                typeof(IErrorsResource)
+                typeof(IErrorsResource),
+                typeof(IQueryResource)
             };
         }
 
