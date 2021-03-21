@@ -30,16 +30,16 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            ThrowExceptionIfTypeIsNotImported(typeof(Layer1.Environment));
+            ThrowExceptionIfTypeIsNotImported(typeof(CommonEnvironment));
 
-            services.AddSingleton(x => new ClientConfig(x.GetRequiredService<Layer1.Environment>()).Settings);
+            services.AddSingleton(x => new ClientConfig(x.GetRequiredService<CommonEnvironment>()).Settings);
 
             services.AddSingleton(x => ClientEntitiesSettings.Instance);
 
             services.AddSingleton<IMapperDbFactory>(x => new ClientDbFactory(
                 x.GetRequiredService<IClientConfigSettings>().ConnectionString,
                 x.GetRequiredService<EntitiesSettings>(),
-                x.GetRequiredService<Layer1.Environment>()
+                x.GetRequiredService<CommonEnvironment>()
                 ));
         }
 

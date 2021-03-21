@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System.IO;
-using Makc2021.Layer1;
+using Makc2021.Layer1.Common;
 using Makc2021.Layer3.Sample.Mappers.EF.Config;
 
 namespace Makc2021.Layer3.Sample.Mappers.EF
@@ -31,7 +31,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// Конструктор.
         /// </summary>
         /// <param name="environment">Окружение.</param>
-        public MapperConfig(Environment environment)
+        public MapperConfig(CommonEnvironment environment)
         {
             Settings = MapperConfigSettings.Create(FilePath, environment);
         }

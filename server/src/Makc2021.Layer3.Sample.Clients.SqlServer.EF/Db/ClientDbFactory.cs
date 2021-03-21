@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System.Reflection;
-using Makc2021.Layer1;
+using Makc2021.Layer1.Common;
 using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config;
 using Makc2021.Layer3.Sample.Mappers.EF.Db;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +32,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Db
         }
 
         /// <inheritdoc/>
-        public ClientDbFactory(string connectionString, EntitiesSettings settings, Environment environment)
+        public ClientDbFactory(string connectionString, EntitiesSettings settings, CommonEnvironment environment)
             : base(connectionString, settings, environment)
         {
         }

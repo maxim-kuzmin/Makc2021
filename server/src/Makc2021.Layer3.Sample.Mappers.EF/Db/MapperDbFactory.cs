@@ -1,6 +1,6 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-using Makc2021.Layer1;
+using Makc2021.Layer1.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace Makc2021.Layer3.Sample.Mappers.EF.Db
@@ -20,7 +20,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Db
         /// <summary>
         /// Окружение.
         /// </summary>
-        protected Environment Environment { get; private set; }
+        protected CommonEnvironment Environment { get; private set; }
 
         /// <inheritdoc/>
         public EntitiesSettings EntitiesSettings { get; private set; }
@@ -46,7 +46,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Db
         /// <param name="connectionString">Строка подключения.</param>
         /// <param name="settings">Настройки.</param>
         /// <param name="environment">Окружение.</param>
-        public MapperDbFactory(string connectionString, EntitiesSettings settings, Environment environment)
+        public MapperDbFactory(string connectionString, EntitiesSettings settings, CommonEnvironment environment)
         {
             Initialize(connectionString, settings, environment);
         }
@@ -93,7 +93,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Db
             return builder.Options;
         }
 
-        private void Initialize(string connectionString, EntitiesSettings settings, Environment environment)
+        private void Initialize(string connectionString, EntitiesSettings settings, CommonEnvironment environment)
         {
             Environment = environment ?? new();
             EntitiesSettings = settings ?? CreateEntitiesSettings();

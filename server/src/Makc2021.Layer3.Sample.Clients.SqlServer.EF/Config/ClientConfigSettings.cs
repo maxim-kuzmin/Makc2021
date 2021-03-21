@@ -1,6 +1,6 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-using Makc2021.Layer1;
+using Makc2021.Layer1.Common;
 
 namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
 {
@@ -24,10 +24,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
         /// <param name="configFilePath">Путь к файлу конфигурации.</param>
         /// <param name="environment">Окружение.</param>
         /// <returns>Конфигурационные настройки.</returns>
-        public static IClientConfigSettings Create(
-            string configFilePath,
-            Environment environment
-            )
+        public static IClientConfigSettings Create(string configFilePath, CommonEnvironment environment)
         {
             ClientConfigSettings result = new();
 

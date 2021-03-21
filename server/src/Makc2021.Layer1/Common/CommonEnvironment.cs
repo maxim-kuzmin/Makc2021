@@ -1,11 +1,11 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-namespace Makc2021.Layer1
+namespace Makc2021.Layer1.Common
 {
     /// <summary>
-    /// Окружение.
+    /// Общее окружение.
     /// </summary>
-    public class Environment
+    public class CommonEnvironment
     {
         #region Properties
 

@@ -2,6 +2,7 @@
 
 using System;
 using System.IO;
+using Makc2021.Layer1.Common;
 using Makc2021.Layer1.Serializations;
 using Microsoft.Extensions.Configuration;
 
@@ -15,7 +16,7 @@ namespace Makc2021.Layer1.Config.Json
     {
         #region Properties
 
-        private Environment Environment { get; set; }
+        private CommonEnvironment Environment { get; set; }
 
         private string FilePath { get; set; }
 
@@ -29,7 +30,7 @@ namespace Makc2021.Layer1.Config.Json
         /// <param name="settings">Настройки.</param>
         /// <param name="filePath">Путь к файлу.</param>
         /// <param name="environment">Окружение.</param>
-        public JsonConfigProvider(TSettings settings, string filePath, Environment environment)
+        public JsonConfigProvider(TSettings settings, string filePath, CommonEnvironment environment)
             : base(settings)
         {
             FilePath = filePath;

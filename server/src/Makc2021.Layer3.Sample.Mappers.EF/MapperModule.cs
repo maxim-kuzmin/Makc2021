@@ -29,9 +29,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            ThrowExceptionIfTypeIsNotImported(typeof(Layer1.Environment));
+            ThrowExceptionIfTypeIsNotImported(typeof(CommonEnvironment));
 
-            services.AddSingleton(x => new MapperConfig(x.GetRequiredService<Layer1.Environment>()).Settings);
+            services.AddSingleton(x => new MapperConfig(x.GetRequiredService<CommonEnvironment>()).Settings);
 
             ThrowExceptionIfTypeIsNotImported(typeof(IMapperDbFactory));
 

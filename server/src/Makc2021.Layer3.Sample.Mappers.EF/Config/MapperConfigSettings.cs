@@ -1,6 +1,6 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-using Makc2021.Layer1;
+using Makc2021.Layer1.Common;
 
 namespace Makc2021.Layer3.Sample.Mappers.EF.Config
 {
@@ -24,7 +24,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Config
         /// <param name="configFilePath">Путь к файлу конфигурации.</param>
         /// <param name="environment">Окружение.</param>
         /// <returns>Конфигурационные настройки.</returns>
-        internal static IMapperConfigSettings Create(string configFilePath, Environment environment)
+        internal static IMapperConfigSettings Create(string configFilePath, CommonEnvironment environment)
         {
             MapperConfigSettings result = new();
 

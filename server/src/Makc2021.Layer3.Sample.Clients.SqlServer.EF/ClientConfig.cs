@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System.IO;
-using Makc2021.Layer1;
+using Makc2021.Layer1.Common;
 using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config;
 
 namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
@@ -31,7 +31,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
         /// Конструктор.
         /// </summary>
         /// <param name="environment">Окружение.</param>
-        public ClientConfig(Environment environment)
+        public ClientConfig(CommonEnvironment environment)
         {
             Settings = ClientConfigSettings.Create(FilePath, environment);
         }

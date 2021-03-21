@@ -67,7 +67,7 @@ namespace Makc2021.Layer5.Apps.WebAPI
         {
             services.AddLocalization(options => { InitLocalizationOptions(options); });
 
-            services.AddSingleton(new Layer1.Environment());
+            services.AddSingleton(new CommonEnvironment());
 
             Layer1Module.ConfigureServices(services);
             Layer3SampleClientModule.ConfigureServices(services);
@@ -85,7 +85,7 @@ namespace Makc2021.Layer5.Apps.WebAPI
             {
                 typeof(ILogger),
                 typeof(IStringLocalizer),
-                typeof(Layer1.Environment)
+                typeof(CommonEnvironment)
             }
             .Union(Layer1.Module.GetExports())
             .Union(Layer3.Sample.Clients.SqlServer.EF.ClientModule.GetExports())
