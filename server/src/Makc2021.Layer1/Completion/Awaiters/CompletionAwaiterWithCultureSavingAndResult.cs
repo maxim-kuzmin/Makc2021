@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
+﻿результатом// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System;
 using System.Runtime.CompilerServices;
@@ -43,18 +43,18 @@ namespace Makc2021.Layer1.Completion.Awaiters
         #region Public methods
 
         /// <summary>
-        /// Получить ожидание завершения.
+        /// Получить ожидание.
         /// </summary>
-        /// <returns>Ожидание завершения.</returns>
+        /// <returns>Ожидание.</returns>
         public CompletionAwaiterWithCultureSavingAndResult<TResult> GetAwaiter()
         {
             return this;
         }
 
         /// <summary>
-        /// Получить результат выполнения задачи.
+        /// Получить результат.
         /// </summary>
-        /// <returns>Результат выполнения задачи.</returns>
+        /// <returns>Результат.</returns>
         public TResult GetResult()
         {
             return Task.GetAwaiter().GetResult();
