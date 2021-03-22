@@ -3,14 +3,13 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Makc2021.Layer1.Extensions;
 
-namespace Makc2021.Layer1.Awaiters
+namespace Makc2021.Layer1.Completion.Awaiters
 {
     /// <summary>
-    /// Объект ожидания задачи с сохранением текущей культуры.
+    /// Ожидание завершения с сохранением культуры.
     /// </summary>
-    public struct CultureAwaiter : ICriticalNotifyCompletion
+    public struct CompletionAwaiterWithCultureSaving : ICriticalNotifyCompletion
     {
         #region Properties
 
@@ -32,7 +31,7 @@ namespace Makc2021.Layer1.Awaiters
         /// </summary>
         /// <param name="task">Задача.</param>
         /// <param name="continueOnCapturedContext">Продолжить на захваченном контексте.</param>
-        public CultureAwaiter(Task task, bool continueOnCapturedContext)
+        public CompletionAwaiterWithCultureSaving(Task task, bool continueOnCapturedContext)
         {
             Task = task;
             ContinueOnCapturedContext = continueOnCapturedContext;
@@ -43,10 +42,10 @@ namespace Makc2021.Layer1.Awaiters
         #region Public methods
 
         /// <summary>
-        /// Получить объект ожидания.
+        /// Получить ожидание завершения.
         /// </summary>
-        /// <returns>Объект ожидания.</returns>
-        public CultureAwaiter GetAwaiter()
+        /// <returns>Ожидание завершения.</returns>
+        public CompletionAwaiterWithCultureSaving GetAwaiter()
         {
             return this;
         }

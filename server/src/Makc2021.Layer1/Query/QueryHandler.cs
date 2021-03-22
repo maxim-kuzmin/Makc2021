@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Makc2021.Layer1.Common;
-using Makc2021.Layer1.Extensions;
 using Makc2021.Layer1.Serializations;
 using Microsoft.Extensions.Logging;
 

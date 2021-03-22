@@ -2,12 +2,12 @@
 
 using System.Collections.Generic;
 
-namespace Makc2021.Layer1.Extensions
+namespace Makc2021.Layer1.Query
 {
     /// <summary>
-    /// Расширение коллекции.
+    /// Расширение запроса.
     /// </summary>
-    public static class CollectionExtension
+    public static class QueryExtension
     {
         #region Public methods
 

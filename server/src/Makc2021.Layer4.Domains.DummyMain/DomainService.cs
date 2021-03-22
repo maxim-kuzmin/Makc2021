@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Makc2021.Layer1.Extensions;
+using Makc2021.Layer1.Completion;
 using Makc2021.Layer2.Queries.List.Get;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMain;
 using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMainDummyManyToMany;
@@ -55,7 +55,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
                 .Include(x => x.ObjectsOfDummyMainDummyManyToManyEntity)
                 .ApplyFiltering(input)
                 .FirstOrDefaultAsync()
-                .ConfigureAwaitWithCurrentCulture(false);
+                .ConfigureAwaitWithCultureSaving(false);
 
             if (entityOfDummyMain != null)
             {
@@ -72,7 +72,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
                         var enitiesOfDummyManyToMany = await dbContext.DummyManyToMany
                             .Where(x => idsOfDummyManyToMany.Contains(x.Id))
                             .ToArrayAsync()
-                            .ConfigureAwaitWithCurrentCulture(false);
+                            .ConfigureAwaitWithCultureSaving(false);
 
                         if (enitiesOfDummyManyToMany.Any())
                         {
@@ -106,7 +106,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
             var taskOfItems = queryOfItems.ToArrayAsync();
             var taskOfTotalCount = queryOfTotalCount.CountAsync();
 
-            await Task.WhenAll(taskOfItems, taskOfTotalCount).ConfigureAwaitWithCurrentCulture(false);
+            await Task.WhenAll(taskOfItems, taskOfTotalCount).ConfigureAwaitWithCultureSaving(false);
 
             result.Items = taskOfItems.Result.Select(x => CreateItem(x)).ToArray();
             result.TotalCount = taskOfTotalCount.Result;
@@ -125,7 +125,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
                     var lookupOfDummyManyToMany = await dbContext.DummyManyToMany
                         .Where(x => idsDummyManyToMany.Contains(x.Id))
                         .ToDictionaryAsync(x => x.Id)
-                        .ConfigureAwaitWithCurrentCulture(false);
+                        .ConfigureAwaitWithCultureSaving(false);
 
                     if (lookupOfDummyManyToMany.Any())
                     {

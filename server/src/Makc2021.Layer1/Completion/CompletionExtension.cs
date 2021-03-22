@@ -3,38 +3,44 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
-using Makc2021.Layer1.Awaiters;
+using Makc2021.Layer1.Completion.Awaiters;
 
-namespace Makc2021.Layer1.Extensions
+namespace Makc2021.Layer1.Completion
 {
     /// <summary>
-    /// Расширение задачи.
+    /// Расширение завершения.
     /// </summary>
-    public static class TaskExtension
+    public static class CompletionExtension
     {
         #region Public methods
 
         /// <summary>
-        /// Настроить ожидание с сохранением текущей культуры.
+        /// Настроить ожидание с сохранением культуры.
         /// </summary>
         /// <param name="task">Задача.</param>
         /// <param name="continueOnCapturedContext">Продолжить на захваченном контексте.</param>
-        /// <returns>Объект ожидания завершения задачи.</returns>
-        public static CultureAwaiter ConfigureAwaitWithCurrentCulture(this Task task, bool continueOnCapturedContext)
+        /// <returns>Ожидание завершения с сохранением культуры.</returns>
+        public static CompletionAwaiterWithCultureSaving ConfigureAwaitWithCultureSaving(
+            this Task task,
+            bool continueOnCapturedContext
+            )
         {
-            return new CultureAwaiter(task, continueOnCapturedContext);
+            return new CompletionAwaiterWithCultureSaving(task, continueOnCapturedContext);
         }
 
         /// <summary>
-        /// Настроить ожидание с сохранением текущей культуры.
+        /// Настроить ожидание с сохранением культуры.
         /// </summary>
-        /// <typeparam name="T">Тип результата выполнения задачи.</typeparam>
+        /// <typeparam name="TResult">Тип результата.</typeparam>
         /// <param name="task">Задача.</param>
         /// <param name="continueOnCapturedContext">Продолжить на захваченном контексте.</param>
-        /// <returns>Объект ожидания завершения задачи.</returns>
-        public static CultureAwaiterWithResult<T> ConfigureAwaitWithCurrentCulture<T>(this Task<T> task, bool continueOnCapturedContext)
+        /// <returns>Ожидание завершения с сохранением культуры и результатом.</returns>
+        public static CompletionAwaiterWithCultureSavingAndResult<TResult> ConfigureAwaitWithCultureSaving<TResult>(
+            this Task<TResult> task,
+            bool continueOnCapturedContext
+            )
         {
-            return new CultureAwaiterWithResult<T>(task, continueOnCapturedContext);
+            return new CompletionAwaiterWithCultureSavingAndResult<TResult>(task, continueOnCapturedContext);
         }
 
         #endregion Public methods
