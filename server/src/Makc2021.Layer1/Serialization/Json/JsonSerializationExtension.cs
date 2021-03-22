@@ -1,47 +1,14 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-using System.Text.Encodings.Web;
 using System.Text.Json;
 
-namespace Makc2021.Layer1.Serializations
+namespace Makc2021.Layer1.Serialization.Json
 {
     /// <summary>
-    /// Сериализация JSON.
+    /// Расширение сериализации JSON.
     /// </summary>
-    public static class JsonSerialization
+    public static class JsonSerializationExtension
     {
-        #region Properties
-
-        /// <summary>
-        /// Опции для конфигурации.
-        /// </summary>
-        public static JsonSerializerOptions OptionsForConfig { get; } = new()
-        {
-            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            IgnoreNullValues = true
-        };
-
-        /// <summary>
-        /// Опции для JavaScript.
-        /// </summary>
-        public static JsonSerializerOptions OptionsForJavaScript { get; } = new()
-        {
-            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            IgnoreNullValues = true
-        };
-
-        /// <summary>
-        /// Опции для регистратора.
-        /// </summary>
-        public static JsonSerializerOptions OptionsForLogger { get; } = new()
-        {
-            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            IgnoreNullValues = false
-        };
-
-        #endregion Properties
-
         #region Public methods
 
         /// <summary>

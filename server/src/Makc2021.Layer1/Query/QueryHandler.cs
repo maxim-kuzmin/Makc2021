@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Makc2021.Layer1.Common;
-using Makc2021.Layer1.Serializations;
+using Makc2021.Layer1.Serialization.Json;
 using Microsoft.Extensions.Logging;
 
 namespace Makc2021.Layer1.Query
@@ -202,7 +202,7 @@ namespace Makc2021.Layer1.Query
 
                 string titleForStart = AppQueryResource.GetTitleForStart();
                 string titleForInput = AppQueryResource.GetTitleForInput();
-                string valueForInput = queryInput?.SerializeToJson(JsonSerialization.OptionsForLogger);
+                string valueForInput = queryInput?.SerializeToJson(JsonSerializationOptions.ForLogger);
 
                 valueForInput = !string.IsNullOrEmpty(valueForInput)
                     ? $". {titleForInput}: {valueForInput}"
@@ -218,7 +218,7 @@ namespace Makc2021.Layer1.Query
             {
                 string titleForSuccess = AppQueryResource.GetTitleForSuccess();
                 string titleForResult = AppQueryResource.GetTitleForResult();
-                string valueForResult = GetQueryResult().SerializeToJson(JsonSerialization.OptionsForLogger);
+                string valueForResult = GetQueryResult().SerializeToJson(JsonSerializationOptions.ForLogger);
 
                 ExtLogger.LogDebug($"{Title}{titleForSuccess}. {titleForResult}: {valueForResult}");
             }

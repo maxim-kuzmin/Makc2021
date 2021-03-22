@@ -3,7 +3,7 @@
 using System;
 using System.IO;
 using Makc2021.Layer1.Common;
-using Makc2021.Layer1.Serializations;
+using Makc2021.Layer1.Serialization.Json;
 using Microsoft.Extensions.Configuration;
 
 namespace Makc2021.Layer1.Config.Json
@@ -75,7 +75,7 @@ namespace Makc2021.Layer1.Config.Json
         /// <inheritdoc/>
         public sealed override void Save()
         {
-            string json = Settings.SerializeToJson(JsonSerialization.OptionsForConfig);
+            string json = Settings.SerializeToJson(JsonSerializationOptions.ForConfig);
 
             File.WriteAllText(FilePath, json);
         }
