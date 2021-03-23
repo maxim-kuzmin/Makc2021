@@ -65,7 +65,10 @@ namespace Makc2021.Layer5.Apps.WebAPI
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            services.AddLocalization(options => { InitLocalizationOptions(options); });
+            services.AddLocalization(options =>
+            {
+                InitLocalizationOptions(options); 
+            });
 
             services.AddSingleton(new CommonEnvironment());
 

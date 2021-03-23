@@ -13,7 +13,6 @@ using Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyOneToMany;
 using Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get;
 using Makc2021.Layer4.Domains.DummyMain.Queries.List.Get;
 using Microsoft.EntityFrameworkCore;
-using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
 
 namespace Makc2021.Layer4.Domains.DummyMain
 {
@@ -24,7 +23,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
     {
         #region Properties
 
-        private SampleMapper::IMapperService AppSampleMapperService { get; }
+        private Layer3.Sample.Mappers.EF.IMapperService AppSampleMapperService { get; }
 
         #endregion Properties
 
@@ -34,7 +33,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// Конструктор.
         /// </summary>
         /// <param name="appSampleMapperService">Сервис сопоставителя базы данных "Sample".</param>
-        public DomainService(SampleMapper::IMapperService appSampleMapperService)
+        public DomainService(Layer3.Sample.Mappers.EF.IMapperService appSampleMapperService)
         {
             AppSampleMapperService = appSampleMapperService;
         }

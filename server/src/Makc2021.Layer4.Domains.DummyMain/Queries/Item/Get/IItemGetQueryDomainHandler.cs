@@ -7,7 +7,8 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
     /// <summary>
     /// Интерфейс обработчика запроса на получение элемента в домене.
     /// </summary>
-    public interface IItemGetQueryDomainHandler : IQueryWithInputAndOutputHandler<ItemGetQueryDomainInput, ItemGetQueryDomainOutput>
+    public interface IItemGetQueryDomainHandler :
+        IQueryWithInputAndOutputHandler<ItemGetQueryDomainInput, ItemGetQueryDomainOutput>
     {
     }
 }

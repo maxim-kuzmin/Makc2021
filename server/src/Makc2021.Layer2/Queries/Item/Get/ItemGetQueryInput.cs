@@ -1,13 +1,14 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System.Collections.Generic;
+using Makc2021.Layer2.Query;
 
 namespace Makc2021.Layer2.Queries.Item.Get
 {
     /// <summary>
     /// Входные данные запроса на получение элемента.
     /// </summary>
-    public class ItemGetQueryInput
+    public class ItemGetQueryInput : QueryInput
     {
         #region Properties
 
@@ -31,13 +32,10 @@ namespace Makc2021.Layer2.Queries.Item.Get
             }
         }
 
-        /// <summary>
-        /// Получить список свойств с недействительными значениями.
-        /// </summary>
-        /// <returns>Список свойств.</returns>
-        public virtual List<string> GetInvalidProperties()
+        /// <inheritdoc/>
+        public override List<string> GetInvalidProperties()
         {
-            var result = new List<string>();
+            var result = base.GetInvalidProperties();
 
             if (EntityId < 1)
             {

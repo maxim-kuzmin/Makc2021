@@ -81,12 +81,12 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
 
             if (isOk)
             {
-                ObjectIdsOfDummyOneToManyEntity = ObjectIdsStringOfDummyOneToManyEntity.ConvertToNumericInt64Array();
+                ObjectIdsOfDummyOneToManyEntity = ObjectIdsStringOfDummyOneToManyEntity.FromStringToNumericInt64Array();
             }
 
             if (!string.IsNullOrWhiteSpace(EntityIdsString) && (EntityIds == null || !EntityIds.Any()))
             {
-                EntityIds = EntityIdsString.ConvertToNumericInt64Array();
+                EntityIds = EntityIdsString.FromStringToNumericInt64Array();
             }
         }
 

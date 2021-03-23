@@ -1,5 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using System.Linq;
+using Makc2021.Layer1.Common;
 using Makc2021.Layer1.Query;
 using Makc2021.Layer1.Query.Handlers;
 using Microsoft.Extensions.Logging;
@@ -9,7 +11,9 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
     /// <summary>
     /// Обработчик запроса на получение списка в домене.
     /// </summary>
-    public class ListGetQueryDomainHandler : QueryWithInputAndOutputHandler<ListGetQueryDomainInput, ListGetQueryDomainOutput>, IListGetQueryDomainHandler
+    public class ListGetQueryDomainHandler :
+        QueryWithInputAndOutputHandler<ListGetQueryDomainInput, ListGetQueryDomainOutput>,
+        IListGetQueryDomainHandler
     {
         #region Constructors
 
@@ -40,6 +44,13 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
             }
 
             input.Normalize();
+
+            var invalidProperties = input.GetInvalidProperties();
+
+            if (invalidProperties.Any())
+            {
+                throw new CommonException(AppQueryResource.GetErrorMessageForInvalidInput(invalidProperties));
+            }
 
             return input;
         }
