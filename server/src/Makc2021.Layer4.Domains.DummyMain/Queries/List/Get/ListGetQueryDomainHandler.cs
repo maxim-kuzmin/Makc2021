@@ -29,14 +29,14 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
                   extLogger
                   )
         {
-            FunctionToTransformQueryInput = TransformInput;
+            FunctionToTransformQueryInput = TransformQueryInput;
         }
 
         #endregion Constructors
 
         #region Private methods
 
-        private ListGetQueryDomainInput TransformInput(ListGetQueryDomainInput input)
+        private ListGetQueryDomainInput TransformQueryInput(ListGetQueryDomainInput input)
         {
             if (input == null)
             {

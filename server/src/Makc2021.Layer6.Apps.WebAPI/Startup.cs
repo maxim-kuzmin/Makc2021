@@ -10,7 +10,7 @@ namespace Makc2021.Layer6.Apps.WebAPI
 {
     public class Startup
     {
-        private Module Module { get; } = new Module();
+        private Configurator Configurator { get; } = new Configurator();
 
         public Startup(IConfiguration configuration)
         {
@@ -22,7 +22,7 @@ namespace Makc2021.Layer6.Apps.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Module.ConfigureServices(services);
+            Configurator.ConfigureServices(services);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -34,7 +34,7 @@ namespace Makc2021.Layer6.Apps.WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            Module.Configure();
+            Configurator.Configure();
 
             if (env.IsDevelopment())
             {

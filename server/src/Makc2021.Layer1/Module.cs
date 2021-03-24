@@ -21,8 +21,6 @@ namespace Makc2021.Layer1
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(new CommonEnvironment());
-
             services.AddSingleton<ICommonResource>(x => new CommonResource(
                 x.GetRequiredService<IStringLocalizer<CommonResource>>()
                 ));
@@ -34,23 +32,16 @@ namespace Makc2021.Layer1
             services.AddSingleton<IQueryResource>(x => new QueryResource(
                 x.GetRequiredService<IStringLocalizer<QueryResource>>()
                 ));
-
-            services.AddLocalization(options =>
-            {
-                options.Init();
-            });
         }
 
         /// <inheritdoc/>
         public sealed override IEnumerable<Type> GetExports()
         {
             return new[]
-            {
-                typeof(CommonEnvironment),
+            {                
                 typeof(ICommonResource),
                 typeof(IConvertingResource),
-                typeof(IQueryResource),
-                typeof(IStringLocalizer)
+                typeof(IQueryResource)
             };
         }
 

@@ -29,15 +29,15 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
                   extLogger
                   )
         {
-            FunctionToTransformQueryInput = TransformInput;
-            FunctionToTransformQueryOutput = TransformOutput;
+            FunctionToTransformQueryInput = TransformQueryInput;
+            FunctionToTransformQueryOutput = TransformQueryOutput;
         }
 
         #endregion Constructors
 
         #region Private methods
 
-        private ItemGetQueryDomainInput TransformInput(ItemGetQueryDomainInput input)
+        private ItemGetQueryDomainInput TransformQueryInput(ItemGetQueryDomainInput input)
         {
             if (input == null)
             {
@@ -56,7 +56,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
             return input;
         }
 
-        private ItemGetQueryDomainOutput TransformOutput(ItemGetQueryDomainOutput output)
+        private ItemGetQueryDomainOutput TransformQueryOutput(ItemGetQueryDomainOutput output)
         {
             return output.ObjectOfDummyMainEntity != null ? output : null;
         }
