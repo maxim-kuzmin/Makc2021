@@ -10,7 +10,7 @@ namespace Makc2021.Layer6.Apps.WebAPI
 {
     public class Startup
     {
-        private Module Module { get; } = Module.Create();
+        private Module Module { get; } = new Module();
 
         public Startup(IConfiguration configuration)
         {

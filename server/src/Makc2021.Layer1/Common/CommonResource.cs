@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.Localization;
 
 namespace Makc2021.Layer1.Common
@@ -32,9 +33,11 @@ namespace Makc2021.Layer1.Common
         #region Public methods
 
         /// <inheritdoc/>
-        public string GetErrorMessageForTypeIsNotImported(Type type)
+        public string GetErrorMessageForNotImportedTypes(IEnumerable<Type> types)
         {
-            string key = string.Format("Тип '{0}' не импортирован", type.FullName);
+            string value = string.Concat("', '", types);
+
+            string key = string.Format("Не импортированы следующие типы: '{0}'", value);
 
             return Localizer[key];
         }

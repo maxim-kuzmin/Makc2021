@@ -2,40 +2,18 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Logging.Abstractions;
-using Microsoft.Extensions.Options;
 
 namespace Makc2021.Layer1.Common
 {
     /// <summary>
     /// Общий модуль.
     /// Используется как базовый класс всех модулей - классов,
-    /// предназначенных для подготовки к работе различных частей приложения.
-    /// Методы модулей должны вызываться в обработчиках событий жизненного цикла приложения.
+    /// предназначенных для подготовки к работе различных частей приложения.    
     /// </summary>
     public abstract class CommonModule
     {
-        #region Fields
-
-        private readonly HashSet<Type> _imports;
-
-        #endregion Fields
-
-        #region Constructors
-
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="imports">Импортируемые типы.</param>
-        public CommonModule(HashSet<Type> imports)
-        {
-            _imports = imports;
-        }
-
-        #endregion Constructors
-
         #region Public methods
 
         /// <summary>
@@ -44,44 +22,31 @@ namespace Makc2021.Layer1.Common
         /// <param name="services">Сервисы.</param>
         public abstract void ConfigureServices(IServiceCollection services);
 
+        /// <summary>
+        /// Получить не импортированные типы.
+        /// </summary>
+        /// <param name="allExports">Все экспортированные типы.</param>
+        /// <returns>Не импортированные типы.</returns>
+        public IEnumerable<Type> GetNotImportedtTypes(HashSet<Type> allExports)
+        {
+            return GetImports().Where(x => !allExports.Contains(x));
+        }
+
+        /// <summary>
+        /// Получить экспортированные типы.
+        /// </summary>
+        /// <returns>Экспортированные типы.</returns>
+        public abstract IEnumerable<Type> GetExports();
+
         #endregion Public methods
 
         #region Protected methods
 
         /// <summary>
-        /// Инициализировать опции локализации.
+        /// Получить импортированные типы.
         /// </summary>
-        /// <param name="options">Опции.</param>
-        protected void InitLocalizationOptions(LocalizationOptions options)
-        {
-            options.ResourcesPath = "ResourceFiles";
-        }
-
-        /// <summary>
-        /// Выбросить исключение, если тип не импортирован.
-        /// </summary>
-        /// <param name="type">Тип.</param>
-        protected void ThrowExceptionIfTypeIsNotImported(Type type)
-        {
-            if (_imports.Contains(type))
-            {
-                return;
-            }
-
-            var localizationOptions = new LocalizationOptions();
-
-            InitLocalizationOptions(localizationOptions);
-
-            var options = Options.Create(localizationOptions);
-
-            var factory = new ResourceManagerStringLocalizerFactory(options, NullLoggerFactory.Instance);
-
-            var localizer = new StringLocalizer<CommonResource>(factory);
-
-            var resource = new CommonResource(localizer);
-
-            throw new CommonException(resource.GetErrorMessageForTypeIsNotImported(type));
-        }
+        /// <returns>Импортированные типы.</returns>
+        protected abstract IEnumerable<Type> GetImports();
 
         #endregion Protected methods
     }

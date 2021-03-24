@@ -17,23 +17,11 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
     /// </summary>
     public class ClientModule : CommonModule
     {
-        #region Constructors
-
-        /// <inheritdoc/>
-        public ClientModule(HashSet<Type> imports)
-            : base(imports)
-        {
-        }
-
-        #endregion Constructors
-
         #region Public methods
 
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            ThrowExceptionIfTypeIsNotImported(typeof(CommonEnvironment));
-
             services.AddSingleton(x => new ClientConfig(x.GetRequiredService<CommonEnvironment>()).Settings);
 
             services.AddSingleton(x => ClientEntitiesSettings.Instance);
@@ -45,11 +33,8 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
                 ));
         }
 
-        /// <summary>
-        /// Получить экспортируемые типы.
-        /// </summary>
-        /// <returns>Экспортируемые типы.</returns>
-        public static IEnumerable<Type> GetExports()
+        /// <inheritdoc/>
+        public sealed override IEnumerable<Type> GetExports()
         {
             return new[]
             {
@@ -60,5 +45,18 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
         }
 
         #endregion Public methods
+
+        #region Protected methods
+
+        /// <inheritdoc/>
+        protected sealed override IEnumerable<Type> GetImports()
+        {
+            return new[]
+            {
+                typeof(CommonEnvironment)
+            };
+        }
+
+        #endregion Protected methods
     }
 }

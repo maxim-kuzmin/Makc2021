@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System;
+using System.Collections.Generic;
 
 namespace Makc2021.Layer1.Common
 {
@@ -12,11 +13,11 @@ namespace Makc2021.Layer1.Common
         #region Methods
 
         /// <summary>
-        /// Получить сообщение об ошибке для типа, который не импортирован.
+        /// Получить сообщение об ошибке для не импортированных типов.
         /// </summary>
-        /// <param name="type">Тип.</param>
+        /// <param name="types">Типы.</param>
         /// <returns>Сообщение об ошибке.</returns>
-        string GetErrorMessageForTypeIsNotImported(Type type);
+        string GetErrorMessageForNotImportedTypes(IEnumerable<Type> types);
 
         #endregion Methods
     }

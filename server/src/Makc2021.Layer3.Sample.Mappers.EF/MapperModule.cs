@@ -14,26 +14,12 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
     /// </summary>
     public class MapperModule : CommonModule
     {
-        #region Constructors
-
-        /// <inheritdoc/>
-        public MapperModule(HashSet<Type> imports)
-            : base(imports)
-        {
-        }
-
-        #endregion Constructors
-
         #region Public methods
 
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            ThrowExceptionIfTypeIsNotImported(typeof(CommonEnvironment));
-
             services.AddSingleton(x => new MapperConfig(x.GetRequiredService<CommonEnvironment>()).Settings);
-
-            ThrowExceptionIfTypeIsNotImported(typeof(IMapperDbFactory));
 
             services.AddTransient<IMapperService>(x => new MapperService(
                 x.GetRequiredService<IMapperConfigSettings>(),
@@ -41,11 +27,8 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
                 ));
         }
 
-        /// <summary>
-        /// Получить экспортируемые типы.
-        /// </summary>
-        /// <returns>Экспортируемые типы.</returns>
-        public static IEnumerable<Type> GetExports()
+        /// <inheritdoc/>
+        public sealed override IEnumerable<Type> GetExports()
         {
             return new[]
             {
@@ -55,5 +38,19 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         }
 
         #endregion Public methods
+
+        #region Protected methods
+
+        /// <inheritdoc/>
+        protected sealed override IEnumerable<Type> GetImports()
+        {
+            return new[]
+            {
+                typeof(CommonEnvironment),
+                typeof(IMapperDbFactory)
+            };
+        }
+
+        #endregion Protected methods
     }
 }

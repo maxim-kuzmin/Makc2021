@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Makc2021.Layer1.Common;
 using Makc2021.Layer1.Converting;
 using Makc2021.Layer1.Query;
@@ -15,22 +16,12 @@ namespace Makc2021.Layer1
     /// </summary>
     public class Module : CommonModule
     {
-        #region Constructors
-
-        /// <inheritdoc/>
-        public Module(HashSet<Type> imports)
-            : base(imports)
-        {
-        }
-
-        #endregion Constructors
-
         #region Public methods
 
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            ThrowExceptionIfTypeIsNotImported(typeof(IStringLocalizer));
+            services.AddSingleton(new CommonEnvironment());
 
             services.AddSingleton<ICommonResource>(x => new CommonResource(
                 x.GetRequiredService<IStringLocalizer<CommonResource>>()
@@ -43,22 +34,36 @@ namespace Makc2021.Layer1
             services.AddSingleton<IQueryResource>(x => new QueryResource(
                 x.GetRequiredService<IStringLocalizer<QueryResource>>()
                 ));
+
+            services.AddLocalization(options =>
+            {
+                options.Init();
+            });
         }
 
-        /// <summary>
-        /// Получить экспортируемые типы.
-        /// </summary>
-        /// <returns>Экспортируемые типы.</returns>
-        public static IEnumerable<Type> GetExports()
+        /// <inheritdoc/>
+        public sealed override IEnumerable<Type> GetExports()
         {
             return new[]
             {
+                typeof(CommonEnvironment),
                 typeof(ICommonResource),
-                typeof(IConvertingResource),                
-                typeof(IQueryResource)
+                typeof(IConvertingResource),
+                typeof(IQueryResource),
+                typeof(IStringLocalizer)
             };
         }
 
         #endregion Public methods
+
+        #region Protected methods
+
+        /// <inheritdoc/>
+        protected sealed override IEnumerable<Type> GetImports()
+        {
+            return Enumerable.Empty<Type>();
+        }
+
+        #endregion Protected methods
     }
 }
