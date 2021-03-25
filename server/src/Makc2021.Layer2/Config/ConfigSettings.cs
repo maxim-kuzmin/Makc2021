@@ -1,18 +1,21 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using Makc2021.Layer1.Common;
+using Microsoft.Extensions.Logging;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF.Config
+namespace Makc2021.Layer2.Config
 {
     /// <summary>
-    /// Настройки конфигурации сопоставителя.
+    /// Настройки конфигурации.
     /// </summary>
-    internal class MapperConfigSettings : IMapperConfigSettings
+    internal class ConfigSettings : IConfigSettings
     {
         #region Properties
 
         /// <inheritdoc/>
         public int DbCommandTimeout { get; set; }
+
+        public LogLevel LogLevel { get; set; }
 
         #endregion Properties
 
@@ -24,11 +27,11 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Config
         /// <param name="configFilePath">Путь к файлу конфигурации.</param>
         /// <param name="environment">Окружение.</param>
         /// <returns>Конфигурационные настройки.</returns>
-        internal static IMapperConfigSettings Create(string configFilePath, CommonEnvironment environment)
+        internal static IConfigSettings Create(string configFilePath, CommonEnvironment environment)
         {
-            MapperConfigSettings result = new();
+            ConfigSettings result = new();
 
-            MapperConfigProvider configProvider = new(result, configFilePath, environment);
+            ConfigProvider configProvider = new(result, configFilePath, environment);
 
             configProvider.Load();
 

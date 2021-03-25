@@ -1,11 +1,13 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-namespace Makc2021.Layer3.Sample.Mappers.EF.Config
+using Microsoft.Extensions.Logging;
+
+namespace Makc2021.Layer2.Config
 {
     /// <summary>
-    /// Интерфейс настроек конфигурации сопоставителя.
+    /// Интерфейс настроек конфигурации.
     /// </summary>
-    public interface IMapperConfigSettings
+    public interface IConfigSettings
     {
         #region Properties
 
@@ -13,6 +15,11 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Config
         /// Таймаут команд базы данных.
         /// </summary>
         int DbCommandTimeout { get; }
+
+        /// <summary>
+        /// Уровень логирования.
+        /// </summary>
+        LogLevel LogLevel { get; }
 
         #endregion Properties
     }

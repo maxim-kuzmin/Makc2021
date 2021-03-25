@@ -2,17 +2,16 @@
 
 using System;
 using System.IO;
-using Makc2021.Layer1.Common;
 using Makc2021.Layer1.Serialization.Json;
 using Microsoft.Extensions.Configuration;
 
-namespace Makc2021.Layer1.Config.Json
+namespace Makc2021.Layer1.Common.Config.Json
 {
     /// <summary>
     /// Поставщик конфигурации JSON.
     /// </summary>
     /// <typeparam name="TSettings">Тип настроек.</typeparam>
-    public class JsonConfigProvider<TSettings> : ConfigProvider<TSettings>
+    public class JsonCommonConfigProvider<TSettings> : CommonConfigProvider<TSettings>
     {
         #region Properties
 
@@ -30,7 +29,7 @@ namespace Makc2021.Layer1.Config.Json
         /// <param name="settings">Настройки.</param>
         /// <param name="filePath">Путь к файлу.</param>
         /// <param name="environment">Окружение.</param>
-        public JsonConfigProvider(TSettings settings, string filePath, CommonEnvironment environment)
+        public JsonCommonConfigProvider(TSettings settings, string filePath, CommonEnvironment environment)
             : base(settings)
         {
             FilePath = filePath;

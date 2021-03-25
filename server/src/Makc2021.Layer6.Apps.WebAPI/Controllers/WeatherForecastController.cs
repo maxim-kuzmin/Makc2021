@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SampleClient = Makc2021.Layer3.Sample.Clients.SqlServer.EF;
-using SampleMapper = Makc2021.Layer3.Sample.Mappers.EF;
 
 namespace Makc2021.Layer6.Apps.WebAPI.Controllers
 {
@@ -19,24 +17,24 @@ namespace Makc2021.Layer6.Apps.WebAPI.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        private SampleClient::Config.IClientConfigSettings AppSampleClientConfigSettings { get; }
+        private Layer3.Sample.Clients.SqlServer.EF.Config.IClientConfigSettings AppSampleClientConfigSettings { get; }
 
-        private SampleMapper::Config.IMapperConfigSettings AppSampleMapperConfigSettings { get; }
+        private Layer2.Config.IConfigSettings Layer2ConfigSettings { get; }
              
-        private SampleMapper::Db.IMapperDbFactory AppSampleMapperDbFactory { get; }
+        private Layer3.Sample.Mappers.EF.Db.IMapperDbFactory AppSampleDbFactory { get; }
 
         public WeatherForecastController(
-            ILogger<WeatherForecastController> logger,            
-            SampleClient::Config.IClientConfigSettings appSampleClientConfigSettings,
-            SampleMapper::Config.IMapperConfigSettings appSampleMapperConfigSettings,
-            SampleMapper::Db.IMapperDbFactory appSampleMapperDbFactory
+            ILogger<WeatherForecastController> logger,
+            Layer3.Sample.Clients.SqlServer.EF.Config.IClientConfigSettings appSampleClientConfigSettings,
+            Layer2.Config.IConfigSettings appDataConfigSettings,
+            Layer3.Sample.Mappers.EF.Db.IMapperDbFactory appSampleDbFactory
             )
         {
             _logger = logger;
 
             AppSampleClientConfigSettings = appSampleClientConfigSettings;
-            AppSampleMapperConfigSettings = appSampleMapperConfigSettings;            
-            AppSampleMapperDbFactory = appSampleMapperDbFactory;
+            Layer2ConfigSettings = appDataConfigSettings;            
+            AppSampleDbFactory = appSampleDbFactory;
         }
 
         [HttpGet]
@@ -57,14 +55,14 @@ namespace Makc2021.Layer6.Apps.WebAPI.Controllers
         {
             try
             {
-                using var dbContext = AppSampleMapperDbFactory.CreateDbContext();
+                using var dbContext = AppSampleDbFactory.CreateDbContext();
 
                 return new
                 {
                     AppSampleClientConfigSettings,
-                    AppSampleMapperConfigSettings,
+                    Layer2ConfigSettings,
                     dbContext.Database.ProviderName,
-                    AppSampleMapperDbFactory.EntitiesSettings
+                    AppSampleDbFactory.EntitiesSettings
                 };
             }
             catch (Exception ex)

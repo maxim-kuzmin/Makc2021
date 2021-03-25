@@ -1,12 +1,12 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-namespace Makc2021.Layer1.Config
+namespace Makc2021.Layer1.Common.Config
 {
     /// <summary>
     /// Поставщик конфигурации.
     /// </summary>
     /// <typeparam name="TSettings">Тип настроек.</typeparam>
-    public abstract class ConfigProvider<TSettings>
+    public abstract class CommonConfigProvider<TSettings>
     {
         #region Properties
 
@@ -23,7 +23,7 @@ namespace Makc2021.Layer1.Config
         /// Конструктор.
         /// </summary>
         /// <param name="settings">Настройки.</param>
-        public ConfigProvider(TSettings settings)
+        public CommonConfigProvider(TSettings settings)
         {
             Settings = settings;
         }

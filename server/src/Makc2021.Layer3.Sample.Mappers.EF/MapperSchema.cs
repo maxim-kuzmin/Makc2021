@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using Makc2021.Layer3.Sample.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Makc2021.Layer3.Sample.Mappers.EF
 {
@@ -10,36 +8,17 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
     /// Схема сопоставителя.
     /// </summary>
     /// <typeparam name="TEntityObject">Тип объекта сущности.</typeparam>
-    public abstract class MapperSchema<TEntityObject> : IEntityTypeConfiguration<TEntityObject>
+    public abstract class MapperSchema<TEntityObject> : Layer2.Mappers.EF.MapperSchema<EntitiesSettings, TEntityObject>
         where TEntityObject : class
     {
-        #region Properties
-
-        /// <summary>
-        /// Настройки сущностей.
-        /// </summary>
-        protected EntitiesSettings EntitiesSettings { get; private set; }
-
-        #endregion Properties
-
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="entitiesSettings">Настройки сущностей.</param>
+        /// <inheritdoc/>
         public MapperSchema(EntitiesSettings entitiesSettings)
+            : base(entitiesSettings)
         {
-            EntitiesSettings = entitiesSettings;
         }
 
         #endregion Constructors
-
-        #region Public methods
-
-        /// <inheritdoc/>
-        public abstract void Configure(EntityTypeBuilder<TEntityObject> builder);
-
-        #endregion Public methods
     }
 }

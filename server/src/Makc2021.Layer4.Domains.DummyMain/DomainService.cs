@@ -23,7 +23,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
     {
         #region Properties
 
-        private Layer3.Sample.Mappers.EF.IMapperService AppSampleMapperService { get; }
+        private Layer3.Sample.Mappers.EF.Db.IMapperDbFactory AppSampleDbFactory { get; }
 
         #endregion Properties
 
@@ -32,10 +32,10 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="appSampleMapperService">Сервис сопоставителя базы данных "Sample".</param>
-        public DomainService(Layer3.Sample.Mappers.EF.IMapperService appSampleMapperService)
+        /// <param name="appSampleDbFactory">Фабрика базы данных "Sample".</param>
+        public DomainService(Layer3.Sample.Mappers.EF.Db.IMapperDbFactory appSampleDbFactory)
         {
-            AppSampleMapperService = appSampleMapperService;
+            AppSampleDbFactory = appSampleDbFactory;
         }
 
         #endregion Constructors
@@ -47,7 +47,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         {
             ItemGetQueryDomainOutput result = null;
 
-            using var dbContext = AppSampleMapperService.CreateDbContext();
+            using var dbContext = AppSampleDbFactory.CreateDbContext();
 
             var entityOfDummyMain = await dbContext.DummyMain
                 .Include(x => x.ObjectOfDummyOneToManyEntity)
@@ -89,8 +89,8 @@ namespace Makc2021.Layer4.Domains.DummyMain
         {
             var result = new ListGetQueryDomainOutput();
 
-            using var dbContext = AppSampleMapperService.CreateDbContext();
-            using var dbContextForTotalCount = AppSampleMapperService.CreateDbContext();
+            using var dbContext = AppSampleDbFactory.CreateDbContext();
+            using var dbContextForTotalCount = AppSampleDbFactory.CreateDbContext();
 
             var queryOfItems = dbContext.DummyMain
                 .Include(x => x.ObjectOfDummyOneToManyEntity)
@@ -146,7 +146,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
 
         #region Private methods
 
-        private ItemGetQueryDomainOutput CreateItem(DummyMainEntityMapperObject entity)
+        private static ItemGetQueryDomainOutput CreateItem(DummyMainEntityMapperObject entity)
         {
             var result = new ItemGetQueryDomainOutput
             {
@@ -164,7 +164,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
             return result;
         }
 
-        private void InitItemDummyManyToMany(
+        private static void InitItemDummyManyToMany(
             ItemGetQueryDomainOutput item,
             IEnumerable<DummyManyToManyEntityMapperObject> enities
             )
@@ -176,7 +176,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
                 .ToArray();
         }
 
-        private void InitItemDummyManyToMany(
+        private static void InitItemDummyManyToMany(
             ItemGetQueryDomainOutput item,
             IDictionary<long, DummyManyToManyEntityMapperObject> lookup
             )

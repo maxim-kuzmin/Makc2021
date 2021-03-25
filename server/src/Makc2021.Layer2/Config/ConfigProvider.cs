@@ -3,18 +3,17 @@
 using Makc2021.Layer1.Common;
 using Makc2021.Layer1.Common.Config.Json;
 
-namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
+namespace Makc2021.Layer2.Config
 {
     /// <summary>
-    /// Поставщик конфигурации клиента.
+    /// Поставщик конфигурации.
     /// </summary>
-    internal class ClientConfigProvider : JsonCommonConfigProvider<ClientConfigSettings>
+    internal class ConfigProvider : JsonCommonConfigProvider<ConfigSettings>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public ClientConfigProvider(ClientConfigSettings settings, string filePath, CommonEnvironment environment
-            )
+        public ConfigProvider(ConfigSettings settings, string filePath, CommonEnvironment environment)
             : base(settings, filePath, environment)
         {
         }

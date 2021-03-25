@@ -3,28 +3,22 @@
 using System;
 using System.Collections.Generic;
 using Makc2021.Layer1.Common;
-using Makc2021.Layer3.Sample.Mappers.EF.Config;
-using Makc2021.Layer3.Sample.Mappers.EF.Db;
+using Makc2021.Layer2.Config;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF
+namespace Makc2021.Layer2
 {
     /// <summary>
-    /// Модуль сопоставителя.
+    /// Модуль.
     /// </summary>
-    public class MapperModule : CommonModule
+    public class Module : CommonModule
     {
         #region Public methods
 
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(x => new MapperConfig(x.GetRequiredService<CommonEnvironment>()).Settings);
-
-            services.AddTransient<IMapperService>(x => new MapperService(
-                x.GetRequiredService<IMapperConfigSettings>(),
-                x.GetRequiredService<IMapperDbFactory>()
-                ));
+            services.AddSingleton(x => new ConfigSource(x.GetRequiredService<CommonEnvironment>()).Settings);
         }
 
         /// <inheritdoc/>
@@ -32,8 +26,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         {
             return new[]
             {
-                typeof(IMapperConfigSettings),
-                typeof(IMapperService)
+                typeof(IConfigSettings)
             };
         }
 
@@ -46,8 +39,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         {
             return new[]
             {
-                typeof(CommonEnvironment),
-                typeof(IMapperDbFactory)
+                typeof(CommonEnvironment)
             };
         }
 

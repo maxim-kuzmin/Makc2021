@@ -2,26 +2,25 @@
 
 using System.IO;
 using Makc2021.Layer1.Common;
-using Makc2021.Layer3.Sample.Mappers.EF.Config;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
 {
     /// <summary>
-    /// Конфигурация сопоставителя.
+    /// Конфигурация клиента.
     /// </summary>
-    internal class MapperConfig
+    internal class ClientConfigSource
     {
         #region Properties
 
         /// <summary>
         /// Путь к файлу.
         /// </summary>
-        public static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer3.Sample.Mappers.EF.config");
+        public static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer3.Sample.Clients.SqlServer.EF.config");
 
         /// <summary>
         /// Настройки.
         /// </summary>
-        public IMapperConfigSettings Settings { get; private set; }
+        public IClientConfigSettings Settings { get; }
 
         #endregion Properties
 
@@ -31,9 +30,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// Конструктор.
         /// </summary>
         /// <param name="environment">Окружение.</param>
-        public MapperConfig(CommonEnvironment environment)
+        public ClientConfigSource(CommonEnvironment environment)
         {
-            Settings = MapperConfigSettings.Create(FilePath, environment);
+            Settings = ClientConfigSettings.Create(FilePath, environment);
         }
 
         #endregion Constructors

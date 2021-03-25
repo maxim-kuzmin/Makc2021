@@ -9,6 +9,7 @@ using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Entities;
 using Makc2021.Layer3.Sample.Entities;
 using Makc2021.Layer3.Sample.Mappers.EF.Db;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
 {
@@ -22,14 +23,16 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(x => new ClientConfig(x.GetRequiredService<CommonEnvironment>()).Settings);
+            services.AddSingleton(x => new ClientConfigSource(x.GetRequiredService<CommonEnvironment>()).Settings);
 
             services.AddSingleton(x => ClientEntitiesSettings.Instance);
 
             services.AddSingleton<IMapperDbFactory>(x => new ClientDbFactory(
-                x.GetRequiredService<IClientConfigSettings>().ConnectionString,
+                x.GetRequiredService<IClientConfigSettings>(),
+                x.GetRequiredService<Layer2.Config.IConfigSettings>(),
                 x.GetRequiredService<EntitiesSettings>(),
-                x.GetRequiredService<CommonEnvironment>()
+                x.GetRequiredService<CommonEnvironment>(),
+                x.GetRequiredService<ILogger<ClientDbFactory>>()
                 ));
         }
 
@@ -53,7 +56,9 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF
         {
             return new[]
             {
-                typeof(CommonEnvironment)
+                typeof(CommonEnvironment),
+                typeof(ILogger),
+                typeof(Layer2.Config.IConfigSettings)
             };
         }
 

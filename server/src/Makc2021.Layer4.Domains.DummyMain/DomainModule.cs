@@ -27,7 +27,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
                 ));
 
             services.AddTransient<IDomainService>(x => new DomainService(
-                x.GetRequiredService<Layer3.Sample.Mappers.EF.IMapperService>()
+                x.GetRequiredService<Layer3.Sample.Mappers.EF.Db.IMapperDbFactory>()
                 ));
 
             services.AddTransient<IItemGetQueryDomainHandler>(x => new ItemGetQueryDomainHandler(
@@ -66,7 +66,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
             {
                 typeof(ILogger),
                 typeof(IStringLocalizer),
-                typeof(Layer3.Sample.Mappers.EF.IMapperService)
+                typeof(Layer3.Sample.Mappers.EF.Db.IMapperDbFactory)
             };
         }
 

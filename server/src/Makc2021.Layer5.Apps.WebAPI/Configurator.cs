@@ -14,9 +14,9 @@ namespace Makc2021.Layer5.Apps.WebAPI
 
         private Layer1.Module Layer1Module { get; } = new();
 
-        private Layer3.Sample.Clients.SqlServer.EF.ClientModule Layer3SampleClientModule { get; } = new();
+        private Layer2.Module Layer2Module { get; } = new();
 
-        private Layer3.Sample.Mappers.EF.MapperModule Layer3SampleMapperModule { get; } = new();
+        private Layer3.Sample.Clients.SqlServer.EF.ClientModule Layer3SampleClientModule { get; } = new();
 
         private Layer4.Domains.DummyMain.DomainModule Layer4DummyMainDomainModule { get; } = new();
 
@@ -43,8 +43,8 @@ namespace Makc2021.Layer5.Apps.WebAPI
             return new CommonModule[]
                 {
                     Layer1Module,
+                    Layer2Module,
                     Layer3SampleClientModule,
-                    Layer3SampleMapperModule,
                     Layer4DummyMainDomainModule,
                     Layer5Module
                 };

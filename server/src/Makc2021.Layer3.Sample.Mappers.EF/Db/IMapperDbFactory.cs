@@ -8,14 +8,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Db
     /// <summary>
     /// Интерфейс фабрики базы данных сопоставителя.
     /// </summary>
-    public interface IMapperDbFactory
+    public interface IMapperDbFactory : Layer2.Mappers.EF.Db.IMapperDbFactory<EntitiesSettings>
     {
         #region Properties
-
-        /// <summary>
-        /// Настройки сущностей.
-        /// </summary>
-        EntitiesSettings EntitiesSettings { get; }
 
         /// <summary>
         /// Опции.

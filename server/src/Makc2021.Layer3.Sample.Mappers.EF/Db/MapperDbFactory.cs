@@ -3,53 +3,51 @@
 using Makc2021.Layer1.Common;
 using Makc2021.Layer3.Sample.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Makc2021.Layer3.Sample.Mappers.EF.Db
 {
     /// <summary>
     /// Фабрика базы данных сопоставителя.
     /// </summary>
-    public abstract class MapperDbFactory : IMapperDbFactory
+    public abstract class MapperDbFactory :
+        Layer2.Mappers.EF.Db.MapperDbFactory<EntitiesSettings>,
+        IMapperDbFactory
     {
         #region Properties
 
         /// <summary>
-        /// Строка подключения.
+        /// Опции.
         /// </summary>
-        protected string ConnectionString { get; private set; }
-
-        /// <summary>
-        /// Окружение.
-        /// </summary>
-        protected CommonEnvironment Environment { get; private set; }
-
-        /// <inheritdoc/>
-        public EntitiesSettings EntitiesSettings { get; private set; }
-
-        /// <inheritdoc/>
         public DbContextOptions<MapperDbContext> Options { get; private set; }
 
         #endregion Properties
 
         #region Constructors
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
+        /// <inheritdoc/>
         public MapperDbFactory()
+            : base()
         {
             Initialize(null, null, null);
         }
 
-        /// <summary>
-        /// Конструктор.
-        /// </summary>
-        /// <param name="connectionString">Строка подключения.</param>
-        /// <param name="settings">Настройки.</param>
-        /// <param name="environment">Окружение.</param>
-        public MapperDbFactory(string connectionString, EntitiesSettings settings, CommonEnvironment environment)
+        /// <inheritdoc/>
+        public MapperDbFactory(
+            string connectionString,
+            EntitiesSettings entitiesSettings,
+            CommonEnvironment environment,
+            ILogger logger,
+            LogLevel logLevel
+            )
+            : base(
+                connectionString,
+                entitiesSettings,
+                environment,
+                logger,
+                logLevel
+                )
         {
-            Initialize(connectionString, settings, environment);
         }
 
         #endregion Constructors
@@ -63,23 +61,17 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Db
 
         #region Protected methods
 
-        /// <summary>
-        /// Создать строку подключения.
-        /// </summary>
-        /// <returns>Строка подключения.</returns>
-        protected abstract string CreateConnectionString();
+        /// <inheritdoc/>
+        protected sealed override void Initialize(
+            string connectionString,
+            EntitiesSettings entitiesSettings,
+            CommonEnvironment environment
+            )
+        {
+            base.Initialize(connectionString, entitiesSettings, environment);
 
-        /// <summary>
-        /// Создать настройки сущностей.
-        /// </summary>
-        /// <returns>Настройки сущностей.</returns>
-        protected abstract EntitiesSettings CreateEntitiesSettings();
-
-        /// <summary>
-        /// Построить опции контекста базы данных.
-        /// </summary>
-        /// <param name="builder">Построитель.</param>
-        public abstract void BuildDbContextOptions(DbContextOptionsBuilder builder);
+            Options = CreateDbContextOptions();
+        }
 
         #endregion Protected methods
 
@@ -92,14 +84,6 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Db
             BuildDbContextOptions(builder);
 
             return builder.Options;
-        }
-
-        private void Initialize(string connectionString, EntitiesSettings settings, CommonEnvironment environment)
-        {
-            Environment = environment ?? new();
-            EntitiesSettings = settings ?? CreateEntitiesSettings();
-            ConnectionString = connectionString ?? CreateConnectionString();
-            Options = CreateDbContextOptions();
         }
 
         #endregion Private methods
