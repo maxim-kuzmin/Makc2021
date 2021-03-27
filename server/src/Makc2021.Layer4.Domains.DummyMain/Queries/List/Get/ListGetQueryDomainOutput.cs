@@ -10,6 +10,5 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
     /// </summary>
     public class ListGetQueryDomainOutput : ListGetQueryOutput<ItemGetQueryDomainOutput>
     {
-
     }
 }
