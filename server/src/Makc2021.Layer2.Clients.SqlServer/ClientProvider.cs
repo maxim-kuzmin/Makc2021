@@ -5,22 +5,21 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
-using Makc2021.Layer2.Clients.SqlServer.Filestream;
 using Makc2021.Layer2.Clients.SqlServer.Commands.Identity.Reseed;
 using Makc2021.Layer2.Clients.SqlServer.Commands.Tree.Calculate;
 using Makc2021.Layer2.Clients.SqlServer.Commands.Tree.Trigger;
+using Makc2021.Layer2.Clients.SqlServer.Filestream;
 using Makc2021.Layer2.Commands.Identity.Reseed;
 using Makc2021.Layer2.Commands.Tree.Calculate;
 using Makc2021.Layer2.Commands.Tree.Trigger;
 using Microsoft.Win32.SafeHandles;
-using Makc2021.Layer2.Common;
 
 namespace Makc2021.Layer2.Clients.SqlServer
 {
     /// <summary>
     /// Поставщик клиента.
     /// </summary>
-    public class ClientProvider : ICommonProvider
+    public class ClientProvider : IClientProvider
     {
         #region Public methods
 
@@ -107,14 +106,8 @@ namespace Makc2021.Layer2.Clients.SqlServer
             return new TreeTriggerCommandClientBuilder();
         }
 
-        /// <summary>
-        /// Получить указатель на файловый поток базы данных SQL Server.
-        /// </summary>
-        /// <param name="filePath">Путь к файлу.</param>
-        /// <param name="access">Уровень доступа.</param>
-        /// <param name="txnToken">Токен контекста транзакции.</param>
-        /// <returns>Указатель на файловый поток базы данных SQL Server.</returns>
-        public static SafeFileHandle GetSqlFilestreamHandle(
+        /// <inheritdoc/>
+        public SafeFileHandle GetSqlFilestreamHandle(
             string filePath,
             ClientFilestreamAccess access,
             byte[] txnToken

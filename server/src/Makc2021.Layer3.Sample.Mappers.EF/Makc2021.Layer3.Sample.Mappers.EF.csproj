@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Makc2021.Layer2.Clients.SqlServer\Makc2021.Layer2.Clients.SqlServer.csproj" />
     <ProjectReference Include="..\Makc2021.Layer2.Mappers.EF\Makc2021.Layer2.Mappers.EF.csproj" />
     <ProjectReference Include="..\Makc2021.Layer3.Sample\Makc2021.Layer3.Sample.csproj" />
   </ItemGroup>

@@ -41,9 +41,9 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMain
                 EntityObject.Name = source.Name ?? string.Empty;
             }
 
-            if (props.Contains(nameof(EntityObject.ObjectDummyOneToManyId)))
+            if (props.Contains(nameof(EntityObject.IdOfDummyOneToManyEntity)))
             {
-                EntityObject.ObjectDummyOneToManyId = source.ObjectDummyOneToManyId;
+                EntityObject.IdOfDummyOneToManyEntity = source.IdOfDummyOneToManyEntity;
             }
 
             if (props.Contains(nameof(EntityObject.PropBoolean)))
@@ -128,7 +128,7 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMain
             {
                 nameof(EntityObject.Id),
                 nameof(EntityObject.Name),
-                nameof(EntityObject.ObjectDummyOneToManyId),
+                nameof(EntityObject.IdOfDummyOneToManyEntity),
                 nameof(EntityObject.PropBoolean),
                 nameof(EntityObject.PropBooleanNullable),
                 nameof(EntityObject.PropDate),

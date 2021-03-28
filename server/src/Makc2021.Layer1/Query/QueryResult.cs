@@ -37,5 +37,29 @@ namespace Makc2021.Layer1.Query
         public HashSet<string> WarningMessages { get; } = new HashSet<string>();
 
         #endregion Properties
+
+        #region Public methods
+
+        /// <summary>
+        /// Загрузить.
+        /// </summary>
+        /// <param name="queryResults">Результаты запроса.</param>
+        public void Load(IEnumerable<QueryResult> queryResults)
+        {
+            bool isOk = true;
+
+            foreach (var queryResult in queryResults)
+            {
+                isOk = isOk && queryResult.IsOk;
+
+                ErrorMessages.AddRange(queryResult.ErrorMessages);
+                SuccessMessages.AddRange(queryResult.SuccessMessages);
+                WarningMessages.AddRange(queryResult.WarningMessages);
+            }
+
+            IsOk = isOk;
+        }
+
+        #endregion Public methods
     }
 }

@@ -2,23 +2,29 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Makc2021.Layer1.Common;
+using Makc2021.Layer2.Clients.SqlServer;
+using Makc2021.Layer3.Sample.Entities;
+using Makc2021.Layer3.Sample.Mappers.EF.Db;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Makc2021.Layer2.Clients.SqlServer
+namespace Makc2021.Layer3.Sample.Mappers.EF
 {
     /// <summary>
-    /// Модуль клиента.
+    /// Модуль сопоставителя.
     /// </summary>
-    public class ClientModule : CommonModule
+    public class MapperModule : CommonModule
     {
         #region Public methods
 
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IClientProvider>(x => new ClientProvider());
+            services.AddSingleton<IMapperService>(x => new MapperService(                
+                x.GetRequiredService<IClientProvider>(),
+                x.GetRequiredService<EntitiesSettings>(),
+                x.GetRequiredService<IMapperDbFactory>()
+                ));
         }
 
         /// <inheritdoc/>
@@ -26,7 +32,7 @@ namespace Makc2021.Layer2.Clients.SqlServer
         {
             return new[]
             {
-                typeof(IClientProvider)
+                typeof(IMapperService)
             };
         }
 
@@ -37,7 +43,12 @@ namespace Makc2021.Layer2.Clients.SqlServer
         /// <inheritdoc/>
         protected sealed override IEnumerable<Type> GetImports()
         {
-            return Enumerable.Empty<Type>();
+            return new[]
+            {
+                typeof(EntitiesSettings),
+                typeof(IClientProvider),
+                typeof(IMapperDbFactory)
+            };
         }
 
         #endregion Protected methods

@@ -10,14 +10,14 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
         #region Properties
 
         /// <summary>
-        /// Идентификатор объекта, где хранятся данные сущности "DummyMain".
+        /// Идентификатор сущности "DummyMain".
         /// </summary>
-        public long ObjectDummyMainId { get; set; }
+        public long IdOfDummyMainEntity { get; set; }
 
         /// <summary>
-        /// Идентификатор объекта, где хранятся данные сущности "DummyManyToMany".
+        /// Идентификатор сущности "DummyManyToMany".
         /// </summary>
-        public long ObjectDummyManyToManyId { get; set; }
+        public long IdOfDummyManyToManyEntity { get; set; }
 
         #endregion Properties
     }

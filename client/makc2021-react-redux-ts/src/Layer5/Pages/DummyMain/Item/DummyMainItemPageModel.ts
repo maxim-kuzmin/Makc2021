@@ -3,7 +3,7 @@
 import { ItemGetQueryDomainOutput } from 'src/Layer4/Domains/DummyMain/Queries/Item/Get/ItemGetQueryDomainOutput';
 
 /**
- * Модель страницы элемента сущности "DummyMain".
+ * Модель страницы сущности "DummyMain".
  */
 export interface DummyMainItemPageModel {
   /**

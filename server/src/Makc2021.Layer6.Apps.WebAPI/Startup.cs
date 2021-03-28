@@ -10,8 +10,6 @@ namespace Makc2021.Layer6.Apps.WebAPI
 {
     public class Startup
     {
-        private Configurator Configurator { get; } = new Configurator();
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,24 +30,28 @@ namespace Makc2021.Layer6.Apps.WebAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+            Layer3.Sample.Mappers.EF.IMapperService appSampleMapperService,
+            IApplicationBuilder extAppBuilder,
+            IWebHostEnvironment extEnvironment            
+            )
         {
-            Configurator.Configure();
+            Configurator.Configure(appSampleMapperService);
 
-            if (env.IsDevelopment())
+            if (extEnvironment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
+                extAppBuilder.UseDeveloperExceptionPage();
+                extAppBuilder.UseSwagger();
+                extAppBuilder.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
 
-            app.UseHttpsRedirection();
+            extAppBuilder.UseHttpsRedirection();
 
-            app.UseRouting();
+            extAppBuilder.UseRouting();
 
-            app.UseAuthorization();
+            extAppBuilder.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            extAppBuilder.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });

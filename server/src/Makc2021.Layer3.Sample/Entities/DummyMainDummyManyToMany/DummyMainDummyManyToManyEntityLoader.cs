@@ -31,14 +31,14 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
         {
             props = EnsureNotNullValue(props);
 
-            if (props.Contains(nameof(EntityObject.ObjectDummyMainId)))
+            if (props.Contains(nameof(EntityObject.IdOfDummyMainEntity)))
             {
-                EntityObject.ObjectDummyMainId = source.ObjectDummyMainId;
+                EntityObject.IdOfDummyMainEntity = source.IdOfDummyMainEntity;
             }
 
-            if (props.Contains(nameof(EntityObject.ObjectDummyManyToManyId)))
+            if (props.Contains(nameof(EntityObject.IdOfDummyManyToManyEntity)))
             {
-                EntityObject.ObjectDummyManyToManyId = source.ObjectDummyManyToManyId;
+                EntityObject.IdOfDummyManyToManyEntity = source.IdOfDummyManyToManyEntity;
             }
         }
 
@@ -51,8 +51,8 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
         {
             return new HashSet<string>
             {
-                nameof(EntityObject.ObjectDummyMainId),
-                nameof(EntityObject.ObjectDummyManyToManyId)
+                nameof(EntityObject.IdOfDummyMainEntity),
+                nameof(EntityObject.IdOfDummyManyToManyEntity)
             };
         }
 

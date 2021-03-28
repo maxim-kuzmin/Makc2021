@@ -23,7 +23,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
     {
         #region Properties
 
-        private Layer3.Sample.Mappers.EF.Db.IMapperDbFactory AppSampleDbFactory { get; }
+        private Layer3.Sample.Mappers.EF.Db.IMapperDbFactory AppSampleMapperDbFactory { get; }
 
         #endregion Properties
 
@@ -32,10 +32,10 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="appSampleDbFactory">Фабрика базы данных "Sample".</param>
-        public DomainService(Layer3.Sample.Mappers.EF.Db.IMapperDbFactory appSampleDbFactory)
+        /// <param name="appSampleMapperDbFactory">Фабрика базы данных "Sample" сопоставителя.</param>
+        public DomainService(Layer3.Sample.Mappers.EF.Db.IMapperDbFactory appSampleMapperDbFactory)
         {
-            AppSampleDbFactory = appSampleDbFactory;
+            AppSampleMapperDbFactory = appSampleMapperDbFactory;
         }
 
         #endregion Constructors
@@ -47,7 +47,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         {
             ItemGetQueryDomainOutput result = null;
 
-            using var dbContext = AppSampleDbFactory.CreateDbContext();
+            using var dbContext = AppSampleMapperDbFactory.CreateDbContext();
 
             var entityOfDummyMain = await dbContext.DummyMain
                 .Include(x => x.ObjectOfDummyOneToManyEntity)
@@ -63,7 +63,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
                 if (result.ObjectsOfDummyMainDummyManyToManyEntity != null)
                 {
                     long[] idsOfDummyManyToMany = result.ObjectsOfDummyMainDummyManyToManyEntity
-                        .Select(x => x.ObjectDummyManyToManyId)
+                        .Select(x => x.IdOfDummyManyToManyEntity)
                         .ToArray();
 
                     if (idsOfDummyManyToMany.Any())
@@ -89,8 +89,8 @@ namespace Makc2021.Layer4.Domains.DummyMain
         {
             var result = new ListGetQueryDomainOutput();
 
-            using var dbContext = AppSampleDbFactory.CreateDbContext();
-            using var dbContextForTotalCount = AppSampleDbFactory.CreateDbContext();
+            using var dbContext = AppSampleMapperDbFactory.CreateDbContext();
+            using var dbContextForTotalCount = AppSampleMapperDbFactory.CreateDbContext();
 
             var queryOfItems = dbContext.DummyMain
                 .Include(x => x.ObjectOfDummyOneToManyEntity)
@@ -115,7 +115,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
                 long[] idsDummyManyToMany = result.Items
                     .Where(x => x.ObjectsOfDummyMainDummyManyToManyEntity != null)
                     .SelectMany(x => x.ObjectsOfDummyMainDummyManyToManyEntity)
-                    .Select(x => x.ObjectDummyManyToManyId)
+                    .Select(x => x.IdOfDummyManyToManyEntity)
                     .Distinct()
                     .ToArray();
 
@@ -182,7 +182,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
             )
         {
             long[] ids = item.ObjectsOfDummyMainDummyManyToManyEntity
-                .Select(x => x.ObjectDummyManyToManyId)
+                .Select(x => x.IdOfDummyManyToManyEntity)
                 .ToArray();
 
             var entities = new List<DummyManyToManyEntityMapperObject>();

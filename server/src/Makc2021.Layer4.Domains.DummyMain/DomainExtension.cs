@@ -72,20 +72,20 @@ namespace Makc2021.Layer4.Domains.DummyMain
 
             if (input.ObjectIdOfDummyOneToManyEntity > 0)
             {
-                query = query.Where(x => x.ObjectDummyOneToManyId == input.ObjectIdOfDummyOneToManyEntity);
+                query = query.Where(x => x.IdOfDummyOneToManyEntity == input.ObjectIdOfDummyOneToManyEntity);
             }
 
             if (input.ObjectIdsOfDummyOneToManyEntity != null && input.ObjectIdsOfDummyOneToManyEntity.Any())
             {
                 if (input.ObjectIdsOfDummyOneToManyEntity.Count() > 1)
                 {
-                    query = query.Where(x => input.ObjectIdsOfDummyOneToManyEntity.Contains(x.ObjectDummyOneToManyId));
+                    query = query.Where(x => input.ObjectIdsOfDummyOneToManyEntity.Contains(x.IdOfDummyOneToManyEntity));
                 }
                 else
                 {
                     long objectIdOfDummyOneToManyEntity = input.ObjectIdsOfDummyOneToManyEntity[0];
 
-                    query = query.Where(x => x.ObjectDummyOneToManyId == objectIdOfDummyOneToManyEntity);
+                    query = query.Where(x => x.IdOfDummyOneToManyEntity == objectIdOfDummyOneToManyEntity);
                 }
             }
 

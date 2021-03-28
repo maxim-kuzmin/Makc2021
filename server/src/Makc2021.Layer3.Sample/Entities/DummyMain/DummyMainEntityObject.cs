@@ -22,9 +22,9 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMain
         public string Name { get; set; }
 
         /// <summary>
-        /// Идентификатор объекта, где хранятся данные сущности "DummyOneToMany".
+        /// Идентификатор сущности "DummyOneToMany".
         /// </summary>
-        public long ObjectDummyOneToManyId { get; set; }
+        public long IdOfDummyOneToManyEntity { get; set; }
 
         /// <summary>
         /// Свойство, содержащее логическое значение.

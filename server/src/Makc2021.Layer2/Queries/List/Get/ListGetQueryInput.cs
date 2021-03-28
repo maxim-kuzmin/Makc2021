@@ -47,7 +47,8 @@ namespace Makc2021.Layer2.Queries.List.Get
                 &&
                 (
                     !QuerySettings.SORT_DIRECTION_ASC.Equals(SortDirection, StringComparison.OrdinalIgnoreCase)
-                    || !QuerySettings.SORT_DIRECTION_DESC.Equals(SortDirection, StringComparison.OrdinalIgnoreCase)
+                    &&
+                    !QuerySettings.SORT_DIRECTION_DESC.Equals(SortDirection, StringComparison.OrdinalIgnoreCase)
                 ))
             {
                 result.Add(nameof(SortField));

@@ -42,7 +42,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMain
                 .HasMaxLength(setting.DbMaxLengthForName)
                 .HasColumnName(setting.DbColumnForName);
 
-            builder.Property(x => x.ObjectDummyOneToManyId)
+            builder.Property(x => x.IdOfDummyOneToManyEntity)
                 .IsRequired()
                 .HasColumnName(setting.DbColumnForDummyOneToManyEntityId);
 
@@ -98,11 +98,11 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.DummyMain
                 .HasColumnName(setting.DbColumnForPropStringNullable);
 
             builder.HasIndex(x => x.Name).IsUnique().HasDatabaseName(setting.DbUniqueIndexForName);
-            builder.HasIndex(x => x.ObjectDummyOneToManyId).HasDatabaseName(setting.DbIndexForDummyOneToManyEntityId);
+            builder.HasIndex(x => x.IdOfDummyOneToManyEntity).HasDatabaseName(setting.DbIndexForDummyOneToManyEntityId);
 
             builder.HasOne(x => x.ObjectOfDummyOneToManyEntity)
                 .WithMany(x => x.ObjectsOfDummyMainEntity)
-                .HasForeignKey(x => x.ObjectDummyOneToManyId)
+                .HasForeignKey(x => x.IdOfDummyOneToManyEntity)
                 .HasConstraintName(setting.DbForeignKeyToDummyOneToManyEntity);
         }
 
