@@ -70,28 +70,28 @@ namespace Makc2021.Layer4.Domains.DummyMain
                 }
             }
 
-            if (input.ObjectIdOfDummyOneToManyEntity > 0)
+            if (input.IdOfDummyOneToManyEntity > 0)
             {
-                query = query.Where(x => x.IdOfDummyOneToManyEntity == input.ObjectIdOfDummyOneToManyEntity);
+                query = query.Where(x => x.IdOfDummyOneToManyEntity == input.IdOfDummyOneToManyEntity);
             }
 
-            if (input.ObjectIdsOfDummyOneToManyEntity != null && input.ObjectIdsOfDummyOneToManyEntity.Any())
+            if (input.IdsOfDummyOneToManyEntity != null && input.IdsOfDummyOneToManyEntity.Any())
             {
-                if (input.ObjectIdsOfDummyOneToManyEntity.Count() > 1)
+                if (input.IdsOfDummyOneToManyEntity.Count() > 1)
                 {
-                    query = query.Where(x => input.ObjectIdsOfDummyOneToManyEntity.Contains(x.IdOfDummyOneToManyEntity));
+                    query = query.Where(x => input.IdsOfDummyOneToManyEntity.Contains(x.IdOfDummyOneToManyEntity));
                 }
                 else
                 {
-                    long objectIdOfDummyOneToManyEntity = input.ObjectIdsOfDummyOneToManyEntity[0];
+                    long objectIdOfDummyOneToManyEntity = input.IdsOfDummyOneToManyEntity[0];
 
                     query = query.Where(x => x.IdOfDummyOneToManyEntity == objectIdOfDummyOneToManyEntity);
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(input.ObjectNameOfDummyOneToManyEntity))
+            if (!string.IsNullOrWhiteSpace(input.NameOfDummyOneToManyEntity))
             {
-                query = query.Where(x => x.ObjectOfDummyOneToManyEntity.Name.Contains(input.ObjectNameOfDummyOneToManyEntity));
+                query = query.Where(x => x.ObjectOfDummyOneToManyEntity.Name.Contains(input.NameOfDummyOneToManyEntity));
             }
 
             return query;

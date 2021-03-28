@@ -31,24 +31,24 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
         public string EntityName { get; set; }
 
         /// <summary>
-        /// Имя объекта сущности "DummyOneToMany".
+        /// Имя сущности "DummyOneToMany".
         /// </summary>
-        public string ObjectNameOfDummyOneToManyEntity { get; set; }
+        public string NameOfDummyOneToManyEntity { get; set; }
 
         /// <summary>
-        /// Идентификатор объекта сущности "DummyOneToMany".
+        /// Идентификатор сущности "DummyOneToMany".
         /// </summary>
-        public long ObjectIdOfDummyOneToManyEntity { get; set; }
+        public long IdOfDummyOneToManyEntity { get; set; }
+
+        /// <summary>
+        /// Идентификаторы сущности "DummyOneToMany".
+        /// </summary>
+        public long[] IdsOfDummyOneToManyEntity { get; set; }
 
         /// <summary>
         /// Строка идентификаторов сущности "DummyOneToMany".
         /// </summary>
-        public string ObjectIdsStringOfDummyOneToManyEntity { get; set; }
-
-        /// <summary>
-        /// Идентификаторы объектов сущности "DummyOneToMany".
-        /// </summary>
-        public long[] ObjectIdsOfDummyOneToManyEntity { get; set; }
+        public string IdsStringOfDummyOneToManyEntity { get; set; }
 
         #endregion Properties
 
@@ -71,17 +71,17 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
                 SortDirection = QuerySettings.SORT_DIRECTION_DESC;
             }
 
-            bool isOk = !string.IsNullOrWhiteSpace(ObjectIdsStringOfDummyOneToManyEntity)
+            bool isOk = !string.IsNullOrWhiteSpace(IdsStringOfDummyOneToManyEntity)
                 &&
                 (
-                    ObjectIdsOfDummyOneToManyEntity == null
+                    IdsOfDummyOneToManyEntity == null
                     ||
-                    !ObjectIdsOfDummyOneToManyEntity.Any()
+                    !IdsOfDummyOneToManyEntity.Any()
                 );
 
             if (isOk)
             {
-                ObjectIdsOfDummyOneToManyEntity = ObjectIdsStringOfDummyOneToManyEntity.FromStringToNumericInt64Array();
+                IdsOfDummyOneToManyEntity = IdsStringOfDummyOneToManyEntity.FromStringToNumericInt64Array();
             }
 
             if (!string.IsNullOrWhiteSpace(EntityIdsString) && (EntityIds == null || !EntityIds.Any()))
