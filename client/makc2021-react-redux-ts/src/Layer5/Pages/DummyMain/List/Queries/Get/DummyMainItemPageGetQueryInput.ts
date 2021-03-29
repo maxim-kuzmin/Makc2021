@@ -9,5 +9,5 @@ export interface DummyMainListPageGetQueryInput {
   /**
    * Список.
    */
-  List: ListGetQueryDomainInput;
+  list: ListGetQueryDomainInput;
 }
