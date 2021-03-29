@@ -2,22 +2,22 @@
 
 using System.Threading.Tasks;
 using Makc2021.Layer1.Completion;
-using Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.List;
-using Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.List.Queries.Get;
+using Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item;
+using Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item.Queries.Get;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Makc2021.Layer6.Apps.WebAPI.Controllers
+namespace Makc2021.Layer6.Apps.WebAPI.Controllers.Pages.DummyMain.Item
 {
     /// <summary>
-    /// Контроллер страницы сущностей "DummyMain".
+    /// Контроллер страницы сущности "DummyMain".
     /// </summary>
     [ApiController]
-    [Route("api/pages/dummy-main/list")]
-    public class DummyMainListPageController : ControllerBase
+    [Route("api/pages/dummy-main/item")]
+    public class DummyMainItemPageController : ControllerBase
     {
         #region Properties
 
-        private IDummyMainListPageService AppService { get; }
+        private IDummyMainItemPageService AppService { get; }
 
         #endregion Properties
 
@@ -27,7 +27,7 @@ namespace Makc2021.Layer6.Apps.WebAPI.Controllers
         /// Конструктор.
         /// </summary>
         /// <param name="appService">Сервис.</param>
-        public DummyMainListPageController(IDummyMainListPageService appService)
+        public DummyMainItemPageController(IDummyMainItemPageService appService)
         {
             AppService = appService;
         }
@@ -39,16 +39,14 @@ namespace Makc2021.Layer6.Apps.WebAPI.Controllers
         /// <summary>
         /// Получить.
         /// </summary>
-        /// <param name="pageNumber">Номер страницы.</param>
-        /// <param name="pageSize">Размер страницы.</param>
+        /// <param name="entityId">Идентификатор сущности.</param>
         /// <returns>Задача на получение результата.</returns>
-        [HttpGet, Route("{pageNumber}")]
-        public async Task<IActionResult> Get(int pageNumber, int pageSize)
+        [HttpGet, Route("{entityId}")]
+        public async Task<IActionResult> Get(int entityId)
         {
-            DummyMainListPageGetQueryInput input = new();
+            DummyMainItemPageGetQueryInput input = new();
 
-            input.List.PageNumber = pageNumber;
-            input.List.PageSize = pageSize;
+            input.Item.EntityId = entityId;
 
             var result = await AppService.Get(input).ConfigureAwaitWithCultureSaving(false);
 
