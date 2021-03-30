@@ -11,3 +11,11 @@ export interface ItemGetQueryDomainOutput {
    */
   objectOfDummyMainEntity: DummyMainEntityObject;
 }
+
+/**
+ * Создать выходные данные запроса на получение элемента в домене.
+ * @returns Выходные данные запроса на получение элемента в домене.
+ */
+export function createItemGetQueryDomainOutput(): ItemGetQueryDomainOutput {
+  return {} as ItemGetQueryDomainOutput;
+}

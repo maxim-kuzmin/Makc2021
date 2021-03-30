@@ -14,3 +14,14 @@ export interface DummyMainEntityObject {
    */
   name: string;
 }
+
+/**
+ * Создать объект сущности "DummyMain".
+ * @returns Объект сущности "DummyMain".
+ */
+export function createDummyMainEntityObject(): DummyMainEntityObject {
+  return {
+    id: 0,
+    name: ''
+  } as DummyMainEntityObject;
+}

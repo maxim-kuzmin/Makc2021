@@ -1,6 +1,9 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { ListGetQueryInput } from 'src/Layer2/Queries/List/Get/ListGetQueryInput';
+import {
+  createListGetQueryInput,
+  ListGetQueryInput
+} from 'src/Layer2/Queries/List/Get/ListGetQueryInput';
 
 /**
  * Входные данные запроса на получение списка в домене.
@@ -40,4 +43,21 @@ export interface ListGetQueryDomainInput extends ListGetQueryInput {
    * Строка идентификаторов сущности "DummyOneToMany".
    */
   idsStringOfDummyOneToManyEntity: string;
+}
+
+/**
+ * Создать входные данные запроса на получение списка в домене.
+ * @returns Входные данные запроса на получение списка в домене.
+ */
+export function createListGetQueryDomainInput(): ListGetQueryDomainInput {
+  return {
+    entityIds: [],
+    entityIdsString: '',
+    entityName: '',
+    nameOfDummyOneToManyEntity: '',
+    idOfDummyOneToManyEntity: 0,
+    idsOfDummyOneToManyEntity: [],
+    idsStringOfDummyOneToManyEntity: '',
+    ...createListGetQueryInput()
+  } as ListGetQueryDomainInput;
 }

@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPage';
 
 function App() {
   return (
@@ -17,7 +19,7 @@ function App() {
               <Link to="/counter">Counter</Link>
             </li>
             <li>
-              <Link to="/posts">Posts</Link>
+              <Link to="/dummy-main/item/1">Сущность "DummyMain"</Link>
             </li>
           </ul>
           <hr />
@@ -28,8 +30,8 @@ function App() {
             <Route exact path="/counter">
               <Counter />
             </Route>
-            <Route exact path="/posts">
-              <Posts />
+            <Route exact path="/dummy-main/item/:id">
+              <DummyMainItemPage />
             </Route>
           </Switch>
           <p>
@@ -85,14 +87,6 @@ function Home() {
   return (
     <div>
       <h2>Home</h2>
-    </div>
-  );
-}
-
-function Posts() {
-  return (
-    <div>
-      <h2>Posts</h2>
     </div>
   );
 }

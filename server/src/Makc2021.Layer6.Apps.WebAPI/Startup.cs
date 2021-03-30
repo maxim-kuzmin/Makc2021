@@ -1,6 +1,7 @@
 using Makc2021.Layer5.Apps.WebAPI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,7 +23,18 @@ namespace Makc2021.Layer6.Apps.WebAPI
         {
             Configurator.ConfigureServices(services);
 
+            services.AddCors(options => options.AddDefaultPolicy(builder =>
+            {
+                builder.WithOrigins("http://localhost:3000") //AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();
+            }));
+
             services.AddControllers();
+
+            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
@@ -48,6 +60,8 @@ namespace Makc2021.Layer6.Apps.WebAPI
             extAppBuilder.UseHttpsRedirection();
 
             extAppBuilder.UseRouting();
+
+            extAppBuilder.UseCors();
 
             extAppBuilder.UseAuthorization();
 

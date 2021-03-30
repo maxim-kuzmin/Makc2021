@@ -9,3 +9,13 @@ export interface ItemGetQueryInput {
    */
   entityId: number;
 }
+
+/**
+ * Создать входные данные запроса на получение элемента.
+ * @returns Входные данные запроса на получение элемента.
+ */
+export function createItemGetQueryInput(): ItemGetQueryInput {
+  return {
+    entityId: 0
+  } as ItemGetQueryInput;
+}

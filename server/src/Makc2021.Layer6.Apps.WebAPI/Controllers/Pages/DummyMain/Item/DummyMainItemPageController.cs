@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Makc2021.Layer1.Completion;
 using Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item;
 using Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item.Queries.Get;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Makc2021.Layer6.Apps.WebAPI.Controllers.Pages.DummyMain.Item
@@ -11,6 +12,7 @@ namespace Makc2021.Layer6.Apps.WebAPI.Controllers.Pages.DummyMain.Item
     /// <summary>
     /// Контроллер страницы сущности "DummyMain".
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("api/pages/dummy-main/item")]
     public class DummyMainItemPageController : ControllerBase

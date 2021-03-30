@@ -24,3 +24,16 @@ export interface ListGetQueryInput {
    */
   sortDirection: string;
 }
+
+/**
+ * Создать входные данные запроса на получение списка.
+ * @returns Входные данные запроса на получение списка.
+ */
+export function createListGetQueryInput(): ListGetQueryInput {
+  return {
+    pageNumber: 0,
+    pageSize: 0,
+    sortField: '',
+    sortDirection: ''
+  } as ListGetQueryInput;
+}

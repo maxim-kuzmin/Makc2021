@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { QueryResult } from './QueryResult';
+import { createQueryResult, QueryResult } from './QueryResult';
 
 /**
  * Результат запроса с выходными данными.
@@ -21,12 +21,7 @@ export interface QueryResultWithOutput<TOutput> extends QueryResult {
 export function createQueryResultWithOutput<
   TOutput
 >(): QueryResultWithOutput<TOutput> {
-  return ({
-    isOk: false,
-    errorMessages: [],
-    output: null,
-    queryCode: '',
-    successMessages: [],
-    warningMessages: []
-  } as unknown) as QueryResultWithOutput<TOutput>;
+  return {
+    ...createQueryResult()
+  } as QueryResultWithOutput<TOutput>;
 }
