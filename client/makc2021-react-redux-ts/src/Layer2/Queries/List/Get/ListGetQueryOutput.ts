@@ -1,7 +1,8 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 /**
- * Выходные данные запроса на получение списка элементов типа TItem.
+ * Выходные данные запроса на получение списка элементов.
+ * @template TItem Тип элемента.
  */
 export interface ListGetQueryOutput<TItem> {
   /**
@@ -16,8 +17,9 @@ export interface ListGetQueryOutput<TItem> {
 }
 
 /**
- * Создать выходные данные запроса на получение списка элементов типа TItem.
- * @returns Выходные данные запроса на получение списка элементов типа TItem.
+ * Создать выходные данные запроса на получение списка элементов.
+ * @template TItem Тип элемента.
+ * @returns Выходные данные запроса на получение списка элементов.
  */
 export function createListGetQueryOutput<TItem>(): ListGetQueryOutput<TItem> {
   return {

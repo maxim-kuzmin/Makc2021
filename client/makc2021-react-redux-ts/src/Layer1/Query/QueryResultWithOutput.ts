@@ -4,7 +4,7 @@ import { createQueryResult, QueryResult } from './QueryResult';
 
 /**
  * Результат запроса с выходными данными.
- * @param <TOutput> Тип выходных данных.
+ * @template TOutput Тип выходных данных.
  */
 export interface QueryResultWithOutput<TOutput> extends QueryResult {
   /**
@@ -15,7 +15,7 @@ export interface QueryResultWithOutput<TOutput> extends QueryResult {
 
 /**
  * Создать результат запроса.
- * @param <TOutput> Тип выходных данных.
+ * @template TOutput Тип выходных данных.
  * @returns Результат запроса.
  */
 export function createQueryResultWithOutput<

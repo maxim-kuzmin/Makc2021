@@ -4,24 +4,27 @@ import './App.css';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import React from 'react';
 import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPage';
+import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPage';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/counter">Counter</Link>
-            </li>
-            <li>
-              <Link to="/dummy-main/item/1">Сущность "DummyMain"</Link>
-            </li>
-          </ul>
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'space-around',
+              width: '100%'
+            }}
+          >
+            <Link to="/">Home</Link>
+            <Link to="/counter">Counter</Link>
+            <Link to="/dummy-main/item/1">Сущность "DummyMain"</Link>
+            <Link to="/dummy-main/list">Сущности "DummyMain"</Link>
+          </div>
           <hr />
           <Switch>
             <Route exact path="/">
@@ -32,6 +35,9 @@ function App() {
             </Route>
             <Route exact path="/dummy-main/item/:id">
               <DummyMainItemPage />
+            </Route>
+            <Route exact path="/dummy-main/list">
+              <DummyMainListPage />
             </Route>
           </Switch>
           <p>

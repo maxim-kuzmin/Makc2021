@@ -28,10 +28,11 @@ class HttpClient {
   }
 
   /**
-   * GET-запрос результата типа TResult.
+   * Запрос методом GET.
+   * @template TResult Тип результата.
    * @param url URL.
    * @param customConfig Настраиваемая конфигурация.
-   * @returns Обещание результата типа TResult.
+   * @returns Обещание результата.
    */
   get<TResult>(url: string, customConfig: any = {}): Promise<TResult> {
     return this.request<TResult>(url, {
@@ -41,11 +42,12 @@ class HttpClient {
   }
 
   /**
-   * POST-запрос результата типа TResult.
+   * Запрос методом POST.
+   * @template TResult Тип результата.
    * @param url URL.
    * @param body Тело.
    * @param customConfig Настраиваемая конфигурация.
-   * @returns Обещание результата типа TResult.
+   * @returns Обещание результата.
    */
   post<TResult>(
     url: string,
