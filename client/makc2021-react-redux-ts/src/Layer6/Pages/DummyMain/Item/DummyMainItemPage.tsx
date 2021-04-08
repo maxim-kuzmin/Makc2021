@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { DummyMainItemPageParams } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageParams';
@@ -13,6 +13,7 @@ import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain
 
 /**
  * Страница сущности "DummyMain".
+ * @returns HTML.
  */
 export function DummyMainItemPage() {
   const { id } = useParams<DummyMainItemPageParams>();
@@ -36,10 +37,10 @@ export function DummyMainItemPage() {
 
   if (id) {
     htmlOfId = (
-      <React.Fragment>
+      <>
         <h3>Идентификатор:</h3>
         {id}
-      </React.Fragment>
+      </>
     );
   }
 
@@ -57,10 +58,10 @@ export function DummyMainItemPage() {
     const { objectOfDummyMainEntity: entity } = output.item;
 
     htmlOfEntity = (
-      <React.Fragment>
+      <>
         <h3>Имя:</h3>
         {entity.name}
-      </React.Fragment>
+      </>
     );
   } else if (errorMessages.length > 0) {
     htmlOfErrors = errorMessages.map((errorMessage) => (
@@ -68,20 +69,20 @@ export function DummyMainItemPage() {
     ));
 
     htmlOfErrors = (
-      <React.Fragment>
+      <>
         <h3>Ошибки в запросе {queryCode}:</h3>
         <ul>{htmlOfErrors}</ul>
-      </React.Fragment>
+      </>
     );
   }
 
   return (
-    <React.Fragment>
+    <>
       <h2>Сущность "DummyMain"</h2>
       {htmlOfId}
       {htmlOfWaiting}
       {htmlOfErrors}
       {htmlOfEntity}
-    </React.Fragment>
+    </>
   );
 }

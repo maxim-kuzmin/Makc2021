@@ -1,3 +1,4 @@
+// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 class HttpClient {
   async request<TResult>(url: string, payload: any = {}): Promise<TResult> {
     const { body, ...customConfig } = payload;
