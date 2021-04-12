@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { useTable, usePagination } from 'react-table';
 import { TableControlProps } from './TableControlProps';
 
@@ -12,45 +12,64 @@ import { TableControlProps } from './TableControlProps';
 export function TableControl<TRow extends object>({
   columns,
   data,
-  fetchData,
+  createPageUrl,
   loading,
-  pageCount: controlledPageCount
+  pageNumber,
+  pageSize,
+  totalCount
 }: React.PropsWithChildren<TableControlProps<TRow>>) {
+  pageSize = normalizePageSize(pageSize);
+
+  const pageCount = pageSize > 0 ? Math.ceil(totalCount / pageSize) : 1;
+
+  pageNumber = normalizePageNumber(pageNumber, pageCount);
+
+  const canPreviousPage = pageNumber > 1;
+  const canNextPage = pageNumber < pageCount;
+
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     prepareRow,
-    page,
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
-    setPageSize,
-    // Get the state from the instance
-    state: { pageIndex, pageSize }
+    page
   } = useTable(
     {
       columns,
       data,
-      initialState: { pageIndex: 0 },
-      manualPagination: true,
-
-      // hook that we'll handle our own data fetching
-      // This means we'll also have to provide our own
-      // pageCount.
-      pageCount: controlledPageCount
+      manualPagination: true
     },
     usePagination
   );
 
-  // Listen for changes in pagination and use the state to fetch our new data
-  useEffect(() => {
-    fetchData({ pageIndex, pageSize });
-  }, [fetchData, pageIndex, pageSize]);
+  function createPageLink(
+    pageNumber: number,
+    text: string,
+    isClickable: boolean
+  ) {
+    pageNumber = normalizePageNumber(pageNumber, pageCount);
+
+    return isClickable ? (
+      <Link to={createPageUrl(pageNumber, pageSize)}>{text}</Link>
+    ) : (
+      <Link
+        to={createPageUrl(pageNumber, pageSize)}
+        onClick={(event) => event.preventDefault()}
+        className="App-nonclickable"
+      >
+        {text}
+      </Link>
+    );
+  }
+
+  const history = useHistory();
+
+  function goToPage(pageNumber: number, pageSize: number) {
+    pageNumber = normalizePageNumber(pageNumber, pageCount);
+    pageSize = normalizePageSize(pageSize);
+
+    history.push(createPageUrl(pageNumber, pageSize));
+  }
 
   // Render the UI for your table
   return (
@@ -59,7 +78,7 @@ export function TableControl<TRow extends object>({
         <code>
           {JSON.stringify(
             {
-              pageIndex,
+              pageNumber,
               pageSize,
               pageCount,
               canNextPage,
@@ -118,44 +137,31 @@ export function TableControl<TRow extends object>({
               <td colSpan={10000}>Loading...</td>
             ) : (
               <td colSpan={10000}>
-                Showing {page.length} of ~{controlledPageCount * pageSize}{' '}
-                results
+                Showing {page.length} of ~{pageCount * pageSize} results
               </td>
             )}
           </tr>
         </tbody>
       </table>
-      {/* 
-        Pagination can be built however you'd like. 
-        This is just a very basic UI implementation:
-      */}
       <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'<<'}
-        </button>{' '}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'<'}
-        </button>{' '}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {'>'}
-        </button>{' '}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>'}
-        </button>{' '}
+        {createPageLink(1, '<<', canPreviousPage)}{' '}
+        {createPageLink(pageNumber - 1, '<', canPreviousPage)}{' '}
+        {createPageLink(pageNumber + 1, '>', canNextPage)}{' '}
+        {createPageLink(pageCount, '>>', canNextPage)}
         <span>
           Page{' '}
           <strong>
-            {pageIndex + 1} of {pageOptions.length}
+            {pageNumber} of {pageCount}
           </strong>{' '}
         </span>
         <span>
           | Go to page:{' '}
           <input
             type="number"
-            defaultValue={pageIndex + 1}
+            defaultValue={pageNumber}
             onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              gotoPage(page);
+              const page = e.target.value ? Number(e.target.value) : 1;
+              goToPage(page, pageSize);
             }}
             style={{ width: '100px' }}
           />
@@ -163,10 +169,10 @@ export function TableControl<TRow extends object>({
         <select
           value={pageSize}
           onChange={(e) => {
-            setPageSize(Number(e.target.value));
+            goToPage(1, Number(e.target.value));
           }}
         >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
+          {[1, 2, 3].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>
@@ -175,4 +181,24 @@ export function TableControl<TRow extends object>({
       </div>
     </>
   );
+}
+
+function normalizePageNumber(pageNumber: number, pageCount: number) {
+  if (pageNumber < 1) {
+    pageNumber = 1;
+  }
+
+  if (pageNumber > pageCount) {
+    pageNumber = pageCount;
+  }
+
+  return pageNumber;
+}
+
+function normalizePageSize(pageSize: number) {
+  if (pageSize < 1) {
+    pageSize = 0;
+  }
+
+  return pageSize;
 }

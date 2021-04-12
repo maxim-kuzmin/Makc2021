@@ -18,17 +18,27 @@ export interface TableControlProps<TRow extends object> {
   data: TRow[];
 
   /**
-   * Функция получения данных.
-   */
-  fetchData: Function;
-
-  /**
    * Признак загрузки.
    */
   loading: boolean;
 
   /**
-   * Число страниц.
+   * Номер страницы.
    */
-  pageCount: number;
+  pageNumber: number;
+
+  /**
+   * Размер страницы.
+   */
+  pageSize: number;
+
+  /**
+   * Общее количество записей.
+   */
+  totalCount: number;
+
+  /**
+   * Создать URL страницы.
+   */
+  createPageUrl: (pageNumber: number, pageSize: number) => string;
 }

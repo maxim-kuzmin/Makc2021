@@ -16,6 +16,6 @@ export interface ItemGetQueryDomainOutput {
  * Создать выходные данные запроса на получение элемента в домене.
  * @returns Выходные данные запроса на получение элемента в домене.
  */
-export function createItemGetQueryDomainOutput(): ItemGetQueryDomainOutput {
+export function createItemGetQueryDomainOutput() {
   return {} as ItemGetQueryDomainOutput;
 }

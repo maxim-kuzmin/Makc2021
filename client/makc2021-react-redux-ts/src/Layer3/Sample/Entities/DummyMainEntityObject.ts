@@ -19,7 +19,7 @@ export interface DummyMainEntityObject {
  * Создать объект сущности "DummyMain".
  * @returns Объект сущности "DummyMain".
  */
-export function createDummyMainEntityObject(): DummyMainEntityObject {
+export function createDummyMainEntityObject() {
   return {
     id: 0,
     name: ''

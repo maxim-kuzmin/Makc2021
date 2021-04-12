@@ -34,7 +34,7 @@ export interface QueryResult {
  * Создать результат запроса.
  * @returns Результат запроса.
  */
-export function createQueryResult(): QueryResult {
+export function createQueryResult() {
   return {
     isOk: false,
     errorMessages: [],

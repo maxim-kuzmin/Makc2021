@@ -1,7 +1,10 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation } from 'react-router';
 import { Column } from 'react-table';
+import { appLayer1Module } from 'src/Layer1/Module';
+import { createUrlParts } from 'src/Layer1/Url/UrlParts';
 import { TableControl } from 'src/Layer6/Controls/Table/TableControl';
 import { DummyMainListPageTableRow } from './Table/DummyMainListPageTableRow';
 
@@ -10,25 +13,6 @@ import { DummyMainListPageTableRow } from './Table/DummyMainListPageTableRow';
  * @returns HTML.
  */
 export function DummyMainListPage() {
-  const serverData = useMemo(
-    () =>
-      [
-        {
-          col1: 'Hello',
-          col2: 'World'
-        },
-        {
-          col1: 'react-table',
-          col2: 'rocks'
-        },
-        {
-          col1: 'whatever',
-          col2: 'you want'
-        }
-      ] as DummyMainListPageTableRow[],
-    []
-  );
-
   const columns = useMemo(
     () =>
       [
@@ -44,53 +28,88 @@ export function DummyMainListPage() {
     []
   );
 
+  const location = useLocation();
+
+  const query = useMemo(
+    () => appLayer1Module.urlServive.parseSearch(location.search),
+    [location.search]
+  );
+
+  const serverData = useMemo(
+    () =>
+      [
+        {
+          col1: '1',
+          col2: '111'
+        },
+        {
+          col1: '2',
+          col2: '222'
+        },
+        {
+          col1: '3',
+          col2: '333'
+        }
+      ] as DummyMainListPageTableRow[],
+    []
+  );
+
   // We'll start our table without any data
   const [data, setData] = useState<DummyMainListPageTableRow[]>([]);
   const [loading, setLoading] = useState(false);
-  const [pageCount, setPageCount] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
   const fetchIdRef = useRef(0);
 
-  const fetchData = useCallback(
-    ({ pageSize, pageIndex }) => {
-      // This will get called when the table needs new data
-      // You could fetch your data from literally anywhere,
-      // even a server. But for this example, we'll just fake it.
+  const pageNumber = Number(query['pn'] ?? '1');
+  const pageSize = Number(query['ps'] ?? '1');
 
-      // Give this fetch an ID
-      const fetchId = ++fetchIdRef.current;
+  useEffect(() => {
+    // Give this fetch an ID
+    const fetchId = ++fetchIdRef.current;
 
-      // Set the loading state
-      setLoading(true);
+    // Set the loading state
+    setLoading(true);
 
-      // We'll even set a delay to simulate a server here
-      setTimeout(() => {
-        console.log(
-          `fetchId=${fetchId}, fetchIdRef.current=${fetchIdRef.current}`
-        );
-        // Only update the data if this is the latest fetch
-        if (fetchId === fetchIdRef.current) {
-          const startRow = pageSize * pageIndex;
-          const endRow = startRow + pageSize;
-          setData(serverData.slice(startRow, endRow));
+    // We'll even set a delay to simulate a server here
+    setTimeout(() => {
+      // Only update the data if this is the latest fetch
+      if (fetchId === fetchIdRef.current) {
+        const startRow = pageSize * (pageNumber - 1);
+        const endRow = startRow + pageSize;
+        setData(serverData.slice(startRow, endRow));
 
-          // Your server could send back total page count.
-          // For now we'll just fake it, too
-          setPageCount(Math.ceil(serverData.length / pageSize));
+        setTotalCount(serverData.length);
 
-          setLoading(false);
-        }
-      }, 1000);
+        setLoading(false);
+      }
+    }, 1000);
+  }, [pageNumber, pageSize, serverData]);
+
+  const createPageUrl = useCallback(
+    (pageNumber, pageSize) => {
+      const urlParts = createUrlParts();
+
+      urlParts.path = location.pathname;
+
+      urlParts.query = {
+        pn: pageNumber,
+        ps: pageSize
+      };
+
+      return appLayer1Module.urlServive.createUrl(urlParts);
     },
-    [serverData]
+    [location.pathname]
   );
 
   return (
     <TableControl
       columns={columns}
       data={data}
-      fetchData={fetchData}
       loading={loading}
-      pageCount={pageCount}
+      pageNumber={pageNumber}
+      pageSize={pageSize}
+      totalCount={totalCount}
+      createPageUrl={createPageUrl}
     />
   );
 }

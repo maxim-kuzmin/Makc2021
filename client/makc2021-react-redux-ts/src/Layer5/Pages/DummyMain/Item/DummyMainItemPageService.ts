@@ -1,10 +1,11 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { httpClient } from 'src/Layer1/Query/Http/HttpClient';
+import { appLayer1Module } from 'src/Layer1/Module';
 import {
   QueryResultWithOutput,
   createQueryResultWithOutput
 } from 'src/Layer1/Query/QueryResultWithOutput';
+import { appLayer5Module } from 'src/Layer5/Module';
 import { DummyMainItemPageGetQueryInput } from './Queries/Get/DummyMainItemPageGetQueryInput';
 import { DummyMainItemPageGetQueryOutput } from './Queries/Get/DummyMainItemPageGetQueryOutput';
 
@@ -18,11 +19,13 @@ export async function get(
 ): Promise<QueryResultWithOutput<DummyMainItemPageGetQueryOutput>> {
   let result: QueryResultWithOutput<DummyMainItemPageGetQueryOutput>;
 
-  const url = `http://localhost:5000/api/pages/dummy-main/item/${input.item.entityId}`;
+  const url = appLayer5Module.service.createApiUrl(
+    `pages/dummy-main/item/${input.item.entityId}`
+  );
 
   try {
     if (input.item.entityId > 0) {
-      result = await httpClient.get(url);
+      result = await appLayer1Module.httpServive.get(url);
     } else {
       result = createQueryResultWithOutput<DummyMainItemPageGetQueryOutput>();
 

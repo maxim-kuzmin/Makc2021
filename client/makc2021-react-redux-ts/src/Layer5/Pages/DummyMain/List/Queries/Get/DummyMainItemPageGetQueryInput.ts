@@ -15,7 +15,7 @@ export interface DummyMainListPageGetQueryInput {
   list: ListGetQueryDomainInput;
 }
 
-export function createDummyMainListPageGetQueryInput(): DummyMainListPageGetQueryInput {
+export function createDummyMainListPageGetQueryInput() {
   return {
     list: createListGetQueryDomainInput()
   } as DummyMainListPageGetQueryInput;

@@ -49,7 +49,7 @@ export interface ListGetQueryDomainInput extends ListGetQueryInput {
  * Создать входные данные запроса на получение списка в домене.
  * @returns Входные данные запроса на получение списка в домене.
  */
-export function createListGetQueryDomainInput(): ListGetQueryDomainInput {
+export function createListGetQueryDomainInput() {
   return {
     entityIds: [],
     entityIdsString: '',

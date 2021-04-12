@@ -1,3 +1,5 @@
+// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
+
 import {
   createQueryResultWithOutput,
   QueryResultWithOutput
@@ -23,7 +25,7 @@ export interface DummyMainItemPageState {
  * Создать состояние страницы сущности "DummyMain".
  * @returns Состояние страницы сущности "DummyMain".
  */
-export function createDummyMainItemPageState(): DummyMainItemPageState {
+export function createDummyMainItemPageState() {
   return {
     getQueryResult: createQueryResultWithOutput<DummyMainItemPageGetQueryOutput>(),
     isWaiting: false

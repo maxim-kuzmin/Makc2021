@@ -19,7 +19,7 @@ export interface ItemGetQueryDomainInput extends ItemGetQueryInput {
  * Создать входные данные запроса на получение элемента в домене.
  * @returns Входные данные запроса на получение элемента в домене.
  */
-export function createItemGetQueryDomainInput(): ItemGetQueryDomainInput {
+export function createItemGetQueryDomainInput() {
   return {
     entityName: '',
     ...createItemGetQueryInput()

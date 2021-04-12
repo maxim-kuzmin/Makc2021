@@ -1,17 +1,28 @@
-import logo from './logo.svg';
+// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
+
 import { Counter } from './features/counter/Counter';
 import './App.css';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
-import React from 'react';
 import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPage';
 import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPage';
+import { appLayer5Module } from './Layer5/Module';
+import { appLayer1Module } from './Layer1/Module';
+import { createAppSettings } from './AppSettings';
 
+/**
+ * Приложение.
+ * @returns HTML.
+ */
 function App() {
+  const appSettings = createAppSettings();
+
+  appLayer1Module.configure();
+  appLayer5Module.configure(appSettings.apiUrl);
+
   return (
     <Router>
       <div className="App">
         <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <div
             style={{
               display: 'flex',

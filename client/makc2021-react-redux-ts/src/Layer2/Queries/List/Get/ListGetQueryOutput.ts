@@ -21,7 +21,7 @@ export interface ListGetQueryOutput<TItem> {
  * @template TItem Тип элемента.
  * @returns Выходные данные запроса на получение списка элементов.
  */
-export function createListGetQueryOutput<TItem>(): ListGetQueryOutput<TItem> {
+export function createListGetQueryOutput<TItem>() {
   return {
     totalCount: 0
   } as ListGetQueryOutput<TItem>;

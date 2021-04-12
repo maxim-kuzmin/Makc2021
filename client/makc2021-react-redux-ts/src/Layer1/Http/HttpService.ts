@@ -1,5 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
-class HttpClient {
+
+export class HttpService {
   async request<TResult>(url: string, payload: any = {}): Promise<TResult> {
     const { body, ...customConfig } = payload;
 
@@ -62,8 +63,3 @@ class HttpClient {
     });
   }
 }
-
-/**
- * Клиент HTTP.
- */
-export const httpClient = new HttpClient();

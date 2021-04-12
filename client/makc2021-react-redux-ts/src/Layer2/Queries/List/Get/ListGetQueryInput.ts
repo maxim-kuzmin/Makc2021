@@ -29,7 +29,7 @@ export interface ListGetQueryInput {
  * Создать входные данные запроса на получение списка.
  * @returns Входные данные запроса на получение списка.
  */
-export function createListGetQueryInput(): ListGetQueryInput {
+export function createListGetQueryInput() {
   return {
     pageNumber: 0,
     pageSize: 0,

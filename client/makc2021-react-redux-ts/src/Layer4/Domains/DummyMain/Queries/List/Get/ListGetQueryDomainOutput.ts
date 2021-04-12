@@ -16,7 +16,7 @@ export interface ListGetQueryDomainOutput
  * Создать выходные данные запроса на получение списка в домене.
  * @returns Выходные данные запроса на получение списка в домене.
  */
-export function createListGetQueryDomainOutput(): ListGetQueryDomainOutput {
+export function createListGetQueryDomainOutput() {
   return {
     ...createListGetQueryOutput<ItemGetQueryDomainOutput>()
   } as ListGetQueryDomainOutput;
