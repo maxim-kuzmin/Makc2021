@@ -4,18 +4,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { DummyMainItemPageParams } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageParams';
-import {
-  loadAsync,
-  selectGetQueryResult,
-  selectIsWaiting
-} from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageSlice';
 import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Get/DummyMainItemPageGetQueryInput';
+import { Module as Layer5Module } from 'src/Layer5/Module';
 
 /**
  * Страница сущности "DummyMain".
  * @returns HTML.
  */
 export function DummyMainItemPage() {
+  const { sliceOfDummyMainItemPage } = Layer5Module.get();
+
   const { id } = useParams<DummyMainItemPageParams>();
 
   const dispatch = useDispatch();
@@ -27,8 +25,8 @@ export function DummyMainItemPage() {
       input.item.entityId = Number(id);
     }
 
-    dispatch(loadAsync(input));
-  }, [id, dispatch]);
+    dispatch(sliceOfDummyMainItemPage.loadAsync(input));
+  }, [id, dispatch, sliceOfDummyMainItemPage]);
 
   let htmlOfId;
   let htmlOfEntity;
@@ -44,9 +42,11 @@ export function DummyMainItemPage() {
     );
   }
 
-  const getQueryResult = useSelector(selectGetQueryResult);
+  const getQueryResult = useSelector(
+    sliceOfDummyMainItemPage.selectGetQueryResult
+  );
 
-  const isWaiting = useSelector(selectIsWaiting);
+  const isWaiting = useSelector(sliceOfDummyMainItemPage.selectIsWaiting);
 
   if (isWaiting) {
     htmlOfWaiting = <h3>Идёт загрузка...</h3>;

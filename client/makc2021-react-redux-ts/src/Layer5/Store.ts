@@ -1,13 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-import appDummyMainItemPage from './Pages/DummyMain/Item/DummyMainItemPageSlice';
-import appDummyMainListPage from './Pages/DummyMain/List/DummyMainListPageSlice';
+import ofDummyMainItemPage from './Pages/DummyMain/Item/DummyMainItemPageStore';
+import ofDummyMainListPage from './Pages/DummyMain/List/DummyMainListPageStore';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
-    appDummyMainItemPage,
-    appDummyMainListPage
+    ofDummyMainItemPage,
+    ofDummyMainListPage
   }
 });
 

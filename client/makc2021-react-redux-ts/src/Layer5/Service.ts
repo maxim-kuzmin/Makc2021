@@ -1,13 +1,14 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { ConfigSettings } from './Config/ConfigSettings';
-
+/**
+ * Сервис.
+ */
 export class Service {
   /**
    * Конструктор.
-   * @param _configSettings Настройки конфигурации.
+   * @param _apiUrl URL API.
    */
-  constructor(private _configSettings: ConfigSettings) {}
+  constructor(private _apiUrl: string) {}
 
   /**
    * Создать URL API.
@@ -15,6 +16,6 @@ export class Service {
    * @returns URL API.
    */
   createApiUrl(suffix: string): string {
-    return `${this._configSettings.apiUrl}${suffix}`;
+    return `${this._apiUrl}${suffix}`;
   }
 }

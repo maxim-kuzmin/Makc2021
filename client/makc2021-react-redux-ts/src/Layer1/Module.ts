@@ -1,48 +1,40 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { CommonModule } from './Common/CommonModule';
 import { HttpService } from './Http/HttpService';
 import { UrlService } from './Url/UrlService';
 
-class Module extends CommonModule {
-  private _httpService?: HttpService;
-  private _urlServive?: UrlService;
-
-  constructor() {
-    super('Layer1');
-  }
+export class Module {
+  private _httpService = new HttpService();
+  private _urlService = new UrlService();
 
   /**
    * Сервис HTTP.
    */
-  public get httpServive() {
-    this.throwErrorIfModuleIsNotConfigured();
-
-    return this._httpService as HttpService;
+  public get httpService() {
+    return this._httpService;
   }
 
   /**
    * Сервис URL.
    */
-  public get urlServive() {
-    this.throwErrorIfModuleIsNotConfigured();
+  public get urlService() {
+    return this._urlService;
+  }
 
-    return this._urlServive as UrlService;
+  private static _instance: Module;
+
+  /**
+   * Настроить.
+   */
+  static configure() {
+    this._instance = new Module();
   }
 
   /**
-   * Конфигурировать.
+   * Получить.
+   * @returns Экземпляр.
    */
-  configure() {
-    this._httpService = new HttpService();
-
-    this._urlServive = new UrlService();
-
-    this.completeConfiguration();
+  static get() {
+    return this._instance;
   }
 }
-
-/**
- * Модуль слоя "Layer1".
- */
-export const appLayer1Module = new Module();

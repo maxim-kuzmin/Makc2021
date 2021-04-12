@@ -1,51 +1,66 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { CommonModule } from 'src/Layer1/Common/CommonModule';
-import { ConfigSettings, createConfigSettings } from './Config/ConfigSettings';
+import { DummyMainItemPageService } from './Pages/DummyMain/Item/DummyMainItemPageService';
 import { Service } from './Service';
+import { HttpService } from 'src/Layer1/Http/HttpService';
+import { DummyMainItemPageStore } from './Pages/DummyMain/Item/DummyMainItemPageStore';
 
-class Module extends CommonModule {
-  private _configSettings?: ConfigSettings;
-  private _service?: Service;
+/**
+ * Модуль.
+ */
+export class Module {
+  private _service: Service;
+  private _serviceOfDummyMainItemPage: DummyMainItemPageService;
+  private _storeOfDummyMainItemPage: DummyMainItemPageStore;
 
-  constructor() {
-    super('Layer5');
-  }
+  private constructor(apiUrl: string, httpService: HttpService) {
+    this._service = new Service(apiUrl);
 
-  /**
-   * Настройки конфигурации.
-   */
-  public get configSettings() {
-    this.throwErrorIfModuleIsNotConfigured();
+    this._serviceOfDummyMainItemPage = new DummyMainItemPageService(
+      httpService,
+      this.service
+    );
 
-    return this._configSettings as ConfigSettings;
+    this._storeOfDummyMainItemPage = new DummyMainItemPageStore(
+      this.serviceOfDummyMainItemPage
+    );
   }
 
   /**
    * Сервис.
    */
   public get service() {
-    this.throwErrorIfModuleIsNotConfigured();
-
-    return this._service as Service;
+    return this._service;
   }
 
   /**
-   * Конфигурировать.
-   * @param url URL.
+   * Сервис страницы сущности "DummyMain".
    */
-  configure(url: string) {
-    this._configSettings = createConfigSettings();
+  public get serviceOfDummyMainItemPage() {
+    return this._serviceOfDummyMainItemPage;
+  }
 
-    this._configSettings.apiUrl = url;
+  /**
+   * Срез страницы сущности "DummyMain".
+   */
+  public get sliceOfDummyMainItemPage() {
+    return this._storeOfDummyMainItemPage;
+  }
 
-    this._service = new Service(this._configSettings);
+  private static _instance: Module;
 
-    this.completeConfiguration();
+  /**
+   * Настроить.
+   */
+  static configure(apiUrl: string, httpService: HttpService) {
+    this._instance = new Module(apiUrl, httpService);
+  }
+
+  /**
+   * Получить.
+   * @returns Экземпляр.
+   */
+  static get() {
+    return this._instance;
   }
 }
-
-/**
- * Модуль слоя "Layer5".
- */
-export const appLayer5Module = new Module();

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router';
 import { Column } from 'react-table';
-import { appLayer1Module } from 'src/Layer1/Module';
+import { Module as Layer1Module } from 'src/Layer1/Module';
 import { createUrlParts } from 'src/Layer1/Url/UrlParts';
 import { TableControl } from 'src/Layer6/Controls/Table/TableControl';
 import { DummyMainListPageTableRow } from './Table/DummyMainListPageTableRow';
@@ -13,6 +13,8 @@ import { DummyMainListPageTableRow } from './Table/DummyMainListPageTableRow';
  * @returns HTML.
  */
 export function DummyMainListPage() {
+  const { urlService } = Layer1Module.get();
+
   const columns = useMemo(
     () =>
       [
@@ -30,10 +32,10 @@ export function DummyMainListPage() {
 
   const location = useLocation();
 
-  const query = useMemo(
-    () => appLayer1Module.urlServive.parseSearch(location.search),
-    [location.search]
-  );
+  const query = useMemo(() => urlService.parseSearch(location.search), [
+    urlService,
+    location.search
+  ]);
 
   const serverData = useMemo(
     () =>
@@ -96,9 +98,9 @@ export function DummyMainListPage() {
         ps: pageSize
       };
 
-      return appLayer1Module.urlServive.createUrl(urlParts);
+      return urlService.createUrl(urlParts);
     },
-    [location.pathname]
+    [urlService, location.pathname]
   );
 
   return (
