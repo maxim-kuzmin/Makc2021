@@ -3,9 +3,19 @@
 /**
  * Настройки приложения.
  */
-export class AppSettings {
+export interface AppSettings {
   /**
-   * URL API.
+   * URL API
    */
-  apiUrl = 'http://localhost:5000/api/';
+  apiUrl: string;
+}
+
+/**
+ * Создать настройки приложения.
+ * @returns Настройки приложения.
+ */
+export function createAppSettings() {
+  return {
+    apiUrl: 'http://localhost:5000/api/'
+  } as AppSettings;
 }

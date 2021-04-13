@@ -3,6 +3,9 @@
 import { HttpService } from './Http/HttpService';
 import { UrlService } from './Url/UrlService';
 
+/**
+ * Модуль.
+ */
 export class Module {
   private _httpServiceGetter?: () => HttpService;
   private _urlServiceGetter?: () => UrlService;

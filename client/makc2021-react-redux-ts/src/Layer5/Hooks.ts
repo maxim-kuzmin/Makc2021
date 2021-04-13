@@ -1,15 +1,17 @@
-import { Module as Layer5Module } from 'src/Layer5/Module';
-import { Service as Layer5Service } from 'src/Layer5/Service';
-import { DummyMainItemPageService } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageService';
-import { DummyMainItemPageStore } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageStore';
+// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
+
+import { Module } from './Module';
+import { Service } from './Service';
+import { DummyMainItemPageService } from './Pages/DummyMain/Item/DummyMainItemPageService';
+import { DummyMainItemPageStore } from './Pages/DummyMain/Item/DummyMainItemPageStore';
 
 /**
  * Использовать сервис слоя "Layer5".
  * @param getter Получатель.
  * @returns Сервис.
  */
-export function useLayer5Service(getter?: () => Layer5Service) {
-  const module = Layer5Module.get();
+export function useLayer5Service(getter?: () => Service) {
+  const module = Module.get();
 
   if (getter) {
     module.serviceGetter = getter;
@@ -26,7 +28,7 @@ export function useLayer5Service(getter?: () => Layer5Service) {
 export function useLayer5DummyMainItemPageService(
   getter?: () => DummyMainItemPageService
 ) {
-  const module = Layer5Module.get();
+  const module = Module.get();
 
   if (getter) {
     module.serviceOfDummyMainItemPageGetter = getter;
@@ -43,7 +45,7 @@ export function useLayer5DummyMainItemPageService(
 export function useLayer5DummyMainItemPageStore(
   getter?: () => DummyMainItemPageStore
 ) {
-  const module = Layer5Module.get();
+  const module = Module.get();
 
   if (getter) {
     module.storeOfDummyMainItemPageGetter = getter;

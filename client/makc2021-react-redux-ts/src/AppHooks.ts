@@ -1,3 +1,5 @@
+// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
+
 import { useLayer1HttpService, useLayer1UrlService } from './Layer1/Hooks';
 import { HttpService } from './Layer1/Http/HttpService';
 import { UrlService } from './Layer1/Url/UrlService';

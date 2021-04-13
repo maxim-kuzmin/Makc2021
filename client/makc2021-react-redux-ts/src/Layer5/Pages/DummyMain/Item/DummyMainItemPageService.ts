@@ -40,7 +40,7 @@ export class DummyMainItemPageService {
       } else {
         result = createQueryResultWithOutput<DummyMainItemPageGetQueryOutput>();
 
-        result.errorMessages.push(`Не указан идентификатор`);
+        result.errorMessages.push('Не указан идентификатор');
       }
     } catch (error) {
       console.error(`MAKC: ${url}`, error);

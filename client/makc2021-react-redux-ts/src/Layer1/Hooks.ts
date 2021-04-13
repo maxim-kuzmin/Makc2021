@@ -1,6 +1,8 @@
-import { Module as Layer1Module } from 'src/Layer1/Module';
-import { HttpService } from 'src/Layer1/Http/HttpService';
-import { UrlService } from 'src/Layer1/Url/UrlService';
+// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
+
+import { Module } from './Module';
+import { HttpService } from './Http/HttpService';
+import { UrlService } from './Url/UrlService';
 
 /**
  * Использовать сервис HTTP слоя "Layer1".
@@ -8,7 +10,7 @@ import { UrlService } from 'src/Layer1/Url/UrlService';
  * @returns Сервис.
  */
 export function useLayer1HttpService(getter?: () => HttpService) {
-  const module = Layer1Module.get();
+  const module = Module.get();
 
   if (getter) {
     module.httpServiceGetter = getter;
@@ -23,7 +25,7 @@ export function useLayer1HttpService(getter?: () => HttpService) {
  * @returns Сервис.
  */
 export function useLayer1UrlService(getter?: () => UrlService) {
-  const module = Layer1Module.get();
+  const module = Module.get();
 
   if (getter) {
     module.urlServiceGetter = getter;
