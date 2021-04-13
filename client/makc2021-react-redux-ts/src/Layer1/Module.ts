@@ -4,31 +4,38 @@ import { HttpService } from './Http/HttpService';
 import { UrlService } from './Url/UrlService';
 
 export class Module {
-  private _httpService = new HttpService();
-  private _urlService = new UrlService();
+  private _httpServiceGetter?: () => HttpService;
+  private _urlServiceGetter?: () => UrlService;
 
   /**
    * Сервис HTTP.
    */
   public get httpService() {
-    return this._httpService;
+    return this._httpServiceGetter?.call(this) as HttpService;
+  }
+
+  /**
+   * Сервис HTTP. Получатель.
+   */
+  public set httpServiceGetter(value: () => HttpService) {
+    this._httpServiceGetter = value;
   }
 
   /**
    * Сервис URL.
    */
   public get urlService() {
-    return this._urlService;
+    return this._urlServiceGetter?.call(this) as UrlService;
   }
-
-  private static _instance: Module;
 
   /**
-   * Настроить.
+   * Сервис URL. Получатель.
    */
-  static configure() {
-    this._instance = new Module();
+  public set urlServiceGetter(value: () => UrlService) {
+    this._urlServiceGetter = value;
   }
+
+  private static _instance = new Module();
 
   /**
    * Получить.

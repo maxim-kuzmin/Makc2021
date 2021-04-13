@@ -4,12 +4,19 @@ import './App.css';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPage';
 import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPage';
+import { AppSettings } from './AppSettings';
+import { useLayer1Module, useLayer5Module } from './AppHooks';
 
 /**
  * Приложение.
  * @returns HTML.
  */
 function App() {
+  const appSettings = new AppSettings();
+
+  useLayer1Module();
+  useLayer5Module(appSettings.apiUrl);
+
   return (
     <Router>
       <div className="App">

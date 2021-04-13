@@ -1,60 +1,68 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { DummyMainItemPageService } from './Pages/DummyMain/Item/DummyMainItemPageService';
 import { Service } from './Service';
-import { HttpService } from 'src/Layer1/Http/HttpService';
+import { DummyMainItemPageService } from './Pages/DummyMain/Item/DummyMainItemPageService';
 import { DummyMainItemPageStore } from './Pages/DummyMain/Item/DummyMainItemPageStore';
 
 /**
  * Модуль.
  */
 export class Module {
-  private _service: Service;
-  private _serviceOfDummyMainItemPage: DummyMainItemPageService;
-  private _storeOfDummyMainItemPage: DummyMainItemPageStore;
-
-  private constructor(apiUrl: string, httpService: HttpService) {
-    this._service = new Service(apiUrl);
-
-    this._serviceOfDummyMainItemPage = new DummyMainItemPageService(
-      httpService,
-      this.service
-    );
-
-    this._storeOfDummyMainItemPage = new DummyMainItemPageStore(
-      this.serviceOfDummyMainItemPage
-    );
-  }
+  private _serviceGetter?: () => Service;
+  private _serviceOfDummyMainItemPageGetter?: () => DummyMainItemPageService;
+  private _storeOfDummyMainItemPageGetter?: () => DummyMainItemPageStore;
 
   /**
    * Сервис.
    */
   public get service() {
-    return this._service;
+    return this._serviceGetter?.call(this) as Service;
+  }
+
+  /**
+   * Сервис. Получатель.
+   */
+  public set serviceGetter(value: () => Service) {
+    this._serviceGetter = value;
   }
 
   /**
    * Сервис страницы сущности "DummyMain".
    */
   public get serviceOfDummyMainItemPage() {
-    return this._serviceOfDummyMainItemPage;
+    return this._serviceOfDummyMainItemPageGetter?.call(
+      this
+    ) as DummyMainItemPageService;
   }
 
   /**
-   * Срез страницы сущности "DummyMain".
+   * Сервис страницы сущности "DummyMain". Получатель.
    */
-  public get sliceOfDummyMainItemPage() {
-    return this._storeOfDummyMainItemPage;
+  public set serviceOfDummyMainItemPageGetter(
+    value: () => DummyMainItemPageService
+  ) {
+    this._serviceOfDummyMainItemPageGetter = value;
   }
-
-  private static _instance: Module;
 
   /**
-   * Настроить.
+   * Хранилище страницы сущности "DummyMain".
    */
-  static configure(apiUrl: string, httpService: HttpService) {
-    this._instance = new Module(apiUrl, httpService);
+  public get storeOfDummyMainItemPage() {
+    return this._storeOfDummyMainItemPageGetter?.call(
+      this
+    ) as DummyMainItemPageStore;
   }
+
+  /**
+   * Хранилище страницы сущности "DummyMain". Получатель.
+   */
+  public set storeOfDummyMainItemPageGetter(
+    value: () => DummyMainItemPageStore
+  ) {
+    this._storeOfDummyMainItemPageGetter = value;
+  }
+
+  private static _instance = new Module();
 
   /**
    * Получить.

@@ -1,34 +1,9 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+/**
+ * Сервис HTTP.
+ */
 export class HttpService {
-  async request<TResult>(url: string, payload: any = {}): Promise<TResult> {
-    const { body, ...customConfig } = payload;
-
-    const headers = { 'Content-Type': 'application/json' };
-
-    const config = {
-      credentials: 'include',
-      mode: 'cors',
-      ...customConfig,
-      headers: {
-        ...headers,
-        ...customConfig.headers
-      }
-    } as RequestInit;
-
-    if (body) {
-      config.body = JSON.stringify(body);
-    }
-
-    const response = await window.fetch(url, config);
-
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-
-    return (await response.json()) as TResult;
-  }
-
   /**
    * Запрос методом GET.
    * @template TResult Тип результата.
@@ -61,5 +36,36 @@ export class HttpService {
       method: 'POST',
       body
     });
+  }
+
+  private async request<TResult>(
+    url: string,
+    payload: any = {}
+  ): Promise<TResult> {
+    const { body, ...customConfig } = payload;
+
+    const headers = { 'Content-Type': 'application/json' };
+
+    const config = {
+      credentials: 'include',
+      mode: 'cors',
+      ...customConfig,
+      headers: {
+        ...headers,
+        ...customConfig.headers
+      }
+    } as RequestInit;
+
+    if (body) {
+      config.body = JSON.stringify(body);
+    }
+
+    const response = await window.fetch(url, config);
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    return (await response.json()) as TResult;
   }
 }

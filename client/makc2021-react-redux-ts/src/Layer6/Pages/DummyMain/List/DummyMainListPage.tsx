@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router';
 import { Column } from 'react-table';
-import { Module as Layer1Module } from 'src/Layer1/Module';
+import { useLayer1UrlService } from 'src/Layer1/Hooks';
 import { createUrlParts } from 'src/Layer1/Url/UrlParts';
 import { TableControl } from 'src/Layer6/Controls/Table/TableControl';
 import { DummyMainListPageTableRow } from './Table/DummyMainListPageTableRow';
@@ -13,7 +13,7 @@ import { DummyMainListPageTableRow } from './Table/DummyMainListPageTableRow';
  * @returns HTML.
  */
 export function DummyMainListPage() {
-  const { urlService } = Layer1Module.get();
+  const urlService = useLayer1UrlService();
 
   const columns = useMemo(
     () =>

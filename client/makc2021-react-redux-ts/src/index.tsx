@@ -6,9 +6,6 @@ import { store } from './Layer5/Store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
-import { Configurator } from './Layer5/Configurator';
-
-Configurator.configure();
 
 ReactDOM.render(
   <React.StrictMode>

@@ -21,7 +21,7 @@ export class DummyMainItemPageStore {
   /**
    * Загрузить асинхронно.
    * @param input Входные данные;
-   * @returns Функция загрузки.
+   * @returns Асинхронное действие.
    */
   loadAsync(input: DummyMainItemPageGetQueryInput): AppThunk {
     return async (dispatch) => {
