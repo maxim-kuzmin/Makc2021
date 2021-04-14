@@ -1,6 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import { parse, stringifyUrl } from 'query-string';
+import { generatePath } from 'react-router';
 import { UrlParts } from './UrlParts';
 
 /**
@@ -13,10 +14,14 @@ export class UrlService {
    * @returns URL.
    */
   createUrl(parts: UrlParts): string {
+    const { hash: fragmentIdentifier, params, path, search: query } = parts;
+
+    const url = params ? generatePath(path, params) : path;
+
     return stringifyUrl({
-      url: parts.path,
-      query: parts.query,
-      fragmentIdentifier: parts.fragment
+      url,
+      query,
+      fragmentIdentifier
     });
   }
 

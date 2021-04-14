@@ -17,8 +17,12 @@ namespace Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item
         /// Получить.
         /// </summary>
         /// <param name="input">Входные данные.</param>
+        /// <param name="queryCode">Код запроса.</param>
         /// <returns>Задача на выполнение запроса с выходными данными.</returns>
-        Task<QueryResultWithOutput<DummyMainItemPageGetQueryOutput>> Get(DummyMainItemPageGetQueryInput input);
+        Task<QueryResultWithOutput<DummyMainItemPageGetQueryOutput>> Get(
+            DummyMainItemPageGetQueryInput input,
+            string queryCode = null
+            );
 
         #endregion Methods
     }

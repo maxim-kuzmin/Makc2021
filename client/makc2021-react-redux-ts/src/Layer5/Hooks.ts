@@ -2,8 +2,27 @@
 
 import { Module } from './Module';
 import { Service } from './Service';
-import { DummyMainItemPageService } from './Pages/DummyMain/Item/DummyMainItemPageService';
-import { DummyMainItemPageStore } from './Pages/DummyMain/Item/DummyMainItemPageStore';
+import { useLayer5DummyMainItemPage } from './Pages/DummyMain/Item/DummyMainItemPageHooks';
+import { useLayer5DummyMainListPage } from './Pages/DummyMain/List/DummyMainListPageHooks';
+
+/**
+ * Использовать слой "Layer5".
+ * @param apiUrl URL API.
+ */
+export function useLayer5(apiUrl: string) {
+  let service: Service;
+
+  useLayer5Service(() => {
+    if (!service) {
+      service = new Service(apiUrl);
+    }
+
+    return service;
+  });
+
+  useLayer5DummyMainItemPage();
+  useLayer5DummyMainListPage();
+}
 
 /**
  * Использовать сервис слоя "Layer5".
@@ -18,38 +37,4 @@ export function useLayer5Service(getter?: () => Service) {
   }
 
   return module.service;
-}
-
-/**
- * Использовать сервис страницы сущности "DummyMain" слоя "Layer5".
- * @param getter Получатель.
- * @returns Сервис.
- */
-export function useLayer5DummyMainItemPageService(
-  getter?: () => DummyMainItemPageService
-) {
-  const module = Module.get();
-
-  if (getter) {
-    module.serviceOfDummyMainItemPageGetter = getter;
-  }
-
-  return module.service;
-}
-
-/**
- * Использовать хранилище страницы сущности "DummyMain" слоя "Layer5".
- * @param getter Получатель.
- * @returns Хранилище.
- */
-export function useLayer5DummyMainItemPageStore(
-  getter?: () => DummyMainItemPageStore
-) {
-  const module = Module.get();
-
-  if (getter) {
-    module.storeOfDummyMainItemPageGetter = getter;
-  }
-
-  return module.storeOfDummyMainItemPage;
 }

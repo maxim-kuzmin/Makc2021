@@ -24,7 +24,7 @@ namespace Makc2021.Layer1.Query
         /// <summary>
         /// Код запроса.
         /// </summary>
-        public string QueryCode { get; set; }
+        public string QueryCode { get; set; } = QueryHelper.CreateQueryCode();
 
         /// <summary>
         /// Сообщения об успехах.

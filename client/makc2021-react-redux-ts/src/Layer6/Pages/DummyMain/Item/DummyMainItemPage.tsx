@@ -3,9 +3,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { useLayer5DummyMainItemPageStore } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageHooks';
 import { DummyMainItemPageParams } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageParams';
 import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Get/DummyMainItemPageGetQueryInput';
-import { useLayer5DummyMainItemPageStore } from 'src/Layer5/Hooks';
 
 /**
  * Страница сущности "DummyMain".

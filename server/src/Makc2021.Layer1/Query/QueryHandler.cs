@@ -16,9 +16,9 @@ namespace Makc2021.Layer1.Query
     {
         #region Properties
 
-        private string QueryCode { get; }
+        private string QueryName { get; set; }
 
-        private string Title { get; }
+        private string Title { get; set; }
 
         /// <summary>
         /// Ресурс запроса.
@@ -35,6 +35,11 @@ namespace Makc2021.Layer1.Query
         /// </summary>
         protected Func<Exception, IEnumerable<string>> FunctionToGetErrorMessages { get; set; }
 
+        /// <summary>
+        /// Код запроса.
+        /// </summary>
+        protected string QueryCode { get; set; } = QueryHelper.CreateQueryCode();
+
         #endregion Properties
 
         #region Constructors
@@ -47,12 +52,7 @@ namespace Makc2021.Layer1.Query
         /// <param name="extLogger">Регистратор.</param>
         public QueryHandler(string queryName, IQueryResource appQueryResource, ILogger extLogger)
         {
-            QueryCode = Guid.NewGuid().ToString("N").ToUpper();
-
-            string titleForQueryCode = appQueryResource.GetTitleForQueryCode();
-
-            Title = $"{queryName}. {titleForQueryCode}: {QueryCode}. ";
-
+            QueryName = queryName;
             AppQueryResource = appQueryResource;
             ExtLogger = extLogger;
         }
@@ -70,7 +70,6 @@ namespace Makc2021.Layer1.Query
             var queryResult = GetQueryResult();
             
             queryResult.IsOk = false;
-            queryResult.QueryCode = QueryCode;
 
             string errorMessage;
 
@@ -104,8 +103,18 @@ namespace Makc2021.Layer1.Query
         /// <summary>
         /// Сделать в начале запроса.
         /// </summary>
-        protected virtual void DoOnStart()
+        /// <param name="queryCode">Код запроса.</param>
+        protected virtual void DoOnStart(string queryCode)
         {
+            string titleForQueryCode = AppQueryResource.GetTitleForQueryCode();
+
+            if (!string.IsNullOrWhiteSpace(queryCode))
+            {
+                QueryCode = queryCode;
+            }
+
+            Title = $"{QueryName}. {titleForQueryCode}: {QueryCode}. ";
+
 #if TEST || DEBUG
             LogStartIfTestOrDebugEnabled();
 #endif
@@ -124,7 +133,6 @@ namespace Makc2021.Layer1.Query
             var queryResult = GetQueryResult();
 
             queryResult.IsOk = true;
-            queryResult.QueryCode = QueryCode;
 
             if (functionToGetSuccessMessages != null)
             {

@@ -14,7 +14,7 @@ namespace Makc2021.Layer6.Apps.WebAPI.Controllers.Pages.DummyMain.Item
     /// </summary>
     [Authorize]
     [ApiController]
-    [Route("api/pages/dummy-main/item")]
+    [Route("api/pages/dummy-main/item/{queryCode}")]
     public class DummyMainItemPageController : ControllerBase
     {
         #region Properties
@@ -41,16 +41,17 @@ namespace Makc2021.Layer6.Apps.WebAPI.Controllers.Pages.DummyMain.Item
         /// <summary>
         /// Получить.
         /// </summary>
+        /// <param name="queryCode">Код запроса.</param>
         /// <param name="entityId">Идентификатор сущности.</param>
         /// <returns>Задача на получение результата.</returns>
         [HttpGet, Route("{entityId}")]
-        public async Task<IActionResult> Get(int entityId)
+        public async Task<IActionResult> Get(string queryCode, int entityId)
         {
             DummyMainItemPageGetQueryInput input = new();
 
             input.Item.EntityId = entityId;
 
-            var result = await AppService.Get(input).ConfigureAwaitWithCultureSaving(false);
+            var result = await AppService.Get(input, queryCode).ConfigureAwaitWithCultureSaving(false);
 
             return Ok(result);
         }

@@ -93,7 +93,7 @@ export function DummyMainListPage() {
 
       urlParts.path = location.pathname;
 
-      urlParts.query = {
+      urlParts.search = {
         pn: pageNumber,
         ps: pageSize
       };

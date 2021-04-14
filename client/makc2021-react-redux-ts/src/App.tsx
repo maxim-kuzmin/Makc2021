@@ -2,10 +2,11 @@
 
 import './App.css';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import { useLayer1 } from './Layer1/Hooks';
+import { useLayer5 } from './Layer5/Hooks';
 import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPage';
 import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPage';
 import { createAppSettings } from './AppSettings';
-import { useLayer1Module, useLayer5Module } from './AppHooks';
 
 /**
  * Приложение.
@@ -14,8 +15,8 @@ import { useLayer1Module, useLayer5Module } from './AppHooks';
 function App() {
   const appSettings = createAppSettings();
 
-  useLayer1Module();
-  useLayer5Module(appSettings.apiUrl);
+  useLayer1();
+  useLayer5(appSettings.apiUrl);
 
   return (
     <Router>

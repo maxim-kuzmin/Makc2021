@@ -33,7 +33,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// <inheritdoc/>
         public string GetItemGetQueryName()
         {
-            return Localizer["Запрос на получение элементаЗапрос"];
+            return Localizer["Запрос на получение элемента"];
         }
 
         /// <inheritdoc/>

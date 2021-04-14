@@ -5,19 +5,24 @@
  */
 export interface UrlParts {
   /**
+   * Хэш.
+   */
+  hash?: string;
+
+  /**
+   * Параметры.
+   */
+  params?: any;
+
+  /**
    * Путь.
    */
   path: string;
 
   /**
-   * Запрос.
+   * Строка запроса.
    */
-  query?: any;
-
-  /**
-   * Фрагмент.
-   */
-  fragment?: string;
+  search?: any;
 }
 
 /**

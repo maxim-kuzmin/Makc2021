@@ -13,6 +13,12 @@ namespace Makc2021.Layer1.Query.Handlers
     /// <typeparam name="TQueryOutput">Тип выходных данных запроса.</typeparam>    
     public class QueryWithInputAndOutputHandler<TQueryInput, TQueryOutput> : QueryHandler, IQueryWithInputAndOutputHandler<TQueryInput, TQueryOutput>
     {
+        #region Fields
+
+        private QueryResultWithOutput<TQueryOutput> _queryResult;
+
+        #endregion Fields
+
         #region Properties
 
         /// <summary>
@@ -39,7 +45,21 @@ namespace Makc2021.Layer1.Query.Handlers
         public TQueryInput QueryInput { get; private set; }
 
         /// <inheritdoc/>
-        public QueryResultWithOutput<TQueryOutput> QueryResult { get; } = new QueryResultWithOutput<TQueryOutput>();
+        public QueryResultWithOutput<TQueryOutput> QueryResult
+        {
+            get
+            {
+                if (_queryResult == null)
+                {
+                    _queryResult = new QueryResultWithOutput<TQueryOutput>
+                    {
+                        QueryCode = QueryCode
+                    };
+                }
+
+                return _queryResult;
+            }
+        }
 
         #endregion Properties
 
@@ -56,13 +76,13 @@ namespace Makc2021.Layer1.Query.Handlers
         #region Public methods
 
         /// <inheritdoc/>
-        public void OnStart(TQueryInput queryInput)
+        public void OnStart(TQueryInput queryInput, string queryCode = null)
         {
             QueryInput = FunctionToTransformQueryInput != null
                 ? FunctionToTransformQueryInput.Invoke(queryInput)
                 : queryInput;
 
-            DoOnStart();
+            DoOnStart(queryCode);
         }
 
         /// <inheritdoc/>
@@ -90,6 +110,14 @@ namespace Makc2021.Layer1.Query.Handlers
             }
 
             DoOnSuccess(functionToGetSuccessMessages, functionToGetWarningMessages);
+        }
+
+        /// <inheritdoc/>
+        public void OnSuccess(QueryResultWithOutput<TQueryOutput> queryResult)
+        {
+            _queryResult = queryResult;
+
+            DoOnSuccess(null, null);
         }
 
         #endregion Public methods

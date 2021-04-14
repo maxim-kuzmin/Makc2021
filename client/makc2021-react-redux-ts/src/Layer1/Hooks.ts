@@ -5,6 +5,31 @@ import { HttpService } from './Http/HttpService';
 import { UrlService } from './Url/UrlService';
 
 /**
+ * Использовать слой "Layer1".
+ */
+export function useLayer1() {
+  let httpService: HttpService;
+
+  useLayer1HttpService(() => {
+    if (!httpService) {
+      httpService = new HttpService();
+    }
+
+    return httpService;
+  });
+
+  let urlService: UrlService;
+
+  useLayer1UrlService(() => {
+    if (!urlService) {
+      urlService = new UrlService();
+    }
+
+    return urlService;
+  });
+}
+
+/**
  * Использовать сервис HTTP слоя "Layer1".
  * @param getter Получатель.
  * @returns Сервис.

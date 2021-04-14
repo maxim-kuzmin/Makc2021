@@ -21,7 +21,8 @@ namespace Makc2021.Layer1.Query.Handlers
         /// <summary>
         /// Обработать начало запроса.
         /// </summary>
-        void OnStart();
+        /// <param name="queryCode">Код запроса.</param>
+        void OnStart(string queryCode = null);
 
         /// <summary>
         /// Обработать успешное выполнение запроса.

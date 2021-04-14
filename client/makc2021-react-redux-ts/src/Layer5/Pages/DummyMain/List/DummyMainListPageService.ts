@@ -1,19 +1,21 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import { QueryResultWithOutput } from 'src/Layer1/Query/QueryResultWithOutput';
-import { DummyMainItemPageGetQueryInput } from './Queries/Get/DummyMainItemPageGetQueryInput';
-import { DummyMainItemPageGetQueryOutput } from './Queries/Get/DummyMainItemPageGetQueryOutput';
-import { DummyMainItemPageGetQueryHandler } from './Queries/Get/DummyMainItemPageGetQueryHandler';
+import { DummyMainListPageGetQueryInput } from './Queries/Get/DummyMainListPageGetQueryInput';
+import { DummyMainListPageGetQueryOutput } from './Queries/Get/DummyMainListPageGetQueryOutput';
+import { DummyMainListPageGetQueryHandler } from './Queries/Get/DummyMainListPageGetQueryHandler';
 
 /**
- * Сервис страницы сущности "DummyMain".
+ * Сервис страницы сущностей "DummyMain".
  */
-export class DummyMainItemPageService {
+export class DummyMainListPageService {
   /**
    * Конструктор.
+   * @param _appService Сервис.
+   * @param _appUrlService Сервис URL.
    * @param _appGetQueryHandler Обработчик запроса на получение.
    */
-  constructor(private _appGetQueryHandler: DummyMainItemPageGetQueryHandler) {}
+  constructor(private _appGetQueryHandler: DummyMainListPageGetQueryHandler) {}
 
   /**
    * Получить.
@@ -21,8 +23,8 @@ export class DummyMainItemPageService {
    * @returns Обещание получения результата с выходными данными.
    */
   async get(
-    input: DummyMainItemPageGetQueryInput
-  ): Promise<QueryResultWithOutput<DummyMainItemPageGetQueryOutput>> {
+    input: DummyMainListPageGetQueryInput
+  ): Promise<QueryResultWithOutput<DummyMainListPageGetQueryOutput>> {
     const queryHandler = this._appGetQueryHandler;
 
     try {

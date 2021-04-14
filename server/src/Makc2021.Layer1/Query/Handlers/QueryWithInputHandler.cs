@@ -12,6 +12,12 @@ namespace Makc2021.Layer1.Query.Handlers
     /// <typeparam name="TQueryInput">Тип входных данных запроса.</typeparam>
     public class QueryWithInputHandler<TQueryInput> : QueryHandler, IQueryWithInputHandler<TQueryInput>
     {
+        #region Fields
+
+        private QueryResult _queryResult;
+
+        #endregion Fields
+
         #region Properties
 
         /// <summary>
@@ -33,7 +39,21 @@ namespace Makc2021.Layer1.Query.Handlers
         public TQueryInput QueryInput { get; private set; }
 
         /// <inheritdoc/>
-        public QueryResult QueryResult { get; } = new QueryResult();
+        public QueryResult QueryResult
+        {
+            get
+            {
+                if (_queryResult == null)
+                {
+                    _queryResult = new QueryResult
+                    {
+                        QueryCode = QueryCode
+                    };
+                }
+
+                return _queryResult;
+            }
+        }
 
         #endregion Properties
 
@@ -50,13 +70,13 @@ namespace Makc2021.Layer1.Query.Handlers
         #region Public methods
 
         /// <inheritdoc/>
-        public void OnStart(TQueryInput queryInput)
+        public void OnStart(TQueryInput queryInput, string queryCode = null)
         {
             QueryInput = FunctionToTransformQueryInput != null
                 ? FunctionToTransformQueryInput.Invoke(queryInput)
                 : queryInput;
 
-            DoOnStart();
+            DoOnStart(queryCode);
         }
 
         /// <inheritdoc/>

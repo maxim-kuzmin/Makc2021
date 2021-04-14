@@ -27,8 +27,9 @@ namespace Makc2021.Layer1.Query.Handlers
         /// <summary>
         /// Обработать начало запроса.
         /// </summary>
-        /// <param name="queryInput">Входные данные запроса.</param>        
-        void OnStart(TQueryInput queryInput);
+        /// <param name="queryInput">Входные данные запроса.</param>
+        /// <param name="queryCode">Код запроса.</param>
+        void OnStart(TQueryInput queryInput, string queryCode = null);
 
         /// <summary>
         /// Обработать успешное выполнение запроса.

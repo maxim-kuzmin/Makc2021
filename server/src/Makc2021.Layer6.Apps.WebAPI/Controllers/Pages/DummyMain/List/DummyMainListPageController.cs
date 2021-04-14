@@ -14,7 +14,7 @@ namespace Makc2021.Layer6.Apps.WebAPI.Controllers.Pages.DummyMain.List
     /// </summary>
     [Authorize]
     [ApiController]
-    [Route("api/pages/dummy-main/list")]
+    [Route("api/pages/dummy-main/list/{queryCode}")]
     public class DummyMainListPageController : ControllerBase
     {
         #region Properties
@@ -41,18 +41,19 @@ namespace Makc2021.Layer6.Apps.WebAPI.Controllers.Pages.DummyMain.List
         /// <summary>
         /// Получить.
         /// </summary>
+        /// <param name="queryCode">Код запроса.</param>
         /// <param name="pageNumber">Номер страницы.</param>
         /// <param name="pageSize">Размер страницы.</param>
         /// <returns>Задача на получение результата.</returns>
-        [HttpGet, Route("{pageNumber}")]
-        public async Task<IActionResult> Get(int pageNumber, int pageSize)
+        [HttpGet]
+        public async Task<IActionResult> Get(string queryCode, int pageNumber, int pageSize)
         {
             DummyMainListPageGetQueryInput input = new();
 
             input.List.PageNumber = pageNumber;
             input.List.PageSize = pageSize;
 
-            var result = await AppService.Get(input).ConfigureAwaitWithCultureSaving(false);
+            var result = await AppService.Get(input, queryCode).ConfigureAwaitWithCultureSaving(false);
 
             return Ok(result);
         }

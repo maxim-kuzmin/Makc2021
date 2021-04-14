@@ -1,5 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+import { QueryHelper } from './QueryHelper';
+
 /**
  * Результат запроса.
  */
@@ -38,7 +40,7 @@ export function createQueryResult() {
   return {
     isOk: false,
     errorMessages: [],
-    queryCode: '',
+    queryCode: QueryHelper.createQueryCode(),
     successMessages: [],
     warningMessages: []
   } as QueryResult;

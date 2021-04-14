@@ -11,6 +11,12 @@ namespace Makc2021.Layer1.Query.Handlers
     /// </summary>
     public class QueryWithoutInputAndOutputHandler : QueryHandler, IQueryWithoutInputAndOutputHandler
     {
+        #region Fields
+
+        private QueryResult _queryResult;
+
+        #endregion Fields
+
         #region Properties
 
         /// <summary>
@@ -24,7 +30,21 @@ namespace Makc2021.Layer1.Query.Handlers
         protected Func<IEnumerable<string>> FunctionToGetWarningMessages { get; set; }
 
         /// <inheritdoc/>
-        public QueryResult QueryResult { get; } = new QueryResult();
+        public QueryResult QueryResult
+        {
+            get
+            {
+                if (_queryResult == null)
+                {
+                    _queryResult = new QueryResult
+                    {
+                        QueryCode = QueryCode
+                    };
+                }
+
+                return _queryResult;
+            }
+        }
 
         #endregion Properties
 
@@ -41,9 +61,9 @@ namespace Makc2021.Layer1.Query.Handlers
         #region Public methods
 
         /// <inheritdoc/>
-        public void OnStart()
+        public void OnStart(string queryCode = null)
         {
-            DoOnStart();
+            DoOnStart(queryCode);
         }
 
         /// <inheritdoc/>

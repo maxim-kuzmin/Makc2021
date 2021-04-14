@@ -41,21 +41,29 @@ namespace Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item
         #region Public methods
 
         /// <inheritdoc/>
-        public async Task<QueryResultWithOutput<DummyMainItemPageGetQueryOutput>> Get(DummyMainItemPageGetQueryInput input)
+        public async Task<QueryResultWithOutput<DummyMainItemPageGetQueryOutput>> Get(
+            DummyMainItemPageGetQueryInput input,
+            string queryCode = null
+            )
         {
             QueryResultWithOutput<DummyMainItemPageGetQueryOutput> result = new();
+
+            if (string.IsNullOrWhiteSpace(queryCode))
+            {
+                queryCode = result.QueryCode;
+            }
 
             DummyMainItemPageGetQueryOutput output = new();
 
             List<QueryResult> queryResults = new();
 
-            var queryResult1 = await  GetItemGetQueryResult(
-                result.QueryCode,
+            var queryResult1 = await GetItemGetQueryResult(               
                 new ItemGetQueryDomainInput
                 {
                     EntityId = input.Item.EntityId
-                })
-                .ConfigureAwaitWithCultureSaving(false);
+                },
+                queryCode
+                ).ConfigureAwaitWithCultureSaving(false);
 
             queryResults.Add(queryResult1);
 
@@ -78,21 +86,20 @@ namespace Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item
 
         #region Private methods
 
-        private async Task<QueryResultWithOutput<ItemGetQueryDomainOutput>> GetItemGetQueryResult(
-            string queryCode,
-            ItemGetQueryDomainInput input
+        private async Task<QueryResultWithOutput<ItemGetQueryDomainOutput>> GetItemGetQueryResult(            
+            ItemGetQueryDomainInput input,
+            string queryCode
             )
         {
             var queryHandler = AppItemGetQueryDomainHandler;
 
-            queryHandler.QueryResult.QueryCode = queryCode;
-
             try
             {
-                queryHandler.OnStart(input);
+                queryHandler.OnStart(input, queryCode);
 
-                var queryOutput = await AppService.GetItem(queryHandler.QueryInput)
-                    .ConfigureAwaitWithCultureSaving(false);
+                var queryOutput = await AppService.GetItem(
+                    queryHandler.QueryInput
+                    ).ConfigureAwaitWithCultureSaving(false);
 
                 queryHandler.OnSuccess(queryOutput);
             }

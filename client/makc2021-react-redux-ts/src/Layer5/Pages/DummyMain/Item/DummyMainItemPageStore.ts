@@ -14,9 +14,9 @@ import { DummyMainItemPageGetQueryOutput } from './Queries/Get/DummyMainItemPage
 export class DummyMainItemPageStore {
   /**
    * Конструктор.
-   * @param _service Сервис.
+   * @param _appService Сервис.
    */
-  constructor(private _service: DummyMainItemPageService) {}
+  constructor(private _appService: DummyMainItemPageService) {}
 
   /**
    * Загрузить асинхронно.
@@ -27,7 +27,7 @@ export class DummyMainItemPageStore {
     return async (dispatch) => {
       dispatch(wait(true));
 
-      const result = await this._service.get(input);
+      const result = await this._appService.get(input);
 
       dispatch(load(result));
 
