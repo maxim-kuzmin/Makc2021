@@ -8,7 +8,7 @@ export interface ListGetQueryOutput<TItem> {
   /**
    * Элементы.
    */
-  items: TItem;
+  items: TItem[];
 
   /**
    * Общее число элементов.
@@ -23,6 +23,7 @@ export interface ListGetQueryOutput<TItem> {
  */
 export function createListGetQueryOutput<TItem>() {
   return {
+    items: [],
     totalCount: 0
   } as ListGetQueryOutput<TItem>;
 }

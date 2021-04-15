@@ -74,21 +74,6 @@ export function TableControl<TRow extends object>({
   // Render the UI for your table
   return (
     <>
-      <pre>
-        <code>
-          {JSON.stringify(
-            {
-              pageNumber,
-              pageSize,
-              pageCount,
-              canNextPage,
-              canPreviousPage
-            },
-            null,
-            2
-          )}
-        </code>
-      </pre>
       <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
         <thead>
           {headerGroups.map((headerGroup) => (

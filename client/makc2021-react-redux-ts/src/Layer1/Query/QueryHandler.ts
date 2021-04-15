@@ -7,12 +7,15 @@ import { QueryResult } from './QueryResult';
  * Обработчик запроса.
  */
 export abstract class QueryHandler {
+  private _queryCode?: string;
   private _title?: string;
 
   /**
    * Код запроса.
    */
-  protected queryCode = QueryHelper.createQueryCode();
+  protected get queryCode() {
+    return this._queryCode as string;
+  }
 
   /**
    * Конструктор.
@@ -27,17 +30,17 @@ export abstract class QueryHandler {
   onError(error?: Error) {
     const queryResult = this.getQueryResult();
 
-    let { errorMessages } = queryResult;
-
-    if (!errorMessages) {
-      errorMessages = queryResult.errorMessages = [];
-    }
+    let errorMessage = 'Server is not responding';
 
     if (error) {
-      errorMessages.push('Server is not responding');
-    }
+      queryResult.errorMessages = [errorMessage];
+    } else {
+      const { errorMessages } = queryResult;
 
-    const errorMessage = errorMessages.join(' ');
+      if (errorMessages && errorMessages.length > 0) {
+        errorMessage = errorMessages.join(' ');
+      }
+    }
 
     console.error(`${this._title}${errorMessage}`, queryResult, error);
   }
@@ -47,9 +50,7 @@ export abstract class QueryHandler {
    * @param queryCode Код запроса.
    */
   protected doOnStart(queryCode?: string) {
-    if (queryCode) {
-      this.queryCode = queryCode;
-    }
+    this._queryCode = queryCode ?? QueryHelper.createQueryCode();
 
     this._title = `${this._queryName}. Query code: ${this.queryCode}. `;
 

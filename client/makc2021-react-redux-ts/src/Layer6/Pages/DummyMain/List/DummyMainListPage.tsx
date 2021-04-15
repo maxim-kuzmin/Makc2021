@@ -1,34 +1,29 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Column } from 'react-table';
 import { useLayer1UrlService } from 'src/Layer1/Hooks';
 import { createUrlParts } from 'src/Layer1/Url/UrlParts';
+import { useLayer5DummyMainListPageStore } from 'src/Layer5/Pages/DummyMain/List/DummyMainListPageHooks';
+import { createDummyMainListPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/List/Queries/Get/DummyMainListPageGetQueryInput';
 import { TableControl } from 'src/Layer6/Controls/Table/TableControl';
-import { DummyMainListPageTableRow } from './Table/DummyMainListPageTableRow';
+import {
+  createDummyMainListPageTableRow,
+  DummyMainListPageTableRow
+} from './Table/DummyMainListPageTableRow';
 
 /**
  * Страница сущностей "DummyMain".
  * @returns HTML.
  */
 export function DummyMainListPage() {
+  const storeOfDummyMainListPage = useLayer5DummyMainListPageStore();
+
   const urlService = useLayer1UrlService();
 
-  const columns = useMemo(
-    () =>
-      [
-        {
-          Header: 'Column 1',
-          accessor: 'col1'
-        },
-        {
-          Header: 'Column 2',
-          accessor: 'col2'
-        }
-      ] as Column<DummyMainListPageTableRow>[],
-    []
-  );
+  const dispatch = useDispatch();
 
   const location = useLocation();
 
@@ -37,55 +32,28 @@ export function DummyMainListPage() {
     location.search
   ]);
 
-  const serverData = useMemo(
-    () =>
-      [
-        {
-          col1: '1',
-          col2: '111'
-        },
-        {
-          col1: '2',
-          col2: '222'
-        },
-        {
-          col1: '3',
-          col2: '333'
-        }
-      ] as DummyMainListPageTableRow[],
-    []
-  );
-
-  // We'll start our table without any data
-  const [data, setData] = useState<DummyMainListPageTableRow[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [totalCount, setTotalCount] = useState(0);
-  const fetchIdRef = useRef(0);
-
-  const pageNumber = Number(query['pn'] ?? '1');
-  const pageSize = Number(query['ps'] ?? '1');
+  const pageNumber = Number(query.pn ?? '1');
+  const pageSize = Number(query.ps ?? '10');
 
   useEffect(() => {
-    // Give this fetch an ID
-    const fetchId = ++fetchIdRef.current;
+    const input = createDummyMainListPageGetQueryInput();
 
-    // Set the loading state
-    setLoading(true);
+    input.list.pageNumber = pageNumber;
+    input.list.pageSize = pageSize;
 
-    // We'll even set a delay to simulate a server here
-    setTimeout(() => {
-      // Only update the data if this is the latest fetch
-      if (fetchId === fetchIdRef.current) {
-        const startRow = pageSize * (pageNumber - 1);
-        const endRow = startRow + pageSize;
-        setData(serverData.slice(startRow, endRow));
+    dispatch(storeOfDummyMainListPage.loadAsync(input));
+  }, [pageNumber, pageSize, dispatch, storeOfDummyMainListPage]);
 
-        setTotalCount(serverData.length);
+  const getQueryResult = useSelector(
+    storeOfDummyMainListPage.selectGetQueryResult
+  );
 
-        setLoading(false);
-      }
-    }, 1000);
-  }, [pageNumber, pageSize, serverData]);
+  const isWaiting = useSelector(storeOfDummyMainListPage.selectIsWaiting);
+
+  let htmlOfItems;
+  let htmlOfErrors;
+
+  const { isOk, errorMessages, output, queryCode } = getQueryResult;
 
   const createPageUrl = useCallback(
     (pageNumber, pageSize) => {
@@ -103,15 +71,64 @@ export function DummyMainListPage() {
     [urlService, location.pathname]
   );
 
+  const columns = useMemo(
+    () =>
+      [
+        {
+          Header: 'Id',
+          accessor: 'id'
+        },
+        {
+          Header: 'Name',
+          accessor: 'name'
+        }
+      ] as Column<DummyMainListPageTableRow>[],
+    []
+  );
+
+  if (isOk) {
+    const { totalCount, items } = output.list;
+
+    const data = items.map((item) => {
+      const result = createDummyMainListPageTableRow();
+
+      const { objectOfDummyMainEntity: entity } = item;
+
+      result.id = entity.id;
+      result.name = entity.name;
+
+      return result;
+    });
+
+    htmlOfItems = (
+      <TableControl
+        columns={columns}
+        data={data}
+        loading={isWaiting}
+        pageNumber={pageNumber}
+        pageSize={pageSize}
+        totalCount={totalCount}
+        createPageUrl={createPageUrl}
+      />
+    );
+  } else if (errorMessages.length > 0) {
+    htmlOfErrors = errorMessages.map((errorMessage) => (
+      <li key={errorMessage}>{errorMessage}</li>
+    ));
+
+    htmlOfErrors = (
+      <>
+        <h3>Ошибки в запросе {queryCode}:</h3>
+        <ul>{htmlOfErrors}</ul>
+      </>
+    );
+  }
+
   return (
-    <TableControl
-      columns={columns}
-      data={data}
-      loading={loading}
-      pageNumber={pageNumber}
-      pageSize={pageSize}
-      totalCount={totalCount}
-      createPageUrl={createPageUrl}
-    />
+    <>
+      <h2>Сущности "DummyMain"</h2>
+      {htmlOfErrors}
+      {htmlOfItems}
+    </>
   );
 }

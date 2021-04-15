@@ -38,7 +38,7 @@ namespace Makc2021.Layer1.Query
         /// <summary>
         /// Код запроса.
         /// </summary>
-        protected string QueryCode { get; set; } = QueryHelper.CreateQueryCode();
+        protected string QueryCode { get; private set; }
 
         #endregion Properties
 
@@ -106,6 +106,8 @@ namespace Makc2021.Layer1.Query
         /// <param name="queryCode">Код запроса.</param>
         protected virtual void DoOnStart(string queryCode)
         {
+            QueryCode = string.IsNullOrWhiteSpace(queryCode) ? QueryHelper.CreateQueryCode() : queryCode;
+
             string titleForQueryCode = AppQueryResource.GetTitleForQueryCode();
 
             if (!string.IsNullOrWhiteSpace(queryCode))
