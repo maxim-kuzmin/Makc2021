@@ -34,11 +34,7 @@ export abstract class QueryWithInputAndOutputHandler<
    * Результат выполнения запроса.
    */
   get queryResult() {
-    const result = this._queryResult as QueryResultWithOutput<TQueryOutput>;
-
-    this._queryResult = undefined;
-
-    return result;
+    return this._queryResult as QueryResultWithOutput<TQueryOutput>;
   }
 
   /**
@@ -63,24 +59,19 @@ export abstract class QueryWithInputAndOutputHandler<
   }
 
   /** @inheritdoc */
-  protected getQueryInput(): any {
-    return this.queryInput;
+  protected getQueryInput() {
+    return this.queryInput as any;
   }
 
   /** @inheritdoc */
-  protected getQueryResult(): QueryResult {
-    if (!this._queryResult) {
-      this._queryResult = this.createQueryResult();
-    }
-
-    return this._queryResult as QueryResult;
+  protected getQueryResult() {
+    return this.queryResult as QueryResult;
   }
 
-  private createQueryResult() {
-    const result = createQueryResultWithOutput<TQueryOutput>();
+  /** @inheritdoc */
+  protected resetQueryResult() {
+    this._queryResult = createQueryResultWithOutput<TQueryOutput>();
 
-    result.queryCode = this.queryCode;
-
-    return result;
+    this._queryResult.queryCode = this.queryCode;
   }
 }

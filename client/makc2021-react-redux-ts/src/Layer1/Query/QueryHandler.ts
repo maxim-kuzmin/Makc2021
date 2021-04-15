@@ -28,12 +28,18 @@ export abstract class QueryHandler {
    * @param Ошибка.
    */
   onError(error?: Error) {
+    if (error) {
+      this.resetQueryResult();
+    }
+
+    let errorMessage = 'Unknown error';
+
     const queryResult = this.getQueryResult();
 
-    let errorMessage = 'Server is not responding';
-
     if (error) {
-      queryResult.errorMessages = [errorMessage];
+      errorMessage = 'Server is not responding';
+
+      queryResult.errorMessages.push(errorMessage);
     } else {
       const { errorMessages } = queryResult;
 
@@ -81,4 +87,9 @@ export abstract class QueryHandler {
    * @returns Результат выполнения запроса.
    */
   protected abstract getQueryResult(): QueryResult;
+
+  /**
+   * Переустановить результат запроса.
+   */
+  protected abstract resetQueryResult(): void;
 }
