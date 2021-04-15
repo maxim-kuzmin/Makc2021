@@ -61,15 +61,15 @@ namespace Makc2021.Layer1.Query
 
         #region Public methods
 
-        /// <summary>
-        /// Обработать ошибку запроса.
-        /// </summary>
-        /// <param name="exception">Исключение.</param>
-        public void OnError(Exception exception)
+        /// <inheritdoc/>
+        public void OnError(Exception exception = null)
         {
+            if (exception != null)
+            {
+                InitQueryResult(false);
+            }
+
             var queryResult = GetQueryResult();
-            
-            queryResult.IsOk = false;
 
             string errorMessage;
 
@@ -134,31 +134,36 @@ namespace Makc2021.Layer1.Query
         {
             var queryResult = GetQueryResult();
 
-            queryResult.IsOk = true;
-
-            if (functionToGetSuccessMessages != null)
+            if (queryResult.IsOk)
             {
-                var messages = functionToGetSuccessMessages();
-
-                if (messages != null && messages.Any())
+                if (functionToGetSuccessMessages != null)
                 {
-                    queryResult.SuccessMessages.AddRange(messages);
+                    var messages = functionToGetSuccessMessages();
+
+                    if (messages != null && messages.Any())
+                    {
+                        queryResult.SuccessMessages.AddRange(messages);
+                    }
                 }
-            }
 
-            if (functionToGetWarningMessages != null)
-            {
-                var messages = functionToGetWarningMessages();
-
-                if (messages != null && messages.Any())
+                if (functionToGetWarningMessages != null)
                 {
-                    queryResult.WarningMessages.AddRange(messages);
+                    var messages = functionToGetWarningMessages();
+
+                    if (messages != null && messages.Any())
+                    {
+                        queryResult.WarningMessages.AddRange(messages);
+                    }
                 }
-            }
 
 #if TEST || DEBUG
-            LogSuccessIfTestOrDebugEnabled();
+                LogSuccessIfTestOrDebugEnabled();
 #endif
+            }
+            else
+            {
+                OnError();
+            }
         }
 
         /// <summary>
@@ -172,6 +177,12 @@ namespace Makc2021.Layer1.Query
         /// </summary>
         /// <returns>Результат выполнения запроса.</returns>
         protected abstract QueryResult GetQueryResult();
+
+        /// <summary>
+        /// Инициализировать результат запроса.
+        /// </summary>
+        /// <param name="isOk">Признак успешности выполнения.</param>
+        protected abstract void InitQueryResult(bool isOk);
 
         #endregion Protected methods
 

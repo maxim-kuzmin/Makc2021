@@ -11,12 +11,6 @@ namespace Makc2021.Layer1.Query.Handlers
     /// </summary>
     public class QueryWithoutInputAndOutputHandler : QueryHandler, IQueryWithoutInputAndOutputHandler
     {
-        #region Fields
-
-        private QueryResult _queryResult;
-
-        #endregion Fields
-
         #region Properties
 
         /// <summary>
@@ -30,21 +24,7 @@ namespace Makc2021.Layer1.Query.Handlers
         protected Func<IEnumerable<string>> FunctionToGetWarningMessages { get; set; }
 
         /// <inheritdoc/>
-        public QueryResult QueryResult
-        {
-            get
-            {
-                if (_queryResult == null)
-                {
-                    _queryResult = new QueryResult
-                    {
-                        QueryCode = QueryCode
-                    };
-                }
-
-                return _queryResult;
-            }
-        }
+        public QueryResult QueryResult { get; private set; }
 
         #endregion Properties
 
@@ -69,7 +49,17 @@ namespace Makc2021.Layer1.Query.Handlers
         /// <inheritdoc/>
         public void OnSuccess()
         {
+            InitQueryResult(true);
+
             DoOnSuccess(FunctionToGetSuccessMessages, FunctionToGetWarningMessages);
+        }
+
+        /// <inheritdoc/>
+        public void OnSuccess(QueryResult queryResult)
+        {
+            QueryResult = queryResult;
+
+            DoOnSuccess(null, null);
         }
 
         #endregion Public methods
@@ -86,6 +76,16 @@ namespace Makc2021.Layer1.Query.Handlers
         protected sealed override QueryResult GetQueryResult()
         {
             return QueryResult;
+        }
+
+        /// <inheritdoc/>
+        protected sealed override void InitQueryResult(bool isOk)
+        {
+            QueryResult = new QueryResult
+            {
+                IsOk = isOk,
+                QueryCode = QueryCode
+            };
         }
 
         #endregion Protected methods

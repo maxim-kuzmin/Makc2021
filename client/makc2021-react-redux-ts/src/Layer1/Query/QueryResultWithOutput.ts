@@ -16,10 +16,11 @@ export interface QueryResultWithOutput<TOutput> extends QueryResult {
 /**
  * Создать результат запроса.
  * @template TOutput Тип выходных данных.
+ * @param queryCode Код запроса.
  * @returns Результат запроса.
  */
-export function createQueryResultWithOutput<TOutput>() {
+export function createQueryResultWithOutput<TOutput>(queryCode?: string) {
   return {
-    ...createQueryResult()
+    ...createQueryResult(queryCode)
   } as QueryResultWithOutput<TOutput>;
 }

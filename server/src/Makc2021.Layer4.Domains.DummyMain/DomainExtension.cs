@@ -58,7 +58,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
 
             if (input.EntityIds != null && input.EntityIds.Any())
             {
-                if (input.EntityIds.Count() > 1)
+                if (input.EntityIds.Length > 1)
                 {
                     query = query.Where(x => input.EntityIds.Contains(x.Id));
                 }

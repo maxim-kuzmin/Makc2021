@@ -34,13 +34,14 @@ export interface QueryResult {
 
 /**
  * Создать результат запроса.
+ * @param queryCode Код запроса.
  * @returns Результат запроса.
  */
-export function createQueryResult() {
+export function createQueryResult(queryCode?: string) {
   return {
     isOk: false,
     errorMessages: [],
-    queryCode: QueryHelper.createQueryCode(),
+    queryCode: queryCode ?? QueryHelper.createQueryCode(),
     successMessages: [],
     warningMessages: []
   } as QueryResult;

@@ -12,12 +12,6 @@ namespace Makc2021.Layer1.Query.Handlers
     /// <typeparam name="TQueryOutput">Тип выходных данных запроса.</typeparam>    
     public class QueryWithOutputHandler<TQueryOutput> : QueryHandler, IQueryWithOutputHandler<TQueryOutput>
     {
-        #region Fields
-
-        private QueryResultWithOutput<TQueryOutput> _queryResult;
-
-        #endregion Fields
-
         #region Properties
 
         /// <summary>
@@ -36,21 +30,7 @@ namespace Makc2021.Layer1.Query.Handlers
         protected Func<TQueryOutput, IEnumerable<string>> FunctionToGetWarningMessages { get; set; }
 
         /// <inheritdoc/>
-        public QueryResultWithOutput<TQueryOutput> QueryResult
-        {
-            get
-            {
-                if (_queryResult == null)
-                {
-                    _queryResult = new QueryResultWithOutput<TQueryOutput>
-                    {
-                        QueryCode = QueryCode
-                    };
-                }
-
-                return _queryResult;
-            }
-        }
+        public QueryResultWithOutput<TQueryOutput> QueryResult { get; private set; }
 
         #endregion Properties
 
@@ -75,6 +55,8 @@ namespace Makc2021.Layer1.Query.Handlers
         /// <inheritdoc/>
         public void OnSuccess(TQueryOutput queryOutput)
         {
+            InitQueryResult(true);
+
             if (FunctionToTransformQueryOutput != null)
             {
                 queryOutput = FunctionToTransformQueryOutput.Invoke(queryOutput);
@@ -102,7 +84,7 @@ namespace Makc2021.Layer1.Query.Handlers
         /// <inheritdoc/>
         public void OnSuccess(QueryResultWithOutput<TQueryOutput> queryResult)
         {
-            _queryResult = queryResult;
+            QueryResult = queryResult;
 
             DoOnSuccess(null, null);
         }
@@ -121,6 +103,16 @@ namespace Makc2021.Layer1.Query.Handlers
         protected sealed override QueryResult GetQueryResult()
         {
             return QueryResult;
+        }
+
+        /// <inheritdoc/>
+        protected sealed override void InitQueryResult(bool isOk)
+        {
+            QueryResult = new QueryResultWithOutput<TQueryOutput>
+            {
+                IsOk = isOk,
+                QueryCode = QueryCode
+            };
         }
 
         #endregion Protected methods

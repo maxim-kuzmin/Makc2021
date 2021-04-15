@@ -36,6 +36,12 @@ namespace Makc2021.Layer1.Query.Handlers
         /// </summary>
         void OnSuccess();
 
+        /// <summary>
+        /// Обработать успешное выполнение запроса.
+        /// </summary>
+        /// <param name="queryResult">Результат запроса.</param>
+        void OnSuccess(QueryResult queryResult);
+
         #endregion Methods
     }
 }

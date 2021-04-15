@@ -70,8 +70,8 @@ export abstract class QueryWithInputAndOutputHandler<
 
   /** @inheritdoc */
   protected resetQueryResult() {
-    this._queryResult = createQueryResultWithOutput<TQueryOutput>();
-
-    this._queryResult.queryCode = this.queryCode;
+    this._queryResult = createQueryResultWithOutput<TQueryOutput>(
+      this.queryCode
+    );
   }
 }

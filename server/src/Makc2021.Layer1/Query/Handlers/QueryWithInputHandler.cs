@@ -12,12 +12,6 @@ namespace Makc2021.Layer1.Query.Handlers
     /// <typeparam name="TQueryInput">Тип входных данных запроса.</typeparam>
     public class QueryWithInputHandler<TQueryInput> : QueryHandler, IQueryWithInputHandler<TQueryInput>
     {
-        #region Fields
-
-        private QueryResult _queryResult;
-
-        #endregion Fields
-
         #region Properties
 
         /// <summary>
@@ -39,21 +33,7 @@ namespace Makc2021.Layer1.Query.Handlers
         public TQueryInput QueryInput { get; private set; }
 
         /// <inheritdoc/>
-        public QueryResult QueryResult
-        {
-            get
-            {
-                if (_queryResult == null)
-                {
-                    _queryResult = new QueryResult
-                    {
-                        QueryCode = QueryCode
-                    };
-                }
-
-                return _queryResult;
-            }
-        }
+        public QueryResult QueryResult { get; private set; }
 
         #endregion Properties
 
@@ -82,6 +62,8 @@ namespace Makc2021.Layer1.Query.Handlers
         /// <inheritdoc/>
         public void OnSuccess()
         {
+            InitQueryResult(true);
+
             Func<IEnumerable<string>> functionToGetSuccessMessages = null;
 
             if (FunctionToGetSuccessMessages != null)
@@ -99,6 +81,14 @@ namespace Makc2021.Layer1.Query.Handlers
             DoOnSuccess(functionToGetSuccessMessages, functionToGetWarningMessages);
         }
 
+        /// <inheritdoc/>
+        public void OnSuccess(QueryResult queryResult)
+        {
+            QueryResult = queryResult;
+
+            DoOnSuccess(null, null);
+        }
+
         #endregion Public methods
 
         #region Protected methods
@@ -113,6 +103,16 @@ namespace Makc2021.Layer1.Query.Handlers
         protected sealed override QueryResult GetQueryResult()
         {
             return QueryResult;
+        }
+
+        /// <inheritdoc/>
+        protected sealed override void InitQueryResult(bool isOk)
+        {
+            QueryResult = new QueryResult
+            {
+                IsOk = isOk,
+                QueryCode = QueryCode
+            };
         }
 
         #endregion Protected methods
