@@ -57,11 +57,15 @@ namespace Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.List
 
             List<QueryResult> queryResults = new();
 
+            var list = input.List;
+
             var queryResult1 = await GetListGetQueryResult(                
                 new ListGetQueryDomainInput
                 {
-                    PageNumber = input.List.PageNumber,
-                    PageSize = input.List.PageSize
+                    PageNumber = list.PageNumber,
+                    PageSize = list.PageSize,
+                    SortDirection = list.SortDirection,
+                    SortField = list.SortField
                 },
                 queryCode
                 ).ConfigureAwaitWithCultureSaving(false);

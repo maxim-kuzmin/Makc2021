@@ -8,6 +8,7 @@ import { useLayer1UrlService } from 'src/Layer1/Hooks';
 import { createUrlParts } from 'src/Layer1/Url/UrlParts';
 import { useLayer5DummyMainListPageStore } from 'src/Layer5/Pages/DummyMain/List/DummyMainListPageHooks';
 import { createDummyMainListPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/List/Queries/Get/DummyMainListPageGetQueryInput';
+import { TextFilterControl } from 'src/Layer6/Controls/Filters/Text/TextFilterControl';
 import { TableControl } from 'src/Layer6/Controls/Table/TableControl';
 import {
   createDummyMainListPageTableRow,
@@ -34,15 +35,28 @@ export function DummyMainListPage() {
 
   const pageNumber = Number(query.pn ?? '1');
   const pageSize = Number(query.ps ?? '10');
+  const sortDirection = query.sd ?? 'desc';
+  const sortField = query.sf ?? 'id';
 
   useEffect(() => {
     const input = createDummyMainListPageGetQueryInput();
 
-    input.list.pageNumber = pageNumber;
-    input.list.pageSize = pageSize;
+    const { list } = input;
+
+    list.pageNumber = pageNumber;
+    list.pageSize = pageSize;
+    list.sortDirection = sortDirection;
+    list.sortField = sortField;
 
     dispatch(storeOfDummyMainListPage.loadAsync(input));
-  }, [pageNumber, pageSize, dispatch, storeOfDummyMainListPage]);
+  }, [
+    pageNumber,
+    pageSize,
+    dispatch,
+    storeOfDummyMainListPage,
+    sortDirection,
+    sortField
+  ]);
 
   const getQueryResult = useSelector(
     storeOfDummyMainListPage.selectGetQueryResult
@@ -56,14 +70,16 @@ export function DummyMainListPage() {
   const { isOk, errorMessages, output, queryCode } = getQueryResult;
 
   const createPageUrl = useCallback(
-    (pageNumber, pageSize) => {
+    (pageNumber, pageSize, sortDirection, sortField) => {
       const urlParts = createUrlParts();
 
       urlParts.path = location.pathname;
 
       urlParts.search = {
         pn: pageNumber,
-        ps: pageSize
+        ps: pageSize,
+        sd: sortDirection,
+        sf: sortField
       };
 
       return urlService.createUrl(urlParts);
@@ -76,11 +92,13 @@ export function DummyMainListPage() {
       [
         {
           Header: 'Id',
-          accessor: 'id'
+          accessor: 'id',
+          Filter: TextFilterControl
         },
         {
           Header: 'Name',
-          accessor: 'name'
+          accessor: 'name',
+          Filter: TextFilterControl
         }
       ] as Column<DummyMainListPageTableRow>[],
     []
@@ -107,6 +125,8 @@ export function DummyMainListPage() {
         loading={isWaiting}
         pageNumber={pageNumber}
         pageSize={pageSize}
+        sortDirection={sortDirection}
+        sortField={sortField}
         totalCount={totalCount}
         createPageUrl={createPageUrl}
       />

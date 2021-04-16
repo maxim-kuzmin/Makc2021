@@ -1,7 +1,15 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+import { useEffect, useMemo } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useTable, usePagination } from 'react-table';
+import {
+  Column,
+  useTable,
+  usePagination,
+  useSortBy,
+  useFilters
+} from 'react-table';
+import { TextFilterControl } from '../Filters/Text/TextFilterControl';
 import { TableControlProps } from './TableControlProps';
 
 /**
@@ -16,6 +24,8 @@ export function TableControl<TRow extends object>({
   loading,
   pageNumber,
   pageSize,
+  sortDirection,
+  sortField,
   totalCount
 }: React.PropsWithChildren<TableControlProps<TRow>>) {
   pageSize = normalizePageSize(pageSize);
@@ -27,20 +37,53 @@ export function TableControl<TRow extends object>({
   const canPreviousPage = pageNumber > 1;
   const canNextPage = pageNumber < pageCount;
 
+  const defaultColumn = useMemo(
+    () =>
+      ({
+        Filter: TextFilterControl
+      } as Column<TRow>),
+    []
+  );
+
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     prepareRow,
-    page
+    page,
+    state: { sortBy }
   } = useTable(
     {
       columns,
       data,
-      manualPagination: true
+      defaultColumn,
+      manualFilters: true,
+      manualSortBy: true,
+      disableMultiSort: true,
+      disableSortRemove: true,
+      manualPagination: true,
+      initialState: {
+        sortBy: [{ id: sortField, desc: sortDirection === 'desc' }]
+      }
     },
+    useFilters,
+    useSortBy,
     usePagination
   );
+
+  const history = useHistory();
+
+  useEffect(() => {
+    const sorting = sortBy[0];
+    history.push(
+      createPageUrl(
+        pageNumber,
+        pageSize,
+        sorting.desc === true ? 'desc' : 'asc',
+        sorting.id
+      )
+    );
+  }, [createPageUrl, history, pageNumber, pageSize, sortBy]);
 
   function createPageLink(
     pageNumber: number,
@@ -50,10 +93,12 @@ export function TableControl<TRow extends object>({
     pageNumber = normalizePageNumber(pageNumber, pageCount);
 
     return isClickable ? (
-      <Link to={createPageUrl(pageNumber, pageSize)}>{text}</Link>
+      <Link to={createPageUrl(pageNumber, pageSize, sortDirection, sortField)}>
+        {text}
+      </Link>
     ) : (
       <Link
-        to={createPageUrl(pageNumber, pageSize)}
+        to={createPageUrl(pageNumber, pageSize, sortDirection, sortField)}
         onClick={(event) => event.preventDefault()}
         className="App-nonclickable"
       >
@@ -62,13 +107,11 @@ export function TableControl<TRow extends object>({
     );
   }
 
-  const history = useHistory();
-
   function goToPage(pageNumber: number, pageSize: number) {
     pageNumber = normalizePageNumber(pageNumber, pageCount);
     pageSize = normalizePageSize(pageSize);
 
-    history.push(createPageUrl(pageNumber, pageSize));
+    history.push(createPageUrl(pageNumber, pageSize, sortDirection, sortField));
   }
 
   // Render the UI for your table
@@ -77,21 +120,35 @@ export function TableControl<TRow extends object>({
       <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
         <thead>
           {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th
-                  {...column.getHeaderProps()}
-                  style={{
-                    borderBottom: 'solid 3px red',
-                    background: 'aliceblue',
-                    color: 'black',
-                    fontWeight: 'bold'
-                  }}
-                >
-                  {column.render('Header')}
-                </th>
-              ))}
-            </tr>
+            <>
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  // Add the sorting props to control sorting. For this example
+                  // we can add them into the header props
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    {column.render('Header')}
+                    {/* Add a sort direction indicator */}
+                    <span>
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? ' 🔽'
+                          : ' 🔼'
+                        : ''}
+                    </span>
+                  </th>
+                ))}
+              </tr>
+              <tr>
+                {headerGroup.headers.map((column) => (
+                  <th>
+                    {/* Render the columns filter UI */}
+                    <div>
+                      {column.canFilter ? column.render('Filter') : null}
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </>
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>

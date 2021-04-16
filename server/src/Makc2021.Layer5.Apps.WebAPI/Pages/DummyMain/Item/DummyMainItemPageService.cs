@@ -57,10 +57,12 @@ namespace Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item
 
             List<QueryResult> queryResults = new();
 
+            var item = input.Item;
+
             var queryResult1 = await GetItemGetQueryResult(               
                 new ItemGetQueryDomainInput
                 {
-                    EntityId = input.Item.EntityId
+                    EntityId = item.EntityId
                 },
                 queryCode
                 ).ConfigureAwaitWithCultureSaving(false);

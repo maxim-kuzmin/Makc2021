@@ -33,6 +33,16 @@ export interface TableControlProps<TRow extends object> {
   pageSize: number;
 
   /**
+   * Направление сортировки.
+   */
+  sortDirection: 'asc' | 'desc';
+
+  /**
+   * Поле сортировки.
+   */
+  sortField: string;
+
+  /**
    * Общее количество записей.
    */
   totalCount: number;
@@ -40,5 +50,10 @@ export interface TableControlProps<TRow extends object> {
   /**
    * Создать URL страницы.
    */
-  createPageUrl: (pageNumber: number, pageSize: number) => string;
+  createPageUrl: (
+    pageNumber: number,
+    pageSize: number,
+    sortDirection: 'asc' | 'desc',
+    sortField: string
+  ) => string;
 }
