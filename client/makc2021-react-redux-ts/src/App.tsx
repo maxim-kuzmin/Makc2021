@@ -3,10 +3,10 @@
 import './App.css';
 import {
   BrowserRouter as Router,
-  Link,
   Switch,
   Route,
-  Redirect
+  Redirect,
+  NavLink
 } from 'react-router-dom';
 import { useLayer1 } from './Layer1/Hooks';
 import { useLayer5 } from './Layer5/Hooks';
@@ -36,17 +36,17 @@ function App() {
               width: '100%'
             }}
           >
-            <Link to="/dummy-main/item/1">Сущность "DummyMain"</Link>
-            <Link to="/dummy-main/list">Сущности "DummyMain"</Link>
+            <NavLink to="/dummy-main/list">Сущности "DummyMain"</NavLink>
+            <NavLink to="/dummy-main/item/1">Сущность "DummyMain"</NavLink>
           </div>
           <hr />
           <Switch>
             <Redirect exact path="/" to="/dummy-main/list" />
-            <Route exact path="/dummy-main/item/:id">
-              <DummyMainItemPage />
-            </Route>
             <Route exact path="/dummy-main/list">
               <DummyMainListPage />
+            </Route>
+            <Route exact path="/dummy-main/item/:id">
+              <DummyMainItemPage />
             </Route>
           </Switch>
         </header>

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Column, Filters } from 'react-table';
 import { useLayer1UrlService } from 'src/Layer1/Hooks';
 import { createUrlParts } from 'src/Layer1/Url/UrlParts';
@@ -131,13 +132,24 @@ export function DummyMainListPage() {
     () =>
       [
         {
+          Header: '',
+          accessor: 'action',
+          disableFilters: true,
+          Cell: (e) => (
+            <Link to={`/dummy-main/item/${e.row.values['id']}`}>Показать</Link>
+          ),
+          minWidth: '6em'
+        },
+        {
           Header: 'Id',
           accessor: 'id',
-          disableFilters: true
+          disableFilters: true,
+          minWidth: '5em'
         },
         {
           Header: 'Name',
-          accessor: 'name'
+          accessor: 'name',
+          width: '100%'
         }
       ] as Column<DummyMainListPageTableRow>[],
     []

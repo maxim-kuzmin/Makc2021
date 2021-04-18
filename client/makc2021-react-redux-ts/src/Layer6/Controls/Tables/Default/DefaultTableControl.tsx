@@ -112,7 +112,11 @@ export function DefaultTableControl<TRow extends object>({
                 // we can add them into the header props
                 <th
                   {...column.getHeaderProps()}
-                  style={{ verticalAlign: 'top' }}
+                  style={{
+                    verticalAlign: 'top',
+                    width: column.width,
+                    minWidth: column.minWidth
+                  }}
                 >
                   <div {...column.getSortByToggleProps()}>
                     {column.render('Header')}

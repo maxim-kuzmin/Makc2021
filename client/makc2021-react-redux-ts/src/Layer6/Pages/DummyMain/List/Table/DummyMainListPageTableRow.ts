@@ -5,6 +5,11 @@
  */
 export interface DummyMainListPageTableRow {
   /**
+   * Действие.
+   */
+  action: string;
+
+  /**
    * Идентификатор.
    */
   id: number;
@@ -21,6 +26,7 @@ export interface DummyMainListPageTableRow {
  */
 export function createDummyMainListPageTableRow() {
   return {
+    action: '',
     id: 0,
     name: ''
   } as DummyMainListPageTableRow;
