@@ -65,7 +65,8 @@ namespace Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.List
                     PageNumber = list.PageNumber,
                     PageSize = list.PageSize,
                     SortDirection = list.SortDirection,
-                    SortField = list.SortField
+                    SortField = list.SortField,
+                    EntityName = list.EntityName
                 },
                 queryCode
                 ).ConfigureAwaitWithCultureSaving(false);

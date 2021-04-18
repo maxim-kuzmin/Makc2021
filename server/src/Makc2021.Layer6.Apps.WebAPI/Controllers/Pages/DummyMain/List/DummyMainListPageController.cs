@@ -46,9 +46,17 @@ namespace Makc2021.Layer6.Apps.WebAPI.Controllers.Pages.DummyMain.List
         /// <param name="pageSize">Размер страницы.</param>
         /// <param name="sortDirection">Направление сортировки.</param>
         /// <param name="sortField">Поле сортировки.</param>
+        /// <param name="entityName">Имя сущности.</param>
         /// <returns>Задача на получение результата.</returns>
         [HttpGet]
-        public async Task<IActionResult> Get(string queryCode, int pageNumber, int pageSize, string sortDirection, string sortField)
+        public async Task<IActionResult> Get(
+            string queryCode,
+            int pageNumber,
+            int pageSize,
+            string sortDirection,
+            string sortField,
+            string entityName
+            )
         {
             DummyMainListPageGetQueryInput input = new();
 
@@ -58,6 +66,7 @@ namespace Makc2021.Layer6.Apps.WebAPI.Controllers.Pages.DummyMain.List
             list.PageSize = pageSize;
             list.SortDirection = sortDirection;
             list.SortField = sortField;
+            list.EntityName = entityName;
 
             var result = await AppService.Get(input, queryCode).ConfigureAwaitWithCultureSaving(false);
 

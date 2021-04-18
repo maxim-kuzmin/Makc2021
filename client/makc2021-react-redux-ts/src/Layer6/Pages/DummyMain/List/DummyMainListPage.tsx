@@ -3,13 +3,12 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
-import { Column } from 'react-table';
+import { Column, Filters } from 'react-table';
 import { useLayer1UrlService } from 'src/Layer1/Hooks';
 import { createUrlParts } from 'src/Layer1/Url/UrlParts';
 import { useLayer5DummyMainListPageStore } from 'src/Layer5/Pages/DummyMain/List/DummyMainListPageHooks';
 import { createDummyMainListPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/List/Queries/Get/DummyMainListPageGetQueryInput';
-import { TextFilterControl } from 'src/Layer6/Controls/Filters/Text/TextFilterControl';
-import { TableControl } from 'src/Layer6/Controls/Table/TableControl';
+import { DefaultTableControl } from 'src/Layer6/Controls/Tables/Default/DefaultTableControl';
 import {
   createDummyMainListPageTableRow,
   DummyMainListPageTableRow
@@ -37,6 +36,14 @@ export function DummyMainListPage() {
   const pageSize = Number(query.ps ?? '10');
   const sortDirection = query.sd ?? 'desc';
   const sortField = query.sf ?? 'id';
+  const entityName = query.en;
+
+  const filters = [
+    {
+      id: 'name',
+      value: entityName
+    }
+  ] as Filters<DummyMainListPageTableRow>;
 
   useEffect(() => {
     const input = createDummyMainListPageGetQueryInput();
@@ -47,6 +54,7 @@ export function DummyMainListPage() {
     list.pageSize = pageSize;
     list.sortDirection = sortDirection;
     list.sortField = sortField;
+    list.entityName = entityName;
 
     dispatch(storeOfDummyMainListPage.loadAsync(input));
   }, [
@@ -55,7 +63,8 @@ export function DummyMainListPage() {
     dispatch,
     storeOfDummyMainListPage,
     sortDirection,
-    sortField
+    sortField,
+    entityName
   ]);
 
   const getQueryResult = useSelector(
@@ -70,17 +79,48 @@ export function DummyMainListPage() {
   const { isOk, errorMessages, output, queryCode } = getQueryResult;
 
   const createPageUrl = useCallback(
-    (pageNumber, pageSize, sortDirection, sortField) => {
+    (
+      pageNumber: number,
+      pageSize: number,
+      sortDirection: string,
+      sortField: string,
+      filters: Filters<DummyMainListPageTableRow>
+    ) => {
       const urlParts = createUrlParts();
 
       urlParts.path = location.pathname;
 
-      urlParts.search = {
-        pn: pageNumber,
-        ps: pageSize,
-        sd: sortDirection,
-        sf: sortField
-      };
+      let entityName: any;
+
+      for (const filter of filters) {
+        if (filter.id === 'name') {
+          entityName = filter.value;
+        }
+      }
+
+      const search: any = {};
+
+      if (pageNumber) {
+        search.pn = pageNumber;
+      }
+
+      if (pageSize) {
+        search.ps = pageSize;
+      }
+
+      if (sortDirection) {
+        search.sd = sortDirection;
+      }
+
+      if (sortField) {
+        search.sf = sortField;
+      }
+
+      if (entityName) {
+        search.en = entityName;
+      }
+
+      urlParts.search = search;
 
       return urlService.createUrl(urlParts);
     },
@@ -93,12 +133,11 @@ export function DummyMainListPage() {
         {
           Header: 'Id',
           accessor: 'id',
-          Filter: TextFilterControl
+          disableFilters: true
         },
         {
           Header: 'Name',
-          accessor: 'name',
-          Filter: TextFilterControl
+          accessor: 'name'
         }
       ] as Column<DummyMainListPageTableRow>[],
     []
@@ -119,9 +158,10 @@ export function DummyMainListPage() {
     });
 
     htmlOfItems = (
-      <TableControl
+      <DefaultTableControl
         columns={columns}
         data={data}
+        filters={filters}
         loading={isWaiting}
         pageNumber={pageNumber}
         pageSize={pageSize}
@@ -146,7 +186,6 @@ export function DummyMainListPage() {
 
   return (
     <>
-      <h2>Сущности "DummyMain"</h2>
       {htmlOfErrors}
       {htmlOfItems}
     </>

@@ -78,7 +78,6 @@ export function DummyMainItemPage() {
 
   return (
     <>
-      <h2>Сущность "DummyMain"</h2>
       {htmlOfId}
       {htmlOfWaiting}
       {htmlOfErrors}

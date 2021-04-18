@@ -1,12 +1,12 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { Column } from 'react-table';
+import { Column, Filters } from 'react-table';
 
 /**
- * Свойства элемента управления "Таблица".
+ * Свойства элемента управления "Таблица по умолчанию".
  * @template TRow Тип строки.
  */
-export interface TableControlProps<TRow extends object> {
+export interface DefaultTableControlProps<TRow extends object> {
   /**
    * Столбцы.
    */
@@ -16,6 +16,11 @@ export interface TableControlProps<TRow extends object> {
    * Данные.
    */
   data: TRow[];
+
+  /**
+   * Фильтры.
+   */
+  filters: Filters<TRow>;
 
   /**
    * Признак загрузки.
@@ -54,6 +59,7 @@ export interface TableControlProps<TRow extends object> {
     pageNumber: number,
     pageSize: number,
     sortDirection: 'asc' | 'desc',
-    sortField: string
+    sortField: string,
+    filters: Filters<TRow>
   ) => string;
 }

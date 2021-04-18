@@ -1,25 +1,29 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useMemo } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import Pagination from 'react-bootstrap/Pagination';
+import Table from 'react-bootstrap/Table';
+import { useHistory } from 'react-router-dom';
 import {
-  Column,
   useTable,
   usePagination,
   useSortBy,
-  useFilters
+  useFilters,
+  ColumnInterface
 } from 'react-table';
-import { TextFilterControl } from '../Filters/Text/TextFilterControl';
-import { TableControlProps } from './TableControlProps';
+import { TableColumnDefaultFilterControl } from '../../Table/Column/Filters/Default/TableColumnDefaultFilterControl';
+import { DefaultTableControlProps } from './DefaultTableControlProps';
 
 /**
- * Элемент управления "Таблица".
+ * Элемент управления "Таблица по умолчанию".
  * @template TRow Тип строки.
  * @returns HTML.
  */
-export function TableControl<TRow extends object>({
+export function DefaultTableControl<TRow extends object>({
   columns,
   data,
+  filters: controlledFilters,
   createPageUrl,
   loading,
   pageNumber,
@@ -27,7 +31,7 @@ export function TableControl<TRow extends object>({
   sortDirection,
   sortField,
   totalCount
-}: React.PropsWithChildren<TableControlProps<TRow>>) {
+}: React.PropsWithChildren<DefaultTableControlProps<TRow>>) {
   pageSize = normalizePageSize(pageSize);
 
   const pageCount = pageSize > 0 ? Math.ceil(totalCount / pageSize) : 1;
@@ -40,8 +44,8 @@ export function TableControl<TRow extends object>({
   const defaultColumn = useMemo(
     () =>
       ({
-        Filter: TextFilterControl
-      } as Column<TRow>),
+        Filter: TableColumnDefaultFilterControl
+      } as ColumnInterface<TRow>),
     []
   );
 
@@ -51,7 +55,7 @@ export function TableControl<TRow extends object>({
     headerGroups,
     prepareRow,
     page,
-    state: { sortBy }
+    state: { sortBy, filters }
   } = useTable(
     {
       columns,
@@ -63,6 +67,7 @@ export function TableControl<TRow extends object>({
       disableSortRemove: true,
       manualPagination: true,
       initialState: {
+        filters: controlledFilters,
         sortBy: [{ id: sortField, desc: sortDirection === 'desc' }]
       }
     },
@@ -80,52 +85,36 @@ export function TableControl<TRow extends object>({
         pageNumber,
         pageSize,
         sorting.desc === true ? 'desc' : 'asc',
-        sorting.id
+        sorting.id,
+        filters
       )
     );
-  }, [createPageUrl, history, pageNumber, pageSize, sortBy]);
-
-  function createPageLink(
-    pageNumber: number,
-    text: string,
-    isClickable: boolean
-  ) {
-    pageNumber = normalizePageNumber(pageNumber, pageCount);
-
-    return isClickable ? (
-      <Link to={createPageUrl(pageNumber, pageSize, sortDirection, sortField)}>
-        {text}
-      </Link>
-    ) : (
-      <Link
-        to={createPageUrl(pageNumber, pageSize, sortDirection, sortField)}
-        onClick={(event) => event.preventDefault()}
-        className="App-nonclickable"
-      >
-        {text}
-      </Link>
-    );
-  }
+  }, [createPageUrl, history, pageNumber, pageSize, sortBy, filters]);
 
   function goToPage(pageNumber: number, pageSize: number) {
     pageNumber = normalizePageNumber(pageNumber, pageCount);
     pageSize = normalizePageSize(pageSize);
 
-    history.push(createPageUrl(pageNumber, pageSize, sortDirection, sortField));
+    history.push(
+      createPageUrl(pageNumber, pageSize, sortDirection, sortField, filters)
+    );
   }
 
   // Render the UI for your table
   return (
     <>
-      <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
+      <Table striped bordered hover size="sm" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
-            <>
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  // Add the sorting props to control sorting. For this example
-                  // we can add them into the header props
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                // Add the sorting props to control sorting. For this example
+                // we can add them into the header props
+                <th
+                  {...column.getHeaderProps()}
+                  style={{ verticalAlign: 'top' }}
+                >
+                  <div {...column.getSortByToggleProps()}>
                     {column.render('Header')}
                     {/* Add a sort direction indicator */}
                     <span>
@@ -135,20 +124,12 @@ export function TableControl<TRow extends object>({
                           : ' 🔼'
                         : ''}
                     </span>
-                  </th>
-                ))}
-              </tr>
-              <tr>
-                {headerGroup.headers.map((column) => (
-                  <th>
-                    {/* Render the columns filter UI */}
-                    <div>
-                      {column.canFilter ? column.render('Filter') : null}
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            </>
+                  </div>
+                  {/* Render the columns filter UI */}
+                  <div>{column.canFilter ? column.render('Filter') : null}</div>
+                </th>
+              ))}
+            </tr>
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
@@ -158,16 +139,7 @@ export function TableControl<TRow extends object>({
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td
-                      {...cell.getCellProps()}
-                      style={{
-                        padding: '10px',
-                        border: 'solid 1px gray',
-                        background: 'papayawhip'
-                      }}
-                    >
-                      {cell.render('Cell')}
-                    </td>
+                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                   );
                 })}
               </tr>
@@ -184,12 +156,44 @@ export function TableControl<TRow extends object>({
             )}
           </tr>
         </tbody>
-      </table>
-      <div className="pagination">
-        {createPageLink(1, '<<', canPreviousPage)}{' '}
-        {createPageLink(pageNumber - 1, '<', canPreviousPage)}{' '}
-        {createPageLink(pageNumber + 1, '>', canNextPage)}{' '}
-        {createPageLink(pageCount, '>>', canNextPage)}
+      </Table>
+      <Pagination>
+        <Pagination.First
+          href={createPageUrl(1, pageSize, sortDirection, sortField, filters)}
+          disabled={!canPreviousPage}
+        />
+        <Pagination.Prev
+          href={createPageUrl(
+            pageNumber - 1,
+            pageSize,
+            sortDirection,
+            sortField,
+            filters
+          )}
+          disabled={!canPreviousPage}
+        />
+        <Pagination.Next
+          href={createPageUrl(
+            pageNumber + 1,
+            pageSize,
+            sortDirection,
+            sortField,
+            filters
+          )}
+          disabled={!canNextPage}
+        />
+        <Pagination.Last
+          href={createPageUrl(
+            pageCount,
+            pageSize,
+            sortDirection,
+            sortField,
+            filters
+          )}
+          disabled={!canNextPage}
+        />
+      </Pagination>
+      <div>
         <span>
           Page{' '}
           <strong>
@@ -214,7 +218,7 @@ export function TableControl<TRow extends object>({
             goToPage(1, Number(e.target.value));
           }}
         >
-          {[1, 2, 3].map((pageSize) => (
+          {[10, 20, 30].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>

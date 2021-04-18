@@ -1,7 +1,13 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import './App.css';
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Link,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 import { useLayer1 } from './Layer1/Hooks';
 import { useLayer5 } from './Layer5/Hooks';
 import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPage';
@@ -30,15 +36,12 @@ function App() {
               width: '100%'
             }}
           >
-            <Link to="/">Home</Link>
             <Link to="/dummy-main/item/1">Сущность "DummyMain"</Link>
             <Link to="/dummy-main/list">Сущности "DummyMain"</Link>
           </div>
           <hr />
           <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
+            <Redirect exact path="/" to="/dummy-main/list" />
             <Route exact path="/dummy-main/item/:id">
               <DummyMainItemPage />
             </Route>
@@ -46,47 +49,6 @@ function App() {
               <DummyMainListPage />
             </Route>
           </Switch>
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <span>
-            <span>Learn </span>
-            <a
-              className="App-link"
-              href="https://reactjs.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              React
-            </a>
-            <span>, </span>
-            <a
-              className="App-link"
-              href="https://redux.js.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Redux
-            </a>
-            <span>, </span>
-            <a
-              className="App-link"
-              href="https://redux-toolkit.js.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Redux Toolkit
-            </a>
-            ,<span> and </span>
-            <a
-              className="App-link"
-              href="https://react-redux.js.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              React Redux
-            </a>
-          </span>
         </header>
       </div>
     </Router>
@@ -94,11 +56,3 @@ function App() {
 }
 
 export default App;
-
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-}
