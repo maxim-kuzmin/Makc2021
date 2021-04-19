@@ -1,6 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CommonStore } from 'src/Layer1/Common/CommonStore';
 import { QueryResultWithOutput } from 'src/Layer1/Query/QueryResultWithOutput';
 import { AppThunk, RootState } from 'src/Layer5/Store';
 import { DummyMainListPageService } from './DummyMainListPageService';
@@ -11,12 +12,14 @@ import { DummyMainListPageGetQueryOutput } from './Queries/Get/DummyMainListPage
 /**
  * Хранилище страницы сущностей "DummyMain".
  */
-export class DummyMainListPageStore {
+export class DummyMainListPageStore extends CommonStore {
   /**
    * Конструктор.
    * @param _appService Сервис.
    */
-  constructor(private _appService: DummyMainListPageService) {}
+  constructor(private _appService: DummyMainListPageService) {
+    super();
+  }
 
   /**
    * Загрузить асинхронно.
@@ -25,13 +28,13 @@ export class DummyMainListPageStore {
    */
   loadAsync(input: DummyMainListPageGetQueryInput): AppThunk {
     return async (dispatch) => {
-      dispatch(wait(true));
+      this.waiting.delay(() => dispatch(wait(true)));
 
       const result = await this._appService.get(input);
 
       dispatch(load(result));
 
-      dispatch(wait(false));
+      this.waiting.prolong(() => dispatch(wait(false)));
     };
   }
 

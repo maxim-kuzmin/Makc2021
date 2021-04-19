@@ -9,7 +9,9 @@ import { useLayer1UrlService } from 'src/Layer1/Hooks';
 import { createUrlParts } from 'src/Layer1/Url/UrlParts';
 import { useLayer5DummyMainListPageStore } from 'src/Layer5/Pages/DummyMain/List/DummyMainListPageHooks';
 import { createDummyMainListPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/List/Queries/Get/DummyMainListPageGetQueryInput';
+import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 import { DefaultTableControl } from 'src/Layer6/Controls/Tables/Default/DefaultTableControl';
+import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorControl';
 import {
   createDummyMainListPageTableRow,
   DummyMainListPageTableRow
@@ -17,7 +19,6 @@ import {
 
 /**
  * Страница сущностей "DummyMain".
- * @returns HTML.
  */
 export function DummyMainListPage() {
   const storeOfDummyMainListPage = useLayer5DummyMainListPageStore();
@@ -28,16 +29,16 @@ export function DummyMainListPage() {
 
   const location = useLocation();
 
-  const query = useMemo(() => urlService.parseSearch(location.search), [
+  const search = useMemo(() => urlService.parseSearch(location.search), [
     urlService,
     location.search
   ]);
 
-  const pageNumber = Number(query.pn ?? '1');
-  const pageSize = Number(query.ps ?? '10');
-  const sortDirection = query.sd ?? 'desc';
-  const sortField = query.sf ?? 'id';
-  const entityName = query.en;
+  const pageNumber = Number(search.pn ?? '1');
+  const pageSize = Number(search.ps ?? '10');
+  const sortDirection = search.sd ?? 'desc';
+  const sortField = search.sf ?? 'id';
+  const entityName = search.en;
 
   const filters = [
     {
@@ -73,9 +74,6 @@ export function DummyMainListPage() {
   );
 
   const isWaiting = useSelector(storeOfDummyMainListPage.selectIsWaiting);
-
-  let htmlOfItems;
-  let htmlOfErrors;
 
   const { isOk, errorMessages, output, queryCode } = getQueryResult;
 
@@ -141,13 +139,13 @@ export function DummyMainListPage() {
           minWidth: '6em'
         },
         {
-          Header: 'Id',
+          Header: 'ID',
           accessor: 'id',
           disableFilters: true,
           minWidth: '5em'
         },
         {
-          Header: 'Name',
+          Header: 'Имя',
           accessor: 'name',
           width: '100%'
         }
@@ -155,10 +153,15 @@ export function DummyMainListPage() {
     []
   );
 
-  if (isOk) {
-    const { totalCount, items } = output.list;
+  let data: DummyMainListPageTableRow[];
+  let totalCount = 0;
 
-    const data = items.map((item) => {
+  if (isOk) {
+    totalCount = output.list.totalCount;
+
+    const { items } = output.list;
+
+    data = items.map((item) => {
       const result = createDummyMainListPageTableRow();
 
       const { objectOfDummyMainEntity: entity } = item;
@@ -168,8 +171,16 @@ export function DummyMainListPage() {
 
       return result;
     });
+  } else {
+    data = [];
+  }
 
-    htmlOfItems = (
+  return (
+    <>
+      <GlobalWaitingControl isVisible={isWaiting} />
+      {!isOk && (
+        <QueryErrorControl queryCode={queryCode} messages={errorMessages} />
+      )}
       <DefaultTableControl
         columns={columns}
         data={data}
@@ -182,24 +193,6 @@ export function DummyMainListPage() {
         totalCount={totalCount}
         createPageUrl={createPageUrl}
       />
-    );
-  } else if (errorMessages.length > 0) {
-    htmlOfErrors = errorMessages.map((errorMessage) => (
-      <li key={errorMessage}>{errorMessage}</li>
-    ));
-
-    htmlOfErrors = (
-      <>
-        <h3>Ошибки в запросе {queryCode}:</h3>
-        <ul>{htmlOfErrors}</ul>
-      </>
-    );
-  }
-
-  return (
-    <>
-      {htmlOfErrors}
-      {htmlOfItems}
     </>
   );
 }

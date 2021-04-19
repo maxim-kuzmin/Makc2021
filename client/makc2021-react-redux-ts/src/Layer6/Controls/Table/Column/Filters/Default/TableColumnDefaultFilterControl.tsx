@@ -4,10 +4,10 @@ import Form from 'react-bootstrap/Form';
 /**
  * Элемент управления "Фильтр по умолчанию колонки таблицы".
  */
-export function TableColumnDefaultFilterControl<TRow extends object>(
-  props: UseTableCellProps<TRow>
-) {
-  const { filterValue, preFilteredRows, setFilter } = props.column;
+export function TableColumnDefaultFilterControl<TRow extends object>({
+  column
+}: UseTableCellProps<TRow>) {
+  const { filterValue, preFilteredRows, setFilter } = column;
 
   const count = preFilteredRows && preFilteredRows.length;
 

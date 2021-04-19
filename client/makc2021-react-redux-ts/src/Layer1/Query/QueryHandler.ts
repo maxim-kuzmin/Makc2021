@@ -37,7 +37,9 @@ export abstract class QueryHandler {
     const queryResult = this.getQueryResult();
 
     if (error) {
-      errorMessage = 'Server is not responding';
+      if (error.message) {
+        errorMessage = error.message;
+      }
 
       queryResult.errorMessages.push(errorMessage);
     } else {

@@ -1,46 +1,40 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import { useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { createDummyMainEntityObject } from 'src/Layer3/Sample/Entities/DummyMainEntityObject';
 import { useLayer5DummyMainItemPageStore } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageHooks';
 import { DummyMainItemPageParams } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageParams';
 import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Get/DummyMainItemPageGetQueryInput';
+import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
+import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorControl';
 
 /**
  * Страница сущности "DummyMain".
- * @returns HTML.
  */
 export function DummyMainItemPage() {
   const storeOfDummyMainItemPage = useLayer5DummyMainItemPageStore();
 
-  const { id } = useParams<DummyMainItemPageParams>();
+  const { id: parId } = useParams<DummyMainItemPageParams>();
+
+  const entityId = Number(parId);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const input = createDummyMainItemPageGetQueryInput();
+    if (entityId > 0) {
+      const input = createDummyMainItemPageGetQueryInput();
 
-    if (id) {
-      input.item.entityId = Number(id);
+      input.item.entityId = entityId;
+
+      dispatch(storeOfDummyMainItemPage.loadAsync(input));
     }
-
-    dispatch(storeOfDummyMainItemPage.loadAsync(input));
-  }, [id, dispatch, storeOfDummyMainItemPage]);
-
-  let htmlOfId;
-  let htmlOfEntity;
-  let htmlOfErrors;
-  let htmlOfWaiting;
-
-  if (id) {
-    htmlOfId = (
-      <>
-        <h3>Идентификатор:</h3>
-        {id}
-      </>
-    );
-  }
+  }, [entityId, dispatch, storeOfDummyMainItemPage]);
 
   const getQueryResult = useSelector(
     storeOfDummyMainItemPage.selectGetQueryResult
@@ -48,40 +42,41 @@ export function DummyMainItemPage() {
 
   const isWaiting = useSelector(storeOfDummyMainItemPage.selectIsWaiting);
 
-  if (isWaiting) {
-    htmlOfWaiting = <h3>Идёт загрузка...</h3>;
-  }
-
   const { isOk, errorMessages, output, queryCode } = getQueryResult;
 
-  if (isOk) {
-    const { objectOfDummyMainEntity: entity } = output.item;
-
-    htmlOfEntity = (
-      <>
-        <h3>Имя:</h3>
-        {entity.name}
-      </>
-    );
-  } else if (errorMessages.length > 0) {
-    htmlOfErrors = errorMessages.map((errorMessage) => (
-      <li key={errorMessage}>{errorMessage}</li>
-    ));
-
-    htmlOfErrors = (
-      <>
-        <h3>Ошибки в запросе {queryCode}:</h3>
-        <ul>{htmlOfErrors}</ul>
-      </>
-    );
-  }
+  let data = isOk
+    ? output.item.objectOfDummyMainEntity
+    : createDummyMainEntityObject();
 
   return (
     <>
-      {htmlOfId}
-      {htmlOfWaiting}
-      {htmlOfErrors}
-      {htmlOfEntity}
+      <GlobalWaitingControl isVisible={isWaiting} />
+      {!isOk && (
+        <QueryErrorControl queryCode={queryCode} messages={errorMessages} />
+      )}
+      <Form>
+        {data.id > 0 && (
+          <Form.Group as={Row} controlId="id">
+            <Form.Label column>ID</Form.Label>
+            <Col>
+              <Form.Control plaintext readOnly value={data.id} />
+            </Col>
+          </Form.Group>
+        )}
+        <Form.Group as={Row} controlId="name">
+          <Form.Label column>Имя</Form.Label>
+          <Col>
+            <Form.Control
+              type="text"
+              placeholder="Введите имя"
+              defaultValue={data.name}
+            />
+          </Col>
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Сохранить
+        </Button>
+      </Form>
     </>
   );
 }

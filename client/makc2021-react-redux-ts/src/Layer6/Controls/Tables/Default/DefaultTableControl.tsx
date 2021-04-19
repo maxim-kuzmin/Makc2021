@@ -1,7 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect, useMemo } from 'react';
+import { PropsWithChildren, useEffect, useMemo } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import Table from 'react-bootstrap/Table';
 import { useHistory } from 'react-router-dom';
@@ -17,8 +16,6 @@ import { DefaultTableControlProps } from './DefaultTableControlProps';
 
 /**
  * Элемент управления "Таблица по умолчанию".
- * @template TRow Тип строки.
- * @returns HTML.
  */
 export function DefaultTableControl<TRow extends object>({
   columns,
@@ -31,7 +28,7 @@ export function DefaultTableControl<TRow extends object>({
   sortDirection,
   sortField,
   totalCount
-}: React.PropsWithChildren<DefaultTableControlProps<TRow>>) {
+}: PropsWithChildren<DefaultTableControlProps<TRow>>) {
   pageSize = normalizePageSize(pageSize);
 
   const pageCount = pageSize > 0 ? Math.ceil(totalCount / pageSize) : 1;
