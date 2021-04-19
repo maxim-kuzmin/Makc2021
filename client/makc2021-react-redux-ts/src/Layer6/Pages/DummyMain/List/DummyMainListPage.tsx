@@ -33,7 +33,7 @@ export function DummyMainListPage() {
     urlService,
     location.search
   ]);
-
+  console.log('MAKC: search', search);
   const pageNumber = Number(search.pn ?? '1');
   const pageSize = Number(search.ps ?? '10');
   const sortDirection = search.sd ?? 'desc';

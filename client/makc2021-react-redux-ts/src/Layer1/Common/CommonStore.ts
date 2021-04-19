@@ -1,13 +1,14 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { TimingService } from '../Timing/TimingService';
+import { TimingFactory } from '../Timing/TimingFactory';
 
 /**
  * Общее хранилище.
  */
 export abstract class CommonStore {
   /**
-   * Ожидание.
+   * Конструктор.
+   * @param appTimingFactory Фабрика согласования.
    */
-  protected readonly waiting = new TimingService(10, 500);
+  constructor(protected readonly appTimingFactory: TimingFactory) {}
 }

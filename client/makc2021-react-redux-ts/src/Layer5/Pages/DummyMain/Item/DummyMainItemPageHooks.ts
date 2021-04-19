@@ -35,7 +35,8 @@ export function useLayer5DummyMainItemPage() {
   useLayer5DummyMainItemPageStore(() => {
     if (!storeOfDummyMainItemPage) {
       storeOfDummyMainItemPage = new DummyMainItemPageStore(
-        Layer5Module.get().serviceOfDummyMainItemPage
+        Layer5Module.get().serviceOfDummyMainItemPage,
+        Layer1Module.get().timingFactory
       );
     }
 

@@ -3,6 +3,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CommonStore } from 'src/Layer1/Common/CommonStore';
 import { QueryResultWithOutput } from 'src/Layer1/Query/QueryResultWithOutput';
+import { TimingFactory } from 'src/Layer1/Timing/TimingFactory';
 import { AppThunk, RootState } from 'src/Layer5/Store';
 import { DummyMainListPageService } from './DummyMainListPageService';
 import { createDummyMainListPageState } from './DummyMainListPageState';
@@ -16,9 +17,13 @@ export class DummyMainListPageStore extends CommonStore {
   /**
    * Конструктор.
    * @param _appService Сервис.
+   * @param appTimingFactory Фабрика согласования.
    */
-  constructor(private _appService: DummyMainListPageService) {
-    super();
+  constructor(
+    private _appService: DummyMainListPageService,
+    appTimingFactory: TimingFactory
+  ) {
+    super(appTimingFactory);
   }
 
   /**
@@ -28,13 +33,15 @@ export class DummyMainListPageStore extends CommonStore {
    */
   loadAsync(input: DummyMainListPageGetQueryInput): AppThunk {
     return async (dispatch) => {
-      this.waiting.delay(() => dispatch(wait(true)));
+      const waiting = this.appTimingFactory.createWaiting();
+
+      waiting.delay(() => dispatch(wait(true)));
 
       const result = await this._appService.get(input);
 
       dispatch(load(result));
 
-      this.waiting.prolong(() => dispatch(wait(false)));
+      waiting.prolong(() => dispatch(wait(false)));
     };
   }
 

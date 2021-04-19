@@ -4,6 +4,9 @@ import { PropsWithChildren, useEffect, useMemo } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import Table from 'react-bootstrap/Table';
 import { useHistory } from 'react-router-dom';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import {
   useTable,
   usePagination,
@@ -13,6 +16,7 @@ import {
 } from 'react-table';
 import { TableColumnDefaultFilterControl } from '../../Table/Column/Filters/Default/TableColumnDefaultFilterControl';
 import { DefaultTableControlProps } from './DefaultTableControlProps';
+import { LinkContainer } from 'react-router-bootstrap';
 
 /**
  * Элемент управления "Таблица по умолчанию".
@@ -159,72 +163,92 @@ export function DefaultTableControl<TRow extends object>({
         </tbody>
       </Table>
       <Pagination>
-        <Pagination.First
-          href={createPageUrl(1, pageSize, sortDirection, sortField, filters)}
-          disabled={!canPreviousPage}
-        />
-        <Pagination.Prev
-          href={createPageUrl(
+        <LinkContainer
+          to={createPageUrl(1, pageSize, sortDirection, sortField, filters)}
+        >
+          <Pagination.First disabled={!canPreviousPage} />
+        </LinkContainer>
+        <LinkContainer
+          to={createPageUrl(
             pageNumber - 1,
             pageSize,
             sortDirection,
             sortField,
             filters
           )}
-          disabled={!canPreviousPage}
-        />
-        <Pagination.Next
-          href={createPageUrl(
+        >
+          <Pagination.Prev disabled={!canPreviousPage} />
+        </LinkContainer>
+        <LinkContainer
+          to={createPageUrl(
             pageNumber + 1,
             pageSize,
             sortDirection,
             sortField,
             filters
           )}
-          disabled={!canNextPage}
-        />
-        <Pagination.Last
-          href={createPageUrl(
+        >
+          <Pagination.Next disabled={!canNextPage} />
+        </LinkContainer>
+        <LinkContainer
+          to={createPageUrl(
             pageCount,
             pageSize,
             sortDirection,
             sortField,
             filters
           )}
-          disabled={!canNextPage}
-        />
+        >
+          <Pagination.Last disabled={!canNextPage} />
+        </LinkContainer>
       </Pagination>
       <div>
-        <span>
-          Page{' '}
-          <strong>
-            {pageNumber} of {pageCount}
-          </strong>{' '}
-        </span>
-        <span>
-          | Go to page:{' '}
-          <input
-            type="number"
-            defaultValue={pageNumber}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) : 1;
-              goToPage(page, pageSize);
-            }}
-            style={{ width: '100px' }}
-          />
-        </span>{' '}
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            goToPage(1, Number(e.target.value));
-          }}
-        >
-          {[10, 20, 30].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
+        <Form>
+          <Form.Group as={Row}>
+            <Form.Label column style={{ whiteSpace: 'nowrap' }}>
+              Page{' '}
+              <strong>
+                {pageNumber} of {pageCount}
+              </strong>
+            </Form.Label>
+          </Form.Group>
+          <Form.Group as={Row} controlId="page">
+            <Form.Label column style={{ whiteSpace: 'nowrap' }}>
+              Go to page
+            </Form.Label>
+            <Col>
+              <Form.Control
+                as="input"
+                type="number"
+                defaultValue={pageNumber + 1}
+                onChange={(e) => {
+                  const page = e.target.value ? Number(e.target.value) : 1;
+                  goToPage(page, pageSize);
+                }}
+                style={{ width: '100px' }}
+              />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row}>
+            <Form.Label column style={{ whiteSpace: 'nowrap' }}>
+              Show
+            </Form.Label>
+            <Col>
+              <Form.Control
+                as="select"
+                value={pageSize}
+                onChange={(e) => {
+                  goToPage(1, Number(e.target.value));
+                }}
+                style={{ width: '100px' }}
+              >
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+              </Form.Control>
+            </Col>
+          </Form.Group>
+        </Form>{' '}
       </div>
     </>
   );

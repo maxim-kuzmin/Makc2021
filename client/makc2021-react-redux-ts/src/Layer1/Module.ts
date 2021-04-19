@@ -1,6 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import { HttpService } from './Http/HttpService';
+import { TimingFactory } from './Timing/TimingFactory';
 import { UrlService } from './Url/UrlService';
 
 /**
@@ -8,6 +9,7 @@ import { UrlService } from './Url/UrlService';
  */
 export class Module {
   private _httpServiceGetter?: () => HttpService;
+  private _timingFactoryGetter?: () => TimingFactory;
   private _urlServiceGetter?: () => UrlService;
 
   /**
@@ -22,6 +24,20 @@ export class Module {
    */
   public set httpServiceGetter(value: () => HttpService) {
     this._httpServiceGetter = value;
+  }
+
+  /**
+   * Фабрика согласования.
+   */
+  public get timingFactory() {
+    return this._timingFactoryGetter?.call(this) as TimingFactory;
+  }
+
+  /**
+   * Фабрика согласования. Получатель.
+   */
+  public set timingFactoryGetter(value: () => TimingFactory) {
+    this._timingFactoryGetter = value;
   }
 
   /**
