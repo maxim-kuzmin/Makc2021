@@ -1,6 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -17,7 +18,6 @@ import { createAppSettings } from './AppSettings';
 
 /**
  * Приложение.
- * @returns HTML.
  */
 function App() {
   const appSettings = createAppSettings();

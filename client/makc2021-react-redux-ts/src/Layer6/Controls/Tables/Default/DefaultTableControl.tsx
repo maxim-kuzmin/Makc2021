@@ -121,16 +121,16 @@ export function DefaultTableControl<TRow extends object>({
                 >
                   <div {...column.getSortByToggleProps()}>
                     {column.render('Header')}
-                    {/* Add a sort direction indicator */}
-                    <span>
-                      {column.isSorted
-                        ? column.isSortedDesc
-                          ? ' 🔽'
-                          : ' 🔼'
-                        : ''}
-                    </span>
-                  </div>
-                  {/* Render the columns filter UI */}
+                    {column.isSorted ? (
+                      column.isSortedDesc ? (
+                        <i className="bi bi-sort-down"></i>
+                      ) : (
+                        <i className="bi bi-sort-up"></i>
+                      )
+                    ) : (
+                      ''
+                    )}
+                  </div>{' '}
                   <div>{column.canFilter ? column.render('Filter') : null}</div>
                 </th>
               ))}
@@ -202,54 +202,52 @@ export function DefaultTableControl<TRow extends object>({
           <Pagination.Last disabled={!canNextPage} />
         </LinkContainer>
       </Pagination>
-      <div>
-        <Form>
-          <Form.Group as={Row}>
-            <Form.Label column style={{ whiteSpace: 'nowrap' }}>
-              Page{' '}
-              <strong>
-                {pageNumber} of {pageCount}
-              </strong>
-            </Form.Label>
-          </Form.Group>
-          <Form.Group as={Row} controlId="page">
-            <Form.Label column style={{ whiteSpace: 'nowrap' }}>
-              Go to page
-            </Form.Label>
-            <Col>
-              <Form.Control
-                as="input"
-                type="number"
-                defaultValue={pageNumber + 1}
-                onChange={(e) => {
-                  const page = e.target.value ? Number(e.target.value) : 1;
-                  goToPage(page, pageSize);
-                }}
-                style={{ width: '100px' }}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column style={{ whiteSpace: 'nowrap' }}>
-              Show
-            </Form.Label>
-            <Col>
-              <Form.Control
-                as="select"
-                value={pageSize}
-                onChange={(e) => {
-                  goToPage(1, Number(e.target.value));
-                }}
-                style={{ width: '100px' }}
-              >
-                <option>10</option>
-                <option>20</option>
-                <option>30</option>
-              </Form.Control>
-            </Col>
-          </Form.Group>
-        </Form>{' '}
-      </div>
+      <Form>
+        <Form.Group as={Row}>
+          <Form.Label column style={{ whiteSpace: 'nowrap' }}>
+            Page{' '}
+            <strong>
+              {pageNumber} of {pageCount}
+            </strong>
+          </Form.Label>
+        </Form.Group>
+        <Form.Group as={Row} controlId="page">
+          <Form.Label column style={{ whiteSpace: 'nowrap' }}>
+            Go to page
+          </Form.Label>
+          <Col>
+            <Form.Control
+              as="input"
+              type="number"
+              defaultValue={pageNumber + 1}
+              onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) : 1;
+                goToPage(page, pageSize);
+              }}
+              style={{ width: '100px' }}
+            />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row}>
+          <Form.Label column style={{ whiteSpace: 'nowrap' }}>
+            Show
+          </Form.Label>
+          <Col>
+            <Form.Control
+              as="select"
+              value={pageSize}
+              onChange={(e) => {
+                goToPage(1, Number(e.target.value));
+              }}
+              style={{ width: '100px' }}
+            >
+              <option>10</option>
+              <option>20</option>
+              <option>30</option>
+            </Form.Control>
+          </Col>
+        </Form.Group>
+      </Form>
     </>
   );
 }

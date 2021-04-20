@@ -1,3 +1,5 @@
+// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
+
 import { UseTableCellProps } from 'react-table';
 import Form from 'react-bootstrap/Form';
 

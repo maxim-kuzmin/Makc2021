@@ -33,7 +33,7 @@ export function DummyMainListPage() {
     urlService,
     location.search
   ]);
-  console.log('MAKC: search', search);
+
   const pageNumber = Number(search.pn ?? '1');
   const pageSize = Number(search.ps ?? '10');
   const sortDirection = search.sd ?? 'desc';
@@ -153,27 +153,24 @@ export function DummyMainListPage() {
     []
   );
 
-  let data: DummyMainListPageTableRow[];
-  let totalCount = 0;
+  const data = useMemo(() => {
+    return isOk
+      ? output.list.items.map((item) => {
+          const result = createDummyMainListPageTableRow();
 
-  if (isOk) {
-    totalCount = output.list.totalCount;
+          const { objectOfDummyMainEntity: entity } = item;
 
-    const { items } = output.list;
+          result.id = entity.id;
+          result.name = entity.name;
 
-    data = items.map((item) => {
-      const result = createDummyMainListPageTableRow();
+          return result;
+        })
+      : [];
+  }, [isOk, output?.list.items]);
 
-      const { objectOfDummyMainEntity: entity } = item;
-
-      result.id = entity.id;
-      result.name = entity.name;
-
-      return result;
-    });
-  } else {
-    data = [];
-  }
+  let totalCount = useMemo(() => {
+    return isOk ? output.list.totalCount : 0;
+  }, [isOk, output?.list.totalCount]);
 
   return (
     <>
@@ -181,18 +178,20 @@ export function DummyMainListPage() {
       {!isOk && (
         <QueryErrorControl queryCode={queryCode} messages={errorMessages} />
       )}
-      <DefaultTableControl
-        columns={columns}
-        data={data}
-        filters={filters}
-        loading={isWaiting}
-        pageNumber={pageNumber}
-        pageSize={pageSize}
-        sortDirection={sortDirection}
-        sortField={sortField}
-        totalCount={totalCount}
-        createPageUrl={createPageUrl}
-      />
+      {isOk && (
+        <DefaultTableControl
+          columns={columns}
+          data={data}
+          filters={filters}
+          loading={isWaiting}
+          pageNumber={pageNumber}
+          pageSize={pageSize}
+          sortDirection={sortDirection}
+          sortField={sortField}
+          totalCount={totalCount}
+          createPageUrl={createPageUrl}
+        />
+      )}
     </>
   );
 }

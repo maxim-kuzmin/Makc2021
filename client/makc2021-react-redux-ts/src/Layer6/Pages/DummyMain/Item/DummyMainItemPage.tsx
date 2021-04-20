@@ -13,6 +13,7 @@ import { DummyMainItemPageParams } from 'src/Layer5/Pages/DummyMain/Item/DummyMa
 import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Get/DummyMainItemPageGetQueryInput';
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorControl';
+import { useMemo } from 'react';
 
 /**
  * Страница сущности "DummyMain".
@@ -20,9 +21,9 @@ import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorCo
 export function DummyMainItemPage() {
   const storeOfDummyMainItemPage = useLayer5DummyMainItemPageStore();
 
-  const { id: parId } = useParams<DummyMainItemPageParams>();
+  const { id } = useParams<DummyMainItemPageParams>();
 
-  const entityId = Number(parId);
+  const entityId = Number(id);
 
   const dispatch = useDispatch();
 
@@ -42,11 +43,15 @@ export function DummyMainItemPage() {
 
   const isWaiting = useSelector(storeOfDummyMainItemPage.selectIsWaiting);
 
-  const { isOk, errorMessages, output, queryCode } = getQueryResult;
+  const { errorMessages, output, queryCode } = getQueryResult;
 
-  let data = isOk
-    ? output.item.objectOfDummyMainEntity
-    : createDummyMainEntityObject();
+  const isOk = !entityId || getQueryResult.isOk;
+
+  const data = useMemo(() => {
+    return getQueryResult.isOk
+      ? output.item.objectOfDummyMainEntity
+      : createDummyMainEntityObject();
+  }, [getQueryResult.isOk, output?.item.objectOfDummyMainEntity]);
 
   return (
     <>
@@ -54,29 +59,31 @@ export function DummyMainItemPage() {
       {!isOk && (
         <QueryErrorControl queryCode={queryCode} messages={errorMessages} />
       )}
-      <Form>
-        {data.id > 0 && (
-          <Form.Group as={Row} controlId="id">
-            <Form.Label column>ID</Form.Label>
+      {isOk && (
+        <Form>
+          {data.id > 0 && (
+            <Form.Group as={Row} controlId="id">
+              <Form.Label column>ID</Form.Label>
+              <Col>
+                <Form.Control plaintext readOnly value={data.id} />
+              </Col>
+            </Form.Group>
+          )}
+          <Form.Group as={Row} controlId="name">
+            <Form.Label column>Имя</Form.Label>
             <Col>
-              <Form.Control plaintext readOnly value={data.id} />
+              <Form.Control
+                type="text"
+                placeholder="Введите имя"
+                defaultValue={data.name}
+              />
             </Col>
           </Form.Group>
-        )}
-        <Form.Group as={Row} controlId="name">
-          <Form.Label column>Имя</Form.Label>
-          <Col>
-            <Form.Control
-              type="text"
-              placeholder="Введите имя"
-              defaultValue={data.name}
-            />
-          </Col>
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Сохранить
-        </Button>
-      </Form>
+          <Button variant="primary" type="submit">
+            Сохранить
+          </Button>
+        </Form>
+      )}
     </>
   );
 }
