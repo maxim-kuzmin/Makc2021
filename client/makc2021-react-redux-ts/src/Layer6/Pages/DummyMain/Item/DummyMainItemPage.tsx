@@ -1,10 +1,11 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { createDummyMainEntityObject } from 'src/Layer3/Sample/Entities/DummyMainEntityObject';
@@ -13,12 +14,13 @@ import { DummyMainItemPageParams } from 'src/Layer5/Pages/DummyMain/Item/DummyMa
 import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Get/DummyMainItemPageGetQueryInput';
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorControl';
-import { useMemo } from 'react';
 
 /**
  * Страница сущности "DummyMain".
  */
 export function DummyMainItemPage() {
+  const { t } = useTranslation();
+
   const storeOfDummyMainItemPage = useLayer5DummyMainItemPageStore();
 
   const { id } = useParams<DummyMainItemPageParams>();
@@ -63,24 +65,24 @@ export function DummyMainItemPage() {
         <Form>
           {data.id > 0 && (
             <Form.Group as={Row} controlId="id">
-              <Form.Label column>ID</Form.Label>
+              <Form.Label column>{t('ID')}</Form.Label>
               <Col>
                 <Form.Control plaintext readOnly value={data.id} />
               </Col>
             </Form.Group>
           )}
           <Form.Group as={Row} controlId="name">
-            <Form.Label column>Имя</Form.Label>
+            <Form.Label column>{t('Имя')}</Form.Label>
             <Col>
               <Form.Control
                 type="text"
-                placeholder="Введите имя"
+                placeholder={t('Введите имя')}
                 defaultValue={data.name}
               />
             </Col>
           </Form.Group>
           <Button variant="primary" type="submit">
-            Сохранить
+            {t('Сохранить')}
           </Button>
         </Form>
       )}

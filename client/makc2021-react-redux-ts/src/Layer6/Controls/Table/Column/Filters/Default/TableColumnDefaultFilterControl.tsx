@@ -9,18 +9,15 @@ import Form from 'react-bootstrap/Form';
 export function TableColumnDefaultFilterControl<TRow extends object>({
   column
 }: UseTableCellProps<TRow>) {
-  const { filterValue, preFilteredRows, setFilter } = column;
-
-  const count = preFilteredRows && preFilteredRows.length;
+  const { filterValue, setFilter } = column;
 
   return (
     <Form.Control
       as="input"
       value={filterValue || ''}
       onChange={(e) => {
-        setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
+        setFilter(e.target.value || undefined);
       }}
-      placeholder={`Search ${count} records...`}
     />
   );
 }

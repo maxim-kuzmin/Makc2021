@@ -15,6 +15,7 @@ import {
   useFilters,
   ColumnInterface
 } from 'react-table';
+import { useTranslation } from 'react-i18next';
 import { TableColumnDefaultFilterControl } from '../../Table/Column/Filters/Default/TableColumnDefaultFilterControl';
 import { DefaultTableControlProps } from './DefaultTableControlProps';
 
@@ -26,13 +27,14 @@ export function DefaultTableControl<TRow extends object>({
   data,
   filters: controlledFilters,
   createPageUrl,
-  loading,
   pageNumber,
   pageSize,
   sortDirection,
   sortField,
   totalCount
 }: PropsWithChildren<DefaultTableControlProps<TRow>>) {
+  const { t } = useTranslation();
+
   pageSize = normalizePageSize(pageSize);
 
   const pageCount = pageSize > 0 ? Math.ceil(totalCount / pageSize) : 1;
@@ -101,7 +103,6 @@ export function DefaultTableControl<TRow extends object>({
     );
   }
 
-  // Render the UI for your table
   return (
     <>
       <Table striped bordered hover size="sm" {...getTableProps()}>
@@ -109,8 +110,6 @@ export function DefaultTableControl<TRow extends object>({
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                // Add the sorting props to control sorting. For this example
-                // we can add them into the header props
                 <th
                   {...column.getHeaderProps()}
                   style={{
@@ -150,16 +149,6 @@ export function DefaultTableControl<TRow extends object>({
               </tr>
             );
           })}
-          <tr>
-            {loading ? (
-              // Use our custom loading state to show a loading indicator
-              <td colSpan={10000}>Loading...</td>
-            ) : (
-              <td colSpan={10000}>
-                Showing {page.length} of ~{pageCount * pageSize} results
-              </td>
-            )}
-          </tr>
         </tbody>
       </Table>
       <Pagination>
@@ -205,15 +194,18 @@ export function DefaultTableControl<TRow extends object>({
       <Form>
         <Form.Group as={Row}>
           <Form.Label column style={{ whiteSpace: 'nowrap' }}>
-            Page{' '}
+            {t('Страница') + ' '}
             <strong>
-              {pageNumber} of {pageCount}
+              {t('{{pageNumber}} из {{pageCount}}', {
+                pageNumber,
+                pageCount
+              })}
             </strong>
           </Form.Label>
         </Form.Group>
         <Form.Group as={Row} controlId="page">
           <Form.Label column style={{ whiteSpace: 'nowrap' }}>
-            Go to page
+            {t('Перейти на страницу')}
           </Form.Label>
           <Col>
             <Form.Control
@@ -230,7 +222,7 @@ export function DefaultTableControl<TRow extends object>({
         </Form.Group>
         <Form.Group as={Row}>
           <Form.Label column style={{ whiteSpace: 'nowrap' }}>
-            Show
+            {t('Показать')}
           </Form.Label>
           <Col>
             <Form.Control

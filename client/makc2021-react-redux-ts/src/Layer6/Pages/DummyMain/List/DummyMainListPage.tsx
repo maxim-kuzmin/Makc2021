@@ -16,11 +16,14 @@ import {
   createDummyMainListPageTableRow,
   DummyMainListPageTableRow
 } from './Table/DummyMainListPageTableRow';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Страница сущностей "DummyMain".
  */
 export function DummyMainListPage() {
+  const { t } = useTranslation();
+
   const storeOfDummyMainListPage = useLayer5DummyMainListPageStore();
 
   const urlService = useLayer1UrlService();
@@ -134,23 +137,25 @@ export function DummyMainListPage() {
           accessor: 'action',
           disableFilters: true,
           Cell: (e) => (
-            <Link to={`/dummy-main/item/${e.row.values['id']}`}>Показать</Link>
+            <Link to={`/dummy-main/item/${e.row.values['id']}`}>
+              {t('Просмотреть')}
+            </Link>
           ),
           minWidth: '6em'
         },
         {
-          Header: 'ID',
+          Header: t('ID'),
           accessor: 'id',
           disableFilters: true,
           minWidth: '5em'
         },
         {
-          Header: 'Имя',
+          Header: t('Имя'),
           accessor: 'name',
           width: '100%'
         }
       ] as Column<DummyMainListPageTableRow>[],
-    []
+    [t]
   );
 
   const data = useMemo(() => {
@@ -183,7 +188,6 @@ export function DummyMainListPage() {
           columns={columns}
           data={data}
           filters={filters}
-          loading={isWaiting}
           pageNumber={pageNumber}
           pageSize={pageSize}
           sortDirection={sortDirection}

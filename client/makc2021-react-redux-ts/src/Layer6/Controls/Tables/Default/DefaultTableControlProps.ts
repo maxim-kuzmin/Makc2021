@@ -23,11 +23,6 @@ export interface DefaultTableControlProps<TRow extends object> {
   filters: Filters<TRow>;
 
   /**
-   * Признак загрузки.
-   */
-  loading: boolean;
-
-  /**
    * Номер страницы.
    */
   pageNumber: number;

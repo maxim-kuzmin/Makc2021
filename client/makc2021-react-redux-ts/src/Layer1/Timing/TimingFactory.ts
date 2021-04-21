@@ -10,6 +10,6 @@ export class TimingFactory {
    * Создать ожидание.
    */
   createWaiting() {
-    return new TimingService(10, 500);
+    return new TimingService(30, 600);
   }
 }
