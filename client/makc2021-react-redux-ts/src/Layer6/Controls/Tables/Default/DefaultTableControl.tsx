@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { LinkContainer } from 'react-router-bootstrap';
 import {
   useTable,
   usePagination,
@@ -16,7 +17,6 @@ import {
 } from 'react-table';
 import { TableColumnDefaultFilterControl } from '../../Table/Column/Filters/Default/TableColumnDefaultFilterControl';
 import { DefaultTableControlProps } from './DefaultTableControlProps';
-import { LinkContainer } from 'react-router-bootstrap';
 
 /**
  * Элемент управления "Таблица по умолчанию".

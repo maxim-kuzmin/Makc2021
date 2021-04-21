@@ -11,7 +11,8 @@ import {
 } from 'react-router-dom';
 import { useLayer1 } from './Layer1/Hooks';
 import { useLayer5 } from './Layer5/Hooks';
-import { TopMenuControl } from 'src/Layer6/Controls/Menus/Top/TopMenuControl';
+import { TopMenuControl } from './Layer6/Controls/Menus/Top/TopMenuControl';
+import { ContactsPage } from './Layer6/Pages/Contacts/ContactsPage';
 import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPage';
 import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPage';
 import { createAppSettings } from './AppSettings';
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route exact path="/dummy-main/item/:id?">
             <DummyMainItemPage />
+          </Route>
+          <Route exact path="/contacts">
+            <ContactsPage />
           </Route>
         </Switch>
       </div>
