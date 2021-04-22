@@ -1,6 +1,8 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+import { TFunction } from 'i18next';
 import { HttpService } from './Http/HttpService';
+import { LocalizationService } from './Localization/LocalizationService';
 import { TimingFactory } from './Timing/TimingFactory';
 import { UrlService } from './Url/UrlService';
 
@@ -9,7 +11,13 @@ import { UrlService } from './Url/UrlService';
  */
 export class Module {
   private _httpServiceGetter?: () => HttpService;
+
+  private _localizationServiceGetter?: (
+    functionToTranslate: TFunction
+  ) => LocalizationService;
+
   private _timingFactoryGetter?: () => TimingFactory;
+
   private _urlServiceGetter?: () => UrlService;
 
   /**
@@ -24,6 +32,15 @@ export class Module {
    */
   public set httpServiceGetter(value: () => HttpService) {
     this._httpServiceGetter = value;
+  }
+
+  /**
+   * Сервис локализации. Получатель.
+   */
+  public set localizationServiceGetter(
+    value: (functionToTranslate: TFunction) => LocalizationService
+  ) {
+    this._localizationServiceGetter = value;
   }
 
   /**
@@ -52,6 +69,18 @@ export class Module {
    */
   public set urlServiceGetter(value: () => UrlService) {
     this._urlServiceGetter = value;
+  }
+
+  /**
+   * Создать сервис локализации.
+   * @param functionToTranslate Функция перевода.
+   * @returns Сервис локализации.
+   */
+  createLocalizationService(functionToTranslate: TFunction) {
+    return this._localizationServiceGetter?.call(
+      this,
+      functionToTranslate
+    ) as LocalizationService;
   }
 
   private static _instance = new Module();

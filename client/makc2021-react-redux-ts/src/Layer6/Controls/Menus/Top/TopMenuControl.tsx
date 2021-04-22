@@ -3,28 +3,32 @@
 import Nav from 'react-bootstrap/Nav';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useLayer6TopMenuControlResource } from 'src/Layer6/Hooks';
 
 /**
  * Элемент управления "Верхнее меню".
  */
 export function TopMenuControl() {
-  const { t } = useTranslation();
+  const resource = useLayer6TopMenuControlResource();
 
   const location = useLocation();
 
   return (
     <Nav className="justify-content-center" activeKey={location.pathname}>
       <Nav.Item>
-        <Nav.Link href="/dummy-main/list">{t('Список')}</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <LinkContainer to="/dummy-main/item">
-          <Nav.Link>{t('Элемент')}</Nav.Link>
+        <LinkContainer to="/dummy-main/list">
+          <Nav.Link>{resource.getLinkTitleForDummyMainListPage()}</Nav.Link>
         </LinkContainer>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="/contacts">{t('Контакты')}</Nav.Link>
+        <LinkContainer to="/dummy-main/item">
+          <Nav.Link>{resource.getLinkTitleForDummyMainItemPage()}</Nav.Link>
+        </LinkContainer>
+      </Nav.Item>
+      <Nav.Item>
+        <LinkContainer to="/contacts">
+          <Nav.Link>{resource.getLinkTitleForContactsItemPage()}</Nav.Link>
+        </LinkContainer>
       </Nav.Item>
     </Nav>
   );

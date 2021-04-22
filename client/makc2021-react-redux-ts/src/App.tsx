@@ -16,9 +16,8 @@ import { ContactsPage } from './Layer6/Pages/Contacts/ContactsPage';
 import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPage';
 import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPage';
 import { createAppSettings } from './AppSettings';
-import React from 'react';
 import { LocalizationService } from './Layer1/Localization/LocalizationService';
-import { GlobalWaitingControl } from './Layer6/Controls/Waitings/Global/GlobalWaitingControl';
+import { useLayer6 } from './Layer6/Hooks';
 
 LocalizationService.start('en');
 
@@ -30,27 +29,26 @@ function App() {
 
   useLayer1();
   useLayer5(appSettings.apiUrl);
+  useLayer6();
 
   return (
-    <React.Suspense fallback={<GlobalWaitingControl isVisible={true} />}>
-      <Router>
-        <div className="App">
-          <TopMenuControl />
-          <Switch>
-            <Redirect exact path="/" to="/dummy-main/list" />
-            <Route exact path="/dummy-main/list">
-              <DummyMainListPage />
-            </Route>
-            <Route exact path="/dummy-main/item/:id?">
-              <DummyMainItemPage />
-            </Route>
-            <Route exact path="/contacts">
-              <ContactsPage />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    </React.Suspense>
+    <Router>
+      <div className="App">
+        <TopMenuControl />
+        <Switch>
+          <Redirect exact path="/" to="/dummy-main/list" />
+          <Route exact path="/dummy-main/list">
+            <DummyMainListPage />
+          </Route>
+          <Route exact path="/dummy-main/item/:id?">
+            <DummyMainItemPage />
+          </Route>
+          <Route exact path="/contacts">
+            <ContactsPage />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

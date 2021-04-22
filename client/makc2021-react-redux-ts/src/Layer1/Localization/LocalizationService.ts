@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import i18next from 'i18next';
+import i18next, { TFunction } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
 
@@ -8,6 +8,21 @@ import Backend from 'i18next-http-backend';
  * Сервис локализации.
  */
 export class LocalizationService {
+  /**
+   * Конструктор.
+   * @param functionToTranslate Функция перевода.
+   */
+  constructor(private functionToTranslate: TFunction) {}
+
+  /**
+   * Получить строку.
+   * @param key Ключ.
+   * @returns Строка.
+   */
+  getString(key: string) {
+    return this.functionToTranslate.call(this, key);
+  }
+
   static start(language: 'en' | 'ru') {
     i18next
       .use(Backend)

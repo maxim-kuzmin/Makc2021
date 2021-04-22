@@ -37,6 +37,10 @@ export function DummyMainItemPage() {
 
       dispatch(storeOfDummyMainItemPage.loadAsync(input));
     }
+
+    return () => {
+      dispatch(storeOfDummyMainItemPage.clearAsync());
+    };
   }, [entityId, dispatch, storeOfDummyMainItemPage]);
 
   const getQueryResult = useSelector(

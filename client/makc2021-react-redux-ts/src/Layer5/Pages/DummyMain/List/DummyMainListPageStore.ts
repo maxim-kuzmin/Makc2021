@@ -27,6 +27,16 @@ export class DummyMainListPageStore extends CommonStore {
   }
 
   /**
+   * Очистить асинхронно.
+   * @returns Асинхронное действие.
+   */
+  clearAsync(): AppThunk {
+    return async (dispatch) => {
+      dispatch(clear());
+    };
+  }
+
+  /**
    * Загрузить асинхронно.
    * @param input Входные данные;
    * @returns Асинхронное действие.
@@ -70,6 +80,7 @@ const slice = createSlice({
   name: 'DummyMainListPage',
   initialState,
   reducers: {
+    clear: () => initialState,
     load: (
       state,
       action: PayloadAction<
@@ -84,6 +95,6 @@ const slice = createSlice({
   }
 });
 
-const { load, wait } = slice.actions;
+const { clear, load, wait } = slice.actions;
 
 export default slice.reducer;

@@ -4,6 +4,8 @@ import { Module } from './Module';
 import { HttpService } from './Http/HttpService';
 import { UrlService } from './Url/UrlService';
 import { TimingFactory } from './Timing/TimingFactory';
+import { TFunction } from 'i18next';
+import { LocalizationService } from './Localization/LocalizationService';
 
 /**
  * Использовать слой "Layer1".
@@ -17,6 +19,10 @@ export function useLayer1() {
     }
 
     return httpService;
+  });
+
+  useLayer1LocalizationService((functionToTarnslate: TFunction) => {
+    return new LocalizationService(functionToTarnslate);
   });
 
   let timingFactory: TimingFactory;
@@ -53,6 +59,23 @@ export function useLayer1HttpService(getter?: () => HttpService) {
   }
 
   return module.httpService;
+}
+
+/**
+ * Использовать сервис локализации слоя "Layer1".
+ * @param getter Получатель.
+ * @returns Сервис.
+ */
+export function useLayer1LocalizationService(
+  getter?: (functionToTranslate: TFunction) => LocalizationService
+) {
+  const module = Module.get();
+
+  if (getter) {
+    module.localizationServiceGetter = getter;
+  }
+
+  return module.createLocalizationService;
 }
 
 /**
