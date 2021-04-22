@@ -24,7 +24,7 @@ import { useTranslation } from 'react-i18next';
 export function DummyMainListPage() {
   const { t } = useTranslation();
 
-  const storeOfDummyMainListPage = useLayer5DummyMainListPageStore();
+  const store = useLayer5DummyMainListPageStore();
 
   const urlService = useLayer1UrlService();
 
@@ -61,22 +61,20 @@ export function DummyMainListPage() {
     list.sortField = sortField;
     list.entityName = entityName;
 
-    dispatch(storeOfDummyMainListPage.loadAsync(input));
+    dispatch(store.loadAsync(input));
   }, [
     pageNumber,
     pageSize,
     dispatch,
-    storeOfDummyMainListPage,
+    store,
     sortDirection,
     sortField,
     entityName
   ]);
 
-  const getQueryResult = useSelector(
-    storeOfDummyMainListPage.selectGetQueryResult
-  );
+  const getQueryResult = useSelector(store.selectGetQueryResult);
 
-  const isWaiting = useSelector(storeOfDummyMainListPage.selectIsWaiting);
+  const isWaiting = useSelector(store.selectIsWaiting);
 
   const { isOk, errorMessages, output, queryCode } = getQueryResult;
 

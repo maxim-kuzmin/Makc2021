@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { useTranslation } from 'react-i18next';
+import { useLayer6QueryErrorControlResource } from 'src/Layer6/Hooks';
 import { QueryErrorControlProps } from './QueryErrorControlProps';
 
 /**
@@ -10,11 +10,11 @@ export function QueryErrorControl({
   queryCode,
   messages
 }: QueryErrorControlProps) {
-  const { t } = useTranslation();
+  const resource = useLayer6QueryErrorControlResource();
 
   return messages && messages.length > 0 ? (
     <>
-      <h3>{t('Ошибки в запросе {{queryCode}}', { queryCode })}</h3>
+      <h3>{resource.getTitle(queryCode)}</h3>
       <ul>
         {messages.map((message) => (
           <li key={message}>{message}</li>

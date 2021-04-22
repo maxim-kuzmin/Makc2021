@@ -16,7 +16,7 @@ export class TopMenuControlResource {
    * Получить заголовок для ссылки на страницу контактов.
    * @returns Заголовок.
    */
-  getLinkTitleForContactsItemPage() {
+  getLinkTitleForContactsPage() {
     return this._appLocalizationService.getString('Контакты');
   }
 

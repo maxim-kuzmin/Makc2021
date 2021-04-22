@@ -27,7 +27,7 @@ export function TopMenuControl() {
       </Nav.Item>
       <Nav.Item>
         <LinkContainer to="/contacts">
-          <Nav.Link>{resource.getLinkTitleForContactsItemPage()}</Nav.Link>
+          <Nav.Link>{resource.getLinkTitleForContactsPage()}</Nav.Link>
         </LinkContainer>
       </Nav.Item>
     </Nav>

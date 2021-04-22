@@ -21,7 +21,7 @@ import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorCo
 export function DummyMainItemPage() {
   const { t } = useTranslation();
 
-  const storeOfDummyMainItemPage = useLayer5DummyMainItemPageStore();
+  const store = useLayer5DummyMainItemPageStore();
 
   const { id } = useParams<DummyMainItemPageParams>();
 
@@ -35,19 +35,17 @@ export function DummyMainItemPage() {
 
       input.item.entityId = entityId;
 
-      dispatch(storeOfDummyMainItemPage.loadAsync(input));
+      dispatch(store.loadAsync(input));
     }
 
     return () => {
-      dispatch(storeOfDummyMainItemPage.clearAsync());
+      dispatch(store.clearAsync());
     };
-  }, [entityId, dispatch, storeOfDummyMainItemPage]);
+  }, [entityId, dispatch, store]);
 
-  const getQueryResult = useSelector(
-    storeOfDummyMainItemPage.selectGetQueryResult
-  );
+  const getQueryResult = useSelector(store.selectGetQueryResult);
 
-  const isWaiting = useSelector(storeOfDummyMainItemPage.selectIsWaiting);
+  const isWaiting = useSelector(store.selectIsWaiting);
 
   const { errorMessages, output, queryCode } = getQueryResult;
 

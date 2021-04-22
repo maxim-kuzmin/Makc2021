@@ -17,12 +17,17 @@ export class LocalizationService {
   /**
    * Получить строку.
    * @param key Ключ.
+   * @param options Опции.
    * @returns Строка.
    */
-  getString(key: string) {
-    return this.functionToTranslate.call(this, key);
+  getString(key: string, options?: any) {
+    return this.functionToTranslate.call(this, key, options);
   }
 
+  /**
+   * Начать.
+   * @param language Язык
+   */
   static start(language: 'en' | 'ru') {
     i18next
       .use(Backend)
