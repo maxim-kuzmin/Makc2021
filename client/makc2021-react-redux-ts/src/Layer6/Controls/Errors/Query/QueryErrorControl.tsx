@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { useLayer6QueryErrorControlResource } from 'src/Layer6/Hooks';
+import { useLayer6QueryErrorControlResource } from './QueryErrorControlHooks';
 import { QueryErrorControlProps } from './QueryErrorControlProps';
 
 /**

@@ -2,6 +2,7 @@
 
 import { TFunction } from 'i18next';
 import { HttpService } from './Http/HttpService';
+import { LocalizationLanguage } from './Localization/LocalizationLanguage';
 import { LocalizationService } from './Localization/LocalizationService';
 import { TimingFactory } from './Timing/TimingFactory';
 import { UrlService } from './Url/UrlService';
@@ -11,6 +12,8 @@ import { UrlService } from './Url/UrlService';
  */
 export class Module {
   private _httpServiceGetter?: () => HttpService;
+
+  private _localizationLanguageGetter?: () => LocalizationLanguage;
 
   private _localizationServiceGetter?: (
     functionToTranslate: TFunction
@@ -32,6 +35,20 @@ export class Module {
    */
   public set httpServiceGetter(value: () => HttpService) {
     this._httpServiceGetter = value;
+  }
+
+  /**
+   * Язык локализации.
+   */
+  public get localizationLanguage() {
+    return this._localizationLanguageGetter?.call(this) as LocalizationLanguage;
+  }
+
+  /**
+   * Язык локализации. Получатель.
+   */
+  public set localizationLanguageGetter(value: () => LocalizationLanguage) {
+    this._localizationLanguageGetter = value;
   }
 
   /**

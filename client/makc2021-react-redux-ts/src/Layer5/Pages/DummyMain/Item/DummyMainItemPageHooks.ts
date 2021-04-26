@@ -2,9 +2,10 @@
 
 import { Module as Layer1Module } from 'src/Layer1/Module';
 import { Module as Layer5Module } from 'src/Layer5/Module';
+import { DummyMainItemPageGetQueryHandler } from './Queries/Get/DummyMainItemPageGetQueryHandler';
+import { DummyMainItemPageModule } from './DummyMainItemPageModule';
 import { DummyMainItemPageService } from './DummyMainItemPageService';
 import { DummyMainItemPageStore } from './DummyMainItemPageStore';
-import { DummyMainItemPageGetQueryHandler } from './Queries/Get/DummyMainItemPageGetQueryHandler';
 
 /**
  * Использовать страницу сущности "DummyMain".
@@ -18,29 +19,29 @@ export function useLayer5DummyMainItemPage() {
     );
   });
 
-  let serviceOfDummyMainItemPage: DummyMainItemPageService;
+  let service: DummyMainItemPageService;
 
   useLayer5DummyMainItemPageService(() => {
-    if (!serviceOfDummyMainItemPage) {
-      serviceOfDummyMainItemPage = new DummyMainItemPageService(
-        Layer5Module.get().getQueryHandlerOfDummyMainItemPage
+    if (!service) {
+      service = new DummyMainItemPageService(
+        DummyMainItemPageModule.get().getQueryHandler
       );
     }
 
-    return serviceOfDummyMainItemPage;
+    return service;
   });
 
-  let storeOfDummyMainItemPage: DummyMainItemPageStore;
+  let store: DummyMainItemPageStore;
 
   useLayer5DummyMainItemPageStore(() => {
-    if (!storeOfDummyMainItemPage) {
-      storeOfDummyMainItemPage = new DummyMainItemPageStore(
-        Layer5Module.get().serviceOfDummyMainItemPage,
+    if (!store) {
+      store = new DummyMainItemPageStore(
+        DummyMainItemPageModule.get().service,
         Layer1Module.get().timingFactory
       );
     }
 
-    return storeOfDummyMainItemPage;
+    return store;
   });
 }
 
@@ -52,13 +53,13 @@ export function useLayer5DummyMainItemPage() {
 export function useLayer5DummyMainItemPageGetQueryHandler(
   getter?: () => DummyMainItemPageGetQueryHandler
 ) {
-  const module = Layer5Module.get();
+  const module = DummyMainItemPageModule.get();
 
   if (getter) {
-    module.getQueryHandlerOfDummyMainItemPageGetter = getter;
+    module.getQueryHandlerGetter = getter;
   }
 
-  return module.getQueryHandlerOfDummyMainItemPage;
+  return module.getQueryHandler;
 }
 
 /**
@@ -69,10 +70,10 @@ export function useLayer5DummyMainItemPageGetQueryHandler(
 export function useLayer5DummyMainItemPageService(
   getter?: () => DummyMainItemPageService
 ) {
-  const module = Layer5Module.get();
+  const module = DummyMainItemPageModule.get();
 
   if (getter) {
-    module.serviceOfDummyMainItemPageGetter = getter;
+    module.serviceGetter = getter;
   }
 
   return module.service;
@@ -86,11 +87,11 @@ export function useLayer5DummyMainItemPageService(
 export function useLayer5DummyMainItemPageStore(
   getter?: () => DummyMainItemPageStore
 ) {
-  const module = Layer5Module.get();
+  const module = DummyMainItemPageModule.get();
 
   if (getter) {
-    module.storeOfDummyMainItemPageGetter = getter;
+    module.storeGetter = getter;
   }
 
-  return module.storeOfDummyMainItemPage;
+  return module.store;
 }

@@ -15,9 +15,9 @@ import {
   useFilters,
   ColumnInterface
 } from 'react-table';
-import { useTranslation } from 'react-i18next';
 import { TableColumnDefaultFilterControl } from '../../Table/Column/Filters/Default/TableColumnDefaultFilterControl';
 import { DefaultTableControlProps } from './DefaultTableControlProps';
+import { useLayer6DefaultTableControlResource } from './DefaultTableControlHooks';
 
 /**
  * Элемент управления "Таблица по умолчанию".
@@ -33,7 +33,7 @@ export function DefaultTableControl<TRow extends object>({
   sortField,
   totalCount
 }: PropsWithChildren<DefaultTableControlProps<TRow>>) {
-  const { t } = useTranslation();
+  const resource = useLayer6DefaultTableControlResource();
 
   pageSize = normalizePageSize(pageSize);
 
@@ -194,18 +194,13 @@ export function DefaultTableControl<TRow extends object>({
       <Form>
         <Form.Group as={Row}>
           <Form.Label column style={{ whiteSpace: 'nowrap' }}>
-            {t('Страница') + ' '}
-            <strong>
-              {t('{{pageNumber}} из {{pageCount}}', {
-                pageNumber,
-                pageCount
-              })}
-            </strong>
+            {resource.getPageFieldTitle() + ' '}
+            <strong>{resource.getPageFieldValue(pageNumber, pageCount)}</strong>
           </Form.Label>
         </Form.Group>
         <Form.Group as={Row} controlId="page">
           <Form.Label column style={{ whiteSpace: 'nowrap' }}>
-            {t('Перейти на страницу')}
+            {resource.getGoToPageFieldTitle()}
           </Form.Label>
           <Col>
             <Form.Control
@@ -222,7 +217,7 @@ export function DefaultTableControl<TRow extends object>({
         </Form.Group>
         <Form.Group as={Row}>
           <Form.Label column style={{ whiteSpace: 'nowrap' }}>
-            {t('Показать')}
+            {resource.getShowFieldTitle()}
           </Form.Label>
           <Col>
             <Form.Control

@@ -11,6 +11,7 @@ import {
 } from 'react-router-dom';
 import { useLayer1 } from './Layer1/Hooks';
 import { useLayer5 } from './Layer5/Hooks';
+import { LanguageSwitcherControl } from './Layer6/Controls/Language/Switcher/LanguageSwitcherControl';
 import { TopMenuControl } from './Layer6/Controls/Menus/Top/TopMenuControl';
 import { ContactsPage } from './Layer6/Pages/Contacts/ContactsPage';
 import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPage';
@@ -34,6 +35,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <LanguageSwitcherControl />
         <TopMenuControl />
         <Switch>
           <Redirect exact path="/" to="/dummy-main/list" />

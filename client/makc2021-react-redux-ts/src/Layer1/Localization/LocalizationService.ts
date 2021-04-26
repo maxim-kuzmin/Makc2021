@@ -21,7 +21,7 @@ export class LocalizationService {
    * @returns Строка.
    */
   getString(key: string, options?: any) {
-    return this.functionToTranslate.call(this, key, options);
+    return this.functionToTranslate.call(this, key, options) as string;
   }
 
   /**
@@ -34,7 +34,7 @@ export class LocalizationService {
       .use(initReactI18next)
       .init({
         backend: {
-          loadPath: '/locales/{{lng}}/{{ns}}.json'
+          loadPath: '/ResourceFiles/{{ns}}.{{lng}}.json'
         },
         supportedLngs: ['en', 'ru'],
         lng: language,
@@ -42,10 +42,10 @@ export class LocalizationService {
         interpolation: {
           escapeValue: false
         },
+        // allow keys to be phrases having `:`, `.`
+        nsSeparator: false,
+        keySeparator: false,
         debug: process.env.NODE_ENV === 'development'
-        // // allow keys to be phrases having `:`, `.`
-        // nsSeparator: false,
-        // keySeparator: false,
       });
   }
 }

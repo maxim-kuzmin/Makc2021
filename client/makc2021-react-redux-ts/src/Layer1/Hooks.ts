@@ -1,11 +1,13 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { Module } from './Module';
 import { HttpService } from './Http/HttpService';
 import { UrlService } from './Url/UrlService';
 import { TimingFactory } from './Timing/TimingFactory';
-import { TFunction } from 'i18next';
 import { LocalizationService } from './Localization/LocalizationService';
+import { LocalizationLanguage } from './Localization/LocalizationLanguage';
 
 /**
  * Использовать слой "Layer1".
@@ -19,6 +21,17 @@ export function useLayer1() {
     }
 
     return httpService;
+  });
+
+  let localizationLanguage: LocalizationLanguage;
+
+  const { i18n } = useTranslation();
+
+  useLayer1LocalizationLanguage(() => {
+    if (!localizationLanguage) {
+      localizationLanguage = new LocalizationLanguage(i18n);
+    }
+    return localizationLanguage;
   });
 
   useLayer1LocalizationService((functionToTarnslate: TFunction) => {
@@ -59,6 +72,22 @@ export function useLayer1HttpService(getter?: () => HttpService) {
   }
 
   return module.httpService;
+}
+
+/**
+ * Использовать язык локализации слоя "Layer1".
+ * @param getter Получатель.
+ * @returns Сервис.
+ */
+export function useLayer1LocalizationLanguage(
+  getter?: () => LocalizationLanguage
+) {
+  const module = Module.get();
+
+  if (getter) {
+    module.localizationLanguageGetter = getter;
+  }
+  return module.localizationLanguage;
 }
 
 /**

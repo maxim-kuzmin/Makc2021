@@ -1,69 +1,20 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { useTranslation } from 'react-i18next';
-import { TopMenuControlResource } from './Controls/Menus/Top/TopMenuControlResource';
-import { Module as Layer1Module } from 'src/Layer1/Module';
-import { LocalizationService } from 'src/Layer1/Localization/LocalizationService';
-import { QueryErrorControlResource } from './Controls/Errors/Query/QueryErrorControlResource';
-import { Module } from './Module';
+import { useLayer6ContactsPage } from './Pages/Contacts/ContactsPageHooks';
+import { useLayer6DummyMainItemPage } from './Pages/DummyMain/Item/DummyMainItemPageHooks';
+import { useLayer6DummyMainListPage } from './Pages/DummyMain/List/DummyMainListPageHooks';
+import { useLayer6DefaultTableControl } from './Controls/Tables/Default/DefaultTableControlHooks';
+import { useLayer6QueryErrorControl } from './Controls/Errors/Query/QueryErrorControlHooks';
+import { useLayer6TopMenuControl } from './Controls/Menus/Top/TopMenuControlHooks';
 
 /**
  * Использовать слой "Layer6".
  */
 export function useLayer6() {
-  useLayer6QueryErrorControlResource(
-    (localizationService: LocalizationService) => {
-      return new QueryErrorControlResource(localizationService);
-    }
-  );
-
-  useLayer6TopMenuControlResource(
-    (localizationService: LocalizationService) => {
-      return new TopMenuControlResource(localizationService);
-    }
-  );
-}
-
-/**
- * Использовать ресурс элемента управления "Ошибка запроса". слоя "Layer1".
- * @param getter Получатель.
- * @returns Сервис.
- */
-export function useLayer6QueryErrorControlResource(
-  getter?: (
-    localizationService: LocalizationService
-  ) => QueryErrorControlResource
-) {
-  const { t } = useTranslation('Layer6QueryErrorControl');
-
-  const module = Module.get();
-
-  if (getter) {
-    module.resourceOfQueryErrorControlGetter = getter;
-  }
-
-  return module.createResourceOfQueryErrorControl(
-    Layer1Module.get().createLocalizationService(t)
-  );
-}
-
-/**
- * Использовать ресурс элемента управления "Верхнее меню". слоя "Layer1".
- * @param getter Получатель.
- * @returns Сервис.
- */
-export function useLayer6TopMenuControlResource(
-  getter?: (localizationService: LocalizationService) => TopMenuControlResource
-) {
-  const { t } = useTranslation('Layer6TopMenuControl');
-
-  const module = Module.get();
-
-  if (getter) {
-    module.resourceOfTopMenuControlGetter = getter;
-  }
-
-  return module.createResourceOfTopMenuControl(
-    Layer1Module.get().createLocalizationService(t)
-  );
+  useLayer6ContactsPage();
+  useLayer6DefaultTableControl();
+  useLayer6DummyMainItemPage();
+  useLayer6DummyMainListPage();
+  useLayer6QueryErrorControl();
+  useLayer6TopMenuControl();
 }

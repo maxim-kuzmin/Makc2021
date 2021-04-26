@@ -2,22 +2,24 @@
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { useTranslation } from 'react-i18next';
+import { useLayer6ContactsPageResource } from './ContactsPageHooks';
 
 /**
  * Страница контактов.
  */
 export function ContactsPage() {
-  const { t } = useTranslation();
+  const resource = useLayer6ContactsPageResource();
 
   return (
     <>
       <Row>
-        <Col>{t('Автор')}</Col>
-        <Col>{t('Максим Кузьмин')}</Col>
+        <Col>{resource.getAuthorFieldTitle()}</Col>
+        <Col style={{ whiteSpace: 'nowrap' }}>
+          {resource.getAuthorFieldValue()}
+        </Col>
       </Row>
       <Row>
-        <Col>{t('E-mail')}</Col>
+        <Col>{resource.getEmailFieldTitle()}</Col>
         <Col>maxim.kuzmin@inbox.ru</Col>
       </Row>
     </>

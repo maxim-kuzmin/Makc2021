@@ -13,26 +13,26 @@ export class TopMenuControlResource {
   constructor(private _appLocalizationService: LocalizationService) {}
 
   /**
-   * Получить заголовок для ссылки на страницу контактов.
+   * Получить заголовок ссылки на страницу контактов.
    * @returns Заголовок.
    */
-  getLinkTitleForContactsPage() {
+  getContactsPageLinkTitle() {
     return this._appLocalizationService.getString('Контакты');
   }
 
   /**
-   * Получить заголовок для ссылки на страницу сущности "DummyMain".
+   * Получить заголовок ссылки на страницу сущности "DummyMain".
    * @returns Заголовок.
    */
-  getLinkTitleForDummyMainItemPage() {
+  getDummyMainItemPageLinkTitle() {
     return this._appLocalizationService.getString('Элемент');
   }
 
   /**
-   * Получить заголовок для ссылки на страницу сущностей "DummyMain".
+   * Получить заголовок ссылки на страницу сущностей "DummyMain".
    * @returns Заголовок.
    */
-  getLinkTitleForDummyMainListPage() {
+  getDummyMainListPageLinkTitle() {
     return this._appLocalizationService.getString('Список');
   }
 }
