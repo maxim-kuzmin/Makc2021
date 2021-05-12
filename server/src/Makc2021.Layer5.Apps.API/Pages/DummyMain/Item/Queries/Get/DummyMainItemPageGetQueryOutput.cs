@@ -2,19 +2,19 @@
 
 using Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get;
 
-namespace Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item.Queries.Get
+namespace Makc2021.Layer5.Apps.API.Pages.DummyMain.Item.Queries.Get
 {
     /// <summary>
-    /// Входные данные запроса на получение страницы сущности "DummyMain".
+    /// Выходные данные запроса на получение страницы сущности "DummyMain".
     /// </summary>
-    public class DummyMainItemPageGetQueryInput
+    public class DummyMainItemPageGetQueryOutput
     {
         #region Properties
 
         /// <summary>
         /// Элемент.
         /// </summary>
-        public ItemGetQueryDomainInput Item { get; } = new();
+        public ItemGetQueryDomainOutput Item { get; set; }
 
         #endregion Properties
     }

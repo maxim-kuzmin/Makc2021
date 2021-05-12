@@ -2,8 +2,8 @@
 
 using System.Threading.Tasks;
 using Makc2021.Layer1.Completion;
-using Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item;
-using Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item.Queries.Get;
+using Makc2021.Layer5.Apps.API.Pages.DummyMain.Item;
+using Makc2021.Layer5.Apps.API.Pages.DummyMain.Item.Queries.Get;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -2,7 +2,7 @@
 
 using Makc2021.Layer4.Domains.DummyMain.Queries.List.Get;
 
-namespace Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.List.Queries.Get
+namespace Makc2021.Layer5.Apps.API.Pages.DummyMain.List.Queries.Get
 {
     /// <summary>
     /// Выходные данные запроса на получение страницы сущностей "DummyMain".

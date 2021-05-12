@@ -20,7 +20,7 @@ namespace Makc2021.Layer2.Config
         /// <summary>
         /// Настройки.
         /// </summary>
-        public IConfigSettings Settings { get; private set; }
+        public IConfigSettings Settings { get; }
 
         #endregion Properties
 

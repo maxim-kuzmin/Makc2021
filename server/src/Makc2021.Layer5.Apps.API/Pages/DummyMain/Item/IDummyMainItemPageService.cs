@@ -2,9 +2,9 @@
 
 using System.Threading.Tasks;
 using Makc2021.Layer1.Query;
-using Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item.Queries.Get;
+using Makc2021.Layer5.Apps.API.Pages.DummyMain.Item.Queries.Get;
 
-namespace Makc2021.Layer5.Apps.WebAPI.Pages.DummyMain.Item
+namespace Makc2021.Layer5.Apps.API.Pages.DummyMain.Item
 {
     /// <summary>
     /// Интерфейс сервиса страницы сущности "DummyMain".

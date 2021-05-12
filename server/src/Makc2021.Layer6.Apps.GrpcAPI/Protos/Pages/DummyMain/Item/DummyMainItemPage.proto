@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "Makc2021.Layer6.Apps.GrpcAPI.Protos.Pages.DummyMain.Item";
+
+package DummyMainItemPage;
+
+// The greeting service definition.
+service DummyMainItemPageProto {
+  // Sends a greeting
+  rpc SayHello (ItemRequest) returns (ItemReply);
+}
+
+// The request message containing the user's name.
+message ItemRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings.
+message ItemReply {
+  string message = 1;
+}

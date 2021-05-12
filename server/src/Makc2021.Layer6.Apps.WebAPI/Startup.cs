@@ -1,4 +1,4 @@
-using Makc2021.Layer5.Apps.WebAPI;
+using Makc2021.Layer5.Apps.API;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.IISIntegration;

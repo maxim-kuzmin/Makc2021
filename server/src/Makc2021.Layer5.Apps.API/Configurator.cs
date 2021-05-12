@@ -4,7 +4,7 @@ using Makc2021.Layer1.Common;
 using Makc2021.Layer1.Completion;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Makc2021.Layer5.Apps.WebAPI
+namespace Makc2021.Layer5.Apps.API
 {
     /// <summary>
     /// Конфигуратор.
