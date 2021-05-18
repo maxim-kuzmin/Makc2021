@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "Makc2021.Layer6.Apps.GrpcServer.Protos.Pages.DummyMain.List";
+
+package DummyMainListPage;
+
+service DummyMainListPageProto {
+  rpc Get (DummyMainListPageRequest) returns (DummyMainListPageReply);
+}
+
+message DummyMainListPageRequestList {
+   int32 page_number = 1;
+}
+
+message DummyMainListPageRequest {
+  DummyMainListPageRequestList list = 1;
+}
+
+message DummyMainListPageReply {
+  string message = 1;
+}
