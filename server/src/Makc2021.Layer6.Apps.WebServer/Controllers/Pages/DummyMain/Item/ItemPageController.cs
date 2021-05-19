@@ -15,11 +15,11 @@ namespace Makc2021.Layer6.Apps.WebServer.Controllers.Pages.DummyMain.Item
     [Authorize]
     [ApiController]
     [Route("api/pages/dummy-main/item/{queryCode}")]
-    public class DummyMainItemPageController : ControllerBase
+    public class ItemPageController : ControllerBase
     {
         #region Properties
 
-        private IDummyMainItemPageService AppService { get; }
+        private IItemPageService AppService { get; }
 
         #endregion Properties
 
@@ -29,7 +29,7 @@ namespace Makc2021.Layer6.Apps.WebServer.Controllers.Pages.DummyMain.Item
         /// Конструктор.
         /// </summary>
         /// <param name="appService">Сервис.</param>
-        public DummyMainItemPageController(IDummyMainItemPageService appService)
+        public ItemPageController(IItemPageService appService)
         {
             AppService = appService;
         }
@@ -47,13 +47,13 @@ namespace Makc2021.Layer6.Apps.WebServer.Controllers.Pages.DummyMain.Item
         [HttpGet, Route("{entityId}")]
         public async Task<IActionResult> Get(string queryCode, int entityId)
         {
-            DummyMainItemPageGetQueryInput input = new();
+            ItemPageGetQueryInput input = new();
 
             input.Item.EntityId = entityId;
 
-            var result = await AppService.Get(input, queryCode).ConfigureAwaitWithCultureSaving(false);
+            var queryResult = await AppService.Get(input, queryCode).ConfigureAwaitWithCultureSaving(false);
 
-            return Ok(result);
+            return Ok(queryResult);
         }
 
         #endregion Public methods

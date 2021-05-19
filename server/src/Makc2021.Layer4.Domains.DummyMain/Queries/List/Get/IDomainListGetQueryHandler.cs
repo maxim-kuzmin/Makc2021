@@ -7,8 +7,8 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
     /// <summary>
     /// Интерфейс обработчика запроса на получение списка в домене.
     /// </summary>
-    public interface IListGetQueryDomainHandler :
-        IQueryWithInputAndOutputHandler<ListGetQueryDomainInput, ListGetQueryDomainOutput>
+    public interface IDomainListGetQueryHandler :
+        IQueryWithInputAndOutputHandler<DomainListGetQueryInput, DomainListGetQueryOutput>
     {
     }
 }

@@ -30,16 +30,16 @@ namespace Makc2021.Layer4.Domains.DummyMain
                 x.GetRequiredService<Layer3.Sample.Mappers.EF.Db.IMapperDbFactory>()
                 ));
 
-            services.AddTransient<IItemGetQueryDomainHandler>(x => new ItemGetQueryDomainHandler(
+            services.AddTransient<IDomainItemGetQueryHandler>(x => new DomainItemGetQueryHandler(
                 x.GetRequiredService<IDomainResource>(),
                 x.GetRequiredService<IQueryResource>(),
-                x.GetRequiredService<ILogger<ItemGetQueryDomainHandler>>()
+                x.GetRequiredService<ILogger<DomainItemGetQueryHandler>>()
                 ));
 
-            services.AddTransient<IListGetQueryDomainHandler>(x => new ListGetQueryDomainHandler(
+            services.AddTransient<IDomainListGetQueryHandler>(x => new DomainListGetQueryHandler(
                 x.GetRequiredService<IDomainResource>(),
                 x.GetRequiredService<IQueryResource>(),
-                x.GetRequiredService<ILogger<ListGetQueryDomainHandler>>()
+                x.GetRequiredService<ILogger<DomainListGetQueryHandler>>()
                 ));
         }
 
@@ -50,8 +50,8 @@ namespace Makc2021.Layer4.Domains.DummyMain
             {
                 typeof(IDomainResource),
                 typeof(IDomainService),
-                typeof(IItemGetQueryDomainHandler),
-                typeof(IListGetQueryDomainHandler)
+                typeof(IDomainItemGetQueryHandler),
+                typeof(IDomainListGetQueryHandler)
             };
         }
 

@@ -11,17 +11,17 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
     /// <summary>
     /// Обработчик запроса на получение списка в домене.
     /// </summary>
-    public class ListGetQueryDomainHandler :
-        QueryWithInputAndOutputHandler<ListGetQueryDomainInput, ListGetQueryDomainOutput>,
-        IListGetQueryDomainHandler
+    public class DomainListGetQueryHandler :
+        QueryWithInputAndOutputHandler<DomainListGetQueryInput, DomainListGetQueryOutput>,
+        IDomainListGetQueryHandler
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public ListGetQueryDomainHandler(
+        public DomainListGetQueryHandler(
             IDomainResource appResource,
             IQueryResource appQueryResource,
-            ILogger<ListGetQueryDomainHandler> extLogger
+            ILogger<DomainListGetQueryHandler> extLogger
             )
             : base(
                   appResource.GetListGetQueryName(),
@@ -36,11 +36,11 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
 
         #region Private methods
 
-        private ListGetQueryDomainInput TransformQueryInput(ListGetQueryDomainInput input)
+        private DomainListGetQueryInput TransformQueryInput(DomainListGetQueryInput input)
         {
             if (input == null)
             {
-                input = new ListGetQueryDomainInput();
+                input = new DomainListGetQueryInput();
             }
 
             input.Normalize();

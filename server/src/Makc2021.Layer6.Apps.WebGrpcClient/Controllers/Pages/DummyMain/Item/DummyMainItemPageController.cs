@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System.Threading.Tasks;
+using Makc2021.Layer1.Completion;
 using Makc2021.Layer6.Apps.GrpcServer.Protos.Pages.DummyMain.Item;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.Item
     {
         #region Properties
 
-        private DummyMainItemPageProto.DummyMainItemPageProtoClient AppClient { get; }
+        private DummyMainItemPage.DummyMainItemPageClient AppClient { get; }
 
         #endregion Properties
 
@@ -27,7 +28,7 @@ namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.Item
         /// Конструктор.
         /// </summary>
         /// <param name="appClient">Клиент.</param>
-        public DummyMainItemPageController(DummyMainItemPageProto.DummyMainItemPageProtoClient appClient)
+        public DummyMainItemPageController(DummyMainItemPage.DummyMainItemPageClient appClient)
         {
             AppClient = appClient;
         }
@@ -45,15 +46,18 @@ namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.Item
         [HttpGet, Route("{entityId}")]
         public async Task<IActionResult> Get(string queryCode, int entityId)
         {
-            //DummyMainItemPageGetQueryInput input = new();
+            DummyMainItemPageGetRequest request = new()
+            {
+                QueryCode = queryCode,
+                Item = new()
+                {
+                    EntityId = entityId
+                }
+            };
 
-            //input.Item.EntityId = entityId;
+            var reply = await AppClient.GetAsync(request).ResponseAsync.ConfigureAwaitWithCultureSaving(false);
 
-            //var result = await AppService.Get(input, queryCode).ConfigureAwaitWithCultureSaving(false);
-
-            //return Ok(result);
-
-            return Ok();
+            return Ok(reply);
         }
 
         #endregion Public methods

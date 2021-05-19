@@ -24,7 +24,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// <returns>Запрос с учётом фильтрации.</returns>
         public static IQueryable<DummyMainEntityMapperObject> ApplyFiltering(
             this IQueryable<DummyMainEntityMapperObject> query,
-            ItemGetQueryDomainInput input
+            DomainItemGetQueryInput input
             )
         {
             if (input.EntityId > 0)
@@ -48,7 +48,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// <returns>Запрос с учётом фильтрации.</returns>
         public static IQueryable<DummyMainEntityMapperObject> ApplyFiltering(
             this IQueryable<DummyMainEntityMapperObject> query,
-            ListGetQueryDomainInput input
+            DomainListGetQueryInput input
             )
         {
             if (!string.IsNullOrWhiteSpace(input.EntityName))
@@ -105,7 +105,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// <returns>Запрос с учётом сортировки.</returns>
         public static IQueryable<DummyMainEntityMapperObject> ApplySorting(
             this IQueryable<DummyMainEntityMapperObject> query,
-            ListGetQueryDomainInput input
+            DomainListGetQueryInput input
             )
         {
             string sortField = input.SortField.ToLower();

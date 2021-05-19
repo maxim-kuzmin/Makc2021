@@ -11,7 +11,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
     /// <summary>
     /// Входные данные запроса на получение списка в домене.
     /// </summary>
-    public class ListGetQueryDomainInput : ListGetQueryInput
+    public class DomainListGetQueryInput : ListGetQueryInput
     {
         #region Properties
 

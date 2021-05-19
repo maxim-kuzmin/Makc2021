@@ -10,7 +10,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
     /// <summary>
     /// Выходные данные запроса на получение элемента в домене.
     /// </summary>
-    public class ItemGetQueryDomainOutput
+    public class DomainItemGetQueryOutput
     {
         #region Properties
 

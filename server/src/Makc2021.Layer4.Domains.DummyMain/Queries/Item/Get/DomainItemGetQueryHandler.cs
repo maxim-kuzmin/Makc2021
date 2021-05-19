@@ -11,17 +11,17 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
     /// <summary>
     /// Обработчик запроса на получение элемента в домене.
     /// </summary>
-    public class ItemGetQueryDomainHandler :
-        QueryWithInputAndOutputHandler<ItemGetQueryDomainInput, ItemGetQueryDomainOutput>,
-        IItemGetQueryDomainHandler
+    public class DomainItemGetQueryHandler :
+        QueryWithInputAndOutputHandler<DomainItemGetQueryInput, DomainItemGetQueryOutput>,
+        IDomainItemGetQueryHandler
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public ItemGetQueryDomainHandler(
+        public DomainItemGetQueryHandler(
             IDomainResource appResource,
             IQueryResource appQueryResource,
-            ILogger<ItemGetQueryDomainHandler> extLogger
+            ILogger<DomainItemGetQueryHandler> extLogger
             )
             : base(
                   appResource.GetItemGetQueryName(),
@@ -37,11 +37,11 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
 
         #region Private methods
 
-        private ItemGetQueryDomainInput TransformQueryInput(ItemGetQueryDomainInput input)
+        private DomainItemGetQueryInput TransformQueryInput(DomainItemGetQueryInput input)
         {
             if (input == null)
             {
-                input = new ItemGetQueryDomainInput();
+                input = new DomainItemGetQueryInput();
             }
 
             input.Normalize();
@@ -56,7 +56,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
             return input;
         }
 
-        private ItemGetQueryDomainOutput TransformQueryOutput(ItemGetQueryDomainOutput output)
+        private DomainItemGetQueryOutput TransformQueryOutput(DomainItemGetQueryOutput output)
         {
             return output.ObjectOfDummyMainEntity != null ? output : null;
         }

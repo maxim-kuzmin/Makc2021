@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 using Makc2021.Layer1.Completion;
 using Makc2021.Layer1.Query;
 using Makc2021.Layer4.Domains.DummyMain;
-using Makc2021.Layer4.Domains.DummyMain.Queries.List.Get;
-using Makc2021.Layer5.Apps.Server.Pages.DummyMain.List.Queries.Get;
+using Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get;
+using Makc2021.Layer5.Apps.Server.Pages.DummyMain.Item.Queries.Get;
 
-namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List
+namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.Item
 {
     /// <summary>
-    /// Сервис страницы сущностей "DummyMain".
+    /// Сервис страницы сущности "DummyMain".
     /// </summary>
-    public class DummyMainListPageService : IDummyMainListPageService
+    public class ItemPageService : IItemPageService
     {
-        private IListGetQueryDomainHandler AppListGetQueryDomainHandler { get; }
+        private IDomainItemGetQueryHandler AppItemGetQueryDomainHandler { get; }
 
         private IDomainService AppService { get; }
 
@@ -25,14 +25,14 @@ namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="appListGetQueryDomainHandler">Обработчик запроса на получение.</param>
+        /// <param name="appItemGetQueryDomainHandler">Обработчик запроса на получение.</param>
         /// <param name="appService">Сервис.</param>
-        public DummyMainListPageService(
-            IListGetQueryDomainHandler appListGetQueryDomainHandler,
+        public ItemPageService(
+            IDomainItemGetQueryHandler appItemGetQueryDomainHandler,
             IDomainService appService
             )
         {
-            AppListGetQueryDomainHandler = appListGetQueryDomainHandler;
+            AppItemGetQueryDomainHandler = appItemGetQueryDomainHandler;
             AppService = appService;
         }
 
@@ -41,32 +41,28 @@ namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List
         #region Public methods
 
         /// <inheritdoc/>
-        public async Task<QueryResultWithOutput<DummyMainListPageGetQueryOutput>> Get(
-            DummyMainListPageGetQueryInput input,
+        public async Task<QueryResultWithOutput<ItemPageGetQueryOutput>> Get(
+            ItemPageGetQueryInput input,
             string queryCode = null
             )
         {
-            QueryResultWithOutput<DummyMainListPageGetQueryOutput> result = new();
+            QueryResultWithOutput<ItemPageGetQueryOutput> result = new();
 
             if (string.IsNullOrWhiteSpace(queryCode))
             {
                 queryCode = result.QueryCode;
-            }            
+            }
 
-            DummyMainListPageGetQueryOutput output = new();
+            ItemPageGetQueryOutput output = new();
 
             List<QueryResult> queryResults = new();
 
-            var list = input.List;
+            var item = input.Item;
 
-            var queryResult1 = await GetListGetQueryResult(                
-                new ListGetQueryDomainInput
+            var queryResult1 = await GetItemGetQueryResult(               
+                new DomainItemGetQueryInput
                 {
-                    PageNumber = list.PageNumber,
-                    PageSize = list.PageSize,
-                    SortDirection = list.SortDirection,
-                    SortField = list.SortField,
-                    EntityName = list.EntityName
+                    EntityId = item.EntityId
                 },
                 queryCode
                 ).ConfigureAwaitWithCultureSaving(false);
@@ -75,7 +71,7 @@ namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List
 
             if (queryResult1.IsOk && queryResult1.Output != null)
             {
-                output.List = queryResult1.Output;
+                output.Item = queryResult1.Output;
             }
 
             result.Load(queryResults);
@@ -92,18 +88,18 @@ namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List
 
         #region Private methods
 
-        private async Task<QueryResultWithOutput<ListGetQueryDomainOutput>> GetListGetQueryResult(
-            ListGetQueryDomainInput input,
+        private async Task<QueryResultWithOutput<DomainItemGetQueryOutput>> GetItemGetQueryResult(            
+            DomainItemGetQueryInput input,
             string queryCode
             )
         {
-            var queryHandler = AppListGetQueryDomainHandler;
+            var queryHandler = AppItemGetQueryDomainHandler;
 
             try
             {
                 queryHandler.OnStart(input, queryCode);
 
-                var queryOutput = await AppService.GetList(
+                var queryOutput = await AppService.GetItem(
                     queryHandler.QueryInput
                     ).ConfigureAwaitWithCultureSaving(false);
 

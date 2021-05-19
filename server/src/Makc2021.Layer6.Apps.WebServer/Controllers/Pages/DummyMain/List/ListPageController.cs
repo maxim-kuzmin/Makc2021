@@ -15,11 +15,11 @@ namespace Makc2021.Layer6.Apps.WebServer.Controllers.Pages.DummyMain.List
     [Authorize]
     [ApiController]
     [Route("api/pages/dummy-main/list/{queryCode}")]
-    public class DummyMainListPageController : ControllerBase
+    public class ListPageController : ControllerBase
     {
         #region Properties
 
-        private IDummyMainListPageService AppService { get; }
+        private IListPageService AppService { get; }
 
         #endregion Properties
 
@@ -29,7 +29,7 @@ namespace Makc2021.Layer6.Apps.WebServer.Controllers.Pages.DummyMain.List
         /// Конструктор.
         /// </summary>
         /// <param name="appService">Сервис.</param>
-        public DummyMainListPageController(IDummyMainListPageService appService)
+        public ListPageController(IListPageService appService)
         {
             AppService = appService;
         }
@@ -58,19 +58,17 @@ namespace Makc2021.Layer6.Apps.WebServer.Controllers.Pages.DummyMain.List
             string entityName
             )
         {
-            DummyMainListPageGetQueryInput input = new();
+            ListPageGetQueryInput input = new();
 
-            var list = input.List;
+            input.List.PageNumber = pageNumber;
+            input.List.PageSize = pageSize;
+            input.List.SortDirection = sortDirection;
+            input.List.SortField = sortField;
+            input.List.EntityName = entityName;
 
-            list.PageNumber = pageNumber;
-            list.PageSize = pageSize;
-            list.SortDirection = sortDirection;
-            list.SortField = sortField;
-            list.EntityName = entityName;
+            var queryResult = await AppService.Get(input, queryCode).ConfigureAwaitWithCultureSaving(false);
 
-            var result = await AppService.Get(input, queryCode).ConfigureAwaitWithCultureSaving(false);
-
-            return Ok(result);
+            return Ok(queryResult);
         }
 
         #endregion Public methods

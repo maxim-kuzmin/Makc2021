@@ -9,7 +9,7 @@ namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.Item
     /// <summary>
     /// Интерфейс сервиса страницы сущности "DummyMain".
     /// </summary>
-    public interface IDummyMainItemPageService
+    public interface IItemPageService
     {
         #region Methods
 
@@ -19,8 +19,8 @@ namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.Item
         /// <param name="input">Входные данные.</param>
         /// <param name="queryCode">Код запроса.</param>
         /// <returns>Задача на выполнение запроса с выходными данными.</returns>
-        Task<QueryResultWithOutput<DummyMainItemPageGetQueryOutput>> Get(
-            DummyMainItemPageGetQueryInput input,
+        Task<QueryResultWithOutput<ItemPageGetQueryOutput>> Get(
+            ItemPageGetQueryInput input,
             string queryCode = null
             );
 

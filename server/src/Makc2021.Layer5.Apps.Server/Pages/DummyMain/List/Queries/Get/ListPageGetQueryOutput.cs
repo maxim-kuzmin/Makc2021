@@ -5,16 +5,16 @@ using Makc2021.Layer4.Domains.DummyMain.Queries.List.Get;
 namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List.Queries.Get
 {
     /// <summary>
-    /// Входные данные запроса на получение страницы сущностей "DummyMain".
+    /// Выходные данные запроса на получение страницы сущностей "DummyMain".
     /// </summary>
-    public class DummyMainListPageGetQueryInput
+    public class ListPageGetQueryOutput
     {
         #region Properties
 
         /// <summary>
         /// Список.
         /// </summary>
-        public ListGetQueryDomainInput List { get; } = new();
+        public DomainListGetQueryOutput List { get; set; }
 
         #endregion Properties
     }

@@ -31,13 +31,13 @@ namespace Makc2021.Layer5.Apps.Server
                 CommonConfigurator.ConfigureLocalization(options);
             });
 
-            services.AddTransient<IDummyMainItemPageService>(x => new DummyMainItemPageService(
-                x.GetRequiredService<IItemGetQueryDomainHandler>(),
+            services.AddTransient<IItemPageService>(x => new ItemPageService(
+                x.GetRequiredService<IDomainItemGetQueryHandler>(),
                 x.GetRequiredService<IDomainService>()
                 ));
 
-            services.AddTransient<IDummyMainListPageService>(x => new DummyMainListPageService(
-                x.GetRequiredService<IListGetQueryDomainHandler>(),
+            services.AddTransient<IListPageService>(x => new ListPageService(
+                x.GetRequiredService<IDomainListGetQueryHandler>(),
                 x.GetRequiredService<IDomainService>()
                 ));
         }
@@ -48,8 +48,8 @@ namespace Makc2021.Layer5.Apps.Server
             return new[]
                 {
                     typeof(CommonEnvironment),
-                    typeof(IDummyMainItemPageService),
-                    typeof(IDummyMainListPageService),
+                    typeof(IItemPageService),
+                    typeof(IListPageService),
                     typeof(ILogger),
                     typeof(IStringLocalizer)
                 };
@@ -65,8 +65,8 @@ namespace Makc2021.Layer5.Apps.Server
             return new[]
                 {
                     typeof(IDomainService),
-                    typeof(IItemGetQueryDomainHandler),
-                    typeof(IListGetQueryDomainHandler)                    
+                    typeof(IDomainItemGetQueryHandler),
+                    typeof(IDomainListGetQueryHandler)                    
                 };
         }
 

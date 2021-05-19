@@ -8,7 +8,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
     /// <summary>
     /// Выходные данные запроса на получение списка в домене.
     /// </summary>
-    public class ListGetQueryDomainOutput : ListGetQueryOutput<ItemGetQueryDomainOutput>
+    public class DomainListGetQueryOutput : ListGetQueryOutput<DomainItemGetQueryOutput>
     {
     }
 }

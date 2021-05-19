@@ -18,14 +18,14 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// </summary>
         /// <param name="input">Входные данные.</param>
         /// <returns>Задача на выполнение запроса с выходными данными.</returns>
-        Task<ItemGetQueryDomainOutput> GetItem(ItemGetQueryDomainInput input);
+        Task<DomainItemGetQueryOutput> GetItem(DomainItemGetQueryInput input);
 
         /// <summary>
         /// Получить список.
         /// </summary>
         /// <param name="input">Входные данные.</param>
         /// <returns>Задача на выполнение запроса с выходными данными.</returns>
-        Task<ListGetQueryDomainOutput> GetList(ListGetQueryDomainInput input);
+        Task<DomainListGetQueryOutput> GetList(DomainListGetQueryInput input);
 
         #endregion Methods
     }

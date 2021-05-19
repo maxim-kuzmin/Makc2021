@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System.Threading.Tasks;
+using Makc2021.Layer1.Completion;
 using Makc2021.Layer6.Apps.GrpcServer.Protos.Pages.DummyMain.List;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.List
     {
         #region Properties        
 
-        private DummyMainListPageProto.DummyMainListPageProtoClient AppClient { get; }
+        private DummyMainListPage.DummyMainListPageClient AppClient { get; }
 
         #endregion Properties
 
@@ -27,7 +28,7 @@ namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.List
         /// Конструктор.
         /// </summary>
         /// <param name="appClient">Клиент.</param>
-        public DummyMainListPageController(DummyMainListPageProto.DummyMainListPageProtoClient appClient)
+        public DummyMainListPageController(DummyMainListPage.DummyMainListPageClient appClient)
         {
             AppClient = appClient;
         }
@@ -56,21 +57,22 @@ namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.List
             string entityName
             )
         {
-            //DummyMainListPageGetQueryInput input = new();
+            DummyMainListPageGetRequest request = new()
+            {
+                QueryCode = queryCode,
+                List = new()
+                {
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    SortDirection = sortDirection,
+                    SortField = sortField,
+                    EntityName = entityName
+                }
+            };
 
-            //var list = input.List;
+            var reply = await AppClient.GetAsync(request).ResponseAsync.ConfigureAwaitWithCultureSaving(false);
 
-            //list.PageNumber = pageNumber;
-            //list.PageSize = pageSize;
-            //list.SortDirection = sortDirection;
-            //list.SortField = sortField;
-            //list.EntityName = entityName;
-
-            //var result = await AppService.Get(input, queryCode).ConfigureAwaitWithCultureSaving(false);
-
-            //return Ok(result);
-
-            return Ok();
+            return Ok(reply);
         }
 
         #endregion Public methods

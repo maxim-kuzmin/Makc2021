@@ -43,9 +43,9 @@ namespace Makc2021.Layer4.Domains.DummyMain
         #region Public methods
 
         /// <inheritdoc/>
-        public async Task<ItemGetQueryDomainOutput> GetItem(ItemGetQueryDomainInput input)
+        public async Task<DomainItemGetQueryOutput> GetItem(DomainItemGetQueryInput input)
         {
-            ItemGetQueryDomainOutput result = null;
+            DomainItemGetQueryOutput result = null;
 
             using var dbContext = AppSampleMapperDbFactory.CreateDbContext();
 
@@ -85,9 +85,9 @@ namespace Makc2021.Layer4.Domains.DummyMain
         }
 
         /// <inheritdoc/>
-        public async Task<ListGetQueryDomainOutput> GetList(ListGetQueryDomainInput input)
+        public async Task<DomainListGetQueryOutput> GetList(DomainListGetQueryInput input)
         {
-            var result = new ListGetQueryDomainOutput();
+            var result = new DomainListGetQueryOutput();
 
             using var dbContext = AppSampleMapperDbFactory.CreateDbContext();
             using var dbContextForTotalCount = AppSampleMapperDbFactory.CreateDbContext();
@@ -146,9 +146,9 @@ namespace Makc2021.Layer4.Domains.DummyMain
 
         #region Private methods
 
-        private static ItemGetQueryDomainOutput CreateItem(DummyMainEntityMapperObject entity)
+        private static DomainItemGetQueryOutput CreateItem(DummyMainEntityMapperObject entity)
         {
-            var result = new ItemGetQueryDomainOutput
+            var result = new DomainItemGetQueryOutput
             {
                 ObjectOfDummyMainEntity = entity.CreateEntityObject(),
                 ObjectOfDummyOneToManyEntity = entity.ObjectOfDummyOneToManyEntity.CreateEntityObject()
@@ -165,7 +165,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         }
 
         private static void InitItemDummyManyToMany(
-            ItemGetQueryDomainOutput item,
+            DomainItemGetQueryOutput item,
             IEnumerable<DummyManyToManyEntityMapperObject> enities
             )
         {
@@ -177,7 +177,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         }
 
         private static void InitItemDummyManyToMany(
-            ItemGetQueryDomainOutput item,
+            DomainItemGetQueryOutput item,
             IDictionary<long, DummyManyToManyEntityMapperObject> lookup
             )
         {

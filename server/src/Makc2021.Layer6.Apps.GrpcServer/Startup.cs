@@ -1,4 +1,5 @@
-﻿using Makc2021.Layer6.Apps.GrpcServer.Services.Pages.DummyMain.Item;
+﻿using Makc2021.Layer5.Apps.Server;
+using Makc2021.Layer6.Apps.GrpcServer.Services.Pages.DummyMain.Item;
 using Makc2021.Layer6.Apps.GrpcServer.Services.Pages.DummyMain.List;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,20 +15,28 @@ namespace Makc2021.Layer6.Apps.GrpcServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            Configurator.ConfigureServices(services);
+
             services.AddGrpc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+            Layer3.Sample.Mappers.EF.IMapperService appSampleMapperService,
+            IApplicationBuilder extAppBuilder,
+            IWebHostEnvironment extEnvironment
+            )
         {
-            if (env.IsDevelopment())
+            Configurator.Configure(appSampleMapperService);
+
+            if (extEnvironment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                extAppBuilder.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            extAppBuilder.UseRouting();
 
-            app.UseEndpoints(endpoints =>
+            extAppBuilder.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<DummyMainItemPageService>();
                 endpoints.MapGrpcService<DummyMainListPageService>();
