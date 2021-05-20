@@ -11,7 +11,7 @@ namespace Makc2021.Layer6.Apps.GrpcServer.Services.Pages.DummyMain.Item
     {
         #region Properties
 
-        private IItemPageService AppService { get; }
+        private DummyMainIItemPageService AppService { get; }
 
         #endregion Properties
 
@@ -21,7 +21,7 @@ namespace Makc2021.Layer6.Apps.GrpcServer.Services.Pages.DummyMain.Item
         /// Конструктор.
         /// </summary>
         /// <param name="appService">Сервис.</param>
-        public DummyMainItemPageService(IItemPageService appService)
+        public DummyMainItemPageService(DummyMainIItemPageService appService)
         {
             AppService = appService;
         }
@@ -41,7 +41,7 @@ namespace Makc2021.Layer6.Apps.GrpcServer.Services.Pages.DummyMain.Item
             ServerCallContext context
             )
         {
-            ItemPageGetQueryInput input = new();
+            DummyMainItemPageGetQueryInput input = new();
 
             input.Item.EntityId = request.Item.EntityId;
 

@@ -12,7 +12,7 @@ namespace Makc2021.Layer6.Apps.GrpcServer.Services.Pages.DummyMain.List
     {
         #region Properties
 
-        private IListPageService AppService { get; }
+        private DummyMainIListPageService AppService { get; }
 
         #endregion Properties
 
@@ -22,7 +22,7 @@ namespace Makc2021.Layer6.Apps.GrpcServer.Services.Pages.DummyMain.List
         /// Конструктор.
         /// </summary>
         /// <param name="appService">Сервис.</param>
-        public DummyMainListPageService(IListPageService appService)
+        public DummyMainListPageService(DummyMainIListPageService appService)
         {
             AppService = appService;
         }
@@ -42,7 +42,7 @@ namespace Makc2021.Layer6.Apps.GrpcServer.Services.Pages.DummyMain.List
             ServerCallContext context
             )
         {
-            ListPageGetQueryInput input = new();
+            DummyMainListPageGetQueryInput input = new();
 
             input.List.PageNumber = request.List.PageNumber;
             input.List.PageSize = request.List.PageSize;

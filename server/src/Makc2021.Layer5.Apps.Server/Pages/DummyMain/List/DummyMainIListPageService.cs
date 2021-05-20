@@ -2,25 +2,25 @@
 
 using System.Threading.Tasks;
 using Makc2021.Layer1.Query;
-using Makc2021.Layer5.Apps.Server.Pages.DummyMain.Item.Queries.Get;
+using Makc2021.Layer5.Apps.Server.Pages.DummyMain.List.Queries.Get;
 
-namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.Item
+namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List
 {
     /// <summary>
-    /// Интерфейс сервиса страницы сущности "DummyMain".
+    /// Интерфейс сервиса страницы сущностей "DummyMain".
     /// </summary>
-    public interface IItemPageService
+    public interface DummyMainIListPageService
     {
         #region Methods
 
         /// <summary>
         /// Получить.
-        /// </summary>
+        /// </summary>        
         /// <param name="input">Входные данные.</param>
         /// <param name="queryCode">Код запроса.</param>
         /// <returns>Задача на выполнение запроса с выходными данными.</returns>
-        Task<QueryResultWithOutput<ItemPageGetQueryOutput>> Get(
-            ItemPageGetQueryInput input,
+        Task<QueryResultWithOutput<DummyMainListPageGetQueryOutput>> Get(
+            DummyMainListPageGetQueryInput input,
             string queryCode = null
             );
 

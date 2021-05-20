@@ -14,7 +14,7 @@ namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List
     /// <summary>
     /// Сервис страницы сущностей "DummyMain".
     /// </summary>
-    public class ListPageService : IListPageService
+    public class DummyMainListPageService : DummyMainIListPageService
     {
         private IDomainListGetQueryHandler AppListGetQueryDomainHandler { get; }
 
@@ -27,7 +27,7 @@ namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List
         /// </summary>
         /// <param name="appListGetQueryDomainHandler">Обработчик запроса на получение.</param>
         /// <param name="appService">Сервис.</param>
-        public ListPageService(
+        public DummyMainListPageService(
             IDomainListGetQueryHandler appListGetQueryDomainHandler,
             IDomainService appService
             )
@@ -41,19 +41,19 @@ namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List
         #region Public methods
 
         /// <inheritdoc/>
-        public async Task<QueryResultWithOutput<ListPageGetQueryOutput>> Get(
-            ListPageGetQueryInput input,
+        public async Task<QueryResultWithOutput<DummyMainListPageGetQueryOutput>> Get(
+            DummyMainListPageGetQueryInput input,
             string queryCode = null
             )
         {
-            QueryResultWithOutput<ListPageGetQueryOutput> result = new();
+            QueryResultWithOutput<DummyMainListPageGetQueryOutput> result = new();
 
             if (string.IsNullOrWhiteSpace(queryCode))
             {
                 queryCode = result.QueryCode;
             }            
 
-            ListPageGetQueryOutput output = new();
+            DummyMainListPageGetQueryOutput output = new();
 
             List<QueryResult> queryResults = new();
 

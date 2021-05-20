@@ -15,11 +15,11 @@ namespace Makc2021.Layer6.Apps.WebServer.Controllers.Pages.DummyMain.List
     [Authorize]
     [ApiController]
     [Route("api/pages/dummy-main/list/{queryCode}")]
-    public class ListPageController : ControllerBase
+    public class DummyMainListPageController : ControllerBase
     {
         #region Properties
 
-        private IListPageService AppService { get; }
+        private DummyMainIListPageService AppService { get; }
 
         #endregion Properties
 
@@ -29,7 +29,7 @@ namespace Makc2021.Layer6.Apps.WebServer.Controllers.Pages.DummyMain.List
         /// Конструктор.
         /// </summary>
         /// <param name="appService">Сервис.</param>
-        public ListPageController(IListPageService appService)
+        public DummyMainListPageController(DummyMainIListPageService appService)
         {
             AppService = appService;
         }
@@ -58,7 +58,7 @@ namespace Makc2021.Layer6.Apps.WebServer.Controllers.Pages.DummyMain.List
             string entityName
             )
         {
-            ListPageGetQueryInput input = new();
+            DummyMainListPageGetQueryInput input = new();
 
             input.List.PageNumber = pageNumber;
             input.List.PageSize = pageSize;

@@ -31,12 +31,12 @@ namespace Makc2021.Layer5.Apps.Server
                 CommonConfigurator.ConfigureLocalization(options);
             });
 
-            services.AddTransient<IItemPageService>(x => new ItemPageService(
+            services.AddTransient<DummyMainIItemPageService>(x => new DummyMainItemPageService(
                 x.GetRequiredService<IDomainItemGetQueryHandler>(),
                 x.GetRequiredService<IDomainService>()
                 ));
 
-            services.AddTransient<IListPageService>(x => new ListPageService(
+            services.AddTransient<DummyMainIListPageService>(x => new DummyMainListPageService(
                 x.GetRequiredService<IDomainListGetQueryHandler>(),
                 x.GetRequiredService<IDomainService>()
                 ));
@@ -48,8 +48,8 @@ namespace Makc2021.Layer5.Apps.Server
             return new[]
                 {
                     typeof(CommonEnvironment),
-                    typeof(IItemPageService),
-                    typeof(IListPageService),
+                    typeof(DummyMainIItemPageService),
+                    typeof(DummyMainIListPageService),
                     typeof(ILogger),
                     typeof(IStringLocalizer)
                 };
@@ -63,10 +63,10 @@ namespace Makc2021.Layer5.Apps.Server
         protected sealed override IEnumerable<Type> GetImports()
         {
             return new[]
-                {
-                    typeof(IDomainService),
+                {                    
                     typeof(IDomainItemGetQueryHandler),
-                    typeof(IDomainListGetQueryHandler)                    
+                    typeof(IDomainListGetQueryHandler),
+                    typeof(IDomainService)
                 };
         }
 

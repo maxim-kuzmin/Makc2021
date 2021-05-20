@@ -7,7 +7,7 @@ namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List.Queries.Get
     /// <summary>
     /// Входные данные запроса на получение страницы сущностей "DummyMain".
     /// </summary>
-    public class ListPageGetQueryInput
+    public class DummyMainListPageGetQueryInput
     {
         #region Properties
 
