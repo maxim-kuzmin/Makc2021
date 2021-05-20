@@ -35,7 +35,7 @@ namespace Makc2021.Layer1.Common
         /// <inheritdoc/>
         public string GetErrorMessageForNotImportedTypes(IEnumerable<Type> types)
         {
-            string value = string.Concat("', '", types);
+            string value = string.Join("', '", types);
 
             string key = string.Format("Не импортированы следующие типы: '{0}'", value);
 

@@ -22,7 +22,7 @@ namespace Makc2021.Layer5.Apps.Server
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override void ConfigureServices(IServiceCollection services)
+        public override void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(new CommonEnvironment());
 
@@ -31,28 +31,28 @@ namespace Makc2021.Layer5.Apps.Server
                 CommonConfigurator.ConfigureLocalization(options);
             });
 
-            services.AddTransient<DummyMainIItemPageService>(x => new DummyMainItemPageService(
+            services.AddTransient<IDummyMainItemPageService>(x => new DummyMainItemPageService(
                 x.GetRequiredService<IDomainItemGetQueryHandler>(),
                 x.GetRequiredService<IDomainService>()
                 ));
 
-            services.AddTransient<DummyMainIListPageService>(x => new DummyMainListPageService(
+            services.AddTransient<IDummyMainListPageService>(x => new DummyMainListPageService(
                 x.GetRequiredService<IDomainListGetQueryHandler>(),
                 x.GetRequiredService<IDomainService>()
                 ));
         }
 
         /// <inheritdoc/>
-        public sealed override IEnumerable<Type> GetExports()
+        public override IEnumerable<Type> GetExports()
         {
             return new[]
-                {
-                    typeof(CommonEnvironment),
-                    typeof(DummyMainIItemPageService),
-                    typeof(DummyMainIListPageService),
-                    typeof(ILogger),
-                    typeof(IStringLocalizer)
-                };
+            {
+                typeof(CommonEnvironment),
+                typeof(IDummyMainItemPageService),
+                typeof(IDummyMainListPageService),
+                typeof(ILogger),
+                typeof(IStringLocalizer)
+            };
         }
 
         #endregion Public methods
@@ -60,14 +60,14 @@ namespace Makc2021.Layer5.Apps.Server
         #region Protected methods
 
         /// <inheritdoc/>
-        protected sealed override IEnumerable<Type> GetImports()
+        protected override IEnumerable<Type> GetImports()
         {
             return new[]
-                {                    
-                    typeof(IDomainItemGetQueryHandler),
-                    typeof(IDomainListGetQueryHandler),
-                    typeof(IDomainService)
-                };
+            {                    
+                typeof(IDomainItemGetQueryHandler),
+                typeof(IDomainListGetQueryHandler),
+                typeof(IDomainService)
+            };
         }
 
         #endregion Protected methods

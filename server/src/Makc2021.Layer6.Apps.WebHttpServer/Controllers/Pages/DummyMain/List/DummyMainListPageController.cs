@@ -2,11 +2,12 @@
 
 using System.Threading.Tasks;
 using Makc2021.Layer1.Completion;
-using Makc2021.Layer5.Apps.GrpcServer.Protos.Pages.DummyMain.List;
+using Makc2021.Layer5.Apps.Server.Pages.DummyMain.List;
+using Makc2021.Layer5.Apps.Server.Pages.DummyMain.List.Queries.Get;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.List
+namespace Makc2021.Layer6.Apps.WebHttpServer.Controllers.Pages.DummyMain.List
 {
     /// <summary>
     /// Контроллер страницы сущностей "DummyMain".
@@ -16,9 +17,9 @@ namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.List
     [Route("api/pages/dummy-main/list/{queryCode}")]
     public class DummyMainListPageController : ControllerBase
     {
-        #region Properties        
+        #region Properties
 
-        private DummyMainListPage.DummyMainListPageClient AppClient { get; }
+        private IDummyMainListPageService AppService { get; }
 
         #endregion Properties
 
@@ -27,10 +28,10 @@ namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.List
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="appClient">Клиент.</param>
-        public DummyMainListPageController(DummyMainListPage.DummyMainListPageClient appClient)
+        /// <param name="appService">Сервис.</param>
+        public DummyMainListPageController(IDummyMainListPageService appService)
         {
-            AppClient = appClient;
+            AppService = appService;
         }
 
         #endregion Constructors
@@ -57,22 +58,17 @@ namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.List
             string entityName
             )
         {
-            DummyMainListPageGetRequest request = new()
-            {
-                QueryCode = queryCode,
-                List = new()
-                {
-                    PageNumber = pageNumber,
-                    PageSize = pageSize,
-                    SortDirection = sortDirection,
-                    SortField = sortField,
-                    EntityName = entityName
-                }
-            };
+            DummyMainListPageGetQueryInput input = new();
 
-            var reply = await AppClient.GetAsync(request).ResponseAsync.ConfigureAwaitWithCultureSaving(false);
+            input.List.PageNumber = pageNumber;
+            input.List.PageSize = pageSize;
+            input.List.SortDirection = sortDirection;
+            input.List.SortField = sortField;
+            input.List.EntityName = entityName;
 
-            return Ok(reply);
+            var queryResult = await AppService.Get(input, queryCode).ConfigureAwaitWithCultureSaving(false);
+
+            return Ok(queryResult);
         }
 
         #endregion Public methods

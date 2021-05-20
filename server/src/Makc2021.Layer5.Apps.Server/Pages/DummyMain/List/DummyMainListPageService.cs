@@ -14,7 +14,7 @@ namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List
     /// <summary>
     /// Сервис страницы сущностей "DummyMain".
     /// </summary>
-    public class DummyMainListPageService : DummyMainIListPageService
+    public class DummyMainListPageService : IDummyMainListPageService
     {
         private IDomainListGetQueryHandler AppListGetQueryDomainHandler { get; }
 
@@ -51,7 +51,11 @@ namespace Makc2021.Layer5.Apps.Server.Pages.DummyMain.List
             if (string.IsNullOrWhiteSpace(queryCode))
             {
                 queryCode = result.QueryCode;
-            }            
+            }
+            else
+            {
+                result.QueryCode = queryCode;
+            }
 
             DummyMainListPageGetQueryOutput output = new();
 

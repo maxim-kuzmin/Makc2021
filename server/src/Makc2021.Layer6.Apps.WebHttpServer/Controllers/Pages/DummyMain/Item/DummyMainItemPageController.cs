@@ -2,11 +2,12 @@
 
 using System.Threading.Tasks;
 using Makc2021.Layer1.Completion;
-using Makc2021.Layer5.Apps.GrpcServer.Protos.Pages.DummyMain.Item;
+using Makc2021.Layer5.Apps.Server.Pages.DummyMain.Item;
+using Makc2021.Layer5.Apps.Server.Pages.DummyMain.Item.Queries.Get;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.Item
+namespace Makc2021.Layer6.Apps.WebHttpServer.Controllers.Pages.DummyMain.Item
 {
     /// <summary>
     /// Контроллер страницы сущности "DummyMain".
@@ -18,7 +19,7 @@ namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.Item
     {
         #region Properties
 
-        private DummyMainItemPage.DummyMainItemPageClient AppClient { get; }
+        private IDummyMainItemPageService AppService { get; }
 
         #endregion Properties
 
@@ -27,10 +28,10 @@ namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.Item
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="appClient">Клиент.</param>
-        public DummyMainItemPageController(DummyMainItemPage.DummyMainItemPageClient appClient)
+        /// <param name="appService">Сервис.</param>
+        public DummyMainItemPageController(IDummyMainItemPageService appService)
         {
-            AppClient = appClient;
+            AppService = appService;
         }
 
         #endregion Constructors
@@ -46,18 +47,13 @@ namespace Makc2021.Layer6.Apps.WebGrpcClient.Controllers.Pages.DummyMain.Item
         [HttpGet, Route("{entityId}")]
         public async Task<IActionResult> Get(string queryCode, int entityId)
         {
-            DummyMainItemPageGetRequest request = new()
-            {
-                QueryCode = queryCode,
-                Item = new()
-                {
-                    EntityId = entityId
-                }
-            };
+            DummyMainItemPageGetQueryInput input = new();
 
-            var reply = await AppClient.GetAsync(request).ResponseAsync.ConfigureAwaitWithCultureSaving(false);
+            input.Item.EntityId = entityId;
 
-            return Ok(reply);
+            var queryResult = await AppService.Get(input, queryCode).ConfigureAwaitWithCultureSaving(false);
+
+            return Ok(queryResult);
         }
 
         #endregion Public methods

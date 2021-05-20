@@ -46,7 +46,12 @@ namespace Makc2021.Layer1.Common
 
             foreach (var module in modules)
             {
-                notImportedTypes = notImportedTypes.Union(module.GetNotImportedtTypes(allExports));
+                var notImportedtTypesOfModule = module.GetNotImportedtTypes(allExports);
+
+                if (notImportedtTypesOfModule.Any())
+                {
+                    notImportedTypes = notImportedTypes.Union(notImportedtTypesOfModule);
+                }
             }
 
             if (notImportedTypes.Any())
