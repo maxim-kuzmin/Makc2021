@@ -57,14 +57,4 @@ export class DummyMainItemPageModule {
   public set storeGetter(value: () => DummyMainItemPageStore) {
     this._storeGetter = value;
   }
-
-  private static _instance = new DummyMainItemPageModule();
-
-  /**
-   * Получить.
-   * @returns Экземпляр.
-   */
-  static get() {
-    return this._instance;
-  }
 }

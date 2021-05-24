@@ -57,14 +57,4 @@ export class DummyMainListPageModule {
   public set storeGetter(value: () => DummyMainListPageStore) {
     this._storeGetter = value;
   }
-
-  private static _instance = new DummyMainListPageModule();
-
-  /**
-   * Получить.
-   * @returns Экземпляр.
-   */
-  static get() {
-    return this._instance;
-  }
 }

@@ -99,14 +99,4 @@ export class Module {
       functionToTranslate
     ) as LocalizationService;
   }
-
-  private static _instance = new Module();
-
-  /**
-   * Получить.
-   * @returns Экземпляр.
-   */
-  static get() {
-    return this._instance;
-  }
 }

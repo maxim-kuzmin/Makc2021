@@ -9,8 +9,13 @@ import { QueryErrorControlResource } from './QueryErrorControlResource';
 /**
  * Использовать элемент управления "Ошибка запроса" слоя "Layer6".
  */
-export function useLayer6QueryErrorControl() {
+export function useLayer6QueryErrorControl(
+  module: QueryErrorControlModule,
+  moduleOfLayer1: Layer1Module
+) {
   useLayer6QueryErrorControlResource(
+    module,
+    moduleOfLayer1,
     (localizationService: LocalizationService) => {
       return new QueryErrorControlResource(localizationService);
     }
@@ -23,6 +28,8 @@ export function useLayer6QueryErrorControl() {
  * @returns Сервис.
  */
 export function useLayer6QueryErrorControlResource(
+  module: QueryErrorControlModule,
+  moduleOfLayer1: Layer1Module,
   getter?: (
     localizationService: LocalizationService
   ) => QueryErrorControlResource
@@ -31,11 +38,9 @@ export function useLayer6QueryErrorControlResource(
     'Layer6/Controls/Errors/Query/QueryErrorControl'
   );
 
-  const module = QueryErrorControlModule.get();
-
   if (getter) {
     module.resourceGetter = getter;
   }
 
-  return module.createResource(Layer1Module.get().createLocalizationService(t));
+  return module.createResource(moduleOfLayer1.createLocalizationService(t));
 }

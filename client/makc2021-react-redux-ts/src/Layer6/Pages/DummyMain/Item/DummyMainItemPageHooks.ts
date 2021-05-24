@@ -9,8 +9,13 @@ import { DummyMainItemPageResource } from './DummyMainItemPageResource';
 /**
  * Использовать страницу контактов слоя "Layer6".
  */
-export function useLayer6DummyMainItemPage() {
+export function useLayer6DummyMainItemPage(
+  module: DummyMainItemPageModule,
+  moduleOfLayer1: Layer1Module
+) {
   useLayer6DummyMainItemPageResource(
+    module,
+    moduleOfLayer1,
     (localizationService: LocalizationService) => {
       return new DummyMainItemPageResource(localizationService);
     }
@@ -23,17 +28,17 @@ export function useLayer6DummyMainItemPage() {
  * @returns Сервис.
  */
 export function useLayer6DummyMainItemPageResource(
+  module: DummyMainItemPageModule,
+  moduleOfLayer1: Layer1Module,
   getter?: (
     localizationService: LocalizationService
   ) => DummyMainItemPageResource
 ) {
   const { t } = useTranslation('Layer6/Pages/DummyMain/Item/DummyMainItemPage');
 
-  const module = DummyMainItemPageModule.get();
-
   if (getter) {
     module.resourceGetter = getter;
   }
 
-  return module.createResource(Layer1Module.get().createLocalizationService(t));
+  return module.createResource(moduleOfLayer1.createLocalizationService(t));
 }

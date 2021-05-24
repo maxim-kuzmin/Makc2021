@@ -3,13 +3,17 @@
 import Nav from 'react-bootstrap/Nav';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useLocation } from 'react-router-dom';
+import { Configurator } from 'src/Configurator';
 import { useLayer6TopMenuControlResource } from './TopMenuControlHooks';
 
 /**
  * Элемент управления "Верхнее меню".
  */
 export function TopMenuControl() {
-  const resource = useLayer6TopMenuControlResource();
+  const resource = useLayer6TopMenuControlResource(
+    Configurator.Layer6.Controls.Menus.Top.module,
+    Configurator.Layer1.module
+  );
 
   const location = useLocation();
 

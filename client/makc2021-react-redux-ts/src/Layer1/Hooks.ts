@@ -11,11 +11,12 @@ import { LocalizationLanguage } from './Localization/LocalizationLanguage';
 
 /**
  * Использовать слой "Layer1".
+ * @param module Модуль.
  */
-export function useLayer1() {
+export function useLayer1(module: Module) {
   let httpService: HttpService;
 
-  useLayer1HttpService(() => {
+  useLayer1HttpService(module, () => {
     if (!httpService) {
       httpService = new HttpService();
     }
@@ -27,20 +28,20 @@ export function useLayer1() {
 
   const { i18n } = useTranslation();
 
-  useLayer1LocalizationLanguage(() => {
+  useLayer1LocalizationLanguage(module, () => {
     if (!localizationLanguage) {
       localizationLanguage = new LocalizationLanguage(i18n);
     }
     return localizationLanguage;
   });
 
-  useLayer1LocalizationService((functionToTarnslate: TFunction) => {
+  useLayer1LocalizationService(module, (functionToTarnslate: TFunction) => {
     return new LocalizationService(functionToTarnslate);
   });
 
   let timingFactory: TimingFactory;
 
-  useLayer1TimingFactory(() => {
+  useLayer1TimingFactory(module, () => {
     if (!timingFactory) {
       timingFactory = new TimingFactory();
     }
@@ -50,7 +51,7 @@ export function useLayer1() {
 
   let urlService: UrlService;
 
-  useLayer1UrlService(() => {
+  useLayer1UrlService(module, () => {
     if (!urlService) {
       urlService = new UrlService();
     }
@@ -61,12 +62,14 @@ export function useLayer1() {
 
 /**
  * Использовать сервис HTTP слоя "Layer1".
+ * @param module Модуль.
  * @param getter Получатель.
  * @returns Сервис.
  */
-export function useLayer1HttpService(getter?: () => HttpService) {
-  const module = Module.get();
-
+export function useLayer1HttpService(
+  module: Module,
+  getter?: () => HttpService
+) {
   if (getter) {
     module.httpServiceGetter = getter;
   }
@@ -76,30 +79,31 @@ export function useLayer1HttpService(getter?: () => HttpService) {
 
 /**
  * Использовать язык локализации слоя "Layer1".
+ * @param module Модуль.
  * @param getter Получатель.
  * @returns Сервис.
  */
 export function useLayer1LocalizationLanguage(
+  module: Module,
   getter?: () => LocalizationLanguage
 ) {
-  const module = Module.get();
-
   if (getter) {
     module.localizationLanguageGetter = getter;
   }
+
   return module.localizationLanguage;
 }
 
 /**
  * Использовать сервис локализации слоя "Layer1".
+ * @param module Модуль.
  * @param getter Получатель.
  * @returns Сервис.
  */
 export function useLayer1LocalizationService(
+  module: Module,
   getter?: (functionToTranslate: TFunction) => LocalizationService
 ) {
-  const module = Module.get();
-
   if (getter) {
     module.localizationServiceGetter = getter;
   }
@@ -109,12 +113,14 @@ export function useLayer1LocalizationService(
 
 /**
  * Использовать фабрику согласования слоя "Layer1".
+ * @param module Модуль.
  * @param getter Получатель.
  * @returns Сервис.
  */
-export function useLayer1TimingFactory(getter?: () => TimingFactory) {
-  const module = Module.get();
-
+export function useLayer1TimingFactory(
+  module: Module,
+  getter?: () => TimingFactory
+) {
   if (getter) {
     module.timingFactoryGetter = getter;
   }
@@ -124,12 +130,11 @@ export function useLayer1TimingFactory(getter?: () => TimingFactory) {
 
 /**
  * Использовать сервис URL слоя "Layer1".
+ * @param module Модуль.
  * @param getter Получатель.
  * @returns Сервис.
  */
-export function useLayer1UrlService(getter?: () => UrlService) {
-  const module = Module.get();
-
+export function useLayer1UrlService(module: Module, getter?: () => UrlService) {
   if (getter) {
     module.urlServiceGetter = getter;
   }

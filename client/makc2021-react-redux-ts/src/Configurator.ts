@@ -7,7 +7,7 @@ import { Context as Layer6Context } from './Layer6/Context';
 /**
  * Конфигуратор.
  */
-namespace Configurator {
+export namespace Configurator {
   /**
    * Слой "Layer1".
    */

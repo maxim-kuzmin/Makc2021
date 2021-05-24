@@ -9,8 +9,13 @@ import { TopMenuControlResource } from './TopMenuControlResource';
 /**
  * Использовать элемент управления "Верхнее меню" слоя "Layer6".
  */
-export function useLayer6TopMenuControl() {
+export function useLayer6TopMenuControl(
+  module: TopMenuControlModule,
+  moduleOfLayer1: Layer1Module
+) {
   useLayer6TopMenuControlResource(
+    module,
+    moduleOfLayer1,
     (localizationService: LocalizationService) => {
       return new TopMenuControlResource(localizationService);
     }
@@ -23,15 +28,15 @@ export function useLayer6TopMenuControl() {
  * @returns Сервис.
  */
 export function useLayer6TopMenuControlResource(
+  module: TopMenuControlModule,
+  moduleOfLayer1: Layer1Module,
   getter?: (localizationService: LocalizationService) => TopMenuControlResource
 ) {
   const { t } = useTranslation('Layer6/Controls/Menus/Top/TopMenuControl');
-
-  const module = TopMenuControlModule.get();
 
   if (getter) {
     module.resourceGetter = getter;
   }
 
-  return module.createResource(Layer1Module.get().createLocalizationService(t));
+  return module.createResource(moduleOfLayer1.createLocalizationService(t));
 }

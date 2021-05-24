@@ -31,14 +31,4 @@ export class ContactsPageModule {
       localizationService
     ) as ContactsPageResource;
   }
-
-  private static _instance = new ContactsPageModule();
-
-  /**
-   * Получить.
-   * @returns Экземпляр.
-   */
-  static get() {
-    return this._instance;
-  }
 }

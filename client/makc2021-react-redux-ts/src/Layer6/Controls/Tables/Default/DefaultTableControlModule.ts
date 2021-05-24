@@ -33,14 +33,4 @@ export class DefaultTableControlModule {
       localizationService
     ) as DefaultTableControlResource;
   }
-
-  private static _instance = new DefaultTableControlModule();
-
-  /**
-   * Получить.
-   * @returns Экземпляр.
-   */
-  static get() {
-    return this._instance;
-  }
 }

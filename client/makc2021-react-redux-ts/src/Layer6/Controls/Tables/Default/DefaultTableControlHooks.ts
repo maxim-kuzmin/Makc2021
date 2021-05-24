@@ -9,8 +9,13 @@ import { DefaultTableControlResource } from './DefaultTableControlResource';
 /**
  * Использовать элемент управления "Таблица по умолчанию" слоя "Layer6".
  */
-export function useLayer6DefaultTableControl() {
+export function useLayer6DefaultTableControl(
+  module: DefaultTableControlModule,
+  moduleOfLayer1: Layer1Module
+) {
   useLayer6DefaultTableControlResource(
+    module,
+    moduleOfLayer1,
     (localizationService: LocalizationService) => {
       return new DefaultTableControlResource(localizationService);
     }
@@ -23,6 +28,8 @@ export function useLayer6DefaultTableControl() {
  * @returns Сервис.
  */
 export function useLayer6DefaultTableControlResource(
+  module: DefaultTableControlModule,
+  moduleOfLayer1: Layer1Module,
   getter?: (
     localizationService: LocalizationService
   ) => DefaultTableControlResource
@@ -31,11 +38,9 @@ export function useLayer6DefaultTableControlResource(
     'Layer6/Controls/Tables/Default/DefaultTableControl'
   );
 
-  const module = DefaultTableControlModule.get();
-
   if (getter) {
     module.resourceGetter = getter;
   }
 
-  return module.createResource(Layer1Module.get().createLocalizationService(t));
+  return module.createResource(moduleOfLayer1.createLocalizationService(t));
 }

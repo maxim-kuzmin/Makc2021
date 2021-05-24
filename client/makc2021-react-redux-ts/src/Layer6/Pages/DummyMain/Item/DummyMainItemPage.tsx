@@ -14,14 +14,20 @@ import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorControl';
 import { useLayer6DummyMainItemPageResource } from './DummyMainItemPageHooks';
+import { Configurator } from 'src/Configurator';
 
 /**
  * Страница сущности "DummyMain".
  */
 export function DummyMainItemPage() {
-  const resource = useLayer6DummyMainItemPageResource();
+  const resource = useLayer6DummyMainItemPageResource(
+    Configurator.Layer6.Pages.DummyMain.Item.module,
+    Configurator.Layer1.module
+  );
 
-  const store = useLayer5DummyMainItemPageStore();
+  const store = useLayer5DummyMainItemPageStore(
+    Configurator.Layer5.Pages.DummyMain.Item.module
+  );
 
   const { id } = useParams<DummyMainItemPageParams>();
 

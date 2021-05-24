@@ -17,16 +17,22 @@ import {
   DummyMainListPageTableRow
 } from './Table/DummyMainListPageTableRow';
 import { useLayer6DummyMainListPageResource } from './DummyMainListPageHooks';
+import { Configurator } from 'src/Configurator';
 
 /**
  * Страница сущностей "DummyMain".
  */
 export function DummyMainListPage() {
-  const resource = useLayer6DummyMainListPageResource();
+  const resource = useLayer6DummyMainListPageResource(
+    Configurator.Layer6.Pages.DummyMain.List.module,
+    Configurator.Layer1.module
+  );
 
-  const store = useLayer5DummyMainListPageStore();
+  const store = useLayer5DummyMainListPageStore(
+    Configurator.Layer5.Pages.DummyMain.List.module
+  );
 
-  const urlService = useLayer1UrlService();
+  const urlService = useLayer1UrlService(Configurator.Layer1.module);
 
   const dispatch = useDispatch();
 

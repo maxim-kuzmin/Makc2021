@@ -21,14 +21,4 @@ export class Module {
   public set serviceGetter(value: () => Service) {
     this._serviceGetter = value;
   }
-
-  private static _instance = new Module();
-
-  /**
-   * Получить.
-   * @returns Экземпляр.
-   */
-  static get() {
-    return this._instance;
-  }
 }

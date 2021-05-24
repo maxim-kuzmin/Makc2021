@@ -9,10 +9,17 @@ import { ContactsPageResource } from './ContactsPageResource';
 /**
  * Использовать страницу контактов слоя "Layer6".
  */
-export function useLayer6ContactsPage() {
-  useLayer6ContactsPageResource((localizationService: LocalizationService) => {
-    return new ContactsPageResource(localizationService);
-  });
+export function useLayer6ContactsPage(
+  module: ContactsPageModule,
+  moduleOfLayer1: Layer1Module
+) {
+  useLayer6ContactsPageResource(
+    module,
+    moduleOfLayer1,
+    (localizationService: LocalizationService) => {
+      return new ContactsPageResource(localizationService);
+    }
+  );
 }
 
 /**
@@ -21,15 +28,15 @@ export function useLayer6ContactsPage() {
  * @returns Сервис.
  */
 export function useLayer6ContactsPageResource(
+  module: ContactsPageModule,
+  moduleOfLayer1: Layer1Module,
   getter?: (localizationService: LocalizationService) => ContactsPageResource
 ) {
   const { t } = useTranslation('Layer6/Pages/Contacts/ContactsPage');
-
-  const module = ContactsPageModule.get();
 
   if (getter) {
     module.resourceGetter = getter;
   }
 
-  return module.createResource(Layer1Module.get().createLocalizationService(t));
+  return module.createResource(moduleOfLayer1.createLocalizationService(t));
 }

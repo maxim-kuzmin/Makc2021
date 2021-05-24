@@ -33,14 +33,4 @@ export class DummyMainItemPageModule {
       localizationService
     ) as DummyMainItemPageResource;
   }
-
-  private static _instance = new DummyMainItemPageModule();
-
-  /**
-   * Получить.
-   * @returns Экземпляр.
-   */
-  static get() {
-    return this._instance;
-  }
 }

@@ -31,14 +31,4 @@ export class TopMenuControlModule {
       localizationService
     ) as TopMenuControlResource;
   }
-
-  private static _instance = new TopMenuControlModule();
-
-  /**
-   * Получить.
-   * @returns Экземпляр.
-   */
-  static get() {
-    return this._instance;
-  }
 }

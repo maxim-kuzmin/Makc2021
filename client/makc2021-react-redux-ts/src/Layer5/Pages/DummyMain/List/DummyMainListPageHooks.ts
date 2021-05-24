@@ -10,22 +10,24 @@ import { DummyMainListPageStore } from './DummyMainListPageStore';
 /**
  * Использовать страницу сущностей "DummyMain".
  */
-export function useLayer5DummyMainListPage() {
-  useLayer5DummyMainListPageGetQueryHandler(() => {
+export function useLayer5DummyMainListPage(
+  module: DummyMainListPageModule,
+  moduleOfLayer5: Layer5Module,
+  moduleOfLayer1: Layer1Module
+) {
+  useLayer5DummyMainListPageGetQueryHandler(module, () => {
     return new DummyMainListPageGetQueryHandler(
-      Layer1Module.get().httpService,
-      Layer5Module.get().service,
-      Layer1Module.get().urlService
+      moduleOfLayer1.httpService,
+      moduleOfLayer5.service,
+      moduleOfLayer1.urlService
     );
   });
 
   let service: DummyMainListPageService;
 
-  useLayer5DummyMainListPageService(() => {
+  useLayer5DummyMainListPageService(module, () => {
     if (!service) {
-      service = new DummyMainListPageService(
-        DummyMainListPageModule.get().getQueryHandler
-      );
+      service = new DummyMainListPageService(module.getQueryHandler);
     }
 
     return service;
@@ -33,11 +35,11 @@ export function useLayer5DummyMainListPage() {
 
   let store: DummyMainListPageStore;
 
-  useLayer5DummyMainListPageStore(() => {
+  useLayer5DummyMainListPageStore(module, () => {
     if (!store) {
       store = new DummyMainListPageStore(
-        DummyMainListPageModule.get().service,
-        Layer1Module.get().timingFactory
+        module.service,
+        moduleOfLayer1.timingFactory
       );
     }
 
@@ -51,10 +53,9 @@ export function useLayer5DummyMainListPage() {
  * @returns Сервис.
  */
 export function useLayer5DummyMainListPageGetQueryHandler(
+  module: DummyMainListPageModule,
   getter?: () => DummyMainListPageGetQueryHandler
 ) {
-  const module = DummyMainListPageModule.get();
-
   if (getter) {
     module.getQueryHandlerGetter = getter;
   }
@@ -68,10 +69,9 @@ export function useLayer5DummyMainListPageGetQueryHandler(
  * @returns Сервис.
  */
 export function useLayer5DummyMainListPageService(
+  module: DummyMainListPageModule,
   getter?: () => DummyMainListPageService
 ) {
-  const module = DummyMainListPageModule.get();
-
   if (getter) {
     module.serviceGetter = getter;
   }
@@ -85,10 +85,9 @@ export function useLayer5DummyMainListPageService(
  * @returns Хранилище.
  */
 export function useLayer5DummyMainListPageStore(
+  module: DummyMainListPageModule,
   getter?: () => DummyMainListPageStore
 ) {
-  const module = DummyMainListPageModule.get();
-
   if (getter) {
     module.storeGetter = getter;
   }

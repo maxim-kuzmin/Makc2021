@@ -19,6 +19,7 @@ import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPa
 import { createAppSettings } from './AppSettings';
 import { LocalizationService } from './Layer1/Localization/LocalizationService';
 import { useLayer6 } from './Layer6/Hooks';
+import { Configurator } from './Configurator';
 
 LocalizationService.start('en');
 
@@ -28,9 +29,25 @@ LocalizationService.start('en');
 function App() {
   const appSettings = createAppSettings();
 
-  useLayer1();
-  useLayer5(appSettings.apiUrl);
-  useLayer6();
+  useLayer1(Configurator.Layer1.module);
+
+  useLayer5(
+    Configurator.Layer5.module,
+    Configurator.Layer5.Pages.DummyMain.Item.module,
+    Configurator.Layer5.Pages.DummyMain.List.module,
+    Configurator.Layer1.module,
+    appSettings.apiUrl
+  );
+
+  useLayer6(
+    Configurator.Layer6.Pages.Contacts.module,
+    Configurator.Layer6.Controls.Errors.Query.module,
+    Configurator.Layer6.Controls.Menus.Top.module,
+    Configurator.Layer6.Controls.Tables.Default.module,
+    Configurator.Layer6.Pages.DummyMain.Item.module,
+    Configurator.Layer6.Pages.DummyMain.List.module,
+    Configurator.Layer1.module
+  );
 
   return (
     <Router>

@@ -33,14 +33,4 @@ export class QueryErrorControlModule {
       localizationService
     ) as QueryErrorControlResource;
   }
-
-  private static _instance = new QueryErrorControlModule();
-
-  /**
-   * Получить.
-   * @returns Экземпляр.
-   */
-  static get() {
-    return this._instance;
-  }
 }
