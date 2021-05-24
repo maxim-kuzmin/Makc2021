@@ -40,10 +40,10 @@ function App() {
   );
 
   useLayer6(
-    Configurator.Layer6.Pages.Contacts.module,
     Configurator.Layer6.Controls.Errors.Query.module,
     Configurator.Layer6.Controls.Menus.Top.module,
     Configurator.Layer6.Controls.Tables.Default.module,
+    Configurator.Layer6.Pages.Contacts.module,
     Configurator.Layer6.Pages.DummyMain.Item.module,
     Configurator.Layer6.Pages.DummyMain.List.module,
     Configurator.Layer1.module

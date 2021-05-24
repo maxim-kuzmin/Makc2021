@@ -18,10 +18,10 @@ import { TopMenuControlModule } from './Controls/Menus/Top/TopMenuControlModule'
  * Использовать слой "Layer6".
  */
 export function useLayer6(
-  moduleOfContactsPage: ContactsPageModule,
   moduleOfQueryErrorControl: QueryErrorControlModule,
   moduleOfTopMenuControl: TopMenuControlModule,
   moduleOfDefaultTableControl: DefaultTableControlModule,
+  moduleOfContactsPage: ContactsPageModule,
   moduleOfDummyMainItemPage: DummyMainItemPageModule,
   moduleOfDummyMainListPage: DummyMainListPageModule,
   moduleOfLayer1: Layer1Module
