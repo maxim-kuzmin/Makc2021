@@ -9,8 +9,6 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
-import { useLayer1 } from './Layer1/Hooks';
-import { useLayer5 } from './Layer5/Hooks';
 import { LanguageSwitcherControl } from './Layer6/Controls/Language/Switcher/LanguageSwitcherControl';
 import { TopMenuControl } from './Layer6/Controls/Menus/Top/TopMenuControl';
 import { ContactsPage } from './Layer6/Pages/Contacts/ContactsPage';
@@ -20,6 +18,7 @@ import { createAppSettings } from './AppSettings';
 import { LocalizationService } from './Layer1/Localization/LocalizationService';
 import { useLayer6 } from './Layer6/Hooks';
 import { Configurator } from './Configurator';
+import { useTranslation } from 'react-i18next';
 
 LocalizationService.start('en');
 
@@ -29,13 +28,12 @@ LocalizationService.start('en');
 function App() {
   const appSettings = createAppSettings();
 
-  useLayer1(Configurator.Layer1);
+  const { i18n } = useTranslation();
 
-  useLayer5(
-    Configurator.Layer5.module,
-    Configurator.Layer5.Pages.DummyMain.Item.module,
-    Configurator.Layer5.Pages.DummyMain.List.module,
-    Configurator.Layer1.getModule(),
+  Configurator.Layer1.configureServices(i18n);
+
+  Configurator.Layer5.configureServices(
+    Configurator.Layer1,
     appSettings.apiUrl
   );
 

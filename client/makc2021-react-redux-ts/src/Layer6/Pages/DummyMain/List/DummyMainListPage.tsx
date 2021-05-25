@@ -29,7 +29,7 @@ export function DummyMainListPage() {
   );
 
   const store = useLayer5DummyMainListPageStore(
-    Configurator.Layer5.Pages.DummyMain.List.module
+    Configurator.Layer5.Pages.DummyMain.List
   );
 
   const urlService = useLayer1UrlService(Configurator.Layer1);

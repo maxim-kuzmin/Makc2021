@@ -16,48 +16,36 @@ export class Context {
   private readonly _module = new Module();
 
   /**
-   * Получить модуль.
-   * @returns Модуль.
-   */
-  getModule() {
-    return this._module;
-  }
-
-  /**
    * Настроить сервисы.
    * @param i18n Интернационализация.
    */
   configureServices(i18n: i18n) {
-    let httpService = new Lazy<HttpService>(() => new HttpService());
+    const httpService = new Lazy<HttpService>(() => new HttpService());
+    this._module.httpServiceGetter = () => httpService.value;
 
-    let localizationLanguage = new Lazy<LocalizationLanguage>(
+    const localizationLanguage = new Lazy<LocalizationLanguage>(
       () => new LocalizationLanguage(i18n)
     );
+    this._module.localizationLanguageGetter = () => localizationLanguage.value;
 
-    let timingFactory = new Lazy<TimingFactory>(() => new TimingFactory());
+    const timingFactory = new Lazy<TimingFactory>(() => new TimingFactory());
+    this._module.timingFactoryGetter = () => timingFactory.value;
 
-    let urlService = new Lazy<UrlService>(() => new UrlService());
-
-    this._module.httpServiceGetter = () => {
-      return httpService.value;
-    };
-
-    this._module.localizationLanguageGetter = () => {
-      return localizationLanguage.value;
-    };
+    const urlService = new Lazy<UrlService>(() => new UrlService());
+    this._module.urlServiceGetter = () => urlService.value;
 
     this._module.localizationServiceGetter = (
       functionToTarnslate: TFunction
     ) => {
       return new LocalizationService(functionToTarnslate);
     };
+  }
 
-    this._module.timingFactoryGetter = () => {
-      return timingFactory.value;
-    };
-
-    this._module.urlServiceGetter = () => {
-      return urlService.value;
-    };
+  /**
+   * Получить модуль.
+   * @returns Модуль.
+   */
+  getModule() {
+    return this._module;
   }
 }

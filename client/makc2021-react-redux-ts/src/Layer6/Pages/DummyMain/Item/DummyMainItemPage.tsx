@@ -26,7 +26,7 @@ export function DummyMainItemPage() {
   );
 
   const store = useLayer5DummyMainItemPageStore(
-    Configurator.Layer5.Pages.DummyMain.Item.module
+    Configurator.Layer5.Pages.DummyMain.Item
   );
 
   const { id } = useParams<DummyMainItemPageParams>();
