@@ -8,7 +8,7 @@ import { useLayer1LocalizationLanguage } from 'src/Layer1/Hooks';
  * Элемент управления "Переключатель языка".
  */
 export function LanguageSwitcherControl() {
-  const language = useLayer1LocalizationLanguage(Configurator.Layer1.module);
+  const language = useLayer1LocalizationLanguage(Configurator.Layer1);
 
   return (
     <FormControl

@@ -25,14 +25,14 @@ import { Configurator } from 'src/Configurator';
 export function DummyMainListPage() {
   const resource = useLayer6DummyMainListPageResource(
     Configurator.Layer6.Pages.DummyMain.List.module,
-    Configurator.Layer1.module
+    Configurator.Layer1.getModule()
   );
 
   const store = useLayer5DummyMainListPageStore(
     Configurator.Layer5.Pages.DummyMain.List.module
   );
 
-  const urlService = useLayer1UrlService(Configurator.Layer1.module);
+  const urlService = useLayer1UrlService(Configurator.Layer1);
 
   const dispatch = useDispatch();
 

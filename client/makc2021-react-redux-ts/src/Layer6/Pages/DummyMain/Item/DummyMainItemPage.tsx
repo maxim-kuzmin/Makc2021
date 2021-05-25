@@ -22,7 +22,7 @@ import { Configurator } from 'src/Configurator';
 export function DummyMainItemPage() {
   const resource = useLayer6DummyMainItemPageResource(
     Configurator.Layer6.Pages.DummyMain.Item.module,
-    Configurator.Layer1.module
+    Configurator.Layer1.getModule()
   );
 
   const store = useLayer5DummyMainItemPageStore(

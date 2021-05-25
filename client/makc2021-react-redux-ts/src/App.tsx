@@ -29,13 +29,13 @@ LocalizationService.start('en');
 function App() {
   const appSettings = createAppSettings();
 
-  useLayer1(Configurator.Layer1.module);
+  useLayer1(Configurator.Layer1);
 
   useLayer5(
     Configurator.Layer5.module,
     Configurator.Layer5.Pages.DummyMain.Item.module,
     Configurator.Layer5.Pages.DummyMain.List.module,
-    Configurator.Layer1.module,
+    Configurator.Layer1.getModule(),
     appSettings.apiUrl
   );
 
@@ -46,7 +46,7 @@ function App() {
     Configurator.Layer6.Pages.Contacts.module,
     Configurator.Layer6.Pages.DummyMain.Item.module,
     Configurator.Layer6.Pages.DummyMain.List.module,
-    Configurator.Layer1.module
+    Configurator.Layer1.getModule()
   );
 
   return (

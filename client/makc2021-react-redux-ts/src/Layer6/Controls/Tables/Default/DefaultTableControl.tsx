@@ -36,7 +36,7 @@ export function DefaultTableControl<TRow extends object>({
 }: PropsWithChildren<DefaultTableControlProps<TRow>>) {
   const resource = useLayer6DefaultTableControlResource(
     Configurator.Layer6.Controls.Tables.Default.module,
-    Configurator.Layer1.module
+    Configurator.Layer1.getModule()
   );
 
   pageSize = normalizePageSize(pageSize);

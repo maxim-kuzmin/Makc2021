@@ -13,7 +13,7 @@ export function QueryErrorControl({
 }: QueryErrorControlProps) {
   const resource = useLayer6QueryErrorControlResource(
     Configurator.Layer6.Controls.Errors.Query.module,
-    Configurator.Layer1.module
+    Configurator.Layer1.getModule()
   );
 
   return messages && messages.length > 0 ? (

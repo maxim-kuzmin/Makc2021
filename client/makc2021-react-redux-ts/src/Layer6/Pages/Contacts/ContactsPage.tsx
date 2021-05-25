@@ -11,7 +11,7 @@ import { useLayer6ContactsPageResource } from './ContactsPageHooks';
 export function ContactsPage() {
   const resource = useLayer6ContactsPageResource(
     Configurator.Layer6.Pages.Contacts.module,
-    Configurator.Layer1.module
+    Configurator.Layer1.getModule()
   );
 
   return (

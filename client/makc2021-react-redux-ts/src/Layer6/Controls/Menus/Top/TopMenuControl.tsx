@@ -12,7 +12,7 @@ import { useLayer6TopMenuControlResource } from './TopMenuControlHooks';
 export function TopMenuControl() {
   const resource = useLayer6TopMenuControlResource(
     Configurator.Layer6.Controls.Menus.Top.module,
-    Configurator.Layer1.module
+    Configurator.Layer1.getModule()
   );
 
   const location = useLocation();
