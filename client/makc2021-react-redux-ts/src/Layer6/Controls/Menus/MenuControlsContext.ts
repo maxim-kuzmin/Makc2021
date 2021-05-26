@@ -10,4 +10,11 @@ export class MenuControlsContext {
    * Верхнее.
    */
   readonly Top = new TopMenuControlContext();
+
+  /**
+   * Настроить сервисы.
+   */
+  configureServices() {
+    this.Top.configureServices();
+  }
 }

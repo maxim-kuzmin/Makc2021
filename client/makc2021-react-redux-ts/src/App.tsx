@@ -14,9 +14,7 @@ import { TopMenuControl } from './Layer6/Controls/Menus/Top/TopMenuControl';
 import { ContactsPage } from './Layer6/Pages/Contacts/ContactsPage';
 import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPage';
 import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPage';
-import { createAppSettings } from './AppSettings';
 import { LocalizationService } from './Layer1/Localization/LocalizationService';
-import { useLayer6 } from './Layer6/Hooks';
 import { Configurator } from './Configurator';
 import { useTranslation } from 'react-i18next';
 
@@ -26,26 +24,9 @@ LocalizationService.start('en');
  * Приложение.
  */
 function App() {
-  const appSettings = createAppSettings();
-
   const { i18n } = useTranslation();
 
-  Configurator.Layer1.configureServices(i18n);
-
-  Configurator.Layer5.configureServices(
-    Configurator.Layer1,
-    appSettings.apiUrl
-  );
-
-  useLayer6(
-    Configurator.Layer6.Controls.Errors.Query.module,
-    Configurator.Layer6.Controls.Menus.Top.module,
-    Configurator.Layer6.Controls.Tables.Default.module,
-    Configurator.Layer6.Pages.Contacts.module,
-    Configurator.Layer6.Pages.DummyMain.Item.module,
-    Configurator.Layer6.Pages.DummyMain.List.module,
-    Configurator.Layer1.getModule()
-  );
+  Configurator.configureServices(i18n);
 
   return (
     <Router>

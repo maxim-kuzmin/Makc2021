@@ -1,5 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+import { i18n } from 'i18next';
+import { createAppSettings } from './AppSettings';
 import { Context as Layer1Context } from './Layer1/Context';
 import { Context as Layer5Context } from './Layer5/Context';
 import { Context as Layer6Context } from './Layer6/Context';
@@ -22,4 +24,18 @@ export namespace Configurator {
    * Слой "Layer6".
    */
   export const Layer6 = new Layer6Context();
+
+  /**
+   * Настроить сервисы.
+   * @param i18n Интернационализация.
+   */
+  export function configureServices(i18n: i18n) {
+    const appSettings = createAppSettings();
+
+    Layer1.configureServices(i18n);
+
+    Layer5.configureServices(Layer1, appSettings.apiUrl);
+
+    Layer6.configureServices();
+  }
 }

@@ -16,4 +16,12 @@ export class PagesContext {
    * Сущность "DummyMain".
    */
   readonly DummyMain = new DummyMainPagesContext();
+
+  /**
+   * Настроить сервисы.
+   */
+  configureServices() {
+    this.Contacts.configureServices();
+    this.DummyMain.configureServices();
+  }
 }

@@ -12,16 +12,17 @@ import { DummyMainItemPageParams } from 'src/Layer5/Pages/DummyMain/Item/DummyMa
 import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Get/DummyMainItemPageGetQueryInput';
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorControl';
-import { useLayer6DummyMainItemPageResource } from './DummyMainItemPageHooks';
 import { Configurator } from 'src/Configurator';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Страница сущности "DummyMain".
  */
 export function DummyMainItemPage() {
-  const resource = useLayer6DummyMainItemPageResource(
-    Configurator.Layer6.Pages.DummyMain.Item.module,
-    Configurator.Layer1.getModule()
+  const { t } = useTranslation('Layer6/Pages/DummyMain/Item/DummyMainItemPage');
+
+  const resource = Configurator.Layer6.Pages.DummyMain.Item.getModule().createResource(
+    Configurator.Layer1.getModule().createLocalizationService(t)
   );
 
   const store = Configurator.Layer5.Pages.DummyMain.Item.getModule().store;

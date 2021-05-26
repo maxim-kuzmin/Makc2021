@@ -10,4 +10,11 @@ export class TableControlsContext {
    * По умолчанию.
    */
   readonly Default = new DefaultTableControlContext();
+
+  /**
+   * Настроить сервисы.
+   */
+  configureServices() {
+    this.Default.configureServices();
+  }
 }

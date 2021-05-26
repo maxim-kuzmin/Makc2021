@@ -2,16 +2,17 @@
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { useTranslation } from 'react-i18next';
 import { Configurator } from 'src/Configurator';
-import { useLayer6ContactsPageResource } from './ContactsPageHooks';
 
 /**
  * Страница контактов.
  */
 export function ContactsPage() {
-  const resource = useLayer6ContactsPageResource(
-    Configurator.Layer6.Pages.Contacts.module,
-    Configurator.Layer1.getModule()
+  const { t } = useTranslation('Layer6/Pages/Contacts/ContactsPage');
+
+  const resource = Configurator.Layer6.Pages.Contacts.getModule().createResource(
+    Configurator.Layer1.getModule().createLocalizationService(t)
   );
 
   return (

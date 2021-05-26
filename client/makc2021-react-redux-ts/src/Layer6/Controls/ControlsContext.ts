@@ -22,4 +22,13 @@ export class ControlsContext {
    * Таблицы.
    */
   readonly Tables = new TableControlsContext();
+
+  /**
+   * Настроить сервисы.
+   */
+  configureServices() {
+    this.Errors.configureServices();
+    this.Menus.configureServices();
+    this.Tables.configureServices();
+  }
 }

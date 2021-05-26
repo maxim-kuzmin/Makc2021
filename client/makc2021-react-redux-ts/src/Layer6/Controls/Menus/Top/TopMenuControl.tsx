@@ -1,18 +1,19 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import Nav from 'react-bootstrap/Nav';
+import { useTranslation } from 'react-i18next';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useLocation } from 'react-router-dom';
 import { Configurator } from 'src/Configurator';
-import { useLayer6TopMenuControlResource } from './TopMenuControlHooks';
 
 /**
  * Элемент управления "Верхнее меню".
  */
 export function TopMenuControl() {
-  const resource = useLayer6TopMenuControlResource(
-    Configurator.Layer6.Controls.Menus.Top.module,
-    Configurator.Layer1.getModule()
+  const { t } = useTranslation('Layer6/Controls/Menus/Top/TopMenuControl');
+
+  const resource = Configurator.Layer6.Controls.Menus.Top.getModule().createResource(
+    Configurator.Layer1.getModule().createLocalizationService(t)
   );
 
   const location = useLocation();

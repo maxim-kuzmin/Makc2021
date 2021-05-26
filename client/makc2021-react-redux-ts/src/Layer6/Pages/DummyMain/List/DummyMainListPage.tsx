@@ -14,16 +14,17 @@ import {
   createDummyMainListPageTableRow,
   DummyMainListPageTableRow
 } from './Table/DummyMainListPageTableRow';
-import { useLayer6DummyMainListPageResource } from './DummyMainListPageHooks';
 import { Configurator } from 'src/Configurator';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Страница сущностей "DummyMain".
  */
 export function DummyMainListPage() {
-  const resource = useLayer6DummyMainListPageResource(
-    Configurator.Layer6.Pages.DummyMain.List.module,
-    Configurator.Layer1.getModule()
+  const { t } = useTranslation('Layer6/Pages/DummyMain/List/DummyMainItemPage');
+
+  const resource = Configurator.Layer6.Pages.DummyMain.List.getModule().createResource(
+    Configurator.Layer1.getModule().createLocalizationService(t)
   );
 
   const store = Configurator.Layer5.Pages.DummyMain.List.getModule().store;

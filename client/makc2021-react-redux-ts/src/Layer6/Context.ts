@@ -16,4 +16,12 @@ export class Context {
    * Страницы.
    */
   readonly Pages = new PagesContext();
+
+  /**
+   * Настроить сервисы.
+   */
+  configureServices() {
+    this.Controls.configureServices();
+    this.Pages.configureServices();
+  }
 }

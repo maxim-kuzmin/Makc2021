@@ -16,4 +16,12 @@ export class DummyMainPagesContext {
    * Список.
    */
   readonly List = new DummyMainListPageContext();
+
+  /**
+   * Настроить сервисы.
+   */
+  configureServices() {
+    this.Item.configureServices();
+    this.List.configureServices();
+  }
 }

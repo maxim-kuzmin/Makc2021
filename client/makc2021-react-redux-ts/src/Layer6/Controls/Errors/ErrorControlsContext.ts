@@ -10,4 +10,11 @@ export class ErrorControlsContext {
    * Запрос.
    */
   readonly Query = new QueryErrorControlContext();
+
+  /**
+   * Настроить сервисы.
+   */
+  configureServices() {
+    this.Query.configureServices();
+  }
 }
