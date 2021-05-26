@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Column, Filters } from 'react-table';
-import { useLayer1UrlService } from 'src/Layer1/Hooks';
 import { createUrlParts } from 'src/Layer1/Url/UrlParts';
-import { useLayer5DummyMainListPageStore } from 'src/Layer5/Pages/DummyMain/List/DummyMainListPageHooks';
 import { createDummyMainListPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/List/Queries/Get/DummyMainListPageGetQueryInput';
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 import { DefaultTableControl } from 'src/Layer6/Controls/Tables/Default/DefaultTableControl';
@@ -28,11 +26,9 @@ export function DummyMainListPage() {
     Configurator.Layer1.getModule()
   );
 
-  const store = useLayer5DummyMainListPageStore(
-    Configurator.Layer5.Pages.DummyMain.List
-  );
+  const store = Configurator.Layer5.Pages.DummyMain.List.getModule().store;
 
-  const urlService = useLayer1UrlService(Configurator.Layer1);
+  const urlService = Configurator.Layer1.getModule().urlService;
 
   const dispatch = useDispatch();
 

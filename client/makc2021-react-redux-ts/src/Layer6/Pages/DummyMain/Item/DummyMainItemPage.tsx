@@ -8,7 +8,6 @@ import Row from 'react-bootstrap/Row';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { createDummyMainEntityObject } from 'src/Layer3/Sample/Entities/DummyMainEntityObject';
-import { useLayer5DummyMainItemPageStore } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageHooks';
 import { DummyMainItemPageParams } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageParams';
 import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Get/DummyMainItemPageGetQueryInput';
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
@@ -25,9 +24,7 @@ export function DummyMainItemPage() {
     Configurator.Layer1.getModule()
   );
 
-  const store = useLayer5DummyMainItemPageStore(
-    Configurator.Layer5.Pages.DummyMain.Item
-  );
+  const store = Configurator.Layer5.Pages.DummyMain.Item.getModule().store;
 
   const { id } = useParams<DummyMainItemPageParams>();
 
