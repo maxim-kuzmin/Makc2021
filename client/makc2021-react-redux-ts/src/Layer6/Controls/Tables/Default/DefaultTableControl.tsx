@@ -34,12 +34,12 @@ export function DefaultTableControl<TRow extends object>({
   sortField,
   totalCount
 }: PropsWithChildren<DefaultTableControlProps<TRow>>) {
-  const { t } = useTranslation(
+  const { t: functionToTranslate } = useTranslation(
     'Layer6/Controls/Tables/Default/DefaultTableControl'
   );
 
   const resource = Configurator.Layer6.Controls.Tables.Default.getModule().createResource(
-    Configurator.Layer1.getModule().createLocalizationService(t)
+    functionToTranslate
   );
 
   pageSize = normalizePageSize(pageSize);

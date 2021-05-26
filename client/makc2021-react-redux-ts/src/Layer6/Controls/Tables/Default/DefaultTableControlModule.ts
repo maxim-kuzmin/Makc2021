@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { LocalizationService } from 'src/Layer1/Localization/LocalizationService';
+import { TFunction } from 'i18next';
 import { DefaultTableControlResource } from './DefaultTableControlResource';
 
 /**
@@ -8,29 +8,27 @@ import { DefaultTableControlResource } from './DefaultTableControlResource';
  */
 export class DefaultTableControlModule {
   private _resourceGetter?: (
-    localizationService: LocalizationService
+    functionToTranslate: TFunction
   ) => DefaultTableControlResource;
 
   /**
    * Ресурс. Получатель.
    */
   public set resourceGetter(
-    value: (
-      localizationService: LocalizationService
-    ) => DefaultTableControlResource
+    value: (functionToTranslate: TFunction) => DefaultTableControlResource
   ) {
     this._resourceGetter = value;
   }
 
   /**
    * Создать ресурс.
-   * @param localizationService Сервис локализации.
+   * @param functionToTranslate Функция перевода.
    * @returns Ресурс.
    */
-  public createResource(localizationService: LocalizationService) {
+  public createResource(functionToTranslate: TFunction) {
     return this._resourceGetter?.call(
       this,
-      localizationService
+      functionToTranslate
     ) as DefaultTableControlResource;
   }
 }

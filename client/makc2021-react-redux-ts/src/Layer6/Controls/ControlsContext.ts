@@ -1,5 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+import { Context as Layer1Context } from 'src/Layer1/Context';
 import { ErrorControlsContext } from './Errors/ErrorControlsContext';
 import { MenuControlsContext } from './Menus/MenuControlsContext';
 import { TableControlsContext } from './Tables/TableControlsContext';
@@ -25,10 +26,11 @@ export class ControlsContext {
 
   /**
    * Настроить сервисы.
+   * @param contextOfLayer1 Контекст слоя "Layer1".
    */
-  configureServices() {
-    this.Errors.configureServices();
-    this.Menus.configureServices();
-    this.Tables.configureServices();
+  configureServices(contextOfLayer1: Layer1Context) {
+    this.Errors.configureServices(contextOfLayer1);
+    this.Menus.configureServices(contextOfLayer1);
+    this.Tables.configureServices(contextOfLayer1);
   }
 }

@@ -9,10 +9,12 @@ import { Configurator } from 'src/Configurator';
  * Страница контактов.
  */
 export function ContactsPage() {
-  const { t } = useTranslation('Layer6/Pages/Contacts/ContactsPage');
+  const { t: functionToTranslate } = useTranslation(
+    'Layer6/Pages/Contacts/ContactsPage'
+  );
 
   const resource = Configurator.Layer6.Pages.Contacts.getModule().createResource(
-    Configurator.Layer1.getModule().createLocalizationService(t)
+    functionToTranslate
   );
 
   return (

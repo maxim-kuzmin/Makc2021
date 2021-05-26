@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { LocalizationService } from 'src/Layer1/Localization/LocalizationService';
+import { TFunction } from 'i18next';
 import { TopMenuControlResource } from './TopMenuControlResource';
 
 /**
@@ -8,27 +8,27 @@ import { TopMenuControlResource } from './TopMenuControlResource';
  */
 export class TopMenuControlModule {
   private _resourceGetter?: (
-    localizationService: LocalizationService
+    functionToTranslate: TFunction
   ) => TopMenuControlResource;
 
   /**
    * Ресурс. Получатель.
    */
   public set resourceGetter(
-    value: (localizationService: LocalizationService) => TopMenuControlResource
+    value: (functionToTranslate: TFunction) => TopMenuControlResource
   ) {
     this._resourceGetter = value;
   }
 
   /**
    * Создать ресурс.
-   * @param localizationService Сервис локализации.
+   * @param functionToTranslate Функция перевода.
    * @returns Ресурс.
    */
-  public createResource(localizationService: LocalizationService) {
+  public createResource(functionToTranslate: TFunction) {
     return this._resourceGetter?.call(
       this,
-      localizationService
+      functionToTranslate
     ) as TopMenuControlResource;
   }
 }

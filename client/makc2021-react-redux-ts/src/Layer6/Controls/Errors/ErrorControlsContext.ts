@@ -1,5 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+import { Context as Layer1Context } from 'src/Layer1/Context';
 import { QueryErrorControlContext } from './Query/QueryErrorControlContext';
 
 /**
@@ -13,8 +14,9 @@ export class ErrorControlsContext {
 
   /**
    * Настроить сервисы.
+   * @param contextOfLayer1 Контекст слоя "Layer1".
    */
-  configureServices() {
-    this.Query.configureServices();
+  configureServices(contextOfLayer1: Layer1Context) {
+    this.Query.configureServices(contextOfLayer1);
   }
 }

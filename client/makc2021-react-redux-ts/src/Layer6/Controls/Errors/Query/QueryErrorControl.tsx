@@ -11,12 +11,12 @@ export function QueryErrorControl({
   queryCode,
   messages
 }: QueryErrorControlProps) {
-  const { t } = useTranslation(
+  const { t: functionToTranslate } = useTranslation(
     'Layer6/Controls/Errors/Query/QueryErrorControl'
   );
 
   const resource = Configurator.Layer6.Controls.Errors.Query.getModule().createResource(
-    Configurator.Layer1.getModule().createLocalizationService(t)
+    functionToTranslate
   );
 
   return messages && messages.length > 0 ? (

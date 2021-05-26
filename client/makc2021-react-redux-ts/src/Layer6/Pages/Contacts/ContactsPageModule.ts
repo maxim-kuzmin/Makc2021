@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { LocalizationService } from 'src/Layer1/Localization/LocalizationService';
+import { TFunction } from 'i18next';
 import { ContactsPageResource } from './ContactsPageResource';
 
 /**
@@ -8,27 +8,27 @@ import { ContactsPageResource } from './ContactsPageResource';
  */
 export class ContactsPageModule {
   private _resourceGetter?: (
-    localizationService: LocalizationService
+    functionToTranslate: TFunction
   ) => ContactsPageResource;
 
   /**
    * Ресурс. Получатель.
    */
   public set resourceGetter(
-    value: (localizationService: LocalizationService) => ContactsPageResource
+    value: (functionToTranslate: TFunction) => ContactsPageResource
   ) {
     this._resourceGetter = value;
   }
 
   /**
    * Создать ресурс.
-   * @param localizationService Сервис локализации.
+   * @param functionToTranslate Функция перевода.
    * @returns Ресурс.
    */
-  public createResource(localizationService: LocalizationService) {
+  public createResource(functionToTranslate: TFunction) {
     return this._resourceGetter?.call(
       this,
-      localizationService
+      functionToTranslate
     ) as ContactsPageResource;
   }
 }

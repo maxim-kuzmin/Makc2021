@@ -21,10 +21,12 @@ import { useTranslation } from 'react-i18next';
  * Страница сущностей "DummyMain".
  */
 export function DummyMainListPage() {
-  const { t } = useTranslation('Layer6/Pages/DummyMain/List/DummyMainItemPage');
+  const { t: functionToTranslate } = useTranslation(
+    'Layer6/Pages/DummyMain/List/DummyMainItemPage'
+  );
 
   const resource = Configurator.Layer6.Pages.DummyMain.List.getModule().createResource(
-    Configurator.Layer1.getModule().createLocalizationService(t)
+    functionToTranslate
   );
 
   const store = Configurator.Layer5.Pages.DummyMain.List.getModule().store;

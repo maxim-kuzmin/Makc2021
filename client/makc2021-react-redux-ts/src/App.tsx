@@ -16,7 +16,6 @@ import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPa
 import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPage';
 import { LocalizationService } from './Layer1/Localization/LocalizationService';
 import { Configurator } from './Configurator';
-import { useTranslation } from 'react-i18next';
 
 LocalizationService.start('en');
 
@@ -24,9 +23,7 @@ LocalizationService.start('en');
  * Приложение.
  */
 function App() {
-  const { i18n } = useTranslation();
-
-  Configurator.configureServices(i18n);
+  Configurator.useServices();
 
   return (
     <Router>

@@ -10,10 +10,12 @@ import { Configurator } from 'src/Configurator';
  * Элемент управления "Верхнее меню".
  */
 export function TopMenuControl() {
-  const { t } = useTranslation('Layer6/Controls/Menus/Top/TopMenuControl');
+  const { t: functionToTranslate } = useTranslation(
+    'Layer6/Controls/Menus/Top/TopMenuControl'
+  );
 
   const resource = Configurator.Layer6.Controls.Menus.Top.getModule().createResource(
-    Configurator.Layer1.getModule().createLocalizationService(t)
+    functionToTranslate
   );
 
   const location = useLocation();
