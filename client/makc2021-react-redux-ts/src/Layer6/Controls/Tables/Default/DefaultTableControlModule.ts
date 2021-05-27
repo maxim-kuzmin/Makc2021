@@ -14,7 +14,7 @@ export class DefaultTableControlModule {
   /**
    * Ресурс. Получатель.
    */
-  public set resourceGetter(
+  set resourceGetter(
     value: (functionToTranslate: TFunction) => DefaultTableControlResource
   ) {
     this._resourceGetter = value;
@@ -25,10 +25,9 @@ export class DefaultTableControlModule {
    * @param functionToTranslate Функция перевода.
    * @returns Ресурс.
    */
-  public createResource(functionToTranslate: TFunction) {
-    return this._resourceGetter?.call(
+  createResource = (functionToTranslate: TFunction) =>
+    this._resourceGetter?.call(
       this,
       functionToTranslate
     ) as DefaultTableControlResource;
-  }
 }

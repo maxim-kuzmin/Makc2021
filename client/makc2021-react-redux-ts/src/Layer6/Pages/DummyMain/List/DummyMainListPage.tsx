@@ -15,18 +15,15 @@ import {
   DummyMainListPageTableRow
 } from './Table/DummyMainListPageTableRow';
 import { Configurator } from 'src/Configurator';
-import { useTranslation } from 'react-i18next';
+import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 
 /**
  * Страница сущностей "DummyMain".
  */
 export function DummyMainListPage() {
-  const { t: functionToTranslate } = useTranslation(
-    'Layer6/Pages/DummyMain/List/DummyMainItemPage'
-  );
-
-  const resource = Configurator.Layer6.Pages.DummyMain.List.getModule().createResource(
-    functionToTranslate
+  const resource = useResource(
+    Configurator.Layer6.Pages.DummyMain.List.getModule().createResource,
+    'Layer6/Pages/DummyMain/List/DummyMainListPage'
   );
 
   const store = Configurator.Layer5.Pages.DummyMain.List.getModule().store;

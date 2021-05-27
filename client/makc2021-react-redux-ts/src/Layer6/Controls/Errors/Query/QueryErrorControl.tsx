@@ -1,7 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { useTranslation } from 'react-i18next';
 import { Configurator } from 'src/Configurator';
+import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 import { QueryErrorControlProps } from './QueryErrorControlProps';
 
 /**
@@ -11,12 +11,9 @@ export function QueryErrorControl({
   queryCode,
   messages
 }: QueryErrorControlProps) {
-  const { t: functionToTranslate } = useTranslation(
+  const resource = useResource(
+    Configurator.Layer6.Controls.Errors.Query.getModule().createResource,
     'Layer6/Controls/Errors/Query/QueryErrorControl'
-  );
-
-  const resource = Configurator.Layer6.Controls.Errors.Query.getModule().createResource(
-    functionToTranslate
   );
 
   return messages && messages.length > 0 ? (

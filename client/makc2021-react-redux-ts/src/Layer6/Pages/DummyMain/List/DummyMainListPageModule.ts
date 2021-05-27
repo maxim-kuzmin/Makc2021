@@ -14,7 +14,7 @@ export class DummyMainListPageModule {
   /**
    * Ресурс. Получатель.
    */
-  public set resourceGetter(
+  set resourceGetter(
     value: (functionToTranslate: TFunction) => DummyMainListPageResource
   ) {
     this._resourceGetter = value;
@@ -25,10 +25,10 @@ export class DummyMainListPageModule {
    * @param functionToTranslate Функция перевода.
    * @returns Ресурс.
    */
-  public createResource(functionToTranslate: TFunction) {
+  createResource = (functionToTranslate: TFunction) => {
     return this._resourceGetter?.call(
       this,
       functionToTranslate
     ) as DummyMainListPageResource;
-  }
+  };
 }

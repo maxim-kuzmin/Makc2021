@@ -18,7 +18,7 @@ import {
 import { TableColumnDefaultFilterControl } from '../../Table/Column/Filters/Default/TableColumnDefaultFilterControl';
 import { DefaultTableControlProps } from './DefaultTableControlProps';
 import { Configurator } from 'src/Configurator';
-import { useTranslation } from 'react-i18next';
+import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 
 /**
  * Элемент управления "Таблица по умолчанию".
@@ -34,12 +34,9 @@ export function DefaultTableControl<TRow extends object>({
   sortField,
   totalCount
 }: PropsWithChildren<DefaultTableControlProps<TRow>>) {
-  const { t: functionToTranslate } = useTranslation(
+  const resource = useResource(
+    Configurator.Layer6.Controls.Tables.Default.getModule().createResource,
     'Layer6/Controls/Tables/Default/DefaultTableControl'
-  );
-
-  const resource = Configurator.Layer6.Controls.Tables.Default.getModule().createResource(
-    functionToTranslate
   );
 
   pageSize = normalizePageSize(pageSize);

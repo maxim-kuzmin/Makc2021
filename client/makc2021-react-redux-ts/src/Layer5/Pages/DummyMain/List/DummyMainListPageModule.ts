@@ -15,7 +15,7 @@ export class DummyMainListPageModule {
   /**
    * Обработчик запроса на получение.
    */
-  public get getQueryHandler() {
+  get getQueryHandler() {
     return this._getQueryHandlerGetter?.call(
       this
     ) as DummyMainListPageGetQueryHandler;
@@ -24,37 +24,35 @@ export class DummyMainListPageModule {
   /**
    * Обработчик запроса на получение. Получатель.
    */
-  public set getQueryHandlerGetter(
-    value: () => DummyMainListPageGetQueryHandler
-  ) {
+  set getQueryHandlerGetter(value: () => DummyMainListPageGetQueryHandler) {
     this._getQueryHandlerGetter = value;
   }
 
   /**
    * Сервис.
    */
-  public get service() {
+  get service() {
     return this._serviceGetter?.call(this) as DummyMainListPageService;
   }
 
   /**
    * Сервис. Получатель.
    */
-  public set serviceGetter(value: () => DummyMainListPageService) {
+  set serviceGetter(value: () => DummyMainListPageService) {
     this._serviceGetter = value;
   }
 
   /**
    * Хранилище.
    */
-  public get store() {
+  get store() {
     return this._storeGetter?.call(this) as DummyMainListPageStore;
   }
 
   /**
    * Хранилище. Получатель.
    */
-  public set storeGetter(value: () => DummyMainListPageStore) {
+  set storeGetter(value: () => DummyMainListPageStore) {
     this._storeGetter = value;
   }
 }

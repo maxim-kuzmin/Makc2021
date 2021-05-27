@@ -2,7 +2,7 @@
 
 /**
  * Ленивый. Создаёт значение в момент обращения к свойству value.
- * @template T Тип значения.
+ * @template TValue Тип значения.
  */
 export class Lazy<TValue> {
   private _value?: TValue;

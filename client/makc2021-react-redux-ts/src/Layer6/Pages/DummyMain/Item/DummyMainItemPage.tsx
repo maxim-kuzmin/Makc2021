@@ -13,18 +13,15 @@ import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorControl';
 import { Configurator } from 'src/Configurator';
-import { useTranslation } from 'react-i18next';
+import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 
 /**
  * Страница сущности "DummyMain".
  */
 export function DummyMainItemPage() {
-  const { t: functionToTranslate } = useTranslation(
+  const resource = useResource(
+    Configurator.Layer6.Pages.DummyMain.Item.getModule().createResource,
     'Layer6/Pages/DummyMain/Item/DummyMainItemPage'
-  );
-
-  const resource = Configurator.Layer6.Pages.DummyMain.Item.getModule().createResource(
-    functionToTranslate
   );
 
   const store = Configurator.Layer5.Pages.DummyMain.Item.getModule().store;

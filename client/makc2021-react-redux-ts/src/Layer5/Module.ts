@@ -11,14 +11,14 @@ export class Module {
   /**
    * Сервис.
    */
-  public get service() {
+  get service() {
     return this._serviceGetter?.call(this) as Service;
   }
 
   /**
    * Сервис. Получатель.
    */
-  public set serviceGetter(value: () => Service) {
+  set serviceGetter(value: () => Service) {
     this._serviceGetter = value;
   }
 }

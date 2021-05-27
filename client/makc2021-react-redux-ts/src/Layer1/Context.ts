@@ -20,19 +20,24 @@ export class Context {
    * @param i18n Интернационализация.
    */
   configureServices(i18n: i18n) {
-    const httpService = new Lazy<HttpService>(() => new HttpService());
-    this._module.httpServiceGetter = () => httpService.value;
+    const instanceOfHttpService = new Lazy<HttpService>(
+      () => new HttpService()
+    );
+    this._module.httpServiceGetter = () => instanceOfHttpService.value;
 
-    const localizationLanguage = new Lazy<LocalizationLanguage>(
+    const instanceOfLocalizationLanguage = new Lazy<LocalizationLanguage>(
       () => new LocalizationLanguage(i18n)
     );
-    this._module.localizationLanguageGetter = () => localizationLanguage.value;
+    this._module.localizationLanguageGetter = () =>
+      instanceOfLocalizationLanguage.value;
 
-    const timingFactory = new Lazy<TimingFactory>(() => new TimingFactory());
-    this._module.timingFactoryGetter = () => timingFactory.value;
+    const instanceOfTimingFactory = new Lazy<TimingFactory>(
+      () => new TimingFactory()
+    );
+    this._module.timingFactoryGetter = () => instanceOfTimingFactory.value;
 
-    const urlService = new Lazy<UrlService>(() => new UrlService());
-    this._module.urlServiceGetter = () => urlService.value;
+    const instanceOfUrlService = new Lazy<UrlService>(() => new UrlService());
+    this._module.urlServiceGetter = () => instanceOfUrlService.value;
 
     this._module.localizationServiceGetter = (
       functionToTarnslate: TFunction

@@ -26,35 +26,35 @@ export class Module {
   /**
    * Сервис HTTP.
    */
-  public get httpService() {
+  get httpService() {
     return this._httpServiceGetter?.call(this) as HttpService;
   }
 
   /**
    * Сервис HTTP. Получатель.
    */
-  public set httpServiceGetter(value: () => HttpService) {
+  set httpServiceGetter(value: () => HttpService) {
     this._httpServiceGetter = value;
   }
 
   /**
    * Язык локализации.
    */
-  public get localizationLanguage() {
+  get localizationLanguage() {
     return this._localizationLanguageGetter?.call(this) as LocalizationLanguage;
   }
 
   /**
    * Язык локализации. Получатель.
    */
-  public set localizationLanguageGetter(value: () => LocalizationLanguage) {
+  set localizationLanguageGetter(value: () => LocalizationLanguage) {
     this._localizationLanguageGetter = value;
   }
 
   /**
    * Сервис локализации. Получатель.
    */
-  public set localizationServiceGetter(
+  set localizationServiceGetter(
     value: (functionToTranslate: TFunction) => LocalizationService
   ) {
     this._localizationServiceGetter = value;
@@ -63,28 +63,28 @@ export class Module {
   /**
    * Фабрика согласования.
    */
-  public get timingFactory() {
+  get timingFactory() {
     return this._timingFactoryGetter?.call(this) as TimingFactory;
   }
 
   /**
    * Фабрика согласования. Получатель.
    */
-  public set timingFactoryGetter(value: () => TimingFactory) {
+  set timingFactoryGetter(value: () => TimingFactory) {
     this._timingFactoryGetter = value;
   }
 
   /**
    * Сервис URL.
    */
-  public get urlService() {
+  get urlService() {
     return this._urlServiceGetter?.call(this) as UrlService;
   }
 
   /**
    * Сервис URL. Получатель.
    */
-  public set urlServiceGetter(value: () => UrlService) {
+  set urlServiceGetter(value: () => UrlService) {
     this._urlServiceGetter = value;
   }
 
@@ -93,10 +93,9 @@ export class Module {
    * @param functionToTranslate Функция перевода.
    * @returns Сервис локализации.
    */
-  createLocalizationService(functionToTranslate: TFunction) {
-    return this._localizationServiceGetter?.call(
+  createLocalizationService = (functionToTranslate: TFunction) =>
+    this._localizationServiceGetter?.call(
       this,
       functionToTranslate
     ) as LocalizationService;
-  }
 }

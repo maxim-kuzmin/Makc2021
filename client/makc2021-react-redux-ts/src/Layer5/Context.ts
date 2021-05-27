@@ -23,10 +23,10 @@ export class Context {
    * @param apiUrl URL API.
    */
   configureServices(contextOfLayer1: Layer1Context, apiUrl: string) {
-    const service = new Lazy<Service>(() => new Service(apiUrl));
+    const instanceOfService = new Lazy<Service>(() => new Service(apiUrl));
 
     this._module.serviceGetter = () => {
-      return service.value;
+      return instanceOfService.value;
     };
 
     this.Pages.configureServices(this, contextOfLayer1);

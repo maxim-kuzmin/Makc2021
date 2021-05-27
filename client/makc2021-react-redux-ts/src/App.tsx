@@ -14,10 +14,9 @@ import { TopMenuControl } from './Layer6/Controls/Menus/Top/TopMenuControl';
 import { ContactsPage } from './Layer6/Pages/Contacts/ContactsPage';
 import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPage';
 import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPage';
-import { LocalizationService } from './Layer1/Localization/LocalizationService';
 import { Configurator } from './Configurator';
 
-LocalizationService.start('en');
+Configurator.configureServices();
 
 /**
  * Приложение.

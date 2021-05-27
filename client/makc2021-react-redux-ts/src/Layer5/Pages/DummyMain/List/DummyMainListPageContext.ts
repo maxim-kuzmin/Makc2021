@@ -31,19 +31,19 @@ export class DummyMainListPageContext {
       );
     };
 
-    const service = new Lazy<DummyMainListPageService>(
+    const instanceOfService = new Lazy<DummyMainListPageService>(
       () => new DummyMainListPageService(this._module.getQueryHandler)
     );
-    this._module.serviceGetter = () => service.value;
+    this._module.serviceGetter = () => instanceOfService.value;
 
-    const store = new Lazy<DummyMainListPageStore>(
+    const instanceOfStore = new Lazy<DummyMainListPageStore>(
       () =>
         new DummyMainListPageStore(
           this._module.service,
           contextOfLayer1.getModule().timingFactory
         )
     );
-    this._module.storeGetter = () => store.value;
+    this._module.storeGetter = () => instanceOfStore.value;
   }
 
   /**
