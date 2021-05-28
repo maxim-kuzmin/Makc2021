@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Makc2021.Layer1.Common;
 using Makc2021.Layer1.Converting;
 using Makc2021.Layer1.Query;
@@ -46,15 +45,5 @@ namespace Makc2021.Layer1
         }
 
         #endregion Public methods
-
-        #region Protected methods
-
-        /// <inheritdoc/>
-        protected sealed override IEnumerable<Type> GetImports()
-        {
-            return Enumerable.Empty<Type>();
-        }
-
-        #endregion Protected methods
     }
 }
