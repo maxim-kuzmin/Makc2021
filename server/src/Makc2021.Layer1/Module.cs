@@ -38,7 +38,7 @@ namespace Makc2021.Layer1
         public sealed override IEnumerable<Type> GetExports()
         {
             return new[]
-            {                
+            {
                 typeof(ICommonResource),
                 typeof(IConvertingResource),
                 typeof(IQueryResource)

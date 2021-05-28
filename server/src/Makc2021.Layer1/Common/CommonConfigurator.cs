@@ -38,6 +38,13 @@ namespace Makc2021.Layer1.Common
             foreach (var module in modules)
             {
                 exports = exports.Union(module.GetExports());
+
+                var dependencies = module.GetDependencies();
+
+                foreach (var dependency in dependencies)
+                {
+                    exports = exports.Union(dependency.GetExports());
+                }
             }
 
             var allExports = exports.ToHashSet();

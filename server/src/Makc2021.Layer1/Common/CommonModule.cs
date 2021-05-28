@@ -23,6 +23,24 @@ namespace Makc2021.Layer1.Common
         public abstract void ConfigureServices(IServiceCollection services);
 
         /// <summary>
+        /// Получить зависимости.
+        /// </summary>
+        /// <returns>Зависимости.</returns>
+        public virtual IEnumerable<CommonModule> GetDependencies()
+        {
+            return Enumerable.Empty<CommonModule>();
+        }
+
+        /// <summary>
+        /// Получить экспортированные типы.
+        /// </summary>
+        /// <returns>Экспортированные типы.</returns>
+        public virtual IEnumerable<Type> GetExports()
+        {
+            return Enumerable.Empty<Type>();
+        }
+
+        /// <summary>
         /// Получить не импортированные типы.
         /// </summary>
         /// <param name="allExports">Все экспортированные типы.</param>
@@ -32,12 +50,6 @@ namespace Makc2021.Layer1.Common
             return GetImports().Where(x => !allExports.Contains(x));
         }
 
-        /// <summary>
-        /// Получить экспортированные типы.
-        /// </summary>
-        /// <returns>Экспортированные типы.</returns>
-        public abstract IEnumerable<Type> GetExports();
-
         #endregion Public methods
 
         #region Protected methods
@@ -46,7 +58,10 @@ namespace Makc2021.Layer1.Common
         /// Получить импортированные типы.
         /// </summary>
         /// <returns>Импортированные типы.</returns>
-        protected abstract IEnumerable<Type> GetImports();
+        protected virtual IEnumerable<Type> GetImports()
+        {
+            return Enumerable.Empty<Type>();
+        }
 
         #endregion Protected methods
     }
