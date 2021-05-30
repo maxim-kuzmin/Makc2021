@@ -1,30 +1,33 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { useEffect, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { Context } from 'src/Context';
+import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 import { createDummyMainEntityObject } from 'src/Layer3/Sample/Entities/DummyMainEntityObject';
 import { DummyMainItemPageParams } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageParams';
 import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Get/DummyMainItemPageGetQueryInput';
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorControl';
-import { Configurator } from 'src/Configurator';
-import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 
 /**
  * Страница сущности "DummyMain".
  */
 export function DummyMainItemPage() {
+  const contextOfLayer6 = useContext(Context.Layer6);
+  const contextOfLayer5 = useContext(Context.Layer5);
+
   const resource = useResource(
-    Configurator.Layer6.Pages.DummyMain.Item.getModule().createResource,
+    contextOfLayer6.Pages.DummyMain.Item.getModule().createResource,
     'Layer6/Pages/DummyMain/Item/DummyMainItemPage'
   );
 
-  const store = Configurator.Layer5.Pages.DummyMain.Item.getModule().store;
+  const store = contextOfLayer5.Pages.DummyMain.Item.getModule().store;
 
   const { id } = useParams<DummyMainItemPageParams>();
 

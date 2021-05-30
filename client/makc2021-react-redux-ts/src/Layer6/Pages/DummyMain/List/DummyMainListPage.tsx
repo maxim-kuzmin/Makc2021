@@ -1,10 +1,12 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useContext, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Column, Filters } from 'react-table';
+import { Context } from 'src/Context';
+import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 import { createUrlParts } from 'src/Layer1/Url/UrlParts';
 import { createDummyMainListPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/List/Queries/Get/DummyMainListPageGetQueryInput';
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
@@ -14,21 +16,23 @@ import {
   createDummyMainListPageTableRow,
   DummyMainListPageTableRow
 } from './Table/DummyMainListPageTableRow';
-import { Configurator } from 'src/Configurator';
-import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 
 /**
  * Страница сущностей "DummyMain".
  */
 export function DummyMainListPage() {
+  const contextOfLayer6 = useContext(Context.Layer6);
+  const contextOfLayer5 = useContext(Context.Layer5);
+  const contextOfLayer1 = useContext(Context.Layer1);
+
   const resource = useResource(
-    Configurator.Layer6.Pages.DummyMain.List.getModule().createResource,
+    contextOfLayer6.Pages.DummyMain.List.getModule().createResource,
     'Layer6/Pages/DummyMain/List/DummyMainListPage'
   );
 
-  const store = Configurator.Layer5.Pages.DummyMain.List.getModule().store;
+  const store = contextOfLayer5.Pages.DummyMain.List.getModule().store;
 
-  const urlService = Configurator.Layer1.getModule().urlService;
+  const urlService = contextOfLayer1.getModule().urlService;
 
   const dispatch = useDispatch();
 

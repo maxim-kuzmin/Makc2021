@@ -1,13 +1,16 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+import { useContext } from 'react';
 import FormControl from 'react-bootstrap/FormControl';
-import { Configurator } from 'src/Configurator';
+import { Context } from 'src/Context';
 
 /**
  * Элемент управления "Переключатель языка".
  */
 export function LanguageSwitcherControl() {
-  const language = Configurator.Layer1.getModule().localizationLanguage;
+  const contextOfLayer1 = useContext(Context.Layer1);
+
+  const language = contextOfLayer1.getModule().localizationLanguage;
 
   return (
     <FormControl

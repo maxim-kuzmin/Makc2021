@@ -1,6 +1,5 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
-
-import { PropsWithChildren, useEffect, useMemo } from 'react';
+import { PropsWithChildren, useContext, useEffect, useMemo } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import Table from 'react-bootstrap/Table';
 import { useHistory } from 'react-router-dom';
@@ -15,10 +14,10 @@ import {
   useFilters,
   ColumnInterface
 } from 'react-table';
+import { Context } from 'src/Context';
+import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 import { TableColumnDefaultFilterControl } from '../../Table/Column/Filters/Default/TableColumnDefaultFilterControl';
 import { DefaultTableControlProps } from './DefaultTableControlProps';
-import { Configurator } from 'src/Configurator';
-import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 
 /**
  * Элемент управления "Таблица по умолчанию".
@@ -34,8 +33,10 @@ export function DefaultTableControl<TRow extends object>({
   sortField,
   totalCount
 }: PropsWithChildren<DefaultTableControlProps<TRow>>) {
+  const contextOfLayer6 = useContext(Context.Layer6);
+
   const resource = useResource(
-    Configurator.Layer6.Controls.Tables.Default.getModule().createResource,
+    contextOfLayer6.Controls.Tables.Default.getModule().createResource,
     'Layer6/Controls/Tables/Default/DefaultTableControl'
   );
 

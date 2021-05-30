@@ -15,6 +15,7 @@ import { ContactsPage } from './Layer6/Pages/Contacts/ContactsPage';
 import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPage';
 import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPage';
 import { Configurator } from './Configurator';
+import { Context } from './Context';
 
 Configurator.configureServices();
 
@@ -25,24 +26,30 @@ function App() {
   Configurator.useServices();
 
   return (
-    <Router>
-      <div className="App">
-        <LanguageSwitcherControl />
-        <TopMenuControl />
-        <Switch>
-          <Redirect exact path="/" to="/dummy-main/list" />
-          <Route exact path="/dummy-main/list">
-            <DummyMainListPage />
-          </Route>
-          <Route exact path="/dummy-main/item/:id?">
-            <DummyMainItemPage />
-          </Route>
-          <Route exact path="/contacts">
-            <ContactsPage />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <Context.Layer1.Provider value={Configurator.Layer1}>
+      <Context.Layer5.Provider value={Configurator.Layer5}>
+        <Context.Layer6.Provider value={Configurator.Layer6}>
+          <Router>
+            <div className="App">
+              <LanguageSwitcherControl />
+              <TopMenuControl />
+              <Switch>
+                <Redirect exact path="/" to="/dummy-main/list" />
+                <Route exact path="/dummy-main/list">
+                  <DummyMainListPage />
+                </Route>
+                <Route exact path="/dummy-main/item/:id?">
+                  <DummyMainItemPage />
+                </Route>
+                <Route exact path="/contacts">
+                  <ContactsPage />
+                </Route>
+              </Switch>
+            </div>
+          </Router>
+        </Context.Layer6.Provider>
+      </Context.Layer5.Provider>
+    </Context.Layer1.Provider>
   );
 }
 

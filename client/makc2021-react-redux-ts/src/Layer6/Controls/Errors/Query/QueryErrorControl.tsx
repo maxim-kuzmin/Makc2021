@@ -1,6 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { Configurator } from 'src/Configurator';
+import { useContext } from 'react';
+import { Context } from 'src/Context';
 import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 import { QueryErrorControlProps } from './QueryErrorControlProps';
 
@@ -11,8 +12,10 @@ export function QueryErrorControl({
   queryCode,
   messages
 }: QueryErrorControlProps) {
+  const contextOfLayer6 = useContext(Context.Layer6);
+
   const resource = useResource(
-    Configurator.Layer6.Controls.Errors.Query.getModule().createResource,
+    contextOfLayer6.Controls.Errors.Query.getModule().createResource,
     'Layer6/Controls/Errors/Query/QueryErrorControl'
   );
 

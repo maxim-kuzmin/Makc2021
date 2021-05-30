@@ -1,16 +1,19 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+import { useContext } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { Configurator } from 'src/Configurator';
+import { Context } from 'src/Context';
 import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 
 /**
  * Страница контактов.
  */
 export function ContactsPage() {
+  const contextOfLayer6 = useContext(Context.Layer6);
+
   const resource = useResource(
-    Configurator.Layer6.Pages.Contacts.getModule().createResource,
+    contextOfLayer6.Pages.Contacts.getModule().createResource,
     'Layer6/Pages/Contacts/ContactsPage'
   );
 
