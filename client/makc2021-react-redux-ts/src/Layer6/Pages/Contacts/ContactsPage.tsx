@@ -10,10 +10,10 @@ import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
  * Страница контактов.
  */
 export function ContactsPage() {
-  const contextOfLayer6 = useContext(Context.Layer6);
+  const contextValue = useContext(Context);
 
   const resource = useResource(
-    contextOfLayer6.Pages.Contacts.getModule().createResource,
+    contextValue.Layer6.Pages.Contacts.getModule().createResource,
     'Layer6/Pages/Contacts/ContactsPage'
   );
 

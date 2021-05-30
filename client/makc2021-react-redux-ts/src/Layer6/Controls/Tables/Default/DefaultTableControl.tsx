@@ -33,10 +33,10 @@ export function DefaultTableControl<TRow extends object>({
   sortField,
   totalCount
 }: PropsWithChildren<DefaultTableControlProps<TRow>>) {
-  const contextOfLayer6 = useContext(Context.Layer6);
+  const contextValue = useContext(Context);
 
   const resource = useResource(
-    contextOfLayer6.Controls.Tables.Default.getModule().createResource,
+    contextValue.Layer6.Controls.Tables.Default.getModule().createResource,
     'Layer6/Controls/Tables/Default/DefaultTableControl'
   );
 

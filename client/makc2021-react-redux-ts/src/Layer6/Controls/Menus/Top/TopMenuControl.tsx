@@ -11,10 +11,10 @@ import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
  * Элемент управления "Верхнее меню".
  */
 export function TopMenuControl() {
-  const contextOfLayer6 = useContext(Context.Layer6);
+  const contextValue = useContext(Context);
 
   const resource = useResource(
-    contextOfLayer6.Controls.Menus.Top.getModule().createResource,
+    contextValue.Layer6.Controls.Menus.Top.getModule().createResource,
     'Layer6/Controls/Menus/Top/TopMenuControl'
   );
 

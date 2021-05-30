@@ -21,18 +21,16 @@ import {
  * Страница сущностей "DummyMain".
  */
 export function DummyMainListPage() {
-  const contextOfLayer6 = useContext(Context.Layer6);
-  const contextOfLayer5 = useContext(Context.Layer5);
-  const contextOfLayer1 = useContext(Context.Layer1);
+  const contextValue = useContext(Context);
 
   const resource = useResource(
-    contextOfLayer6.Pages.DummyMain.List.getModule().createResource,
+    contextValue.Layer6.Pages.DummyMain.List.getModule().createResource,
     'Layer6/Pages/DummyMain/List/DummyMainListPage'
   );
 
-  const store = contextOfLayer5.Pages.DummyMain.List.getModule().store;
+  const store = contextValue.Layer5.Pages.DummyMain.List.getModule().store;
 
-  const urlService = contextOfLayer1.getModule().urlService;
+  const urlService = contextValue.Layer1.getModule().urlService;
 
   const dispatch = useDispatch();
 

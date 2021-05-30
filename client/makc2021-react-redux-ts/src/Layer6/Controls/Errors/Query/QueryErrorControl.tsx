@@ -12,10 +12,10 @@ export function QueryErrorControl({
   queryCode,
   messages
 }: QueryErrorControlProps) {
-  const contextOfLayer6 = useContext(Context.Layer6);
+  const contextValue = useContext(Context);
 
   const resource = useResource(
-    contextOfLayer6.Controls.Errors.Query.getModule().createResource,
+    contextValue.Layer6.Controls.Errors.Query.getModule().createResource,
     'Layer6/Controls/Errors/Query/QueryErrorControl'
   );
 

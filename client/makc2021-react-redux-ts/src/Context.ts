@@ -1,24 +1,36 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import { createContext } from 'react';
-import { Configurator } from './Configurator';
+import { Context as Layer1Context } from './Layer1/Context';
+import { Context as Layer5Context } from './Layer5/Context';
+import { Context as Layer6Context } from './Layer6/Context';
 
 /**
- * Контекст.
+ * Значение контекста.
  */
-export namespace Context {
+export class ContextValue {
   /**
    * Слой "Layer1".
    */
-  export const Layer1 = createContext(Configurator.Layer1);
+  Layer1 = new Layer1Context();
 
   /**
    * Слой "Layer5".
    */
-  export const Layer5 = createContext(Configurator.Layer5);
+  Layer5 = new Layer5Context();
 
   /**
    * Слой "Layer6".
    */
-  export const Layer6 = createContext(Configurator.Layer6);
+  Layer6 = new Layer6Context();
 }
+
+/**
+ * Значение контекста по умолчанию.
+ */
+export const defaultContextValue = new ContextValue();
+
+/**
+ * Контекст.
+ */
+export const Context = createContext(defaultContextValue);

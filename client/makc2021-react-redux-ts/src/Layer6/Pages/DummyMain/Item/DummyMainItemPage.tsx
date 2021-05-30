@@ -19,15 +19,14 @@ import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorCo
  * Страница сущности "DummyMain".
  */
 export function DummyMainItemPage() {
-  const contextOfLayer6 = useContext(Context.Layer6);
-  const contextOfLayer5 = useContext(Context.Layer5);
+  const contextValue = useContext(Context);
 
   const resource = useResource(
-    contextOfLayer6.Pages.DummyMain.Item.getModule().createResource,
+    contextValue.Layer6.Pages.DummyMain.Item.getModule().createResource,
     'Layer6/Pages/DummyMain/Item/DummyMainItemPage'
   );
 
-  const store = contextOfLayer5.Pages.DummyMain.Item.getModule().store;
+  const store = contextValue.Layer5.Pages.DummyMain.Item.getModule().store;
 
   const { id } = useParams<DummyMainItemPageParams>();
 

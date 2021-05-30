@@ -5,29 +5,12 @@ import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
 import { useTranslation } from 'react-i18next';
 import { createAppSettings } from './AppSettings';
-import { Context as Layer1Context } from './Layer1/Context';
-import { Context as Layer5Context } from './Layer5/Context';
-import { Context as Layer6Context } from './Layer6/Context';
+import { defaultContextValue } from './Context';
 
 /**
  * Конфигуратор.
  */
 export namespace Configurator {
-  /**
-   * Слой "Layer1".
-   */
-  export const Layer1 = new Layer1Context();
-
-  /**
-   * Слой "Layer5".
-   */
-  export const Layer5 = new Layer5Context();
-
-  /**
-   * Слой "Layer6".
-   */
-  export const Layer6 = new Layer6Context();
-
   /**
    * Настроить сервисы.
    */
@@ -55,15 +38,30 @@ export namespace Configurator {
   }
 
   /**
+   * Получить значение контекста.
+   * @returns Значение контекста.
+   */
+  export function getContextValue() {
+    return defaultContextValue;
+  }
+
+  /**
    * Использовать сервисы.
    */
   export function useServices() {
     const { i18n } = useTranslation();
 
+    const contextValue = getContextValue();
+
     const appSettings = createAppSettings();
 
-    Layer1.configureServices(i18n);
-    Layer5.configureServices(Layer1, appSettings.apiUrl);
-    Layer6.configureServices(Layer1);
+    contextValue.Layer1.configureServices(i18n);
+
+    contextValue.Layer5.configureServices(
+      defaultContextValue.Layer1,
+      appSettings.apiUrl
+    );
+
+    contextValue.Layer6.configureServices(defaultContextValue.Layer1);
   }
 }

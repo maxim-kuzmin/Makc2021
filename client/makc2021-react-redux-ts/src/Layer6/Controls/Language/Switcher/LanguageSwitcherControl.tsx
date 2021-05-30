@@ -8,9 +8,9 @@ import { Context } from 'src/Context';
  * Элемент управления "Переключатель языка".
  */
 export function LanguageSwitcherControl() {
-  const contextOfLayer1 = useContext(Context.Layer1);
+  const contextValue = useContext(Context);
 
-  const language = contextOfLayer1.getModule().localizationLanguage;
+  const language = contextValue.Layer1.getModule().localizationLanguage;
 
   return (
     <FormControl
