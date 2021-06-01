@@ -26,9 +26,9 @@ namespace Makc2021.Layer5.Apps.GrpcClient
         public static void ConfigureServices(IServiceCollection services)
         {
             CommonConfigurator.ConfigureServices(services, new CommonModule[]
-                {
-                    new Module()
-                });
+            {
+                new Module()
+            });
         }
 
         #endregion Public methods

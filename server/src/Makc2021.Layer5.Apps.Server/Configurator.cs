@@ -33,15 +33,15 @@ namespace Makc2021.Layer5.Apps.Server
         public static void ConfigureServices(IServiceCollection services)
         {
             CommonConfigurator.ConfigureServices(services, new CommonModule[]
-                {
-                    new Layer1.Module(),
-                    new Layer2.Module(),
-                    new Layer2.Clients.SqlServer.ClientModule(),
-                    new Layer3.Sample.Clients.SqlServer.EF.ClientModule(),
-                    new Layer3.Sample.Mappers.EF.MapperModule(),
-                    new Layer4.Domains.DummyMain.DomainModule(),
-                    new Module()
-                });
+            {
+                new Layer1.Module(),
+                new Layer2.Module(),
+                new Layer2.Clients.SqlServer.ClientModule(),
+                new Layer3.Sample.Clients.SqlServer.EF.ClientModule(),
+                new Layer3.Sample.Mappers.EF.MapperModule(),
+                new Layer4.Domains.DummyMain.DomainModule(),
+                new Module()
+            });
         }
 
         #endregion Public methods
