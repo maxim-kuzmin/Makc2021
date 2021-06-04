@@ -1,7 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import { UseTableCellProps } from 'react-table';
-import FormControl from 'react-bootstrap/FormControl';
+import { DebounceInput } from 'react-debounce-input';
 
 /**
  * Элемент управления "Фильтр по умолчанию колонки таблицы".
@@ -12,8 +12,10 @@ export function TableColumnDefaultFilterControl<TRow extends object>({
   const { filterValue, setFilter } = column;
 
   return (
-    <FormControl
-      as="input"
+    <DebounceInput
+      className="form-control"
+      minLength={1}
+      debounceTimeout={600}
       value={filterValue || ''}
       onChange={(e) => {
         setFilter(e.target.value || undefined);
