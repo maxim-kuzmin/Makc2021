@@ -185,6 +185,18 @@ export function DefaultTableControl<TRow extends object>({
         >
           <Pagination.Next disabled={!canNextPage} />
         </LinkContainer>
+        [
+        <Pagination.Next
+          disabled={!canNextPage}
+          href={createPageUrl(
+            pageNumber + 1,
+            pageSize,
+            sortDirection,
+            sortField,
+            filters
+          )}
+        />
+        ]
         <LinkContainer
           to={createPageUrl(
             pageCount,

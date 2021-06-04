@@ -11,6 +11,6 @@ export class QueryHelper {
    * @returns Код запроса.
    */
   static createQueryCode() {
-    return uuidv4().replaceAll('-', '').toUpperCase();
+    return uuidv4().replace(/-/, '').toUpperCase(); //uuidv4().replaceAll('-', '').toUpperCase();
   }
 }
