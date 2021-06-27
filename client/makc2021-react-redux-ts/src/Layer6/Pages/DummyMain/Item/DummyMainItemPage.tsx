@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { useContext, useEffect, useMemo } from 'react';
+import { ChangeEvent, FormEvent, useContext, useEffect, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -13,7 +13,10 @@ import { createDummyMainEntityObject } from 'src/Layer3/Sample/Entities/DummyMai
 import { DummyMainItemPageParams } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageParams';
 import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Get/DummyMainItemPageGetQueryInput';
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
-import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorControl';
+import { QueryErrorMessageControl } from 'src/Layer6/Controls/Messages/Error/Query/QueryErrorMessageControl';
+import { QuerySuccessMessageControl } from 'src/Layer6/Controls/Messages/Success/Query/QuerySuccessMessageControl';
+import { useCurrentMenuItemKey } from 'src/Layer6/Controls/Menus/Top/TopMenuControlHooks';
+import { createDummyMainItemPageSaveQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Save/DummyMainItemPageSaveQueryInput';
 
 /**
  * Страница сущности "DummyMain".
@@ -26,7 +29,12 @@ export function DummyMainItemPage() {
     'Layer6/Pages/DummyMain/Item/DummyMainItemPage'
   );
 
+  const serviceOfTopMenuControl = contextValue.Layer6.Controls.Menus.Top.getModule()
+    .service;
+
   const store = contextValue.Layer5.Pages.DummyMain.Item.getModule().store;
+
+  useCurrentMenuItemKey(serviceOfTopMenuControl.itemOfAppDummyMainItemPage.key);
 
   const { id } = useParams<DummyMainItemPageParams>();
 
@@ -52,47 +60,100 @@ export function DummyMainItemPage() {
 
   const isWaiting = useSelector(store.selectIsWaiting);
 
-  const { errorMessages, output, queryCode } = getQueryResult;
+  const saveQueryInput = useSelector(store.selectSaveQueryInput);
 
-  const isOk = !entityId || getQueryResult.isOk;
+  const {
+    errorMessages,
+    isOk,
+    output,
+    queryCode,
+    successMessages
+  } = getQueryResult;
 
-  const data = useMemo(() => {
-    return getQueryResult.isOk
-      ? output.item.objectOfDummyMainEntity
-      : createDummyMainEntityObject();
-  }, [getQueryResult.isOk, output?.item.objectOfDummyMainEntity]);
+  const dataOfDummyMainEntity =
+    output?.item?.objectOfDummyMainEntity ??
+    saveQueryInput?.data?.objectOfDummyMainEntity;
+
+  let objectOfDummyMainEntity = !dataOfDummyMainEntity
+    ? createDummyMainEntityObject()
+    : {
+        ...dataOfDummyMainEntity
+      };
+
+  objectOfDummyMainEntity.id = entityId > 0 ? entityId : 0;
+
+  const refToInputOfName = useRef<HTMLInputElement>(null);
+
+  const clear = () => {
+    if (refToInputOfName.current) {
+      refToInputOfName.current.value = '';
+    }
+
+    dispatch(store.clearAsync());
+  };
+
+  const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
+    objectOfDummyMainEntity.name = event.target.name;
+  };
+
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const input = createDummyMainItemPageSaveQueryInput();
+
+    input.data.objectOfDummyMainEntity = objectOfDummyMainEntity;
+
+    dispatch(store.saveAsync(input));
+  };
 
   return (
     <>
       <GlobalWaitingControl isVisible={isWaiting} />
       {!isOk && (
-        <QueryErrorControl queryCode={queryCode} messages={errorMessages} />
+        <QueryErrorMessageControl
+          queryCode={queryCode}
+          messages={errorMessages}
+        />
       )}
       {isOk && (
-        <Form>
-          {data.id > 0 && (
-            <Form.Group as={Row} controlId="id">
-              <Form.Label column>{resource.getIDFieldTitle()}</Form.Label>
-              <Col>
-                <Form.Control plaintext readOnly value={data.id} />
-              </Col>
-            </Form.Group>
-          )}
-          <Form.Group as={Row} controlId="name">
-            <Form.Label column>{resource.getNameFieldTitle()}</Form.Label>
+        <QuerySuccessMessageControl
+          queryCode={queryCode}
+          messages={successMessages}
+        />
+      )}
+      <Form onSubmit={onSubmit}>
+        {objectOfDummyMainEntity.id > 0 && (
+          <Form.Group as={Row} controlId="id">
+            <Form.Label column>{resource.getIDFieldTitle()}</Form.Label>
             <Col>
               <Form.Control
-                type="text"
-                placeholder={resource.getNameFieldPlaceholder()}
-                defaultValue={data.name}
+                plaintext
+                readOnly
+                value={objectOfDummyMainEntity.id}
               />
             </Col>
           </Form.Group>
-          <Button variant="primary" type="submit">
-            {resource.getSaveButtonTitle()}
-          </Button>
-        </Form>
-      )}
+        )}
+        <Form.Group as={Row} controlId="name">
+          <Form.Label column>{resource.getNameFieldTitle()}</Form.Label>
+          <Col>
+            <Form.Control
+              type="text"
+              placeholder={resource.getNameFieldPlaceholder()}
+              defaultValue={objectOfDummyMainEntity.name}
+              onChange={onChangeName}
+              ref={refToInputOfName}
+            />
+          </Col>
+        </Form.Group>
+        <Button variant="success" type="submit">
+          {resource.getSaveButtonTitle()}
+        </Button>
+        &nbsp;
+        <Button variant="primary" type="button" onClick={clear}>
+          {resource.getClearButtonTitle()}
+        </Button>
+      </Form>
     </>
   );
 }

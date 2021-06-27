@@ -1,10 +1,9 @@
-// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
-
 import { Lazy } from 'src/Layer1/Lazy';
-import { Context as Layer1Context } from 'src/Layer1/Context';
-import { Module } from './Module';
+import { Context as InfrastructureLayerContext } from 'src/Layer1/Context';
+import { ControlsContext } from './Controls/ControlsContext';
 import { PagesContext } from './Pages/PagesContext';
 import { Service } from './Service';
+import { Module } from './Module';
 
 /**
  * Контекст.
@@ -13,23 +12,33 @@ export class Context {
   private _module = new Module();
 
   /**
+   * Элементы управления.
+   */
+  readonly Controls = new ControlsContext();
+
+  /**
    * Страницы.
    */
   readonly Pages = new PagesContext();
 
   /**
    * Настроить сервисы.
-   * @param contextOfLayer1 Контекст слоя "Layer1".
+   * @param contextOfInfrastructureLayer Контекст слоя "InfrastructureLayer".
    * @param apiUrl URL API.
    */
-  configureServices(contextOfLayer1: Layer1Context, apiUrl: string) {
+  configureServices(
+    contextOfInfrastructureLayer: InfrastructureLayerContext,
+    apiUrl: string
+  ) {
     const instanceOfService = new Lazy<Service>(() => new Service(apiUrl));
 
     this._module.serviceGetter = () => {
       return instanceOfService.value;
     };
 
-    this.Pages.configureServices(this, contextOfLayer1);
+    this.Controls.configureServices();
+
+    this.Pages.configureServices(this, contextOfInfrastructureLayer);
   }
 
   /**

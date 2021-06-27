@@ -2,8 +2,10 @@
 
 import { TFunction } from 'i18next';
 import { Context as Layer1Context } from 'src/Layer1/Context';
+import { Lazy } from 'src/Layer1/Lazy';
 import { TopMenuControlModule } from './TopMenuControlModule';
 import { TopMenuControlResource } from './TopMenuControlResource';
+import { TopMenuControlService } from './TopMenuControlService';
 
 /**
  * Контекст элемента управления "Верхнее меню".
@@ -22,6 +24,11 @@ export class TopMenuControlContext {
           .getModule()
           .createLocalizationService(functionToTranslate)
       );
+
+    const instanceOfService = new Lazy<TopMenuControlService>(
+      () => new TopMenuControlService()
+    );
+    this._module.serviceGetter = () => instanceOfService.value;
   }
 
   /**

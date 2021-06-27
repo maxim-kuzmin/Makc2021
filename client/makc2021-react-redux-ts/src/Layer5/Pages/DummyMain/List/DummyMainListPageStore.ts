@@ -1,7 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CommonStore } from 'src/Layer1/Common/CommonStore';
+import { CommonPageStore } from 'src/Layer1/Common/Page/CommonPageStore';
 import { QueryResultWithOutput } from 'src/Layer1/Query/QueryResultWithOutput';
 import { TimingFactory } from 'src/Layer1/Timing/TimingFactory';
 import { AppThunk, RootState } from 'src/Layer5/Store';
@@ -13,7 +13,7 @@ import { DummyMainListPageGetQueryOutput } from './Queries/Get/DummyMainListPage
 /**
  * Хранилище страницы сущностей "DummyMain".
  */
-export class DummyMainListPageStore extends CommonStore {
+export class DummyMainListPageStore extends CommonPageStore {
   /**
    * Конструктор.
    * @param _appService Сервис.

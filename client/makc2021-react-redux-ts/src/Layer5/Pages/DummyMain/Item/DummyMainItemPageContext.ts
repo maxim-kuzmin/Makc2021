@@ -7,6 +7,7 @@ import { DummyMainItemPageModule } from './DummyMainItemPageModule';
 import { DummyMainItemPageService } from './DummyMainItemPageService';
 import { DummyMainItemPageStore } from './DummyMainItemPageStore';
 import { DummyMainItemPageGetQueryHandler } from './Queries/Get/DummyMainItemPageGetQueryHandler';
+import { DummyMainItemPageSaveQueryHandler } from './Queries/Save/DummyMainItemPageSaveQueryHandler';
 
 /**
  * Контекст страницы сущности "DummyMain".
@@ -31,8 +32,20 @@ export class DummyMainItemPageContext {
       );
     };
 
+    this._module.saveQueryHandlerGetter = () => {
+      return new DummyMainItemPageSaveQueryHandler(
+        contextOfLayer1.getModule().httpService,
+        contextOfLayer5.getModule().service,
+        contextOfLayer1.getModule().urlService
+      );
+    };
+
     const instanceOfService = new Lazy<DummyMainItemPageService>(
-      () => new DummyMainItemPageService(this._module.getQueryHandler)
+      () =>
+        new DummyMainItemPageService(
+          this._module.getQueryHandler,
+          this._module.saveQueryHandler
+        )
     );
     this._module.serviceGetter = () => instanceOfService.value;
 

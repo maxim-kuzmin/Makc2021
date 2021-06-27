@@ -16,7 +16,7 @@ export class TopMenuControlResource {
    * Получить заголовок ссылки на страницу контактов.
    * @returns Заголовок.
    */
-  getContactsPageLinkTitle() {
+  getAppContactsPageLinkTitle() {
     return this._appLocalizationService.getString('Контакты');
   }
 
@@ -24,7 +24,7 @@ export class TopMenuControlResource {
    * Получить заголовок ссылки на страницу сущности "DummyMain".
    * @returns Заголовок.
    */
-  getDummyMainItemPageLinkTitle() {
+  getAppDummyMainItemPageLinkTitle() {
     return this._appLocalizationService.getString('Элемент');
   }
 
@@ -32,7 +32,15 @@ export class TopMenuControlResource {
    * Получить заголовок ссылки на страницу сущностей "DummyMain".
    * @returns Заголовок.
    */
-  getDummyMainListPageLinkTitle() {
+  getAppDummyMainListPageLinkTitle() {
     return this._appLocalizationService.getString('Список');
+  }
+
+  /**
+   * Получить заголовок ссылки на главную страницу.
+   * @returns Заголовок.
+   */
+  getAppIndexPageLinkTitle() {
+    return this._appLocalizationService.getString('Главная');
   }
 }

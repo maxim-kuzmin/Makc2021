@@ -11,11 +11,12 @@ import { createUrlParts } from 'src/Layer1/Url/UrlParts';
 import { createDummyMainListPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/List/Queries/Get/DummyMainListPageGetQueryInput';
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 import { DefaultTableControl } from 'src/Layer6/Controls/Tables/Default/DefaultTableControl';
-import { QueryErrorControl } from 'src/Layer6/Controls/Errors/Query/QueryErrorControl';
+import { QueryErrorMessageControl } from 'src/Layer6/Controls/Messages/Error/Query/QueryErrorMessageControl';
 import {
   createDummyMainListPageTableRow,
   DummyMainListPageTableRow
 } from './Table/DummyMainListPageTableRow';
+import { useCurrentMenuItemKey } from 'src/Layer6/Controls/Menus/Top/TopMenuControlHooks';
 
 /**
  * Страница сущностей "DummyMain".
@@ -29,6 +30,11 @@ export function DummyMainListPage() {
   );
 
   const store = contextValue.Layer5.Pages.DummyMain.List.getModule().store;
+
+  const serviceOfTopMenuControl = contextValue.Layer6.Controls.Menus.Top.getModule()
+    .service;
+
+  useCurrentMenuItemKey(serviceOfTopMenuControl.itemOfAppDummyMainListPage.key);
 
   const urlService = contextValue.Layer1.getModule().urlService;
 
@@ -183,7 +189,10 @@ export function DummyMainListPage() {
     <>
       <GlobalWaitingControl isVisible={isWaiting} />
       {!isOk && (
-        <QueryErrorControl queryCode={queryCode} messages={errorMessages} />
+        <QueryErrorMessageControl
+          queryCode={queryCode}
+          messages={errorMessages}
+        />
       )}
       {isOk && (
         <DefaultTableControl

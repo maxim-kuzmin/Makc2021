@@ -1,9 +1,21 @@
-// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
-
 /**
  * Сервис HTTP.
  */
 export class HttpService {
+  /**
+   * Запрос методом DELETE.
+   * @template TResult Тип результата.
+   * @param url URL.
+   * @param customConfig Настраиваемая конфигурация.
+   * @returns Обещание результата.
+   */
+  delete<TResult>(url: string, customConfig: any = {}): Promise<TResult> {
+    return this.request<TResult>(url, {
+      ...customConfig,
+      method: 'DELETE'
+    });
+  }
+
   /**
    * Запрос методом GET.
    * @template TResult Тип результата.
@@ -38,10 +50,27 @@ export class HttpService {
     });
   }
 
-  private async request<TResult>(
+  /**
+   * Запрос методом PUT.
+   * @template TResult Тип результата.
+   * @param url URL.
+   * @param body Тело.
+   * @param customConfig Настраиваемая конфигурация.
+   * @returns Обещание результата.
+   */
+  put<TResult>(
     url: string,
-    payload: any = {}
+    body: any,
+    customConfig: any = {}
   ): Promise<TResult> {
+    return this.request<TResult>(url, {
+      ...customConfig,
+      method: 'PUT',
+      body
+    });
+  }
+
+  async request<TResult>(url: string, payload: any = {}): Promise<TResult> {
     const { body, ...customConfig } = payload;
 
     const headers = { 'Content-Type': 'application/json' };

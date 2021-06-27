@@ -3,12 +3,14 @@
 import { DummyMainItemPageGetQueryHandler } from './Queries/Get/DummyMainItemPageGetQueryHandler';
 import { DummyMainItemPageService } from './DummyMainItemPageService';
 import { DummyMainItemPageStore } from './DummyMainItemPageStore';
+import { DummyMainItemPageSaveQueryHandler } from './Queries/Save/DummyMainItemPageSaveQueryHandler';
 
 /**
  * Модуль страницы сущности "DummyMain".
  */
 export class DummyMainItemPageModule {
   private _getQueryHandlerGetter?: () => DummyMainItemPageGetQueryHandler;
+  private _saveQueryHandlerGetter?: () => DummyMainItemPageSaveQueryHandler;
   private _serviceGetter?: () => DummyMainItemPageService;
   private _storeGetter?: () => DummyMainItemPageStore;
 
@@ -26,6 +28,24 @@ export class DummyMainItemPageModule {
    */
   set getQueryHandlerGetter(value: () => DummyMainItemPageGetQueryHandler) {
     this._getQueryHandlerGetter = value;
+  }
+
+  /**
+   * Обработчик запроса на сохранение.
+   */
+  public get saveQueryHandler() {
+    return this._saveQueryHandlerGetter?.call(
+      this
+    ) as DummyMainItemPageSaveQueryHandler;
+  }
+
+  /**
+   * Обработчик запроса на сохранение. Получатель.
+   */
+  public set saveQueryHandlerGetter(
+    value: () => DummyMainItemPageSaveQueryHandler
+  ) {
+    this._saveQueryHandlerGetter = value;
   }
 
   /**

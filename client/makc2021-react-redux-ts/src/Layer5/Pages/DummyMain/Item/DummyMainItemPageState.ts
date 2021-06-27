@@ -5,6 +5,10 @@ import {
   QueryResultWithOutput
 } from 'src/Layer1/Query/QueryResultWithOutput';
 import { DummyMainItemPageGetQueryOutput } from './Queries/Get/DummyMainItemPageGetQueryOutput';
+import {
+  createDummyMainItemPageSaveQueryInput,
+  DummyMainItemPageSaveQueryInput
+} from './Queries/Save/DummyMainItemPageSaveQueryInput';
 
 /**
  * Состояние страницы сущности "DummyMain".
@@ -19,6 +23,11 @@ export interface DummyMainItemPageState {
    * Признак нахождения в ожидании.
    */
   isWaiting: boolean;
+
+  /**
+   * Входные данные запроса на сохранение.
+   */
+  saveQueryInput: DummyMainItemPageSaveQueryInput;
 }
 
 /**
@@ -28,6 +37,7 @@ export interface DummyMainItemPageState {
 export function createDummyMainItemPageState() {
   return {
     getQueryResult: createQueryResultWithOutput<DummyMainItemPageGetQueryOutput>(),
-    isWaiting: false
+    isWaiting: false,
+    saveQueryInput: createDummyMainItemPageSaveQueryInput()
   } as DummyMainItemPageState;
 }

@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { Context } from 'src/Context';
 import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
+import { useCurrentMenuItemKey } from 'src/Layer6/Controls/Menus/Top/TopMenuControlHooks';
 
 /**
  * Страница контактов.
@@ -16,6 +17,11 @@ export function ContactsPage() {
     contextValue.Layer6.Pages.Contacts.getModule().createResource,
     'Layer6/Pages/Contacts/ContactsPage'
   );
+
+  const serviceOfTopMenuControl = contextValue.Layer6.Controls.Menus.Top.getModule()
+    .service;
+
+  useCurrentMenuItemKey(serviceOfTopMenuControl.itemOfAppContactsPage.key);
 
   return (
     <>

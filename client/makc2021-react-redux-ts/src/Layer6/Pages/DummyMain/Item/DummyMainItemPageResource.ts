@@ -13,6 +13,14 @@ export class DummyMainItemPageResource {
   constructor(private _appLocalizationService: LocalizationService) {}
 
   /**
+   * Получить заголовок кнопки "Очистить".
+   * @returns Заголовок.
+   */
+  getClearButtonTitle() {
+    return this._appLocalizationService.getString('Очистить');
+  }
+
+  /**
    * Получить заголовок поля "ID".
    * @returns Заголовок.
    */

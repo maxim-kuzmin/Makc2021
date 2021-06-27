@@ -2,11 +2,14 @@
 
 import { TFunction } from 'i18next';
 import { TopMenuControlResource } from './TopMenuControlResource';
+import { TopMenuControlService } from './TopMenuControlService';
 
 /**
  * Модуль элемента управления "Верхнее меню".
  */
 export class TopMenuControlModule {
+  private _serviceGetter?: () => TopMenuControlService;
+
   private _resourceGetter?: (
     functionToTranslate: TFunction
   ) => TopMenuControlResource;
@@ -18,6 +21,20 @@ export class TopMenuControlModule {
     value: (functionToTranslate: TFunction) => TopMenuControlResource
   ) {
     this._resourceGetter = value;
+  }
+
+  /**
+   * Сервис.
+   */
+  get service() {
+    return this._serviceGetter?.call(this) as TopMenuControlService;
+  }
+
+  /**
+   * Сервис. Получатель.
+   */
+  set serviceGetter(value: () => TopMenuControlService) {
+    this._serviceGetter = value;
   }
 
   /**

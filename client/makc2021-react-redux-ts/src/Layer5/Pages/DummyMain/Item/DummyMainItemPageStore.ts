@@ -1,7 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CommonStore } from 'src/Layer1/Common/CommonStore';
+import { CommonPageStore } from 'src/Layer1/Common/Page/CommonPageStore';
 import { QueryResultWithOutput } from 'src/Layer1/Query/QueryResultWithOutput';
 import { TimingFactory } from 'src/Layer1/Timing/TimingFactory';
 import { AppThunk, RootState } from 'src/Layer5/Store';
@@ -9,11 +9,16 @@ import { DummyMainItemPageService } from './DummyMainItemPageService';
 import { createDummyMainItemPageState } from './DummyMainItemPageState';
 import { DummyMainItemPageGetQueryInput } from './Queries/Get/DummyMainItemPageGetQueryInput';
 import { DummyMainItemPageGetQueryOutput } from './Queries/Get/DummyMainItemPageGetQueryOutput';
+import { DummyMainItemPageSaveQueryInput } from './Queries/Save/DummyMainItemPageSaveQueryInput';
+import {
+  createDummyMainItemPageStorePayloadForSave,
+  DummyMainItemPageStorePayloadForSave
+} from './Store/DummyMainItemPagePayloadForSave';
 
 /**
  * Хранилище страницы сущности "DummyMain".
  */
-export class DummyMainItemPageStore extends CommonStore {
+export class DummyMainItemPageStore extends CommonPageStore {
   /**
    * Конструктор.
    * @param _appService Сервис.
@@ -56,6 +61,25 @@ export class DummyMainItemPageStore extends CommonStore {
   }
 
   /**
+   * Сохранить асинхронно.
+   * @param input Входные данные;
+   * @returns Асинхронное действие.
+   */
+  saveAsync(input: DummyMainItemPageSaveQueryInput): AppThunk {
+    return async (dispatch) => {
+      const waiting = this.appTimingFactory.createWaiting();
+
+      waiting.delay(() => dispatch(wait(true)));
+
+      const result = await this._appService.save(input);
+
+      dispatch(save(createDummyMainItemPageStorePayloadForSave(input, result)));
+
+      waiting.prolong(() => dispatch(wait(false)));
+    };
+  }
+
+  /**
    * Отобрать результат запроса на получение.
    * @param state Состояние.
    * @returns Результат запроса на получение.
@@ -71,6 +95,15 @@ export class DummyMainItemPageStore extends CommonStore {
    */
   selectIsWaiting(state: RootState) {
     return state.ofDummyMainItemPage.isWaiting;
+  }
+
+  /**
+   * Отобрать входные данные запроса на сохранение.
+   * @param state Состояние.
+   * @returns Входные данные запроса на сохранение.
+   */
+  selectSaveQueryInput(state: RootState) {
+    return state.ofDummyMainItemPage.saveQueryInput;
   }
 }
 
@@ -89,12 +122,19 @@ const slice = createSlice({
     ) => {
       state.getQueryResult = action.payload;
     },
+    save: (
+      state,
+      action: PayloadAction<DummyMainItemPageStorePayloadForSave>
+    ) => {
+      state.getQueryResult = action.payload.getQueryResult;
+      state.saveQueryInput = action.payload.saveQueryInput;
+    },
     wait: (state, action: PayloadAction<boolean>) => {
       state.isWaiting = action.payload;
     }
   }
 });
 
-const { clear, load, wait } = slice.actions;
+const { clear, load, save, wait } = slice.actions;
 
 export default slice.reducer;

@@ -1,9 +1,9 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import {
-  createItemGetQueryDomainInput,
-  ItemGetQueryDomainInput
-} from 'src/Layer4/Domains/DummyMain/Queries/Item/Get/ItemGetQueryDomainInput';
+  createDomainItemGetQueryInput,
+  DomainItemGetQueryInput
+} from 'src/Layer4/Domains/DummyMain/Queries/Item/Get/DomainItemGetQueryInput';
 
 /**
  * Входные данные запроса на получение страницы сущности "DummyMain".
@@ -12,7 +12,7 @@ export interface DummyMainItemPageGetQueryInput {
   /**
    * Элемент.
    */
-  item: ItemGetQueryDomainInput;
+  item: DomainItemGetQueryInput;
 }
 
 /**
@@ -21,6 +21,6 @@ export interface DummyMainItemPageGetQueryInput {
  */
 export function createDummyMainItemPageGetQueryInput(): DummyMainItemPageGetQueryInput {
   return {
-    item: createItemGetQueryDomainInput()
+    item: createDomainItemGetQueryInput()
   } as DummyMainItemPageGetQueryInput;
 }

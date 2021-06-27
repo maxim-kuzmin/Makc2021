@@ -6,3 +6,8 @@
   align-items: center;
   justify-content: left;
 }
+
+.alert ul {
+  list-style: none;
+  padding-inline-start: 0;
+}
