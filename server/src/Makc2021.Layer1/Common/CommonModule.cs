@@ -55,6 +55,22 @@ namespace Makc2021.Layer1.Common
         #region Protected methods
 
         /// <summary>
+        /// Создать зависимости.
+        /// </summary>
+        /// <returns>Зависимости.</returns>
+        protected IEnumerable<CommonModule> CreateDepedensies(params CommonModule[] modules)
+        {
+            IEnumerable<CommonModule> result = modules;
+
+            foreach (var module in modules)
+            {
+                result = result.Union(module.GetDependencies());
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Получить импортированные типы.
         /// </summary>
         /// <returns>Импортированные типы.</returns>
