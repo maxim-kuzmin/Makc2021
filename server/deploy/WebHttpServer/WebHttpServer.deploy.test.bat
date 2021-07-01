@@ -1,1 +1,1 @@
-WebHttpServer.deploy "Test" "D:\www\makc2021--web-http-server--5001"
+..\deploy "Test" "D:\www\makc2021--web-http-server--7002" "Makc2021.Layer6.Apps.WebHttpServer"
