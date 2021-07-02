@@ -15,7 +15,7 @@ namespace Makc2021.Layer2.Config
         /// <summary>
         /// Путь к файлу.
         /// </summary>
-        public static string FilePath { get; } = Path.Combine("ConfigFiles", "Makc2021.Layer2.config");
+        public static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer2.config");
 
         /// <summary>
         /// Настройки.
