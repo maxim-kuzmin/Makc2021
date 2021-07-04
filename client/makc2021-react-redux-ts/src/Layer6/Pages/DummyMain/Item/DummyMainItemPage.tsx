@@ -13,10 +13,11 @@ import { createDummyMainEntityObject } from 'src/Layer3/Sample/Entities/DummyMai
 import { DummyMainItemPageParams } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageParams';
 import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Get/DummyMainItemPageGetQueryInput';
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
-import { QueryErrorMessageControl } from 'src/Layer6/Controls/Messages/Error/Query/QueryErrorMessageControl';
-import { QuerySuccessMessageControl } from 'src/Layer6/Controls/Messages/Success/Query/QuerySuccessMessageControl';
 import { useCurrentMenuItemKey } from 'src/Layer6/Controls/Menus/Top/TopMenuControlHooks';
 import { createDummyMainItemPageSaveQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Save/DummyMainItemPageSaveQueryInput';
+import { useQueryNotification } from 'src/Layer6/Controls/Notifications/Query/QueryNotificationControlHooks';
+import { clear as clearQueryNotification } from 'src/Layer5/Controls/Notifications/Query/QueryNotificationControlStore';
+import { clear } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageStore';
 
 /**
  * Страница сущности "DummyMain".
@@ -52,23 +53,21 @@ export function DummyMainItemPage() {
     }
 
     return () => {
-      dispatch(store.clearAsync());
+      dispatch(clear());
+
+      dispatch(clearQueryNotification());
     };
   }, [entityId, dispatch, store]);
 
   const getQueryResult = useSelector(store.selectGetQueryResult);
 
+  useQueryNotification(getQueryResult);
+
   const isWaiting = useSelector(store.selectIsWaiting);
 
   const saveQueryInput = useSelector(store.selectSaveQueryInput);
 
-  const {
-    errorMessages,
-    isOk,
-    output,
-    queryCode,
-    successMessages
-  } = getQueryResult;
+  const { output } = getQueryResult;
 
   const dataOfDummyMainEntity =
     output?.item?.objectOfDummyMainEntity ??
@@ -84,12 +83,14 @@ export function DummyMainItemPage() {
 
   const refToInputOfName = useRef<HTMLInputElement>(null);
 
-  const clear = () => {
+  const clearForm = () => {
     if (refToInputOfName.current) {
       refToInputOfName.current.value = '';
     }
 
-    dispatch(store.clearAsync());
+    dispatch(clear());
+
+    dispatch(clearQueryNotification());
   };
 
   const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
@@ -98,6 +99,8 @@ export function DummyMainItemPage() {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    dispatch(clearQueryNotification());
 
     const input = createDummyMainItemPageSaveQueryInput();
 
@@ -109,18 +112,6 @@ export function DummyMainItemPage() {
   return (
     <>
       <GlobalWaitingControl isVisible={isWaiting} />
-      {!isOk && (
-        <QueryErrorMessageControl
-          queryCode={queryCode}
-          messages={errorMessages}
-        />
-      )}
-      {isOk && (
-        <QuerySuccessMessageControl
-          queryCode={queryCode}
-          messages={successMessages}
-        />
-      )}
       <Form onSubmit={onSubmit}>
         {objectOfDummyMainEntity.id > 0 && (
           <Form.Group as={Row} controlId="id">
@@ -150,7 +141,7 @@ export function DummyMainItemPage() {
           {resource.getSaveButtonTitle()}
         </Button>
         &nbsp;
-        <Button variant="primary" type="button" onClick={clear}>
+        <Button variant="primary" type="button" onClick={clearForm}>
           {resource.getClearButtonTitle()}
         </Button>
       </Form>

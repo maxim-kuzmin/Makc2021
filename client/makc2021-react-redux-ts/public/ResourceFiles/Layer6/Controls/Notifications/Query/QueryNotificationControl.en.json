@@ -1,0 +1,5 @@
+{
+  "Запрос {{queryCode}} выполнен с ошибками": "The query {{queryCode}} executed with errors",
+  "Запрос {{queryCode}} выполнен с предупреждениями": "The query {{queryCode}} executed with warnings",
+  "Запрос {{queryCode}} выполнен успешно": "The query {{queryCode}} executed successfully"
+}

@@ -11,12 +11,14 @@ import { createUrlParts } from 'src/Layer1/Url/UrlParts';
 import { createDummyMainListPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/List/Queries/Get/DummyMainListPageGetQueryInput';
 import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 import { DefaultTableControl } from 'src/Layer6/Controls/Tables/Default/DefaultTableControl';
-import { QueryErrorMessageControl } from 'src/Layer6/Controls/Messages/Error/Query/QueryErrorMessageControl';
 import {
   createDummyMainListPageTableRow,
   DummyMainListPageTableRow
 } from './Table/DummyMainListPageTableRow';
 import { useCurrentMenuItemKey } from 'src/Layer6/Controls/Menus/Top/TopMenuControlHooks';
+import { useQueryNotification } from 'src/Layer6/Controls/Notifications/Query/QueryNotificationControlHooks';
+import { clear as clearQueryNotification } from 'src/Layer5/Controls/Notifications/Query/QueryNotificationControlStore';
+import { clear } from 'src/Layer5/Pages/DummyMain/List/DummyMainListPageStore';
 
 /**
  * Страница сущностей "DummyMain".
@@ -72,6 +74,12 @@ export function DummyMainListPage() {
     list.entityName = entityName;
 
     dispatch(store.loadAsync(input));
+
+    return () => {
+      dispatch(clear());
+
+      dispatch(clearQueryNotification());
+    };
   }, [
     pageNumber,
     pageSize,
@@ -84,9 +92,11 @@ export function DummyMainListPage() {
 
   const getQueryResult = useSelector(store.selectGetQueryResult);
 
+  useQueryNotification(getQueryResult);
+
   const isWaiting = useSelector(store.selectIsWaiting);
 
-  const { isOk, errorMessages, output, queryCode } = getQueryResult;
+  const { isOk, output } = getQueryResult;
 
   const createPageUrl = useCallback(
     (
@@ -188,12 +198,6 @@ export function DummyMainListPage() {
   return (
     <>
       <GlobalWaitingControl isVisible={isWaiting} />
-      {!isOk && (
-        <QueryErrorMessageControl
-          queryCode={queryCode}
-          messages={errorMessages}
-        />
-      )}
       {isOk && (
         <DefaultTableControl
           columns={columns}

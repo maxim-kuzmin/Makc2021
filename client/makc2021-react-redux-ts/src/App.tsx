@@ -16,6 +16,7 @@ import { DummyMainItemPage } from './Layer6/Pages/DummyMain/Item/DummyMainItemPa
 import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPage';
 import { Configurator } from './Configurator';
 import { Context } from './Context';
+import { QueryNotificationControl } from './Layer6/Controls/Notifications/Query/QueryNotificationControl';
 
 Configurator.configureServices();
 
@@ -31,6 +32,7 @@ function App() {
         <div className="App">
           <LanguageSwitcherControl />
           <TopMenuControl />
+          <QueryNotificationControl />
           <Switch>
             <Redirect exact path="/" to="/dummy-main/list" />
             <Route exact path="/dummy-main/list">

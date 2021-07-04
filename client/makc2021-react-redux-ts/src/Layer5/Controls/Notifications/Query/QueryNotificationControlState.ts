@@ -7,9 +7,9 @@ import { QueryResult } from 'src/Layer1/Query/QueryResult';
  */
 export interface QueryNotificationControlState {
   /**
-   * Карта результата запроса по коду.
+   * Результы запросов.
    */
-  mapOfQueryResultByCode: Map<string, QueryResult>;
+  queryResults: QueryResult[];
 }
 
 /**
@@ -18,6 +18,6 @@ export interface QueryNotificationControlState {
  */
 export function createQueryNotificationControlState() {
   return {
-    mapOfQueryResultByCode: new Map<string, QueryResult>()
-  };
+    queryResults: []
+  } as QueryNotificationControlState;
 }

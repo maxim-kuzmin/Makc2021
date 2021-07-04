@@ -19,16 +19,6 @@ export class QueryNotificationControlStore {
   }
 
   /**
-   * Очистить асинхронно.
-   * @returns Асинхронное действие.
-   */
-  clearAsync(): AppThunk {
-    return async (dispatch) => {
-      dispatch(clear());
-    };
-  }
-
-  /**
    * Удалить асинхронно результат запроса по коду.
    * @param queryCode Код запроса.
    * @returns Асинхронное действие.
@@ -40,12 +30,12 @@ export class QueryNotificationControlStore {
   }
 
   /**
-   * Отобрать карту результата запроса по коду.
+   * Отобрать результаты запросов.
    * @param state Состояние.
-   * @returns Карта результата запроса по коду.
+   * @returns Результаты запросов.
    */
-  selectMapOfQueryResultByCode(state: RootState) {
-    return state.ofQueryNotificationControl.mapOfQueryResultByCode;
+  selectQueryResults(state: RootState) {
+    return state.ofQueryNotificationControl.queryResults;
   }
 }
 
@@ -57,17 +47,22 @@ const slice = createSlice({
   reducers: {
     clear: () => initialState,
     addQueryResult: (state, action: PayloadAction<QueryResult>) => {
-      state.mapOfQueryResultByCode.set(
-        action.payload.queryCode,
-        action.payload
-      );
+      state.queryResults.push(action.payload);
     },
     removeQueryResultByCode: (state, action: PayloadAction<string>) => {
-      state.mapOfQueryResultByCode.delete(action.payload);
+      const index = state.queryResults.findIndex(
+        (queryResult) => queryResult.queryCode === action.payload
+      );
+
+      if (index > -1) {
+        state.queryResults.splice(index, 1);
+      }
     }
   }
 });
 
-const { clear, addQueryResult, removeQueryResultByCode } = slice.actions;
+const { addQueryResult, removeQueryResultByCode } = slice.actions;
+
+export const { clear } = slice.actions;
 
 export default slice.reducer;

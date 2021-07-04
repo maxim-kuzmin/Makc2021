@@ -3,6 +3,7 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
+import { enableMapSet } from 'immer';
 import { useTranslation } from 'react-i18next';
 import { createAppSettings } from './AppSettings';
 import { defaultContextValue } from './Context';
@@ -15,6 +16,8 @@ export namespace Configurator {
    * Настроить сервисы.
    */
   export function configureServices() {
+    enableMapSet();
+
     const currentLanguage = 'en';
 
     i18next
