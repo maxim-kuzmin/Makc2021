@@ -17,8 +17,6 @@ import {
 } from './Table/DummyMainListPageTableRow';
 import { useCurrentMenuItemKey } from 'src/Layer6/Controls/Menus/Top/TopMenuControlHooks';
 import { useQueryNotification } from 'src/Layer6/Controls/Notifications/Query/QueryNotificationControlHooks';
-import { clear as clearQueryNotification } from 'src/Layer5/Controls/Notifications/Query/QueryNotificationControlStore';
-import { clear } from 'src/Layer5/Pages/DummyMain/List/DummyMainListPageStore';
 
 /**
  * Страница сущностей "DummyMain".
@@ -38,9 +36,18 @@ export function DummyMainListPage() {
 
   useCurrentMenuItemKey(serviceOfTopMenuControl.itemOfAppDummyMainListPage.key);
 
+  const storeOfQueryNotifications = contextValue.Layer5.Controls.Notifications.Query.getModule()
+    .store;
+
   const urlService = contextValue.Layer1.getModule().urlService;
 
   const dispatch = useDispatch();
+
+  const clearStore = useCallback(() => {
+    dispatch(store.clear());
+
+    dispatch(storeOfQueryNotifications.clear());
+  }, [dispatch, store, storeOfQueryNotifications]);
 
   const location = useLocation();
 
@@ -75,11 +82,7 @@ export function DummyMainListPage() {
 
     dispatch(store.loadAsync(input));
 
-    return () => {
-      dispatch(clear());
-
-      dispatch(clearQueryNotification());
-    };
+    return () => clearStore();
   }, [
     pageNumber,
     pageSize,
@@ -87,7 +90,8 @@ export function DummyMainListPage() {
     store,
     sortDirection,
     sortField,
-    entityName
+    entityName,
+    clearStore
   ]);
 
   const getQueryResult = useSelector(store.selectGetQueryResult);

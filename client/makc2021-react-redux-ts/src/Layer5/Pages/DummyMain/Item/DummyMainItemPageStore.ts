@@ -32,40 +32,51 @@ export class DummyMainItemPageStore extends CommonPageStore {
   }
 
   /**
+   * Очистить.
+   */
+  clear() {
+    return slice.actions.clear();
+  }
+
+  /**
    * Загрузить асинхронно.
-   * @param input Входные данные;
+   * @param input Входные данные.
    * @returns Асинхронное действие.
    */
   loadAsync(input: DummyMainItemPageGetQueryInput): AppThunk {
     return async (dispatch) => {
       const waiting = this.appTimingFactory.createWaiting();
 
-      waiting.delay(() => dispatch(wait(true)));
+      waiting.delay(() => dispatch(slice.actions.wait(true)));
 
       const result = await this._appService.get(input);
 
-      dispatch(load(result));
+      dispatch(slice.actions.load(result));
 
-      waiting.prolong(() => dispatch(wait(false)));
+      waiting.prolong(() => dispatch(slice.actions.wait(false)));
     };
   }
 
   /**
    * Сохранить асинхронно.
-   * @param input Входные данные;
+   * @param input Входные данные.
    * @returns Асинхронное действие.
    */
   saveAsync(input: DummyMainItemPageSaveQueryInput): AppThunk {
     return async (dispatch) => {
       const waiting = this.appTimingFactory.createWaiting();
 
-      waiting.delay(() => dispatch(wait(true)));
+      waiting.delay(() => dispatch(slice.actions.wait(true)));
 
       const result = await this._appService.save(input);
 
-      dispatch(save(createDummyMainItemPageStorePayloadForSave(input, result)));
+      dispatch(
+        slice.actions.save(
+          createDummyMainItemPageStorePayloadForSave(input, result)
+        )
+      );
 
-      waiting.prolong(() => dispatch(wait(false)));
+      waiting.prolong(() => dispatch(slice.actions.wait(false)));
     };
   }
 
@@ -124,9 +135,5 @@ const slice = createSlice({
     }
   }
 });
-
-const { load, save, wait } = slice.actions;
-
-export const { clear } = slice.actions;
 
 export default slice.reducer;

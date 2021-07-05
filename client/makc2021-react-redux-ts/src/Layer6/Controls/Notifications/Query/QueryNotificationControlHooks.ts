@@ -20,11 +20,10 @@ export function useQueryNotification(queryResult: QueryResult) {
   useEffect(() => {
     if (
       !queryResults.some(
-        (existingQueryResult) =>
-          existingQueryResult.queryCode === queryResult.queryCode
+        (oldQueryResult) => oldQueryResult.queryCode === queryResult.queryCode
       )
     ) {
       dispatch(store.addQueryResultAsync(queryResult));
     }
-  }, [queryResult?.queryCode, dispatch, queryResults, store, queryResult]);
+  }, [queryResult.queryCode, dispatch, queryResults, store, queryResult]);
 }

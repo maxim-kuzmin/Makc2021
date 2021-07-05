@@ -27,21 +27,28 @@ export class DummyMainListPageStore extends CommonPageStore {
   }
 
   /**
+   * Очистить.
+   */
+  clear() {
+    return slice.actions.clear();
+  }
+
+  /**
    * Загрузить асинхронно.
-   * @param input Входные данные;
+   * @param input Входные данные.
    * @returns Асинхронное действие.
    */
   loadAsync(input: DummyMainListPageGetQueryInput): AppThunk {
     return async (dispatch) => {
       const waiting = this.appTimingFactory.createWaiting();
 
-      waiting.delay(() => dispatch(wait(true)));
+      waiting.delay(() => dispatch(slice.actions.wait(true)));
 
       const result = await this._appService.get(input);
 
-      dispatch(load(result));
+      dispatch(slice.actions.load(result));
 
-      waiting.prolong(() => dispatch(wait(false)));
+      waiting.prolong(() => dispatch(slice.actions.wait(false)));
     };
   }
 
@@ -84,9 +91,5 @@ const slice = createSlice({
     }
   }
 });
-
-const { load, wait } = slice.actions;
-
-export const { clear } = slice.actions;
 
 export default slice.reducer;

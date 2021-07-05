@@ -14,8 +14,15 @@ export class QueryNotificationControlStore {
    */
   addQueryResultAsync(queryResult: QueryResult): AppThunk {
     return async (dispatch) => {
-      dispatch(addQueryResult(queryResult));
+      dispatch(slice.actions.addQueryResult(queryResult));
     };
+  }
+
+  /**
+   * Очистить.
+   */
+  clear() {
+    return slice.actions.clear();
   }
 
   /**
@@ -25,7 +32,7 @@ export class QueryNotificationControlStore {
    */
   removeQueryResultByCodeAsync(queryCode: string): AppThunk {
     return async (dispatch) => {
-      dispatch(removeQueryResultByCode(queryCode));
+      dispatch(slice.actions.removeQueryResultByCode(queryCode));
     };
   }
 
@@ -60,9 +67,5 @@ const slice = createSlice({
     }
   }
 });
-
-const { addQueryResult, removeQueryResultByCode } = slice.actions;
-
-export const { clear } = slice.actions;
 
 export default slice.reducer;

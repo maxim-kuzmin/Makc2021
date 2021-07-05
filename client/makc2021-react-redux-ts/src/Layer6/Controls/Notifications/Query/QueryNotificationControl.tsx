@@ -21,7 +21,7 @@ export function QueryNotificationControl() {
     .store;
 
   const queryResults = useSelector(store.selectQueryResults);
-  console.log('MAKC:queryResults', queryResults);
+
   return (
     <>
       {queryResults.map((queryResult) => {

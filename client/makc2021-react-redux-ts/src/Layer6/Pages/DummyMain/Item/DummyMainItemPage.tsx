@@ -16,8 +16,7 @@ import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/Global
 import { useCurrentMenuItemKey } from 'src/Layer6/Controls/Menus/Top/TopMenuControlHooks';
 import { createDummyMainItemPageSaveQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Save/DummyMainItemPageSaveQueryInput';
 import { useQueryNotification } from 'src/Layer6/Controls/Notifications/Query/QueryNotificationControlHooks';
-import { clear as clearQueryNotification } from 'src/Layer5/Controls/Notifications/Query/QueryNotificationControlStore';
-import { clear } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageStore';
+import { useCallback } from 'react';
 
 /**
  * Страница сущности "DummyMain".
@@ -37,11 +36,20 @@ export function DummyMainItemPage() {
 
   useCurrentMenuItemKey(serviceOfTopMenuControl.itemOfAppDummyMainItemPage.key);
 
+  const storeOfQueryNotifications = contextValue.Layer5.Controls.Notifications.Query.getModule()
+    .store;
+
   const { id } = useParams<DummyMainItemPageParams>();
 
   const entityId = Number(id);
 
   const dispatch = useDispatch();
+
+  const clearStore = useCallback(() => {
+    dispatch(store.clear());
+
+    dispatch(storeOfQueryNotifications.clear());
+  }, [dispatch, store, storeOfQueryNotifications]);
 
   useEffect(() => {
     if (entityId > 0) {
@@ -52,12 +60,8 @@ export function DummyMainItemPage() {
       dispatch(store.loadAsync(input));
     }
 
-    return () => {
-      dispatch(clear());
-
-      dispatch(clearQueryNotification());
-    };
-  }, [entityId, dispatch, store]);
+    return () => clearStore();
+  }, [entityId, dispatch, store, clearStore]);
 
   const getQueryResult = useSelector(store.selectGetQueryResult);
 
@@ -88,9 +92,7 @@ export function DummyMainItemPage() {
       refToInputOfName.current.value = '';
     }
 
-    dispatch(clear());
-
-    dispatch(clearQueryNotification());
+    clearStore();
   };
 
   const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
@@ -100,7 +102,7 @@ export function DummyMainItemPage() {
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    dispatch(clearQueryNotification());
+    clearStore();
 
     const input = createDummyMainItemPageSaveQueryInput();
 

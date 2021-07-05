@@ -14,7 +14,7 @@ export class TopMenuControlStore {
    */
   clearAsync(): AppThunk {
     return async (dispatch) => {
-      dispatch(clear());
+      dispatch(slice.actions.clear());
     };
   }
 
@@ -34,7 +34,7 @@ export class TopMenuControlStore {
    */
   setCurrentItemKeyAsync(currentItemKey: string): AppThunk {
     return async (dispatch) => {
-      dispatch(setCurrentItemKey(currentItemKey));
+      dispatch(slice.actions.setCurrentItemKey(currentItemKey));
     };
   }
 }
@@ -51,7 +51,5 @@ const slice = createSlice({
     }
   }
 });
-
-const { clear, setCurrentItemKey } = slice.actions;
 
 export default slice.reducer;
