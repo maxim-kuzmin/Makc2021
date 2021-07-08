@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System;
-using Makc2021.Layer3.Sample.Mappers.EF.Db;
 using Makc2021.Layer4.Domains.DummyMain.Testing.Fixtures;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,10 +11,6 @@ namespace Makc2021.Layer4.Domains.DummyMain.Testing
     /// </summary>
     public class UnitTestFixtures : IDisposable
     {
-        #region Constants
-
-        #endregion Constants
-
         #region Fields
 
         private bool _disposedValue;
@@ -40,7 +35,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Testing
         {
             Configurator.UseServices();
 
-            DomainService = new DomainServiceFixture(Configurator.ServiceProvider.GetRequiredService<IMapperDbFactory>());
+            DomainService = Configurator.ServiceProvider.GetRequiredService<DomainServiceFixture>();
         }
 
         // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources

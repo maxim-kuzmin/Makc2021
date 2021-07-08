@@ -3,11 +3,11 @@
 using System;
 using System.Collections.Generic;
 using Makc2021.Layer1.Common;
-using Makc2021.Layer3.Sample.Mappers.EF.Db;
+using Makc2021.Layer4.Domains.DummyMain.Testing.Fakes;
+using Makc2021.Layer4.Domains.DummyMain.Testing.Fixtures;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Moq;
 
 namespace Makc2021.Layer4.Domains.DummyMain.Testing
 {
@@ -16,19 +16,28 @@ namespace Makc2021.Layer4.Domains.DummyMain.Testing
     /// </summary>
     public class Module : CommonModule
     {
+        #region Properties
+
+        private FakesModule Fakes { get; } = new FakesModule();
+
+        private FixturesModule Fixtures { get; } = new FixturesModule();
+
+        #endregion Properties
+
         #region Public methods
 
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
+            Fakes.ConfigureServices(services);
+            Fixtures.ConfigureServices(services);
+
             services.AddSingleton(new CommonEnvironment());
 
             services.AddLocalization(options =>
             {
                 CommonConfigurator.ConfigureLocalization(options);
             });
-
-            services.AddSingleton(x => CreateDbFactory());
         }
 
         /// <inheritdoc/>
@@ -38,9 +47,14 @@ namespace Makc2021.Layer4.Domains.DummyMain.Testing
             {
                 typeof(CommonEnvironment),                
                 typeof(ILogger),
-                typeof(IMapperDbFactory),
                 typeof(IStringLocalizer)                
             };
+        }
+
+        /// <inheritdoc/>
+        public sealed override IEnumerable<CommonModule> GetDependencies()
+        {
+            return CreateDepedensies(Fakes, Fixtures);
         }
 
         #endregion Public methods
@@ -57,16 +71,5 @@ namespace Makc2021.Layer4.Domains.DummyMain.Testing
         }
 
         #endregion Protected methods
-
-        #region Private methods
-
-        private IMapperDbFactory CreateDbFactory()
-        {
-            var result = new Mock<IMapperDbFactory>();
-
-            return result.Object;
-        }
-
-        #endregion Private methods
     }
 }
