@@ -32,7 +32,7 @@ export function TopMenuControl() {
 
   useEffect(() => {
     return () => {
-      dispatch(store.clearAsync());
+      dispatch(store.clear());
     };
   }, [dispatch, store]);
 

@@ -1,9 +1,9 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 /**
- * Общие свойства элемента управления "Ожидание".
+ * Свойства элемента управления "Встроенное ожидание".
  */
-export interface CommonWaitingControlProps {
+export interface InlineWaitingControlProps {
   /**
    * Признак видимости.
    */

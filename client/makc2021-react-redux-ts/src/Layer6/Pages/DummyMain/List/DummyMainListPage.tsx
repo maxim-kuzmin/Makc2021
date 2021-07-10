@@ -9,7 +9,6 @@ import { Context } from 'src/Context';
 import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 import { createUrlParts } from 'src/Layer1/Url/UrlParts';
 import { createDummyMainListPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/List/Queries/Get/DummyMainListPageGetQueryInput';
-import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 import { DefaultTableControl } from 'src/Layer6/Controls/Tables/Default/DefaultTableControl';
 import {
   createDummyMainListPageTableRow,
@@ -36,7 +35,7 @@ export function DummyMainListPage() {
 
   useCurrentMenuItemKey(serviceOfTopMenuControl.itemOfAppDummyMainListPage.key);
 
-  const storeOfQueryNotifications = contextValue.Layer5.Controls.Notifications.Query.getModule()
+  const storeOfQueryNotification = contextValue.Layer5.Controls.Notifications.Query.getModule()
     .store;
 
   const urlService = contextValue.Layer1.getModule().urlService;
@@ -46,8 +45,8 @@ export function DummyMainListPage() {
   const clearStore = useCallback(() => {
     dispatch(store.clear());
 
-    dispatch(storeOfQueryNotifications.clear());
-  }, [dispatch, store, storeOfQueryNotifications]);
+    dispatch(storeOfQueryNotification.clear());
+  }, [dispatch, store, storeOfQueryNotification]);
 
   const location = useLocation();
 
@@ -97,8 +96,6 @@ export function DummyMainListPage() {
   const getQueryResult = useSelector(store.selectGetQueryResult);
 
   useQueryNotification(getQueryResult);
-
-  const isWaiting = useSelector(store.selectIsWaiting);
 
   const { isOk, output } = getQueryResult;
 
@@ -199,22 +196,17 @@ export function DummyMainListPage() {
     return isOk ? output.list.totalCount : 0;
   }, [isOk, output?.list.totalCount]);
 
-  return (
-    <>
-      <GlobalWaitingControl isVisible={isWaiting} />
-      {isOk && (
-        <DefaultTableControl
-          columns={columns}
-          data={data}
-          filters={filters}
-          pageNumber={pageNumber}
-          pageSize={pageSize}
-          sortDirection={sortDirection}
-          sortField={sortField}
-          totalCount={totalCount}
-          createPageUrl={createPageUrl}
-        />
-      )}
-    </>
-  );
+  return isOk ? (
+    <DefaultTableControl
+      columns={columns}
+      data={data}
+      filters={filters}
+      pageNumber={pageNumber}
+      pageSize={pageSize}
+      sortDirection={sortDirection}
+      sortField={sortField}
+      totalCount={totalCount}
+      createPageUrl={createPageUrl}
+    />
+  ) : null;
 }

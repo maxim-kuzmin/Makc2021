@@ -14,11 +14,6 @@ export interface DummyMainListPageState {
    * Результат запроса на получение.
    */
   getQueryResult: QueryResultWithOutput<DummyMainListPageGetQueryOutput>;
-
-  /**
-   * Признак нахождения в ожидании.
-   */
-  isWaiting: boolean;
 }
 
 /**
@@ -27,7 +22,6 @@ export interface DummyMainListPageState {
  */
 export function createDummyMainListPageState() {
   return {
-    getQueryResult: createQueryResultWithOutput<DummyMainListPageGetQueryOutput>(),
-    isWaiting: false
+    getQueryResult: createQueryResultWithOutput<DummyMainListPageGetQueryOutput>()
   } as DummyMainListPageState;
 }

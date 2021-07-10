@@ -20,6 +20,7 @@ export class QueryNotificationControlStore {
 
   /**
    * Очистить.
+   * @returns Действие.
    */
   clear() {
     return slice.actions.clear();

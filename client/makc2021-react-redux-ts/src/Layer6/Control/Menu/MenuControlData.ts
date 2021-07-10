@@ -1,18 +1,18 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { CommonMenuItem } from './CommonMenuItem';
+import { MenuControlItem } from './MenuControlItem';
 
 /**
- * Данные общего меню.
+ * Данные элемента управления "Меню".
  */
-export class CommonMenuData {
-  private readonly _lookupByKey = new Map<string, CommonMenuItem>();
+export class MenuControlData {
+  private readonly _lookupByKey = new Map<string, MenuControlItem>();
 
   /**
    * Конструктор.
    * @param items Пункты.
    */
-  constructor(public items: CommonMenuItem[]) {
+  constructor(public items: MenuControlItem[]) {
     this.loadItems(items);
   }
   /**
@@ -32,7 +32,7 @@ export class CommonMenuData {
   getItemWithAncestorsByKey(key: string) {
     const item = this.getItemByKey(key);
 
-    let result: CommonMenuItem[] = [];
+    let result: MenuControlItem[] = [];
 
     if (item) {
       if (item.parent) {
@@ -49,7 +49,7 @@ export class CommonMenuData {
     return result;
   }
 
-  private loadItems(items?: CommonMenuItem[]) {
+  private loadItems(items?: MenuControlItem[]) {
     if (!items) {
       return;
     }

@@ -53,6 +53,7 @@ export class DummyMainItemPageContext {
       () =>
         new DummyMainItemPageStore(
           this._module.service,
+          contextOfLayer5.Controls.Waitings.Global.getModule().store,
           contextOfLayer1.getModule().timingFactory
         )
     );

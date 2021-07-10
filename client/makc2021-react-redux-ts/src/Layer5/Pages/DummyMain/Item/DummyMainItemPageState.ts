@@ -20,11 +20,6 @@ export interface DummyMainItemPageState {
   getQueryResult: QueryResultWithOutput<DummyMainItemPageGetQueryOutput>;
 
   /**
-   * Признак нахождения в ожидании.
-   */
-  isWaiting: boolean;
-
-  /**
    * Входные данные запроса на сохранение.
    */
   saveQueryInput: DummyMainItemPageSaveQueryInput;

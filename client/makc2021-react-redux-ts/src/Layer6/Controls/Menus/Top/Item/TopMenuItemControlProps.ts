@@ -1,6 +1,6 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { CommonMenuItem } from 'src/Layer6/Common/Menu/CommonMenuItem';
+import { MenuControlItem } from 'src/Layer6/Control/Menu/MenuControlItem';
 
 /**
  * Свойства элемента управления "Пункт верхнего меню".
@@ -14,5 +14,5 @@ export interface TopMenuItemControlProps {
   /**
    * Пункт меню.
    */
-  menuItem: CommonMenuItem;
+  menuItem: MenuControlItem;
 }

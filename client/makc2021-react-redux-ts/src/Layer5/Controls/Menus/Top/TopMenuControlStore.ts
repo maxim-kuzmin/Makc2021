@@ -2,20 +2,18 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from 'src/Layer5/Store';
-import { createTopMenuControlState } from './TopMenuControlState';
+import { createMenuControlState } from '../../../Control/Menu/MenuControlState';
 
 /**
  * Хранилище элемента управления "Верхнее меню".
  */
 export class TopMenuControlStore {
   /**
-   * Очистить асинхронно.
-   * @returns Асинхронное действие.
+   * Очистить.
+   * @returns Действие.
    */
-  clearAsync(): AppThunk {
-    return async (dispatch) => {
-      dispatch(slice.actions.clear());
-    };
+  clear() {
+    return slice.actions.clear();
   }
 
   /**
@@ -39,7 +37,7 @@ export class TopMenuControlStore {
   }
 }
 
-const initialState = createTopMenuControlState();
+const initialState = createMenuControlState();
 
 const slice = createSlice({
   name: 'TopMenuControl',

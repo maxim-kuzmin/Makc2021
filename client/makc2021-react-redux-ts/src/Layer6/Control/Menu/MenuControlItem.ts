@@ -1,13 +1,13 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 /**
- * Пункт общего меню.
+ * Пункт элемента управления "Меню".
  */
-export interface CommonMenuItem {
+export interface MenuControlItem {
   /**
    * Дети.
    */
-  children?: CommonMenuItem[];
+  children?: MenuControlItem[];
 
   /**
    * Признак открытия в новой вкладке.
@@ -27,7 +27,7 @@ export interface CommonMenuItem {
   /**
    * Родитель.
    */
-  parent?: CommonMenuItem;
+  parent?: MenuControlItem;
 
   /**
    * Путь.
@@ -41,9 +41,9 @@ export interface CommonMenuItem {
 }
 
 /**
- * Создать пункт общего меню.
+ * Создать пункт элемента управления "Меню".
  * @param key Ключ.
- * @returns Пункт общего меню.
+ * @returns Пункт элемента управления "Меню".
  */
 export function createCommonMenuItem(key: string) {
   return {
@@ -52,5 +52,5 @@ export function createCommonMenuItem(key: string) {
     key,
     path: '',
     text: ''
-  } as CommonMenuItem;
+  } as MenuControlItem;
 }

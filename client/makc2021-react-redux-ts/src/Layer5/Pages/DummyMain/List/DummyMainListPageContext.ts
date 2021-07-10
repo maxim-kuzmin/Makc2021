@@ -7,6 +7,7 @@ import { DummyMainListPageModule } from './DummyMainListPageModule';
 import { DummyMainListPageService } from './DummyMainListPageService';
 import { DummyMainListPageStore } from './DummyMainListPageStore';
 import { DummyMainListPageGetQueryHandler } from './Queries/Get/DummyMainListPageGetQueryHandler';
+import context from 'react-bootstrap/esm/AccordionContext';
 
 /**
  * Контекст страницы сущностей "DummyMain".
@@ -40,6 +41,7 @@ export class DummyMainListPageContext {
       () =>
         new DummyMainListPageStore(
           this._module.service,
+          contextOfLayer5.Controls.Waitings.Global.getModule().store,
           contextOfLayer1.getModule().timingFactory
         )
     );

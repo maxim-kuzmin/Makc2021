@@ -1,17 +1,17 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { CommonMenuData } from 'src/Layer6/Common/Menu/CommonMenuData';
+import { MenuControlData } from 'src/Layer6/Control/Menu/MenuControlData';
 import {
-  CommonMenuItem,
+  MenuControlItem,
   createCommonMenuItem
-} from '../../../Common/Menu/CommonMenuItem';
+} from '../../../Control/Menu/MenuControlItem';
 import { TopMenuControlResource } from './TopMenuControlResource';
 
 /**
  * Сервис элемента управления "Верхнее меню".
  */
 export class TopMenuControlService {
-  readonly data: CommonMenuData;
+  readonly data: MenuControlData;
 
   // App
 
@@ -44,7 +44,7 @@ export class TopMenuControlService {
       this.itemOfApp
     );
 
-    this.data = new CommonMenuData([this.itemOfApp]);
+    this.data = new MenuControlData([this.itemOfApp]);
   }
 
   /**
@@ -59,9 +59,9 @@ export class TopMenuControlService {
   }
 
   private compose(
-    item: CommonMenuItem,
+    item: MenuControlItem,
     path: string,
-    parentItem?: CommonMenuItem
+    parentItem?: MenuControlItem
   ) {
     item.path = path;
 

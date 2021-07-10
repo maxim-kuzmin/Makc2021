@@ -17,6 +17,7 @@ import { DummyMainListPage } from './Layer6/Pages/DummyMain/List/DummyMainListPa
 import { Configurator } from './Configurator';
 import { Context } from './Context';
 import { QueryNotificationControl } from './Layer6/Controls/Notifications/Query/QueryNotificationControl';
+import { GlobalWaitingControl } from './Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 
 Configurator.configureServices();
 
@@ -31,6 +32,7 @@ function App() {
       <Router>
         <div className="App">
           <LanguageSwitcherControl />
+          <GlobalWaitingControl />
           <TopMenuControl />
           <QueryNotificationControl />
           <Switch>

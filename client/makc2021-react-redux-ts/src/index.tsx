@@ -6,11 +6,11 @@ import { store } from './Layer5/Store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
-import { GlobalWaitingControl } from './Layer6/Controls/Waitings/Global/GlobalWaitingControl';
+import { FallbackWaitingControl } from './Layer6/Controls/Waitings/Fallback/FallbackWaitingControl';
 
 ReactDOM.render(
   <React.StrictMode>
-    <React.Suspense fallback={<GlobalWaitingControl isVisible={true} />}>
+    <React.Suspense fallback={<FallbackWaitingControl />}>
       <Provider store={store}>
         <App />
       </Provider>

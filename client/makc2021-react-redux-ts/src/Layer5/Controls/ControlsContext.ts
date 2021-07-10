@@ -2,6 +2,7 @@
 
 import { MenuControlsContext } from './Menus/MenuControlsContext';
 import { NotificationControlsContext } from './Notifications/NotificationControlsContext';
+import { WaitingControlsContext } from './Waitings/WaitingControlsContext';
 
 /**
  * Контекст элементов управления.
@@ -18,10 +19,16 @@ export class ControlsContext {
   readonly Notifications = new NotificationControlsContext();
 
   /**
+   * Ожидания.
+   */
+  readonly Waitings = new WaitingControlsContext();
+
+  /**
    * Настроить сервисы.
    */
   configureServices() {
     this.Menus.configureServices();
     this.Notifications.configureServices();
+    this.Waitings.configureServices();
   }
 }

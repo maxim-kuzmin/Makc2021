@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CommonPageStore } from 'src/Layer1/Common/Page/CommonPageStore';
 import { QueryResultWithOutput } from 'src/Layer1/Query/QueryResultWithOutput';
 import { TimingFactory } from 'src/Layer1/Timing/TimingFactory';
+import { GlobalWaitingControlStore } from 'src/Layer5/Controls/Waitings/Global/GlobalWaitingControlStore';
 import { AppThunk, RootState } from 'src/Layer5/Store';
 import { DummyMainItemPageService } from './DummyMainItemPageService';
 import { createDummyMainItemPageState } from './DummyMainItemPageState';
@@ -22,10 +23,12 @@ export class DummyMainItemPageStore extends CommonPageStore {
   /**
    * Конструктор.
    * @param _appService Сервис.
+   * @param _appGlobalWaitingControlStore Хранилище элемента управления "Глобальное ожидание".
    * @param appTimingFactory Фабрика согласования.
    */
   constructor(
     private _appService: DummyMainItemPageService,
+    private _appGlobalWaitingControlStore: GlobalWaitingControlStore,
     appTimingFactory: TimingFactory
   ) {
     super(appTimingFactory);
@@ -33,6 +36,7 @@ export class DummyMainItemPageStore extends CommonPageStore {
 
   /**
    * Очистить.
+   * @returns Действие.
    */
   clear() {
     return slice.actions.clear();
@@ -47,13 +51,17 @@ export class DummyMainItemPageStore extends CommonPageStore {
     return async (dispatch) => {
       const waiting = this.appTimingFactory.createWaiting();
 
-      waiting.delay(() => dispatch(slice.actions.wait(true)));
+      waiting.delay(() =>
+        dispatch(this._appGlobalWaitingControlStore.setIsVisible(true))
+      );
 
       const result = await this._appService.get(input);
 
       dispatch(slice.actions.load(result));
 
-      waiting.prolong(() => dispatch(slice.actions.wait(false)));
+      waiting.prolong(() =>
+        dispatch(this._appGlobalWaitingControlStore.setIsVisible(false))
+      );
     };
   }
 
@@ -66,7 +74,9 @@ export class DummyMainItemPageStore extends CommonPageStore {
     return async (dispatch) => {
       const waiting = this.appTimingFactory.createWaiting();
 
-      waiting.delay(() => dispatch(slice.actions.wait(true)));
+      waiting.delay(() =>
+        dispatch(this._appGlobalWaitingControlStore.setIsVisible(true))
+      );
 
       const result = await this._appService.save(input);
 
@@ -76,7 +86,9 @@ export class DummyMainItemPageStore extends CommonPageStore {
         )
       );
 
-      waiting.prolong(() => dispatch(slice.actions.wait(false)));
+      waiting.prolong(() =>
+        dispatch(this._appGlobalWaitingControlStore.setIsVisible(false))
+      );
     };
   }
 
@@ -87,15 +99,6 @@ export class DummyMainItemPageStore extends CommonPageStore {
    */
   selectGetQueryResult(state: RootState) {
     return state.ofDummyMainItemPage.getQueryResult;
-  }
-
-  /**
-   * Отобрать признак нахождения в ожидании.
-   * @param state Состояние.
-   * @returns Признак нахождения в ожидании.
-   */
-  selectIsWaiting(state: RootState) {
-    return state.ofDummyMainItemPage.isWaiting;
   }
 
   /**
@@ -129,9 +132,6 @@ const slice = createSlice({
     ) => {
       state.getQueryResult = action.payload.getQueryResult;
       state.saveQueryInput = action.payload.saveQueryInput;
-    },
-    wait: (state, action: PayloadAction<boolean>) => {
-      state.isWaiting = action.payload;
     }
   }
 });

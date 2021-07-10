@@ -12,7 +12,6 @@ import { useResource } from 'src/Layer1/Localization/LocalizationHooks';
 import { createDummyMainEntityObject } from 'src/Layer3/Sample/Entities/DummyMainEntityObject';
 import { DummyMainItemPageParams } from 'src/Layer5/Pages/DummyMain/Item/DummyMainItemPageParams';
 import { createDummyMainItemPageGetQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Get/DummyMainItemPageGetQueryInput';
-import { GlobalWaitingControl } from 'src/Layer6/Controls/Waitings/Global/GlobalWaitingControl';
 import { useCurrentMenuItemKey } from 'src/Layer6/Controls/Menus/Top/TopMenuControlHooks';
 import { createDummyMainItemPageSaveQueryInput } from 'src/Layer5/Pages/DummyMain/Item/Queries/Save/DummyMainItemPageSaveQueryInput';
 import { useQueryNotification } from 'src/Layer6/Controls/Notifications/Query/QueryNotificationControlHooks';
@@ -36,7 +35,7 @@ export function DummyMainItemPage() {
 
   useCurrentMenuItemKey(serviceOfTopMenuControl.itemOfAppDummyMainItemPage.key);
 
-  const storeOfQueryNotifications = contextValue.Layer5.Controls.Notifications.Query.getModule()
+  const storeOfQueryNotification = contextValue.Layer5.Controls.Notifications.Query.getModule()
     .store;
 
   const { id } = useParams<DummyMainItemPageParams>();
@@ -48,8 +47,8 @@ export function DummyMainItemPage() {
   const clearStore = useCallback(() => {
     dispatch(store.clear());
 
-    dispatch(storeOfQueryNotifications.clear());
-  }, [dispatch, store, storeOfQueryNotifications]);
+    dispatch(storeOfQueryNotification.clear());
+  }, [dispatch, store, storeOfQueryNotification]);
 
   useEffect(() => {
     if (entityId > 0) {
@@ -66,8 +65,6 @@ export function DummyMainItemPage() {
   const getQueryResult = useSelector(store.selectGetQueryResult);
 
   useQueryNotification(getQueryResult);
-
-  const isWaiting = useSelector(store.selectIsWaiting);
 
   const saveQueryInput = useSelector(store.selectSaveQueryInput);
 
@@ -112,41 +109,38 @@ export function DummyMainItemPage() {
   };
 
   return (
-    <>
-      <GlobalWaitingControl isVisible={isWaiting} />
-      <Form onSubmit={onSubmit}>
-        {objectOfDummyMainEntity.id > 0 && (
-          <Form.Group as={Row} controlId="id">
-            <Form.Label column>{resource.getIDFieldTitle()}</Form.Label>
-            <Col>
-              <Form.Control
-                plaintext
-                readOnly
-                value={objectOfDummyMainEntity.id}
-              />
-            </Col>
-          </Form.Group>
-        )}
-        <Form.Group as={Row} controlId="name">
-          <Form.Label column>{resource.getNameFieldTitle()}</Form.Label>
+    <Form onSubmit={onSubmit}>
+      {objectOfDummyMainEntity.id > 0 && (
+        <Form.Group as={Row} controlId="id">
+          <Form.Label column>{resource.getIDFieldTitle()}</Form.Label>
           <Col>
             <Form.Control
-              type="text"
-              placeholder={resource.getNameFieldPlaceholder()}
-              defaultValue={objectOfDummyMainEntity.name}
-              onChange={onChangeName}
-              ref={refToInputOfName}
+              plaintext
+              readOnly
+              value={objectOfDummyMainEntity.id}
             />
           </Col>
         </Form.Group>
-        <Button variant="success" type="submit">
-          {resource.getSaveButtonTitle()}
-        </Button>
-        &nbsp;
-        <Button variant="primary" type="button" onClick={clearForm}>
-          {resource.getClearButtonTitle()}
-        </Button>
-      </Form>
-    </>
+      )}
+      <Form.Group as={Row} controlId="name">
+        <Form.Label column>{resource.getNameFieldTitle()}</Form.Label>
+        <Col>
+          <Form.Control
+            type="text"
+            placeholder={resource.getNameFieldPlaceholder()}
+            defaultValue={objectOfDummyMainEntity.name}
+            onChange={onChangeName}
+            ref={refToInputOfName}
+          />
+        </Col>
+      </Form.Group>
+      <Button variant="success" type="submit">
+        {resource.getSaveButtonTitle()}
+      </Button>
+      &nbsp;
+      <Button variant="primary" type="button" onClick={clearForm}>
+        {resource.getClearButtonTitle()}
+      </Button>
+    </Form>
   );
 }
