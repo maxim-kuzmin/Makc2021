@@ -61,9 +61,13 @@ export function DummyMainListPage() {
   const sortField = search.sf ?? 'id';
   const entityName = search.en;
 
+  const idOfPage = 'DummyMainListPage';
+  const idOfTable = `${idOfPage}-table`;
+  const idOfColumnForName = `${idOfTable}-name`;
+
   const filters = [
     {
-      id: 'name',
+      id: idOfColumnForName,
       value: entityName
     }
   ] as Filters<DummyMainListPageTableRow>;
@@ -114,7 +118,7 @@ export function DummyMainListPage() {
       let entityName: any;
 
       for (const filter of filters) {
-        if (filter.id === 'name') {
+        if (filter.id === idOfColumnForName) {
           entityName = filter.value;
         }
       }
@@ -145,7 +149,7 @@ export function DummyMainListPage() {
 
       return urlService.createUrl(urlParts);
     },
-    [urlService, location.pathname]
+    [location.pathname, urlService, idOfColumnForName]
   );
 
   const columns = useMemo(
@@ -170,11 +174,11 @@ export function DummyMainListPage() {
         },
         {
           Header: resource.getNameColumnTitle(),
-          accessor: 'name',
+          accessor: idOfColumnForName,
           width: '100%'
         }
       ] as Column<DummyMainListPageTableRow>[],
-    [resource]
+    [idOfColumnForName, resource]
   );
 
   const data = useMemo(() => {

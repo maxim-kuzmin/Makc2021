@@ -29,10 +29,9 @@ function App() {
 
   return (
     <Context.Provider value={Configurator.getContextValue()}>
-      <Router>
-        <div className="App">
-          <LanguageSwitcherControl />
-          <GlobalWaitingControl />
+      <div className="App">
+        <LanguageSwitcherControl />
+        <Router>
           <TopMenuControl />
           <QueryNotificationControl />
           <Switch>
@@ -47,8 +46,9 @@ function App() {
               <ContactsPage />
             </Route>
           </Switch>
-        </div>
-      </Router>
+        </Router>
+      </div>
+      <GlobalWaitingControl />
     </Context.Provider>
   );
 }

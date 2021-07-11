@@ -2,6 +2,7 @@
 
 import { UseTableCellProps } from 'react-table';
 import { DebounceInput } from 'react-debounce-input';
+import { useFocus } from 'src/Layer5/Behaviours/Focus/FocusBehaviourHooks';
 
 /**
  * Элемент управления "Фильтр по умолчанию колонки таблицы".
@@ -10,6 +11,8 @@ export function TableColumnDefaultFilterControl<TRow extends object>({
   column
 }: UseTableCellProps<TRow>) {
   const { filterValue, setFilter } = column;
+  console.log('MAKC:column', column);
+  const focusProps = useFocus(column.id);
 
   return (
     <DebounceInput
@@ -20,6 +23,7 @@ export function TableColumnDefaultFilterControl<TRow extends object>({
       onChange={(e) => {
         setFilter(e.target.value || undefined);
       }}
+      {...focusProps}
     />
   );
 }

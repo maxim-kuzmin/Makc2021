@@ -4,12 +4,18 @@ import { ControlsContext } from './Controls/ControlsContext';
 import { PagesContext } from './Pages/PagesContext';
 import { Service } from './Service';
 import { Module } from './Module';
+import { BehavioursContext } from './Behaviours/BehavioursContext';
 
 /**
  * Контекст.
  */
 export class Context {
   private _module = new Module();
+
+  /**
+   * Поведения.
+   */
+  readonly Behaviours = new BehavioursContext();
 
   /**
    * Элементы управления.
@@ -35,6 +41,8 @@ export class Context {
     this._module.serviceGetter = () => {
       return instanceOfService.value;
     };
+
+    this.Behaviours.configureServices();
 
     this.Controls.configureServices();
 
