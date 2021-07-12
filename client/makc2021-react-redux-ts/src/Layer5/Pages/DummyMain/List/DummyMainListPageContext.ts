@@ -7,7 +7,6 @@ import { DummyMainListPageModule } from './DummyMainListPageModule';
 import { DummyMainListPageService } from './DummyMainListPageService';
 import { DummyMainListPageStore } from './DummyMainListPageStore';
 import { DummyMainListPageGetQueryHandler } from './Queries/Get/DummyMainListPageGetQueryHandler';
-import context from 'react-bootstrap/esm/AccordionContext';
 
 /**
  * Контекст страницы сущностей "DummyMain".
