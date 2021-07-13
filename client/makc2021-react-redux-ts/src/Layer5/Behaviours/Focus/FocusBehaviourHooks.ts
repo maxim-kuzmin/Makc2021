@@ -29,7 +29,7 @@ export function useFocus(id: string) {
 
   return {
     autoFocus: id === idFromStore,
-    key: `${id}`,
+    key: id,
     onFocus,
     onBlur
   };
