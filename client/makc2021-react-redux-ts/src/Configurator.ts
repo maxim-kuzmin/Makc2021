@@ -1,6 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import i18next from 'i18next';
+import { parse } from 'query-string';
 import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
 import { enableMapSet } from 'immer';
@@ -18,7 +19,37 @@ export namespace Configurator {
   export function configureServices() {
     enableMapSet();
 
-    const currentLanguage = 'en';
+    const search = parse(window.location.search);
+
+    const supportedLngs = ['en', 'ru'];
+
+    const lngKey = 'lng';
+
+    let lng = '';
+
+    if (search.lng) {
+      const lngFromSearch = String(search.lng);
+
+      if (supportedLngs.some((x) => x === lngFromSearch)) {
+        lng = lngFromSearch;
+      }
+    } else {
+      const lngItem = window.localStorage.getItem(lngKey);
+
+      if (lngItem) {
+        const lngFromLocalStorage = String(lngItem);
+
+        if (supportedLngs.some((x) => x === lngFromLocalStorage)) {
+          lng = lngFromLocalStorage;
+        }
+      }
+    }
+
+    if (!lng) {
+      lng = supportedLngs[0];
+    }
+
+    window.localStorage.setItem(lngKey, lng);
 
     i18next
       .use(Backend)
@@ -27,8 +58,8 @@ export namespace Configurator {
         backend: {
           loadPath: '/ResourceFiles/{{ns}}.{{lng}}.json'
         },
-        supportedLngs: ['en', 'ru'],
-        lng: currentLanguage,
+        supportedLngs,
+        lng,
         fallbackLng: false,
         interpolation: {
           escapeValue: false

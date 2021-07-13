@@ -123,8 +123,6 @@ export function DummyMainListPage() {
         }
       }
 
-      const search: any = {};
-
       if (pageNumber) {
         search.pn = pageNumber;
       }
@@ -149,7 +147,7 @@ export function DummyMainListPage() {
 
       return urlService.createUrl(urlParts);
     },
-    [location.pathname, urlService, idOfColumnForName]
+    [location.pathname, search, urlService, idOfColumnForName]
   );
 
   const columns = useMemo(
