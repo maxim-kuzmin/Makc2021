@@ -23,14 +23,14 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Db
     /// </summary>
     public abstract class MapperDbContext : IdentityDbContext
         <
-            UserEntityMapperObject,
-            RoleEntityMapperObject,
+            MapperUserEntityObject,
+            MapperRoleEntityObject,
             long,
-            UserClaimEntityMapperObject,
-            UserRoleEntityMapperObject,
-            UserLoginEntityMapperObject,
-            RoleClaimEntityMapperObject,
-            UserTokenEntityMapperObject
+            MapperUserClaimEntityObject,
+            MapperUserRoleEntityObject,
+            MapperUserLoginEntityObject,
+            MapperRoleClaimEntityObject,
+            MapperUserTokenEntityObject
         >
     {
         #region Properties        
@@ -38,32 +38,32 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Db
         /// <summary>
         /// Сущность "DummyMain".
         /// </summary>
-        public DbSet<DummyMainEntityMapperObject> DummyMain { get; set; }
+        public DbSet<MapperDummyMainEntityObject> DummyMain { get; set; }
 
         /// <summary>
         /// Сущность "DummyManyToMany".
         /// </summary>
-        public DbSet<DummyManyToManyEntityMapperObject> DummyManyToMany { get; set; }
+        public DbSet<MapperDummyManyToManyEntityObject> DummyManyToMany { get; set; }
 
         /// <summary>
         /// Сущность "DummyMainDummyManyToMany".
         /// </summary>
-        public DbSet<DummyMainDummyManyToManyEntityMapperObject> DummyMainDummyManyToMany { get; set; }
+        public DbSet<MapperDummyMainDummyManyToManyEntityObject> DummyMainDummyManyToMany { get; set; }
 
         /// <summary>
         /// Сущность "DummyOneToMany".
         /// </summary>
-        public DbSet<DummyOneToManyEntityMapperObject> DummyOneToMany { get; set; }
+        public DbSet<MapperDummyOneToManyEntityObject> DummyOneToMany { get; set; }
 
         /// <summary>
         /// Сущность "DummyTree".
         /// </summary>
-        public DbSet<DummyTreeEntityMapperObject> DummyTree { get; set; }
+        public DbSet<MapperDummyTreeEntityObject> DummyTree { get; set; }
 
         /// <summary>
         /// Сущность "DummyTreeLink".
         /// </summary>
-        public DbSet<DummyTreeLinkEntityMapperObject> DummyTreeLink { get; set; }
+        public DbSet<MapperDummyTreeLinkEntityObject> DummyTreeLink { get; set; }
 
         #endregion Properties
 

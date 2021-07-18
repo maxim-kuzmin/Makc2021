@@ -139,9 +139,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
             builder.TreeTableSchema = treeSettings.DbSchema;
         }
 
-        private static DummyMainEntityMapperObject CreateTestDataItemForDummyMain(
+        private static MapperDummyMainEntityObject CreateTestDataItemForDummyMain(
             long index,
-            IEnumerable<DummyOneToManyEntityMapperObject> itemsOfDummyOneToMany
+            IEnumerable<MapperDummyOneToManyEntityObject> itemsOfDummyOneToMany
             )
         {
             bool isEven = index % 2 == 0;
@@ -157,7 +157,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
 
             int indexOfDummyOneToMany = GetRandomIndex(itemsOfDummyOneToMany);
 
-            return new DummyMainEntityMapperObject
+            return new MapperDummyMainEntityObject
             {
                 Name = $"Name-{index}",
                 IdOfDummyOneToManyEntity = itemsOfDummyOneToMany.ElementAt(indexOfDummyOneToMany).Id,
@@ -178,12 +178,12 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
             };
         }
 
-        private static List<DummyMainDummyManyToManyEntityMapperObject> CreateTestDataItemsForDummyMainDummyManyToMany(
-            DummyMainEntityMapperObject itemOfDummyMain,
-            IEnumerable<DummyManyToManyEntityMapperObject> itemsOfDummyManyToMany
+        private static List<MapperDummyMainDummyManyToManyEntityObject> CreateTestDataItemsForDummyMainDummyManyToMany(
+            MapperDummyMainEntityObject itemOfDummyMain,
+            IEnumerable<MapperDummyManyToManyEntityObject> itemsOfDummyManyToMany
             )
         {
-            var result = new List<DummyMainDummyManyToManyEntityMapperObject>();
+            var result = new List<MapperDummyMainDummyManyToManyEntityObject>();
 
             foreach (var itemOfDummyManyToMany in itemsOfDummyManyToMany)
             {
@@ -191,7 +191,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
 
                 if (isEven) continue;
 
-                var item = new DummyMainDummyManyToManyEntityMapperObject
+                var item = new MapperDummyMainDummyManyToManyEntityObject
                 {
                     IdOfDummyMainEntity = itemOfDummyMain.Id,
                     IdOfDummyManyToManyEntity = itemOfDummyManyToMany.Id
@@ -204,7 +204,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
             {
                 int index = GetRandomIndex(itemsOfDummyManyToMany);
 
-                var item = new DummyMainDummyManyToManyEntityMapperObject
+                var item = new MapperDummyMainDummyManyToManyEntityObject
                 {
                     IdOfDummyMainEntity = itemOfDummyMain.Id,
                     IdOfDummyManyToManyEntity = itemsOfDummyManyToMany.ElementAt(index).Id
@@ -216,27 +216,27 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
             return result;
         }
 
-        private static DummyManyToManyEntityMapperObject CreateTestDataItemForDummyManyToMany(long index)
+        private static MapperDummyManyToManyEntityObject CreateTestDataItemForDummyManyToMany(long index)
         {
-            return new DummyManyToManyEntityMapperObject
+            return new MapperDummyManyToManyEntityObject
             {
                 Name = $"Name-{index}"
             };
         }
 
-        private static DummyOneToManyEntityMapperObject CreateTestDataItemForDummyOneToMany(long index)
+        private static MapperDummyOneToManyEntityObject CreateTestDataItemForDummyOneToMany(long index)
         {
-            return new DummyOneToManyEntityMapperObject
+            return new MapperDummyOneToManyEntityObject
             {
                 Name = $"Name-{index}"
             };
         }
 
-        private static DummyTreeEntityMapperObject CreateTestDataItemForDummyTree(IEnumerable<int> indexes, long? parentId)
+        private static MapperDummyTreeEntityObject CreateTestDataItemForDummyTree(IEnumerable<int> indexes, long? parentId)
         {
             string suffix = indexes.Any() ? "-" + string.Join("-", indexes) : string.Empty;
 
-            return new DummyTreeEntityMapperObject
+            return new MapperDummyTreeEntityObject
             {
                 Name = $"Name{suffix}",
                 ParentId = parentId
@@ -250,7 +250,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
 
         private async Task SaveTestDataListForDummyTree(
             MapperDbContext dbContext,
-            List<DummyTreeEntityMapperObject> list,
+            List<MapperDummyTreeEntityObject> list,
             List<int> parentIndexes,
             long? parentId
             )
@@ -286,9 +286,9 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
             }
         }
 
-        private static async Task<IEnumerable<DummyMainEntityMapperObject>> SeedTestDataForDummyMain(
+        private static async Task<IEnumerable<MapperDummyMainEntityObject>> SeedTestDataForDummyMain(
             MapperDbContext dbContext,
-            IEnumerable<DummyOneToManyEntityMapperObject> itemsOfDummyOneToMany
+            IEnumerable<MapperDummyOneToManyEntityObject> itemsOfDummyOneToMany
             )
         {
             var result = Enumerable.Range(1, 100)
@@ -302,13 +302,13 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
             return result;
         }
 
-        private static async Task<IEnumerable<DummyMainDummyManyToManyEntityMapperObject>> SeedTestDataForDummyMainDummyManyToMany(
+        private static async Task<IEnumerable<MapperDummyMainDummyManyToManyEntityObject>> SeedTestDataForDummyMainDummyManyToMany(
             MapperDbContext dbContext,
-            IEnumerable<DummyMainEntityMapperObject> itemsOfDummyMain,
-            IEnumerable<DummyManyToManyEntityMapperObject> itemsOfDummyManyToMany
+            IEnumerable<MapperDummyMainEntityObject> itemsOfDummyMain,
+            IEnumerable<MapperDummyManyToManyEntityObject> itemsOfDummyManyToMany
             )
         {
-            var result = new List<DummyMainDummyManyToManyEntityMapperObject>();
+            var result = new List<MapperDummyMainDummyManyToManyEntityObject>();
 
             foreach (var itemOfDummyMain in itemsOfDummyMain)
             {
@@ -330,7 +330,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
             return result;
         }
 
-        private static async Task<IEnumerable<DummyManyToManyEntityMapperObject>> SeedTestDataForDummyManyToMany(
+        private static async Task<IEnumerable<MapperDummyManyToManyEntityObject>> SeedTestDataForDummyManyToMany(
             MapperDbContext dbContext
             )
         {
@@ -345,7 +345,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
             return result;
         }
 
-        private static async Task<IEnumerable<DummyOneToManyEntityMapperObject>> SeedTestDataForDummyOneToMany(
+        private static async Task<IEnumerable<MapperDummyOneToManyEntityObject>> SeedTestDataForDummyOneToMany(
             MapperDbContext dbContext
             )
         {
@@ -360,11 +360,11 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
             return result;
         }
 
-        private async Task<IEnumerable<DummyTreeEntityMapperObject>> SeedTestDataForDummyTree(
+        private async Task<IEnumerable<MapperDummyTreeEntityObject>> SeedTestDataForDummyTree(
             MapperDbContext dbContext
             )
         {
-            var result = new List<DummyTreeEntityMapperObject>();
+            var result = new List<MapperDummyTreeEntityObject>();
 
             await SaveTestDataListForDummyTree(dbContext, result, new List<int>(), null)
                 .ConfigureAwaitWithCultureSaving(false);

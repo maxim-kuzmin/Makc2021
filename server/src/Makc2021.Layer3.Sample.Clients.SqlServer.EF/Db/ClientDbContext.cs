@@ -65,21 +65,21 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Db
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new DummyMainEntityMapperSchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new DummyManyToManyEntityMapperSchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new DummyMainDummyManyToManyEntityMapperSchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new DummyOneToManyEntityMapperSchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new DummyTreeEntityMapperSchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new DummyTreeLinkEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperDummyMainEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperDummyManyToManyEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperDummyMainDummyManyToManyEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperDummyOneToManyEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperDummyTreeEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperDummyTreeLinkEntitySchema(_entitiesSettings));
 
-            modelBuilder.ApplyConfiguration(new RoleEntityMapperSchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new RoleClaimEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperRoleEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperRoleClaimEntitySchema(_entitiesSettings));
 
-            modelBuilder.ApplyConfiguration(new UserEntityMapperSchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new UserClaimEntityMapperSchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new UserLoginEntityMapperSchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new UserRoleEntityMapperSchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new UserTokenEntityMapperSchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperUserEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperUserClaimEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperUserLoginEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperUserRoleEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperUserTokenEntitySchema(_entitiesSettings));
         }
 
         #endregion Protected methods

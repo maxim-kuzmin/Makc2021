@@ -146,7 +146,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
 
         #region Private methods
 
-        private static DomainItemGetQueryOutput CreateItem(DummyMainEntityMapperObject entity)
+        private static DomainItemGetQueryOutput CreateItem(MapperDummyMainEntityObject entity)
         {
             var result = new DomainItemGetQueryOutput
             {
@@ -166,7 +166,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
 
         private static void InitItemDummyManyToMany(
             DomainItemGetQueryOutput item,
-            IEnumerable<DummyManyToManyEntityMapperObject> enities
+            IEnumerable<MapperDummyManyToManyEntityObject> enities
             )
         {
             item.ObjectsOfDummyManyToManyEntity = enities
@@ -178,18 +178,18 @@ namespace Makc2021.Layer4.Domains.DummyMain
 
         private static void InitItemDummyManyToMany(
             DomainItemGetQueryOutput item,
-            IDictionary<long, DummyManyToManyEntityMapperObject> lookup
+            IDictionary<long, MapperDummyManyToManyEntityObject> lookup
             )
         {
             long[] ids = item.ObjectsOfDummyMainDummyManyToManyEntity
                 .Select(x => x.IdOfDummyManyToManyEntity)
                 .ToArray();
 
-            var entities = new List<DummyManyToManyEntityMapperObject>();
+            var entities = new List<MapperDummyManyToManyEntityObject>();
 
             foreach (long id in ids)
             {
-                if (lookup.TryGetValue(id, out DummyManyToManyEntityMapperObject entity))
+                if (lookup.TryGetValue(id, out MapperDummyManyToManyEntityObject entity))
                 {
                     entities.Add(entity);
                 }

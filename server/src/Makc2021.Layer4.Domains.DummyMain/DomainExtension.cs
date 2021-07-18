@@ -22,8 +22,8 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// <param name="query">Запрос.</param>
         /// <param name="input">Входные данные.</param>
         /// <returns>Запрос с учётом фильтрации.</returns>
-        public static IQueryable<DummyMainEntityMapperObject> ApplyFiltering(
-            this IQueryable<DummyMainEntityMapperObject> query,
+        public static IQueryable<MapperDummyMainEntityObject> ApplyFiltering(
+            this IQueryable<MapperDummyMainEntityObject> query,
             DomainItemGetQueryInput input
             )
         {
@@ -46,8 +46,8 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// <param name="query">Запрос.</param>
         /// <param name="input">Входные данные.</param>
         /// <returns>Запрос с учётом фильтрации.</returns>
-        public static IQueryable<DummyMainEntityMapperObject> ApplyFiltering(
-            this IQueryable<DummyMainEntityMapperObject> query,
+        public static IQueryable<MapperDummyMainEntityObject> ApplyFiltering(
+            this IQueryable<MapperDummyMainEntityObject> query,
             DomainListGetQueryInput input
             )
         {
@@ -103,15 +103,15 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// <param name="query">Запрос.</param>
         /// <param name="input">Входные данные.</param>
         /// <returns>Запрос с учётом сортировки.</returns>
-        public static IQueryable<DummyMainEntityMapperObject> ApplySorting(
-            this IQueryable<DummyMainEntityMapperObject> query,
+        public static IQueryable<MapperDummyMainEntityObject> ApplySorting(
+            this IQueryable<MapperDummyMainEntityObject> query,
             DomainListGetQueryInput input
             )
         {
             string sortField = input.SortField.ToLower();
             string sortDirection = input.SortDirection.ToLower();
 
-            DummyMainEntityMapperObject obj;
+            MapperDummyMainEntityObject obj;
 
             string sortFieldForId = nameof(obj.Id).ToLower();
             string sortFieldForName = nameof(obj.Name).ToLower();
@@ -182,7 +182,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
 
             if (!string.IsNullOrWhiteSpace(sortField) && sortField != sortFieldForId)
             {
-                query = ((IOrderedQueryable<DummyMainEntityMapperObject>)query).ThenBy(x => x.Id);
+                query = ((IOrderedQueryable<MapperDummyMainEntityObject>)query).ThenBy(x => x.Id);
             }
 
             return query;

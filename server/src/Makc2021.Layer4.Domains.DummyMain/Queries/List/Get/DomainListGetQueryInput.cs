@@ -61,7 +61,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.List.Get
 
             if (string.IsNullOrWhiteSpace(SortField))
             {
-                DummyMainEntityMapperObject obj;
+                MapperDummyMainEntityObject obj;
 
                 SortField = nameof(obj.Id);
             }
