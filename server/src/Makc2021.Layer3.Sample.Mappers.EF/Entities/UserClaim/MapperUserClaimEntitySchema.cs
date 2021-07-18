@@ -26,7 +26,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserClaim
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperUserClaimEntityObject> builder)
         {
-            Sample.Entities.UserClaim.UserClaimEntitySetting setting = EntitiesSettings.UserClaim;
+            Sample.Entities.UserClaim.UserClaimEntitySettings setting = EntitiesSettings.UserClaim;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

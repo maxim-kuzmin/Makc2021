@@ -3,12 +3,12 @@
 using Makc2021.Layer3.Sample.Db;
 using Makc2021.Layer3.Sample.Entity;
 
-namespace Makc2021.Layer3.Sample.Entities.DummyOneToMany
+namespace Makc2021.Layer3.Sample.Entities.DummyManyToMany
 {
     /// <summary>
-    /// Настройка сущности "DummyOneToMany".
+    /// Настройки сущности "DummyManyToMany".
     /// </summary>
-    public class DummyOneToManyEntitySetting : EntitySetting
+    public class DummyManyToManyEntitySettings : EntitySettings
     {
         #region Properties
 
@@ -44,18 +44,18 @@ namespace Makc2021.Layer3.Sample.Entities.DummyOneToMany
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
+        /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public DummyOneToManyEntitySetting(
-            DbDefaults dbDefaults,
+        public DummyManyToManyEntitySettings(
+            DbDefaults defaults,
             string dbTable,
             string dbSchema = null
             )
-            : base(dbDefaults, dbTable, dbSchema)
+            : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = dbDefaults.DbColumnForId;
-            DbColumnForName = dbDefaults.DbColumnForName;
+            DbColumnForId = defaults.DbColumnForId;
+            DbColumnForName = defaults.DbColumnForName;
 
             DbMaxLengthForName = 256;
 

@@ -5,12 +5,12 @@ using Makc2021.Layer3.Sample.Db;
 namespace Makc2021.Layer3.Sample.Entity
 {
     /// <inheritdoc/>
-    public class EntitySetting : Layer2.Entity.EntitySetting<DbDefaults>
+    public class EntitySettings : Layer2.Entity.EntitySettings<DbDefaults>
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public EntitySetting(DbDefaults defaults, string dbTable, string dbSchema = null)
+        public EntitySettings(DbDefaults defaults, string dbTable, string dbSchema = null)
             : base(defaults, dbTable, dbSchema)
         {
         }

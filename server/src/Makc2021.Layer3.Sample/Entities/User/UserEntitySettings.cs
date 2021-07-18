@@ -6,9 +6,9 @@ using Makc2021.Layer3.Sample.Entity;
 namespace Makc2021.Layer3.Sample.Entities.User
 {
     /// <summary>
-    /// Настройка сущности "User".
+    /// Настройки сущности "User".
     /// </summary>
-    public class UserEntitySetting : EntitySetting
+    public class UserEntitySettings : EntitySettings
     {
         #region Properties
 
@@ -119,7 +119,7 @@ namespace Makc2021.Layer3.Sample.Entities.User
         /// <param name="dbSchema">Схема в базе данных.</param>
         /// <param name="dbColumnNameForNormalizedEmail">Колонка в базе данных для поля "NormalizedEmail".</param>
         /// <param name="dbColumnNameForNormalizedUserName">Колонка в базе данных для поля "NormalizedUserName".</param>
-        public UserEntitySetting(
+        public UserEntitySettings(
             DbDefaults dbDefaults,
             string dbTable,
             string dbSchema = null,

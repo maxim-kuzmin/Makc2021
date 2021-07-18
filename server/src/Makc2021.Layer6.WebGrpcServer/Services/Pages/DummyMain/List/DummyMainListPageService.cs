@@ -1,4 +1,4 @@
-using System.Linq;
+п»їusing System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Makc2021.Layer1.Completion;
@@ -19,9 +19,9 @@ namespace Makc2021.Layer6.WebGrpcServer.Services.Pages.DummyMain.List
         #region Constructors
 
         /// <summary>
-        /// Конструктор.
+        /// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ.
         /// </summary>
-        /// <param name="appService">Сервис.</param>
+        /// <param name="appService">РЎРµСЂРІРёСЃ.</param>
         public DummyMainListPageService(IDummyMainListPageService appService)
         {
             AppService = appService;
@@ -32,11 +32,11 @@ namespace Makc2021.Layer6.WebGrpcServer.Services.Pages.DummyMain.List
         #region Public methods
 
         /// <summary>
-        /// Получить.
+        /// РџРѕР»СѓС‡РёС‚СЊ.
         /// </summary>
-        /// <param name="request">Запрос.</param>
-        /// <param name="context">Контекст.</param>
-        /// <returns>Задача на получение ответа.</returns>
+        /// <param name="request">Р—Р°РїСЂРѕСЃ.</param>
+        /// <param name="context">РљРѕРЅС‚РµРєСЃС‚.</param>
+        /// <returns>Р—Р°РґР°С‡Р° РЅР° РїРѕР»СѓС‡РµРЅРёРµ РѕС‚РІРµС‚Р°.</returns>
         public async override Task<DummyMainListPageGetReply> Get(
             DummyMainListPageGetRequest request,
             ServerCallContext context

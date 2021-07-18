@@ -1,17 +1,21 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using Makc2021.Layer3.Sample.Db;
-using Makc2021.Layer3.Sample.Entities.DummyTree;
 using Makc2021.Layer3.Sample.Entity;
 
-namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
+namespace Makc2021.Layer3.Sample.Entities.Role
 {
     /// <summary>
-    /// Настройка сущности "DummyTreeLink".
+    /// Настройки сущности "Role".
     /// </summary>
-    public class DummyTreeLinkEntitySetting : EntitySetting
+    public class RoleEntitySettings : EntitySettings
     {
         #region Properties
+
+        /// <summary>
+        /// Колонка в базе данных для поля "ConcurrencyStamp".
+        /// </summary>
+        public string DbColumnForConcurrencyStamp { get; set; }
 
         /// <summary>
         /// Колонка в базе данных для поля "Id".
@@ -19,19 +23,24 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
         public string DbColumnForId { get; set; }
 
         /// <summary>
-        /// Колонка в базе данных для поля идентификатора родителя сущности "DummyTreeEntity".
+        /// Колонка в базе данных для поля "Name".
         /// </summary>
-        public string DbColumnForDummyTreeEntityParentId { get; set; }
+        public string DbColumnForName { get; set; }
 
         /// <summary>
-        /// Внешний ключ в базе данных к сущности "DummyTree".
+        /// Колонка в базе данных для поля "NormalizedName".
         /// </summary>
-        public string DbForeignKeyToDummyTreeEntity { get; set; }
+        public string DbColumnForNormalizedName { get; set; }
 
         /// <summary>
         /// Первичный ключ в базе данных.
         /// </summary>
         public string DbPrimaryKey { get; set; }
+
+        /// <summary>
+        /// Уникальный индекс в базе данных для поля "NormalizedName".
+        /// </summary>
+        public string DbUniqueIndexForNormalizedName { get; set; }
 
         #endregion Properties
 
@@ -40,24 +49,24 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="settingOfDummyTreeEntity">Настройка сущности "DummyTree".</param>
         /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public DummyTreeLinkEntitySetting(
-            DummyTreeEntitySetting settingOfDummyTreeEntity,
+        public RoleEntitySettings(
             DbDefaults dbDefaults,
             string dbTable,
-            string dbSchema = null
+            string dbSchema = null,
+            string dbColumnNameForNormalizedName = null
             )
             : base(dbDefaults, dbTable, dbSchema)
         {
             DbColumnForId = dbDefaults.DbColumnForId;
-            DbColumnForDummyTreeEntityParentId = dbDefaults.DbColumnForParentId;
-
-            DbForeignKeyToDummyTreeEntity = CreateDbForeignKeyName(DbTable, settingOfDummyTreeEntity.DbTable);
+            DbColumnForName = dbDefaults.DbColumnForName;
+            DbColumnForNormalizedName = dbColumnNameForNormalizedName ?? nameof(RoleEntityObject.NormalizedName);
 
             DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
+
+            DbUniqueIndexForNormalizedName = CreateDbUniqueIndexName(DbTable, DbColumnForNormalizedName);
         }
 
         #endregion Constructors

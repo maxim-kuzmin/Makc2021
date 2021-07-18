@@ -3,19 +3,14 @@
 using Makc2021.Layer3.Sample.Db;
 using Makc2021.Layer3.Sample.Entity;
 
-namespace Makc2021.Layer3.Sample.Entities.Role
+namespace Makc2021.Layer3.Sample.Entities.DummyOneToMany
 {
     /// <summary>
-    /// Настройка сущности "Role".
+    /// Настройки сущности "DummyOneToMany".
     /// </summary>
-    public class RoleEntitySetting : EntitySetting
+    public class DummyOneToManyEntitySettings : EntitySettings
     {
         #region Properties
-
-        /// <summary>
-        /// Колонка в базе данных для поля "ConcurrencyStamp".
-        /// </summary>
-        public string DbColumnForConcurrencyStamp { get; set; }
 
         /// <summary>
         /// Колонка в базе данных для поля "Id".
@@ -28,9 +23,9 @@ namespace Makc2021.Layer3.Sample.Entities.Role
         public string DbColumnForName { get; set; }
 
         /// <summary>
-        /// Колонка в базе данных для поля "NormalizedName".
+        /// Максимальная длина в базе данных для поля "Name".
         /// </summary>
-        public string DbColumnForNormalizedName { get; set; }
+        public int DbMaxLengthForName { get; set; }
 
         /// <summary>
         /// Первичный ключ в базе данных.
@@ -38,9 +33,9 @@ namespace Makc2021.Layer3.Sample.Entities.Role
         public string DbPrimaryKey { get; set; }
 
         /// <summary>
-        /// Уникальный индекс в базе данных для поля "NormalizedName".
+        /// Уникальный индекс в базе данных для поля "Name".
         /// </summary>
-        public string DbUniqueIndexForNormalizedName { get; set; }
+        public string DbUniqueIndexForName { get; set; }
 
         #endregion Properties
 
@@ -52,21 +47,21 @@ namespace Makc2021.Layer3.Sample.Entities.Role
         /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public RoleEntitySetting(
+        public DummyOneToManyEntitySettings(
             DbDefaults dbDefaults,
             string dbTable,
-            string dbSchema = null,
-            string dbColumnNameForNormalizedName = null
+            string dbSchema = null
             )
             : base(dbDefaults, dbTable, dbSchema)
         {
             DbColumnForId = dbDefaults.DbColumnForId;
             DbColumnForName = dbDefaults.DbColumnForName;
-            DbColumnForNormalizedName = dbColumnNameForNormalizedName ?? nameof(RoleEntityObject.NormalizedName);
+
+            DbMaxLengthForName = 256;
 
             DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
 
-            DbUniqueIndexForNormalizedName = CreateDbUniqueIndexName(DbTable, DbColumnForNormalizedName);
+            DbUniqueIndexForName = CreateDbUniqueIndexName(DbTable, DbColumnForName);
         }
 
         #endregion Constructors

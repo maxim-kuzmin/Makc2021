@@ -8,9 +8,9 @@ using Makc2021.Layer3.Sample.Entity;
 namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
 {
     /// <summary>
-    /// Настройка сущности "DummyMainDummyManyToMany".
+    /// Настройки сущности "DummyMainDummyManyToMany".
     /// </summary>
-    public class DummyMainDummyManyToManyEntitySetting : EntitySetting
+    public class DummyMainDummyManyToManyEntitySettings : EntitySettings
     {
         #region Properties
 
@@ -56,9 +56,9 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMainDummyManyToMany
         /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public DummyMainDummyManyToManyEntitySetting(
-            DummyMainEntitySetting settingOfDummyMainEntity,
-            DummyManyToManyEntitySetting settingOfDummyManyToManyEntity,
+        public DummyMainDummyManyToManyEntitySettings(
+            DummyMainEntitySettings settingOfDummyMainEntity,
+            DummyManyToManyEntitySettings settingOfDummyManyToManyEntity,
             DbDefaults dbDefaults,
             string dbTable,
             string dbSchema = null

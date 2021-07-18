@@ -8,9 +8,9 @@ using Makc2021.Layer3.Sample.Entity;
 namespace Makc2021.Layer3.Sample.Entities.UserRole
 {
     /// <summary>
-    /// Настройка сущности "UserRole".
+    /// Настройки сущности "UserRole".
     /// </summary>
-    public class UserRoleEntitySetting : EntitySetting
+    public class UserRoleEntitySettings : EntitySettings
     {
         #region Properties
 
@@ -56,9 +56,9 @@ namespace Makc2021.Layer3.Sample.Entities.UserRole
         /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public UserRoleEntitySetting(
-            RoleEntitySetting settingOfRoleEntity,
-            UserEntitySetting settingOfUserEntity,
+        public UserRoleEntitySettings(
+            RoleEntitySettings settingOfRoleEntity,
+            UserEntitySettings settingOfUserEntity,
             DbDefaults dbDefaults,
             string dbTable,
             string dbSchema = null

@@ -5,10 +5,10 @@ using Makc2021.Layer2.Common.Db;
 namespace Makc2021.Layer2.Entity
 {
     /// <summary>
-    /// Настройка сущности.
+    /// Настройки сущности.
     /// </summary>
     /// <typeparam name="TDefaults">Тип значений по умолчанию.</typeparam>
-    public abstract class EntitySetting<TDefaults>
+    public abstract class EntitySettings<TDefaults>
         where TDefaults : CommonDbDefaults
     {
         #region Properties
@@ -40,7 +40,7 @@ namespace Makc2021.Layer2.Entity
         /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public EntitySetting(TDefaults defaults, string dbTable, string dbSchema = null)
+        public EntitySettings(TDefaults defaults, string dbTable, string dbSchema = null)
         {
             Defaults = defaults;
             DbTable = dbTable;

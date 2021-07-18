@@ -4,39 +4,34 @@ using Makc2021.Layer3.Sample.Db;
 using Makc2021.Layer3.Sample.Entities.User;
 using Makc2021.Layer3.Sample.Entity;
 
-namespace Makc2021.Layer3.Sample.Entities.UserClaim
+namespace Makc2021.Layer3.Sample.Entities.UserLogin
 {
     /// <summary>
-    /// Настройка сущности "UserClaim".
+    /// Настройки сущности "UserLogin".
     /// </summary>
-    public class UserClaimEntitySetting : EntitySetting
+    public class UserLoginEntitySettings : EntitySettings
     {
         #region Properties
 
         /// <summary>
-        /// Колонка в базе данных для поля "ClaimType".
+        /// Колонка в базе данных для поля "LoginProvider".
         /// </summary>
-        public string DbColumnForClaimType { get; set; }
+        public string DbColumnForLoginProvider { get; set; }
 
         /// <summary>
-        /// Колонка в базе данных для поля "ClaimValue".
+        /// Колонка в базе данных для поля "ProviderKey".
         /// </summary>
-        public string DbColumnForClaimValue { get; set; }
+        public string DbColumnForProviderKey { get; set; }
 
         /// <summary>
-        /// Колонка в базе данных для поля "Id".
+        /// Колонка в базе данных для поля "ProviderDisplayName".
         /// </summary>
-        public string DbColumnForId { get; set; }
+        public string DbColumnForProviderDisplayName { get; set; }
 
         /// <summary>
         /// Колонка в базе данных для поля идентификатора сущности "User".
         /// </summary>
         public string DbColumnForUserEntityId { get; set; }
-
-        /// <summary>
-        /// Первичный ключ в базе данных.
-        /// </summary>
-        public string DbPrimaryKey { get; set; }
 
         /// <summary>
         /// Внешний ключ в базе данных к сущности "User".
@@ -47,6 +42,11 @@ namespace Makc2021.Layer3.Sample.Entities.UserClaim
         /// Индекс в базе данных для поля идентификатора сущности "User".
         /// </summary>
         public string DbIndexForUserEntityId { get; set; }
+
+        /// <summary>
+        /// Первичный ключ в базе данных.
+        /// </summary>
+        public string DbPrimaryKey { get; set; }
 
         #endregion Properties
 
@@ -59,9 +59,8 @@ namespace Makc2021.Layer3.Sample.Entities.UserClaim
         /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        /// <param name="dbColumnNameForUserId">Колонка в базе данных для поля "UserId".</param>
-        public UserClaimEntitySetting(
-            UserEntitySetting settingOfUserEntity,
+        public UserLoginEntitySettings(
+            UserEntitySettings settingOfUserEntity,
             DbDefaults dbDefaults,
             string dbTable,
             string dbSchema = null,
@@ -69,8 +68,7 @@ namespace Makc2021.Layer3.Sample.Entities.UserClaim
             )
             : base(dbDefaults, dbTable, dbSchema)
         {
-            DbColumnForId = dbDefaults.DbColumnForId;
-            DbColumnForUserEntityId = dbColumnNameForUserId ?? nameof(UserClaimEntityObject.UserId);
+            DbColumnForUserEntityId = dbColumnNameForUserId ?? nameof(UserLoginEntityObject.UserId);
 
             DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, settingOfUserEntity.DbTable);
 

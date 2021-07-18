@@ -64,36 +64,36 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Entities
                 NamePartsSeparator = "_"
             };
 
-            DummyOneToMany = new DummyOneToManyEntitySetting(dbDefaults, "DummyOneToMany");
+            DummyOneToMany = new DummyOneToManyEntitySettings(dbDefaults, "DummyOneToMany");
 
-            DummyMain = new DummyMainEntitySetting(DummyOneToMany, dbDefaults, "DummyMain");
+            DummyMain = new DummyMainEntitySettings(DummyOneToMany, dbDefaults, "DummyMain");
 
-            DummyManyToMany = new DummyManyToManyEntitySetting(dbDefaults, "DummyManyToMany");
+            DummyManyToMany = new DummyManyToManyEntitySettings(dbDefaults, "DummyManyToMany");
 
-            DummyMainDummyManyToMany = new DummyMainDummyManyToManyEntitySetting(
+            DummyMainDummyManyToMany = new DummyMainDummyManyToManyEntitySettings(
                 DummyMain,
                 DummyManyToMany,
                 dbDefaults,
                 "DummyMainDummyManyToMany"
                 );
 
-            DummyTree = new DummyTreeEntitySetting(dbDefaults, "DummyTree");
+            DummyTree = new DummyTreeEntitySettings(dbDefaults, "DummyTree");
 
-            DummyTreeLink = new DummyTreeLinkEntitySetting(DummyTree, dbDefaults, "DummyTreeLink");
+            DummyTreeLink = new DummyTreeLinkEntitySettings(DummyTree, dbDefaults, "DummyTreeLink");
 
-            Role = new RoleEntitySetting(dbDefaults, "Role");
+            Role = new RoleEntitySettings(dbDefaults, "Role");
 
-            RoleClaim = new RoleClaimEntitySetting(Role, dbDefaults, "RoleClaim");
+            RoleClaim = new RoleClaimEntitySettings(Role, dbDefaults, "RoleClaim");
 
-            User = new UserEntitySetting(dbDefaults, "User");
+            User = new UserEntitySettings(dbDefaults, "User");
 
-            UserClaim = new UserClaimEntitySetting(User, dbDefaults, "UserClaim");
+            UserClaim = new UserClaimEntitySettings(User, dbDefaults, "UserClaim");
 
-            UserLogin = new UserLoginEntitySetting(User, dbDefaults, "UserLogin");
+            UserLogin = new UserLoginEntitySettings(User, dbDefaults, "UserLogin");
 
-            UserRole = new UserRoleEntitySetting(Role, User, dbDefaults, "UserRole");
+            UserRole = new UserRoleEntitySettings(Role, User, dbDefaults, "UserRole");
 
-            UserToken = new UserTokenEntitySetting(User, dbDefaults, "UserToken");
+            UserToken = new UserTokenEntitySettings(User, dbDefaults, "UserToken");
         }
 
         #endregion Constructors     

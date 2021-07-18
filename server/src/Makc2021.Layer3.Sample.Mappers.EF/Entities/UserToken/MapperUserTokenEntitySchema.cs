@@ -26,7 +26,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF.Entities.UserToken
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperUserTokenEntityObject> builder)
         {
-            Sample.Entities.UserToken.UserTokenEntitySetting setting = EntitiesSettings.UserToken;
+            Sample.Entities.UserToken.UserTokenEntitySettings setting = EntitiesSettings.UserToken;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

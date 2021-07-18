@@ -116,8 +116,8 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
 
         private static void InitQueryBuilder(
             TreeTriggerCommandBuilder builder,
-            DummyTreeLinkEntitySetting linkSettings,
-            DummyTreeEntitySetting treeSettings
+            DummyTreeLinkEntitySettings linkSettings,
+            DummyTreeEntitySettings treeSettings
             )
         {
             builder.LinkTableFieldNameForId = linkSettings.DbColumnForId;

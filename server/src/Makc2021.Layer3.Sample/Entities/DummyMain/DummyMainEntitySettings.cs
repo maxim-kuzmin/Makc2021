@@ -7,9 +7,9 @@ using Makc2021.Layer3.Sample.Db;
 namespace Makc2021.Layer3.Sample.Entities.DummyMain
 {
     /// <summary>
-    /// Настройка сущности "DummyMain".
+    /// Настройки сущности "DummyMain".
     /// </summary>
-    public class DummyMainEntitySetting : EntitySetting
+    public class DummyMainEntitySettings : EntitySettings
     {
         #region Properties
 
@@ -134,8 +134,8 @@ namespace Makc2021.Layer3.Sample.Entities.DummyMain
         /// <param name="dbDefaults">Значения по умолчанию  в базе данных.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public DummyMainEntitySetting(
-            DummyOneToManyEntitySetting settingOfDummyOneToManyEntity,
+        public DummyMainEntitySettings(
+            DummyOneToManyEntitySettings settingOfDummyOneToManyEntity,
             DbDefaults dbDefaults,
             string dbTable,
             string dbSchema = null

@@ -4,12 +4,12 @@ using Makc2021.Layer3.Sample.Db;
 using Makc2021.Layer3.Sample.Entities.User;
 using Makc2021.Layer3.Sample.Entity;
 
-namespace Makc2021.Layer3.Sample.Entities.UserLogin
+namespace Makc2021.Layer3.Sample.Entities.UserToken
 {
     /// <summary>
-    /// Настройка сущности "UserLogin".
+    /// Настройки сущности "UserToken".
     /// </summary>
-    public class UserLoginEntitySetting : EntitySetting
+    public class UserTokenEntitySettings : EntitySettings
     {
         #region Properties
 
@@ -19,14 +19,9 @@ namespace Makc2021.Layer3.Sample.Entities.UserLogin
         public string DbColumnForLoginProvider { get; set; }
 
         /// <summary>
-        /// Колонка в базе данных для поля "ProviderKey".
+        /// Колонка в базе данных для поля "Name".
         /// </summary>
-        public string DbColumnForProviderKey { get; set; }
-
-        /// <summary>
-        /// Колонка в базе данных для поля "ProviderDisplayName".
-        /// </summary>
-        public string DbColumnForProviderDisplayName { get; set; }
+        public string DbColumnForName { get; set; }
 
         /// <summary>
         /// Колонка в базе данных для поля идентификатора сущности "User".
@@ -34,14 +29,14 @@ namespace Makc2021.Layer3.Sample.Entities.UserLogin
         public string DbColumnForUserEntityId { get; set; }
 
         /// <summary>
+        /// Колонка в базе данных для поля "Value".
+        /// </summary>
+        public string DbColumnForValue { get; set; }
+
+        /// <summary>
         /// Внешний ключ в базе данных к сущности "User".
         /// </summary>
         public string DbForeignKeyToUserEntity { get; set; }
-
-        /// <summary>
-        /// Индекс в базе данных для поля идентификатора сущности "User".
-        /// </summary>
-        public string DbIndexForUserEntityId { get; set; }
 
         /// <summary>
         /// Первичный ключ в базе данных.
@@ -59,20 +54,17 @@ namespace Makc2021.Layer3.Sample.Entities.UserLogin
         /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public UserLoginEntitySetting(
-            UserEntitySetting settingOfUserEntity,
+        public UserTokenEntitySettings(
+            UserEntitySettings settingOfUserEntity,
             DbDefaults dbDefaults,
             string dbTable,
-            string dbSchema = null,
-            string dbColumnNameForUserId = null
+            string dbSchema = null
             )
             : base(dbDefaults, dbTable, dbSchema)
         {
-            DbColumnForUserEntityId = dbColumnNameForUserId ?? nameof(UserLoginEntityObject.UserId);
+            DbColumnForName = dbDefaults.DbColumnForName;
 
             DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, settingOfUserEntity.DbTable);
-
-            DbIndexForUserEntityId = CreateDbIndexName(DbTable, DbColumnForUserEntityId);
 
             DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
         }
