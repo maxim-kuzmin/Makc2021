@@ -32,7 +32,6 @@ export interface DummyMainItemPageState {
 export function createDummyMainItemPageState() {
   return {
     getQueryResult: createQueryResultWithOutput<DummyMainItemPageGetQueryOutput>(),
-    isWaiting: false,
     saveQueryInput: createDummyMainItemPageSaveQueryInput()
   } as DummyMainItemPageState;
 }

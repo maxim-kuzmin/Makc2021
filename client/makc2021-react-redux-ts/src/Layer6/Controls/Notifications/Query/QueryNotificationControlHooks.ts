@@ -1,3 +1,5 @@
+// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
+
 import { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Context } from 'src/Context';

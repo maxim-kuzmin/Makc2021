@@ -1,3 +1,5 @@
+// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { QueryResult } from 'src/Layer1/Query/QueryResult';
 import { AppThunk, RootState } from 'src/Layer5/Store';
