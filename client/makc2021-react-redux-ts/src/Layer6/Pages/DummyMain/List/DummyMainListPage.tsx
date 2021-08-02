@@ -17,6 +17,16 @@ import {
 import { useCurrentMenuItemKey } from 'src/Layer6/Controls/Menus/Top/TopMenuControlHooks';
 import { useQueryNotification } from 'src/Layer6/Controls/Notifications/Query/QueryNotificationControlHooks';
 
+const tableId = 'DummyMainList';
+
+const columnAccessorForAction = 'action';
+const columnAccessorForId = 'id';
+const columnAccessorForName = 'name';
+
+const columnIdForAction = `${tableId}-${columnAccessorForAction}`;
+const columnIdForId = `${tableId}-${columnAccessorForId}`;
+const columnIdForName = `${tableId}-${columnAccessorForName}`;
+
 /**
  * Страница сущностей "DummyMain".
  */
@@ -61,13 +71,9 @@ export function DummyMainListPage() {
   const sortField = search.sf ?? 'id';
   const entityName = search.en;
 
-  const idOfPage = 'DummyMainListPage';
-  const idOfTable = `${idOfPage}-table`;
-  const idOfColumnForName = `${idOfTable}-name`;
-
   const filters = [
     {
-      id: idOfColumnForName,
+      id: columnIdForName,
       value: entityName
     }
   ] as Filters<DummyMainListPageTableRow>;
@@ -118,10 +124,12 @@ export function DummyMainListPage() {
       let entityName: any;
 
       for (const filter of filters) {
-        if (filter.id === idOfColumnForName) {
+        if (filter.id === columnIdForName) {
           entityName = filter.value;
         }
       }
+
+      search.en = entityName;
 
       if (pageNumber) {
         search.pn = pageNumber;
@@ -139,44 +147,43 @@ export function DummyMainListPage() {
         search.sf = sortField;
       }
 
-      if (entityName) {
-        search.en = entityName;
-      }
-
       urlParts.search = search;
 
       return urlService.createUrl(urlParts);
     },
-    [location.pathname, search, urlService, idOfColumnForName]
+    [location.pathname, search, urlService]
   );
 
   const columns = useMemo(
     () =>
       [
         {
+          id: columnIdForAction,
           Header: '',
-          accessor: 'action',
+          accessor: columnAccessorForAction,
           disableFilters: true,
           Cell: (e) => (
-            <Link to={`/dummy-main/item/${e.row.values['id']}`}>
+            <Link to={`/dummy-main/item/${e.row.values[columnIdForId]}`}>
               {resource.getViewLinkTitle()}
             </Link>
           ),
           minWidth: '6em'
         },
         {
+          id: columnIdForId,
           Header: resource.getIDColumnTitle(),
-          accessor: 'id',
+          accessor: columnAccessorForId,
           disableFilters: true,
           minWidth: '5em'
         },
         {
+          id: columnIdForName,
           Header: resource.getNameColumnTitle(),
-          accessor: idOfColumnForName,
+          accessor: columnAccessorForName,
           width: '100%'
         }
       ] as Column<DummyMainListPageTableRow>[],
-    [idOfColumnForName, resource]
+    [resource]
   );
 
   const data = useMemo(() => {

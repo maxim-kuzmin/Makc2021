@@ -89,6 +89,7 @@ export function DefaultTableControl<TRow extends object>({
 
   useEffect(() => {
     const sorting = sortBy[0];
+
     history.push(
       createPageUrl(
         pageNumber,

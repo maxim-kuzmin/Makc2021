@@ -12,6 +12,7 @@ export function TableColumnDefaultFilterControl<TRow extends object>({
 }: UseTableCellProps<TRow>) {
   const { filterValue, setFilter } = column;
   console.log('MAKC:column', column);
+
   const focusProps = useFocus(column.id);
 
   return (
@@ -21,7 +22,7 @@ export function TableColumnDefaultFilterControl<TRow extends object>({
       debounceTimeout={600}
       value={filterValue || ''}
       onChange={(e) => {
-        setFilter(e.target.value || undefined);
+        setFilter(e.target.value || '');
       }}
       {...focusProps}
     />
