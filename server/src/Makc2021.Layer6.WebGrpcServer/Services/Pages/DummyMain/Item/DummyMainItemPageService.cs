@@ -11,7 +11,7 @@ namespace Makc2021.Layer6.WebGrpcServer.Services.Pages.DummyMain.Item
     {
         #region Properties
 
-        private IDummyMainItemPageService AppService { get; }
+        private IDummyMainItemPageService Service { get; }
 
         #endregion Properties
 
@@ -20,10 +20,10 @@ namespace Makc2021.Layer6.WebGrpcServer.Services.Pages.DummyMain.Item
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="appService">Сервис.</param>
-        public DummyMainItemPageService(IDummyMainItemPageService appService)
+        /// <param name="service">Сервис.</param>
+        public DummyMainItemPageService(IDummyMainItemPageService service)
         {
-            AppService = appService;
+            Service = service;
         }
 
         #endregion Constructors
@@ -45,7 +45,7 @@ namespace Makc2021.Layer6.WebGrpcServer.Services.Pages.DummyMain.Item
 
             input.Item.EntityId = request.Item.EntityId;
 
-            var queryResult = await AppService.Get(input, request.QueryCode).ConfigureAwaitWithCultureSaving(false);
+            var queryResult = await Service.Get(input, request.QueryCode).ConfigureAwaitWithCultureSaving(false);
 
             var objectOfDummyMainEntity = queryResult.Output.Item.ObjectOfDummyMainEntity;
 

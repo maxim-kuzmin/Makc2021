@@ -46,8 +46,8 @@ namespace Makc2021.Layer1.Query.Handlers
         #region Constructors
 
         /// <inheritdoc/>
-        public QueryWithInputAndOutputHandler(string queryName, IQueryResource appQueryResource, ILogger extLogger)
-            : base(queryName, appQueryResource, extLogger)
+        public QueryWithInputAndOutputHandler(string queryName, IQueryResource queryResource, ILogger logger)
+            : base(queryName, queryResource, logger)
         {
         }
 

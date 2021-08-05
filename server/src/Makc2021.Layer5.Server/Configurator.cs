@@ -16,14 +16,14 @@ namespace Makc2021.Layer5.Server
         /// <summary>
         /// Настроить.
         /// </summary>
-        /// <param name="appSampleMapperService">Сервис сопоставителя базы данных "Sample".</param>
+        /// <param name="mapperServiceForSample">Сервис сопоставителя для "Sample".</param>
         public static void Configure(
-            Layer3.Sample.Mappers.EF.IMapperService appSampleMapperService
+            Layer3.Sample.Mappers.EF.IMapperService mapperServiceForSample
             )
         {
-            appSampleMapperService.MigrateDatabase().ConfigureAwaitWithCultureSaving(false).GetResult();
+            mapperServiceForSample.MigrateDatabase().ConfigureAwaitWithCultureSaving(false).GetResult();
 
-            appSampleMapperService.SeedTestData().ConfigureAwaitWithCultureSaving(false).GetResult();
+            mapperServiceForSample.SeedTestData().ConfigureAwaitWithCultureSaving(false).GetResult();
         }
 
         /// <summary>

@@ -16,24 +16,24 @@ namespace Makc2021.Layer5.Server.Pages.DummyMain.Item
     /// </summary>
     public class DummyMainItemPageService : IDummyMainItemPageService
     {
-        private IDomainItemGetQueryHandler AppItemGetQueryDomainHandler { get; }
+        private IDomainItemGetQueryHandler DomainItemGetQueryHandler { get; }
 
-        private IDomainService AppService { get; }
+        private IDomainService DomainService { get; }
 
         #region Constructors
 
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="appItemGetQueryDomainHandler">Обработчик запроса на получение.</param>
-        /// <param name="appService">Сервис.</param>
+        /// <param name="domainItemGetQueryHandler">Обработчик запроса на получение элемента в домене.</param>
+        /// <param name="domainService">Сервис домена.</param>
         public DummyMainItemPageService(
-            IDomainItemGetQueryHandler appItemGetQueryDomainHandler,
-            IDomainService appService
+            IDomainItemGetQueryHandler domainItemGetQueryHandler,
+            IDomainService domainService
             )
         {
-            AppItemGetQueryDomainHandler = appItemGetQueryDomainHandler;
-            AppService = appService;
+            DomainItemGetQueryHandler = domainItemGetQueryHandler;
+            DomainService = domainService;
         }
 
         #endregion Constructors
@@ -97,13 +97,13 @@ namespace Makc2021.Layer5.Server.Pages.DummyMain.Item
             string queryCode
             )
         {
-            var queryHandler = AppItemGetQueryDomainHandler;
+            var queryHandler = DomainItemGetQueryHandler;
 
             try
             {
                 queryHandler.OnStart(input, queryCode);
 
-                var queryOutput = await AppService.GetItem(
+                var queryOutput = await DomainService.GetItem(
                     queryHandler.QueryInput
                     ).ConfigureAwaitWithCultureSaving(false);
 

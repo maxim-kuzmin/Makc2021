@@ -1,10 +1,5 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Makc2021.Layer1.Common;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -35,7 +30,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Testing
 
             CommonConfigurator.ConfigureServices(services, new CommonModule[]
             {
-                new DomainModule(),
+                new Layer1.Testing.Module(),
                 new Module()
             });
 

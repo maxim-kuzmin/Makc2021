@@ -23,7 +23,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
     {
         #region Properties
 
-        private Layer3.Sample.Mappers.EF.Db.IMapperDbFactory AppSampleMapperDbFactory { get; }
+        private Layer3.Sample.Mappers.EF.Db.IMapperDbFactory MapperDbFactoryForSample { get; }
 
         #endregion Properties
 
@@ -32,10 +32,10 @@ namespace Makc2021.Layer4.Domains.DummyMain
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="appSampleMapperDbFactory">Фабрика базы данных "Sample" сопоставителя.</param>
-        public DomainService(Layer3.Sample.Mappers.EF.Db.IMapperDbFactory appSampleMapperDbFactory)
+        /// <param name="mapperDbFactoryForSample">Фабрика базы данных сопоставителя для "Sample".</param>
+        public DomainService(Layer3.Sample.Mappers.EF.Db.IMapperDbFactory mapperDbFactoryForSample)
         {
-            AppSampleMapperDbFactory = appSampleMapperDbFactory;
+            MapperDbFactoryForSample = mapperDbFactoryForSample;
         }
 
         #endregion Constructors
@@ -47,7 +47,7 @@ namespace Makc2021.Layer4.Domains.DummyMain
         {
             DomainItemGetQueryOutput result = null;
 
-            using var dbContext = AppSampleMapperDbFactory.CreateDbContext();
+            using var dbContext = MapperDbFactoryForSample.CreateDbContext();
 
             var entityOfDummyMain = await dbContext.DummyMain
                 .Include(x => x.ObjectOfDummyOneToManyEntity)
@@ -89,8 +89,8 @@ namespace Makc2021.Layer4.Domains.DummyMain
         {
             var result = new DomainListGetQueryOutput();
 
-            using var dbContext = AppSampleMapperDbFactory.CreateDbContext();
-            using var dbContextForTotalCount = AppSampleMapperDbFactory.CreateDbContext();
+            using var dbContext = MapperDbFactoryForSample.CreateDbContext();
+            using var dbContextForTotalCount = MapperDbFactoryForSample.CreateDbContext();
 
             var queryOfItems = dbContext.DummyMain
                 .Include(x => x.ObjectOfDummyOneToManyEntity)

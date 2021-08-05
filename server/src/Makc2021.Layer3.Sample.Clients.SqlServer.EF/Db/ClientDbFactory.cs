@@ -39,27 +39,27 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Db
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="appConfigSettings">Конфигурационные настройки.</param>
-        /// <param name="appDataConfigSettings">Конфигурационные настройки данных.</param>
-        /// <param name="appEntitiesSettings">Настройки сущностей.</param>
-        /// <param name="appEnvironment">Окружение.</param>
-        /// <param name="extLogger">Регистратор.</param>
+        /// <param name="clientConfigSettings">Конфигурационные настройки клиента.</param>
+        /// <param name="dataConfigSettings">Конфигурационные настройки данных.</param>
+        /// <param name="entitiesSettings">Настройки сущностей.</param>
+        /// <param name="environment">Окружение.</param>
+        /// <param name="logger">Регистратор.</param>
         public ClientDbFactory(
-            IClientConfigSettings appClientConfigSettings,
-            Layer2.Config.IConfigSettings appDataConfigSettings,
-            EntitiesSettings appEntitieSettings,
-            CommonEnvironment appEnvironment,
-            ILogger<ClientDbFactory> extLogger
+            IClientConfigSettings clientConfigSettings,
+            Layer2.Config.IConfigSettings dataConfigSettings,
+            EntitiesSettings entitiesSettings,
+            CommonEnvironment environment,
+            ILogger<ClientDbFactory> logger
             )
             : base(
-                  appClientConfigSettings.ConnectionString,
-                  appEntitieSettings,
-                  appEnvironment,
-                  extLogger,
-                  appDataConfigSettings.LogLevel
+                  clientConfigSettings.ConnectionString,
+                  entitiesSettings,
+                  environment,
+                  logger,
+                  dataConfigSettings.LogLevel
                   )
         {
-            DbCommandTimeout = appDataConfigSettings.DbCommandTimeout;
+            DbCommandTimeout = dataConfigSettings.DbCommandTimeout;
         }
 
         #endregion Constructors

@@ -18,7 +18,7 @@ namespace Makc2021.Layer6.WebGrpcClient.Controllers.Pages.DummyMain.List
     {
         #region Properties        
 
-        private DummyMainListPage.DummyMainListPageClient AppClient { get; }
+        private DummyMainListPage.DummyMainListPageClient Client { get; }
 
         #endregion Properties
 
@@ -27,10 +27,10 @@ namespace Makc2021.Layer6.WebGrpcClient.Controllers.Pages.DummyMain.List
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="appClient">Клиент.</param>
-        public DummyMainListPageController(DummyMainListPage.DummyMainListPageClient appClient)
+        /// <param name="сlient">Клиент.</param>
+        public DummyMainListPageController(DummyMainListPage.DummyMainListPageClient сlient)
         {
-            AppClient = appClient;
+            Client = сlient;
         }
 
         #endregion Constructors
@@ -70,7 +70,7 @@ namespace Makc2021.Layer6.WebGrpcClient.Controllers.Pages.DummyMain.List
                 }
             };
 
-            var reply = await AppClient.GetAsync(request).ResponseAsync.ConfigureAwaitWithCultureSaving(false);
+            var reply = await Client.GetAsync(request).ResponseAsync.ConfigureAwaitWithCultureSaving(false);
 
             return Ok(reply);
         }

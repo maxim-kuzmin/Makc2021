@@ -28,11 +28,11 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
     {
         #region Properties
 
-        private IClientProvider AppClientProvider { get; }
+        private IClientProvider ClientProvider { get; }
 
-        private EntitiesSettings AppEntitiesSettings { get; }
+        private EntitiesSettings EntitiesSettings { get; }
 
-        private IMapperDbFactory AppMapperDbFactory { get; }
+        private IMapperDbFactory MapperDbFactory { get; }
 
         #endregion Properties
 
@@ -41,18 +41,18 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// <summary>
         /// Конструктор.
         /// </summary>        
-        /// <param name="appEntitiesSettings">Настройки сущностей.</param>
-        /// <param name="appClientProvider">Поставщик клиента.</param>
-        /// <param name="appMapperDbFactory">Фабрика базы данных сопоставителя.</param>
+        /// <param name="entitiesSettings">Настройки сущностей.</param>
+        /// <param name="сlientProvider">Поставщик клиента.</param>
+        /// <param name="mapperDbFactory">Фабрика базы данных сопоставителя.</param>
         public MapperService(            
-            IClientProvider appClientProvider,
-            EntitiesSettings appEntitiesSettings,
-            IMapperDbFactory appMapperDbFactory
+            IClientProvider сlientProvider,
+            EntitiesSettings entitiesSettings,
+            IMapperDbFactory mapperDbFactory
             )
         {
-            AppClientProvider = appClientProvider;
-            AppEntitiesSettings = appEntitiesSettings;
-            AppMapperDbFactory = appMapperDbFactory;
+            ClientProvider = сlientProvider;
+            EntitiesSettings = entitiesSettings;
+            MapperDbFactory = mapperDbFactory;
         }
 
         #endregion Constructors
@@ -62,7 +62,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// <inheritdoc/>
         public async Task MigrateDatabase()
         {
-            using var dbContext = AppMapperDbFactory.CreateDbContext();
+            using var dbContext = MapperDbFactory.CreateDbContext();
 
             await dbContext.Database.MigrateAsync().ConfigureAwaitWithCultureSaving(false);
         }
@@ -70,7 +70,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// <inheritdoc/>
         public async Task SeedTestData()
         {
-            using var dbContext = AppMapperDbFactory.CreateDbContext();
+            using var dbContext = MapperDbFactory.CreateDbContext();
 
             using var transaction = await dbContext.Database.BeginTransactionAsync()
                 .ConfigureAwaitWithCultureSaving(false);
@@ -105,11 +105,11 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
             TriggerCommandAction action
             )
         {
-            var result = AppClientProvider.CreateQueryTreeTriggerBuilder();
+            var result = ClientProvider.CreateQueryTreeTriggerBuilder();
 
             result.Action = action;
 
-            InitQueryBuilder(result, AppEntitiesSettings.DummyTreeLink, AppEntitiesSettings.DummyTree);
+            InitQueryBuilder(result, EntitiesSettings.DummyTreeLink, EntitiesSettings.DummyTree);
 
             return result;
         }

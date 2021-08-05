@@ -16,24 +16,24 @@ namespace Makc2021.Layer5.Server.Pages.DummyMain.List
     /// </summary>
     public class DummyMainListPageService : IDummyMainListPageService
     {
-        private IDomainListGetQueryHandler AppListGetQueryDomainHandler { get; }
+        private IDomainListGetQueryHandler DomainListGetQueryHandler { get; }
 
-        private IDomainService AppService { get; }
+        private IDomainService DomainService { get; }
 
         #region Constructors
 
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="appListGetQueryDomainHandler">Обработчик запроса на получение.</param>
-        /// <param name="appService">Сервис.</param>
+        /// <param name="domainListGetQueryHandler">Обработчик запроса на получение списка в домене.</param>
+        /// <param name="domainService">Сервис домена.</param>
         public DummyMainListPageService(
-            IDomainListGetQueryHandler appListGetQueryDomainHandler,
-            IDomainService appService
+            IDomainListGetQueryHandler domainListGetQueryHandler,
+            IDomainService domainService
             )
         {
-            AppListGetQueryDomainHandler = appListGetQueryDomainHandler;
-            AppService = appService;
+            DomainListGetQueryHandler = domainListGetQueryHandler;
+            DomainService = domainService;
         }
 
         #endregion Constructors
@@ -101,13 +101,13 @@ namespace Makc2021.Layer5.Server.Pages.DummyMain.List
             string queryCode
             )
         {
-            var queryHandler = AppListGetQueryDomainHandler;
+            var queryHandler = DomainListGetQueryHandler;
 
             try
             {
                 queryHandler.OnStart(input, queryCode);
 
-                var queryOutput = await AppService.GetList(
+                var queryOutput = await DomainService.GetList(
                     queryHandler.QueryInput
                     ).ConfigureAwaitWithCultureSaving(false);
 

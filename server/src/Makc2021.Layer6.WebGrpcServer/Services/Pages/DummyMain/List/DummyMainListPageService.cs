@@ -12,7 +12,7 @@ namespace Makc2021.Layer6.WebGrpcServer.Services.Pages.DummyMain.List
     {
         #region Properties
 
-        private IDummyMainListPageService AppService { get; }
+        private IDummyMainListPageService Service { get; }
 
         #endregion Properties
 
@@ -21,10 +21,10 @@ namespace Makc2021.Layer6.WebGrpcServer.Services.Pages.DummyMain.List
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="appService">Сервис.</param>
-        public DummyMainListPageService(IDummyMainListPageService appService)
+        /// <param name="service">Сервис.</param>
+        public DummyMainListPageService(IDummyMainListPageService service)
         {
-            AppService = appService;
+            Service = service;
         }
 
         #endregion Constructors
@@ -50,7 +50,7 @@ namespace Makc2021.Layer6.WebGrpcServer.Services.Pages.DummyMain.List
             input.List.SortField = request.List.SortField;
             input.List.EntityName = request.List.EntityName;
 
-            var queryResult = await AppService.Get(input, request.QueryCode).ConfigureAwaitWithCultureSaving(false);
+            var queryResult = await Service.Get(input, request.QueryCode).ConfigureAwaitWithCultureSaving(false);
 
             var result = new DummyMainListPageGetReply
             {

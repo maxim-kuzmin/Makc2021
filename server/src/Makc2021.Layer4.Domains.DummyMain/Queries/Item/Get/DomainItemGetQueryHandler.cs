@@ -19,14 +19,14 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
 
         /// <inheritdoc/>
         public DomainItemGetQueryHandler(
-            IDomainResource appResource,
-            IQueryResource appQueryResource,
-            ILogger<DomainItemGetQueryHandler> extLogger
+            IDomainResource domainResource,
+            IQueryResource queryResource,
+            ILogger<DomainItemGetQueryHandler> logger
             )
             : base(
-                  appResource.GetItemGetQueryName(),
-                  appQueryResource,
-                  extLogger
+                  domainResource.GetItemGetQueryName(),
+                  queryResource,
+                  logger
                   )
         {
             FunctionToTransformQueryInput = TransformQueryInput;
@@ -50,7 +50,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get
 
             if (invalidProperties.Any())
             {
-                throw new CommonException(AppQueryResource.GetErrorMessageForInvalidInput(invalidProperties));
+                throw new CommonException(QueryResource.GetErrorMessageForInvalidInput(invalidProperties));
             }
 
             return input;

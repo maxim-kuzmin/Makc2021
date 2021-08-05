@@ -23,12 +23,12 @@ namespace Makc2021.Layer1.Query
         /// <summary>
         /// Ресурс запроса.
         /// </summary>
-        protected IQueryResource AppQueryResource { get; }
+        protected IQueryResource QueryResource { get; }
 
         /// <summary>
         /// Регистратор.
         /// </summary>
-        protected ILogger ExtLogger { get; }
+        protected ILogger Logger { get; }
 
         /// <summary>
         /// Функция получения сообщений об ошибках.
@@ -48,13 +48,13 @@ namespace Makc2021.Layer1.Query
         /// Конструктор.
         /// </summary>
         /// <param name="queryName">Имя запроса.</param>
-        /// <param name="appQueryResource">Ресурс запроса.</param>
-        /// <param name="extLogger">Регистратор.</param>
-        public QueryHandler(string queryName, IQueryResource appQueryResource, ILogger extLogger)
+        /// <param name="queryResource">Ресурс запроса.</param>
+        /// <param name="logger">Регистратор.</param>
+        public QueryHandler(string queryName, IQueryResource queryResource, ILogger logger)
         {
             QueryName = queryName;
-            AppQueryResource = appQueryResource;
-            ExtLogger = extLogger;
+            QueryResource = queryResource;
+            Logger = logger;
         }
 
         #endregion Constructors
@@ -83,16 +83,16 @@ namespace Makc2021.Layer1.Query
             }
             else
             {
-                errorMessage = AppQueryResource.GetErrorMessageForDefault();
+                errorMessage = QueryResource.GetErrorMessageForDefault();
 
                 queryResult.ErrorMessages.Add(errorMessage);
             }
 
-            if (ExtLogger != null)
+            if (Logger != null)
             {
-                string titleForError = AppQueryResource.GetTitleForError();
+                string titleForError = QueryResource.GetTitleForError();
 
-                ExtLogger.LogError(exception, $"{Title}{titleForError}. {errorMessage}");
+                Logger.LogError(exception, $"{Title}{titleForError}. {errorMessage}");
             }
         }
 
@@ -108,7 +108,7 @@ namespace Makc2021.Layer1.Query
         {
             QueryCode = string.IsNullOrWhiteSpace(queryCode) ? QueryHelper.CreateQueryCode() : queryCode;
 
-            string titleForQueryCode = AppQueryResource.GetTitleForQueryCode();
+            string titleForQueryCode = QueryResource.GetTitleForQueryCode();
 
             if (!string.IsNullOrWhiteSpace(queryCode))
             {
@@ -217,31 +217,31 @@ namespace Makc2021.Layer1.Query
 
         private void LogStartIfTestOrDebugEnabled()
         {
-            if (ExtLogger != null)
+            if (Logger != null)
             {
                 object queryInput = GetQueryInput();
 
-                string titleForStart = AppQueryResource.GetTitleForStart();
-                string titleForInput = AppQueryResource.GetTitleForInput();
+                string titleForStart = QueryResource.GetTitleForStart();
+                string titleForInput = QueryResource.GetTitleForInput();
                 string valueForInput = queryInput?.SerializeToJson(JsonSerializationOptions.ForLogger);
 
                 valueForInput = !string.IsNullOrEmpty(valueForInput)
                     ? $". {titleForInput}: {valueForInput}"
                     : string.Empty;
 
-                ExtLogger.LogDebug($"{Title}{titleForStart}{valueForInput}");
+                Logger.LogDebug($"{Title}{titleForStart}{valueForInput}");
             }
         }
 
         private void LogSuccessIfTestOrDebugEnabled()
         {
-            if (ExtLogger != null)
+            if (Logger != null)
             {
-                string titleForSuccess = AppQueryResource.GetTitleForSuccess();
-                string titleForResult = AppQueryResource.GetTitleForResult();
+                string titleForSuccess = QueryResource.GetTitleForSuccess();
+                string titleForResult = QueryResource.GetTitleForResult();
                 string valueForResult = GetQueryResult().SerializeToJson(JsonSerializationOptions.ForLogger);
 
-                ExtLogger.LogDebug($"{Title}{titleForSuccess}. {titleForResult}: {valueForResult}");
+                Logger.LogDebug($"{Title}{titleForSuccess}. {titleForResult}: {valueForResult}");
             }
         }
 

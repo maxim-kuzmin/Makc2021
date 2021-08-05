@@ -25,8 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Makc2021.Layer1.Testing\Makc2021.Layer1.Testing.csproj" />
-    <ProjectReference Include="..\Makc2021.Layer4.Domains.DummyMain\Makc2021.Layer4.Domains.DummyMain.csproj" />
+    <ProjectReference Include="..\Makc2021.Layer1\Makc2021.Layer1.csproj" />
   </ItemGroup>
 
 </Project>
