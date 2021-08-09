@@ -1,15 +1,14 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System;
-using Makc2021.Layer4.Domains.DummyMain.Testing.Fixtures;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Makc2021.Layer4.Domains.DummyMain.Testing
+namespace Makc2021.Layer4.Domains.DummyMain.Testing.Fixtures
 {
     /// <summary>
-    /// Оснастки юнит-теста.
+    /// Контекст оснасток.
     /// </summary>
-    public class UnitTestFixtures : IDisposable
+    public class FixturesContext : IDisposable
     {
         #region Fields
 
@@ -31,7 +30,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Testing
         /// <summary>
         /// Конструктор.
         /// </summary>
-        public UnitTestFixtures()
+        public FixturesContext()
         {
             Configurator.UseServices();
 

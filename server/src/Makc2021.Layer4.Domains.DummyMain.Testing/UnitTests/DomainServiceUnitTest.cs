@@ -3,6 +3,7 @@
 using AutoFixture.Xunit2;
 using Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get;
 using Makc2021.Layer4.Domains.DummyMain.Queries.List.Get;
+using Makc2021.Layer4.Domains.DummyMain.Testing.Fixtures;
 using Xunit;
 
 namespace Makc2021.Layer4.Domains.DummyMain.Testing.UnitTests
@@ -15,7 +16,7 @@ namespace Makc2021.Layer4.Domains.DummyMain.Testing.UnitTests
         #region Constructors
 
         /// <inheritdoc/>
-        public DomainServiceUnitTest(UnitTestFixtures fixtures)
+        public DomainServiceUnitTest(FixturesContext fixtures)
             : base(fixtures)
         {
         }
