@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.13.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Makc2021.Layer5.GrpcServer\Makc2021.Layer5.GrpcServer.csproj" />
   </ItemGroup>
 

@@ -12,12 +12,19 @@
     <PackageReference Include="Microsoft.Extensions.Localization" Version="5.0.6" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="5.0.6" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    <PackageReference Include="NLog" Version="4.7.10" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="ResourceFiles\Query\QueryResource.en.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ConfigFiles\nlog.config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
