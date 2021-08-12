@@ -77,7 +77,7 @@ namespace Makc2021.Layer1.Query
 
             if (errorMessages != null && errorMessages.Any())
             {
-                queryResult.ErrorMessages.AddRange(errorMessages);
+                queryResult.ErrorMessages.IntersectWith(errorMessages);
 
                 errorMessage = string.Join(". ", errorMessages).Replace("!.", "!").Replace("?.", "?");
             }
@@ -142,7 +142,7 @@ namespace Makc2021.Layer1.Query
 
                     if (messages != null && messages.Any())
                     {
-                        queryResult.SuccessMessages.AddRange(messages);
+                        queryResult.SuccessMessages.IntersectWith(messages);
                     }
                 }
 
@@ -152,7 +152,7 @@ namespace Makc2021.Layer1.Query
 
                     if (messages != null && messages.Any())
                     {
-                        queryResult.WarningMessages.AddRange(messages);
+                        queryResult.WarningMessages.IntersectWith(messages);
                     }
                 }
 

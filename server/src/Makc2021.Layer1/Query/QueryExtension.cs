@@ -1,6 +1,9 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Makc2021.Layer1.Completion;
 
 namespace Makc2021.Layer1.Query
 {
@@ -12,17 +15,112 @@ namespace Makc2021.Layer1.Query
         #region Public methods
 
         /// <summary>
-        /// Добавить диапазон.
+        /// Добавить.
         /// </summary>
-        /// <typeparam name="T">Тип элементов.</typeparam>
-        /// <param name="collection">Коллекция.</param>
-        /// <param name="items">Элементы.</param>
-        public static void AddRange<T>(this HashSet<T> collection, IEnumerable<T> items)
+        /// <param name="queryResults">Результаты запроса.</param>
+        /// <param name="functionToGetQueryResult">Функция для получения результата запроса.</param>
+        public static void Add(ICollection<QueryResult> queryResults, Func<QueryResult> functionToGetQueryResult)
         {
-            foreach (var item in items)
+            var queryResult = functionToGetQueryResult.Invoke();
+
+            queryResults.Add(queryResult);
+        }
+
+        /// <summary>
+        /// Добавить.
+        /// </summary>
+        /// <typeparam name="TOutput">Тип выходных данных.</typeparam>
+        /// <param name="queryResults">Результаты запроса.</param>
+        /// <param name="functionToGetQueryResult">Функция для получения результата запроса.</param>
+        /// <param name="actionToSetOutput">Действие по установке выходных данных.</param>
+        /// <returns>Признак успешной установки выходных данных.</returns>
+        public static bool Add<TOutput>(
+            this ICollection<QueryResult> queryResults,
+            Func<QueryResultWithOutput<TOutput>> functionToGetQueryResult,
+            Action<TOutput> actionToSetOutput
+            )
+        {
+            var queryResult = functionToGetQueryResult.Invoke();
+
+            queryResults.Add(queryResult);
+
+            if (queryResult.IsOk && queryResult.Output != null)
             {
-                collection.Add(item);
+                actionToSetOutput.Invoke(queryResult.Output);
+
+                return true;
             }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Добавить.
+        /// </summary>
+        /// <param name="queryResults">Результаты запроса.</param>
+        /// <param name="functionToGetQueryResultTask">
+        /// Функция для получения задачи на получение результата запроса.
+        /// </param>
+        /// <returns>Задача.</returns>
+        public static async Task AddAsync(
+            ICollection<QueryResult> queryResults,
+            Func<Task<QueryResult>> functionToGetQueryResultTask
+            )
+        {
+            var queryResult = await functionToGetQueryResultTask.Invoke().ConfigureAwaitWithCultureSaving(false);
+
+            queryResults.Add(queryResult);
+        }
+
+        /// <summary>
+        /// Добавить асинхронно.
+        /// </summary>
+        /// <typeparam name="TOutput">Тип выходных данных.</typeparam>
+        /// <param name="queryResults">Результаты запроса.</param>
+        /// <param name="functionToGetQueryResultTask">
+        /// Функция для получения задачи на получение результата запроса.
+        /// </param>
+        /// <param name="actionToSetOutput">Действие по установке выходных данных.</param>
+        /// <returns>Задача на получение признака успешной установки выходных данных.</returns>
+        public static async Task<bool> AddAsync<TOutput>(
+            this ICollection<QueryResult> queryResults,
+            Func<Task<QueryResultWithOutput<TOutput>>> functionToGetQueryResultTask,
+            Action<TOutput> actionToSetOutput
+            )
+        {
+            var queryResult = await functionToGetQueryResultTask.Invoke().ConfigureAwaitWithCultureSaving(false);
+
+            queryResults.Add(queryResult);
+
+            if (queryResult.IsOk && queryResult.Output != null)
+            {
+                actionToSetOutput.Invoke(queryResult.Output);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Загрузить.
+        /// </summary>
+        /// <param name="queryResult">Результат запроса.</param>
+        /// <param name="queryResultsToLoad">Результаты запроса для загрузки.</param>
+        public static void Load(this QueryResult queryResult, IEnumerable<QueryResult> queryResultsToLoad)
+        {
+            bool isOk = true;
+
+            foreach (var queryResultToLoad in queryResultsToLoad)
+            {
+                isOk = isOk && queryResultToLoad.IsOk;
+
+                queryResult.ErrorMessages.IntersectWith(queryResultToLoad.ErrorMessages);
+                queryResult.SuccessMessages.IntersectWith(queryResultToLoad.SuccessMessages);
+                queryResult.WarningMessages.IntersectWith(queryResultToLoad.WarningMessages);
+            }
+
+            queryResult.IsOk = isOk;
         }
 
         #endregion Public methods

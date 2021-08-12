@@ -31,12 +31,12 @@ namespace Makc2021.Layer5.Server
                 CommonConfigurator.ConfigureLocalization(options);
             });
 
-            services.AddTransient<IDummyMainItemPageService>(x => new DummyMainItemPageService(
+            services.AddScoped<IDummyMainItemPageService>(x => new DummyMainItemPageService(
                 x.GetRequiredService<IDomainItemGetQueryHandler>(),
                 x.GetRequiredService<IDomainService>()
                 ));
 
-            services.AddTransient<IDummyMainListPageService>(x => new DummyMainListPageService(
+            services.AddScoped<IDummyMainListPageService>(x => new DummyMainListPageService(
                 x.GetRequiredService<IDomainListGetQueryHandler>(),
                 x.GetRequiredService<IDomainService>()
                 ));

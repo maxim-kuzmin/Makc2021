@@ -63,20 +63,16 @@ namespace Makc2021.Layer5.Server.Pages.DummyMain.Item
 
             var item = input.Item;
 
-            var queryResult1 = await GetItemGetQueryResult(               
-                new DomainItemGetQueryInput
-                {
-                    EntityId = item.EntityId
-                },
-                queryCode
+            await queryResults.AddAsync(
+                () => GetItemGetQueryResult(
+                    new DomainItemGetQueryInput
+                    {
+                        EntityId = item.EntityId
+                    },
+                    queryCode
+                    ),
+                queryOutput => output.Item = queryOutput
                 ).ConfigureAwaitWithCultureSaving(false);
-
-            queryResults.Add(queryResult1);
-
-            if (queryResult1.IsOk && queryResult1.Output != null)
-            {
-                output.Item = queryResult1.Output;
-            }
 
             result.Load(queryResults);
 

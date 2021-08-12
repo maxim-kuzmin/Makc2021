@@ -1,11 +1,11 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-import { TimingFactory } from '../../Timing/TimingFactory';
+import { TimingFactory } from '../Timing/TimingFactory';
 
 /**
- * Общее хранилище страницы.
+ * Общее хранилище.
  */
-export abstract class CommonPageStore {
+export abstract class CommonStore {
   /**
    * Конструктор.
    * @param appTimingFactory Фабрика согласования.

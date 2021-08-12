@@ -1,7 +1,7 @@
 // Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CommonPageStore } from 'src/Layer1/Common/Page/CommonPageStore';
+import { CommonStore } from 'src/Layer1/Common/CommonStore';
 import { QueryResultWithOutput } from 'src/Layer1/Query/QueryResultWithOutput';
 import { TimingFactory } from 'src/Layer1/Timing/TimingFactory';
 import { GlobalWaitingControlStore } from 'src/Layer5/Controls/Waitings/Global/GlobalWaitingControlStore';
@@ -19,7 +19,7 @@ import {
 /**
  * Хранилище страницы сущности "DummyMain".
  */
-export class DummyMainItemPageStore extends CommonPageStore {
+export class DummyMainItemPageStore extends CommonStore {
   /**
    * Конструктор.
    * @param _appService Сервис.

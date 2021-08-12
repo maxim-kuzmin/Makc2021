@@ -63,24 +63,20 @@ namespace Makc2021.Layer5.Server.Pages.DummyMain.List
 
             var list = input.List;
 
-            var queryResult1 = await GetListGetQueryResult(                
-                new DomainListGetQueryInput
-                {
-                    PageNumber = list.PageNumber,
-                    PageSize = list.PageSize,
-                    SortDirection = list.SortDirection,
-                    SortField = list.SortField,
-                    EntityName = list.EntityName
-                },
-                queryCode
+            await queryResults.AddAsync(
+                () => GetListGetQueryResult(
+                    new DomainListGetQueryInput
+                    {
+                        PageNumber = list.PageNumber,
+                        PageSize = list.PageSize,
+                        SortDirection = list.SortDirection,
+                        SortField = list.SortField,
+                        EntityName = list.EntityName
+                    },
+                    queryCode
+                    ),
+                queryOutput => output.List = queryOutput
                 ).ConfigureAwaitWithCultureSaving(false);
-
-            queryResults.Add(queryResult1);
-
-            if (queryResult1.IsOk && queryResult1.Output != null)
-            {
-                output.List = queryResult1.Output;
-            }
 
             result.Load(queryResults);
 
