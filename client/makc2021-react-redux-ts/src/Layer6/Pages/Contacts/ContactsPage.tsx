@@ -18,8 +18,8 @@ export function ContactsPage() {
     'Layer6/Pages/Contacts/ContactsPage'
   );
 
-  const serviceOfTopMenuControl = contextValue.Layer6.Controls.Menus.Top.getModule()
-    .service;
+  const serviceOfTopMenuControl =
+    contextValue.Layer6.Controls.Menus.Top.getModule().service;
 
   useCurrentMenuItemKey(serviceOfTopMenuControl.itemOfAppContactsPage.key);
 

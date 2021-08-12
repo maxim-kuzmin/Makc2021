@@ -43,6 +43,11 @@ export interface DefaultTableControlProps<TRow extends object> {
   sortField: string;
 
   /**
+   * Идентификатор колонки поля сортировки.
+   */
+  sortFieldColumnId: string;
+
+  /**
    * Общее количество записей.
    */
   totalCount: number;
@@ -57,4 +62,9 @@ export interface DefaultTableControlProps<TRow extends object> {
     sortField: string,
     filters: Filters<TRow>
   ) => string;
+
+  /**
+   * Получить поле сортировки по идентификатору столбца.
+   */
+  getSortFieldByColumnId: (columnId: string) => string;
 }

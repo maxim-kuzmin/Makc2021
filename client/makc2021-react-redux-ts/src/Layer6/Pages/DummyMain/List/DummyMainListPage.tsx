@@ -27,6 +27,28 @@ const columnIdForAction = `${tableId}-${columnAccessorForAction}`;
 const columnIdForId = `${tableId}-${columnAccessorForId}`;
 const columnIdForName = `${tableId}-${columnAccessorForName}`;
 
+function getColumnAccessorById(columnId: string) {
+  switch (columnId) {
+    case columnIdForId:
+      return columnAccessorForId;
+    case columnIdForName:
+      return columnAccessorForName;
+    default:
+      return '';
+  }
+}
+
+function getColumnIdByAccessor(columnAccessor: string) {
+  switch (columnAccessor) {
+    case columnAccessorForId:
+      return columnIdForId;
+    case columnAccessorForName:
+      return columnIdForName;
+    default:
+      return '';
+  }
+}
+
 /**
  * Страница сущностей "DummyMain".
  */
@@ -40,13 +62,13 @@ export function DummyMainListPage() {
 
   const store = contextValue.Layer5.Pages.DummyMain.List.getModule().store;
 
-  const serviceOfTopMenuControl = contextValue.Layer6.Controls.Menus.Top.getModule()
-    .service;
+  const serviceOfTopMenuControl =
+    contextValue.Layer6.Controls.Menus.Top.getModule().service;
 
   useCurrentMenuItemKey(serviceOfTopMenuControl.itemOfAppDummyMainListPage.key);
 
-  const storeOfQueryNotification = contextValue.Layer5.Controls.Notifications.Query.getModule()
-    .store;
+  const storeOfQueryNotification =
+    contextValue.Layer5.Controls.Notifications.Query.getModule().store;
 
   const urlService = contextValue.Layer1.getModule().urlService;
 
@@ -60,15 +82,15 @@ export function DummyMainListPage() {
 
   const location = useLocation();
 
-  const search = useMemo(() => urlService.parseSearch(location.search), [
-    urlService,
-    location.search
-  ]);
+  const search = useMemo(
+    () => urlService.parseSearch(location.search),
+    [urlService, location.search]
+  );
 
   const pageNumber = Number(search.pn ?? '1');
   const pageSize = Number(search.ps ?? '10');
   const sortDirection = search.sd ?? 'desc';
-  const sortField = search.sf ?? 'id';
+  const sortField = search.sf ?? columnAccessorForId;
   const entityName = search.en;
 
   const filters = [
@@ -214,8 +236,10 @@ export function DummyMainListPage() {
       pageSize={pageSize}
       sortDirection={sortDirection}
       sortField={sortField}
+      sortFieldColumnId={getColumnIdByAccessor(sortField)}
       totalCount={totalCount}
       createPageUrl={createPageUrl}
+      getSortFieldByColumnId={getColumnAccessorById}
     />
   ) : null;
 }

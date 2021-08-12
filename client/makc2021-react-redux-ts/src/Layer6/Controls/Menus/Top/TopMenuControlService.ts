@@ -54,8 +54,10 @@ export class TopMenuControlService {
   loadResource(resource: TopMenuControlResource) {
     this.itemOfApp.text = resource.getAppIndexPageLinkTitle();
     this.itemOfAppContactsPage.text = resource.getAppContactsPageLinkTitle();
-    this.itemOfAppDummyMainItemPage.text = resource.getAppDummyMainItemPageLinkTitle();
-    this.itemOfAppDummyMainListPage.text = resource.getAppDummyMainListPageLinkTitle();
+    this.itemOfAppDummyMainItemPage.text =
+      resource.getAppDummyMainItemPageLinkTitle();
+    this.itemOfAppDummyMainListPage.text =
+      resource.getAppDummyMainListPageLinkTitle();
   }
 
   private compose(

@@ -22,6 +22,7 @@ export interface DummyMainListPageState {
  */
 export function createDummyMainListPageState() {
   return {
-    getQueryResult: createQueryResultWithOutput<DummyMainListPageGetQueryOutput>()
+    getQueryResult:
+      createQueryResultWithOutput<DummyMainListPageGetQueryOutput>()
   } as DummyMainListPageState;
 }

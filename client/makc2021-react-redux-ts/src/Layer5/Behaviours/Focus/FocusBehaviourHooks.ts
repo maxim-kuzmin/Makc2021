@@ -12,8 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 export function useFocus(id: string) {
   const contextValue = useContext(Context);
 
-  const storeOfFocusBehaviour = contextValue.Layer5.Behaviours.Focus.getModule()
-    .store;
+  const storeOfFocusBehaviour =
+    contextValue.Layer5.Behaviours.Focus.getModule().store;
 
   const idFromStore = useSelector(storeOfFocusBehaviour.selectId);
 

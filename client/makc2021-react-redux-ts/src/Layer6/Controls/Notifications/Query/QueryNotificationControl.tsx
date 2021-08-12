@@ -17,20 +17,16 @@ export function QueryNotificationControl() {
     'Layer6/Controls/Notifications/Query/QueryNotificationControl'
   );
 
-  const store = contextValue.Layer5.Controls.Notifications.Query.getModule()
-    .store;
+  const store =
+    contextValue.Layer5.Controls.Notifications.Query.getModule().store;
 
   const queryResults = useSelector(store.selectQueryResults);
 
   return (
     <>
       {queryResults.map((queryResult) => {
-        const {
-          errorMessages,
-          queryCode,
-          warningMessages,
-          successMessages
-        } = queryResult;
+        const { errorMessages, queryCode, warningMessages, successMessages } =
+          queryResult;
 
         return (
           <div key={queryCode}>

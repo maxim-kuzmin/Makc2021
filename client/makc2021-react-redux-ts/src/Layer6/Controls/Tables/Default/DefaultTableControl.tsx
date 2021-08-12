@@ -28,10 +28,12 @@ export function DefaultTableControl<TRow extends object>({
   data,
   filters: controlledFilters,
   createPageUrl,
+  getSortFieldByColumnId,
   pageNumber,
   pageSize,
   sortDirection,
   sortField,
+  sortFieldColumnId,
   totalCount
 }: PropsWithChildren<DefaultTableControlProps<TRow>>) {
   const contextValue = useContext(Context);
@@ -77,7 +79,7 @@ export function DefaultTableControl<TRow extends object>({
       manualPagination: true,
       initialState: {
         filters: controlledFilters,
-        sortBy: [{ id: sortField, desc: sortDirection === 'desc' }]
+        sortBy: [{ id: sortFieldColumnId, desc: sortDirection === 'desc' }]
       }
     },
     useFilters,
@@ -94,12 +96,20 @@ export function DefaultTableControl<TRow extends object>({
       createPageUrl(
         pageNumber,
         pageSize,
-        sorting.desc === true ? 'desc' : 'asc',
-        sorting.id,
+        sorting.desc ? 'desc' : 'asc',
+        getSortFieldByColumnId(sorting.id),
         filters
       )
     );
-  }, [createPageUrl, history, pageNumber, pageSize, sortBy, filters]);
+  }, [
+    createPageUrl,
+    history,
+    pageNumber,
+    pageSize,
+    filters,
+    sortBy,
+    getSortFieldByColumnId
+  ]);
 
   function goToPage(pageNumber: number, pageSize: number) {
     pageNumber = normalizePageNumber(pageNumber, pageCount);

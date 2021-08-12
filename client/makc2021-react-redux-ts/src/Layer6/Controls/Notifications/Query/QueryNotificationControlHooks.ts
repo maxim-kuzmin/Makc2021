@@ -12,8 +12,8 @@ import { QueryResult } from 'src/Layer1/Query/QueryResult';
 export function useQueryNotification(queryResult: QueryResult) {
   const contextValue = useContext(Context);
 
-  const store = contextValue.Layer5.Controls.Notifications.Query.getModule()
-    .store;
+  const store =
+    contextValue.Layer5.Controls.Notifications.Query.getModule().store;
 
   const dispatch = useDispatch();
 

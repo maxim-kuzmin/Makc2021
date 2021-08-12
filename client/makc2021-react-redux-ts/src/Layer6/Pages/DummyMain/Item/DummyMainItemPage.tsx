@@ -28,15 +28,15 @@ export function DummyMainItemPage() {
     'Layer6/Pages/DummyMain/Item/DummyMainItemPage'
   );
 
-  const serviceOfTopMenuControl = contextValue.Layer6.Controls.Menus.Top.getModule()
-    .service;
+  const serviceOfTopMenuControl =
+    contextValue.Layer6.Controls.Menus.Top.getModule().service;
 
   const store = contextValue.Layer5.Pages.DummyMain.Item.getModule().store;
 
   useCurrentMenuItemKey(serviceOfTopMenuControl.itemOfAppDummyMainItemPage.key);
 
-  const storeOfQueryNotification = contextValue.Layer5.Controls.Notifications.Query.getModule()
-    .store;
+  const storeOfQueryNotification =
+    contextValue.Layer5.Controls.Notifications.Query.getModule().store;
 
   const { id } = useParams<DummyMainItemPageParams>();
 
