@@ -15,7 +15,13 @@ export interface AppSettings {
  * @returns Настройки приложения.
  */
 export function createAppSettings() {
-  return {
-    apiUrl: 'http://localhost:5000/api/'
+  const result = {
+    apiUrl: 'http://localhost:8081/api/'
   } as AppSettings;
+
+  if (process.env.NODE_ENV === 'development') {
+    result.apiUrl = 'http://localhost:5000/api/'
+  }
+
+  return result;
 }
