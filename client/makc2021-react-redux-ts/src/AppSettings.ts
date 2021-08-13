@@ -20,7 +20,7 @@ export function createAppSettings() {
   } as AppSettings;
 
   if (process.env.NODE_ENV === 'development') {
-    result.apiUrl = 'http://localhost:5000/api/'
+    result.apiUrl = 'http://localhost:5000/api/';
   }
 
   return result;
