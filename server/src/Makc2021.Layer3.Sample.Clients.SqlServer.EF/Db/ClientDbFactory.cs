@@ -2,8 +2,8 @@
 
 using System.Reflection;
 using Makc2021.Layer1.Common;
-using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config;
-using Makc2021.Layer3.Sample.Clients.SqlServer.EF.Entities;
+using Makc2021.Layer3.Sample.Clients.SqlServer.Config;
+using Makc2021.Layer3.Sample.Clients.SqlServer.Entities;
 using Makc2021.Layer3.Sample.Entities;
 using Makc2021.Layer3.Sample.Mappers.EF.Db;
 using Microsoft.EntityFrameworkCore;

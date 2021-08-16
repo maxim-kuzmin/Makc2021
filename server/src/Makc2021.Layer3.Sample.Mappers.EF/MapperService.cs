@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Makc2021.Layer1.Completion;
-using Makc2021.Layer2.Clients.SqlServer;
 using Makc2021.Layer2.Commands.Tree.Trigger;
 using Makc2021.Layer2.Commands.Trigger;
+using Makc2021.Layer2.Common;
 using Makc2021.Layer3.Sample.Entities;
 using Makc2021.Layer3.Sample.Entities.DummyTree;
 using Makc2021.Layer3.Sample.Entities.DummyTreeLink;
@@ -28,7 +28,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
     {
         #region Properties
 
-        private IClientProvider ClientProvider { get; }
+        private ICommonProvider ClientProvider { get; }
 
         private EntitiesSettings EntitiesSettings { get; }
 
@@ -45,7 +45,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         /// <param name="сlientProvider">Поставщик клиента.</param>
         /// <param name="mapperDbFactory">Фабрика базы данных сопоставителя.</param>
         public MapperService(            
-            IClientProvider сlientProvider,
+            ICommonProvider сlientProvider,
             EntitiesSettings entitiesSettings,
             IMapperDbFactory mapperDbFactory
             )

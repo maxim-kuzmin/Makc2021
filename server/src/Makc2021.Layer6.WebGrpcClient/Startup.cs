@@ -35,26 +35,26 @@ namespace Makc2021.Layer6.WebGrpcClient
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(
-            IApplicationBuilder extAppBuilder,
-            IWebHostEnvironment extEnvironment
+            IApplicationBuilder appBuilder,
+            IWebHostEnvironment hostEnvironment
             )
         {
             Configurator.Configure();
 
-            if (extEnvironment.IsDevelopment())
+            if (hostEnvironment.IsDevelopment())
             {
-                extAppBuilder.UseDeveloperExceptionPage();
-                extAppBuilder.UseSwagger();
-                extAppBuilder.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Makc2021.Layer6.WebGrpcClient v1"));
+                appBuilder.UseDeveloperExceptionPage();
+                appBuilder.UseSwagger();
+                appBuilder.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Makc2021.Layer6.WebGrpcClient v1"));
             }
 
-            extAppBuilder.UseHttpsRedirection();
+            appBuilder.UseHttpsRedirection();
 
-            extAppBuilder.UseRouting();
+            appBuilder.UseRouting();
 
-            extAppBuilder.UseAuthorization();
+            appBuilder.UseAuthorization();
 
-            extAppBuilder.UseEndpoints(endpoints =>
+            appBuilder.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });

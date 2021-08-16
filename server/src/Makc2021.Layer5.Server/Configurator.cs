@@ -17,10 +17,14 @@ namespace Makc2021.Layer5.Server
         /// Настроить.
         /// </summary>
         /// <param name="mapperServiceForSample">Сервис сопоставителя для "Sample".</param>
+        /// <param name="oracleClientService">Сервис клиента СУБД Oracle.</param>
         public static void Configure(
-            Layer3.Sample.Mappers.EF.IMapperService mapperServiceForSample
+            Layer3.Sample.Mappers.EF.IMapperService mapperServiceForSample,
+            Layer2.Clients.Oracle.IClientService oracleClientService
             )
         {
+            oracleClientService.Configure();
+
             mapperServiceForSample.MigrateDatabase().ConfigureAwaitWithCultureSaving(false).GetResult();
 
             mapperServiceForSample.SeedTestData().ConfigureAwaitWithCultureSaving(false).GetResult();
@@ -36,7 +40,9 @@ namespace Makc2021.Layer5.Server
             {
                 new Layer1.Module(),
                 new Layer2.Module(),
+                new Layer2.Clients.Oracle.ClientModule(),
                 new Layer2.Clients.SqlServer.ClientModule(),
+                new Layer3.Sample.Clients.SqlServer.ClientModule(),
                 new Layer3.Sample.Clients.SqlServer.EF.ClientModule(),
                 new Layer3.Sample.Mappers.EF.MapperModule(),
                 new Layer4.Domains.DummyMain.DomainModule(),

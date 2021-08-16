@@ -3,7 +3,7 @@
 using System.IO;
 using Makc2021.Layer1.Common;
 
-namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
+namespace Makc2021.Layer2.Clients.Oracle.Config
 {
     /// <summary>
     /// Конфигурация клиента.
@@ -15,7 +15,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
         /// <summary>
         /// Путь к файлу.
         /// </summary>
-        public static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer3.Sample.Clients.SqlServer.EF.config");
+        public static string FilePath { get; } = Path.Combine("ConfigFiles", "Layer2.Clients.Oracle.config");
 
         /// <summary>
         /// Настройки.

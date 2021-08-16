@@ -3,7 +3,7 @@
 using Makc2021.Layer1.Common;
 using Makc2021.Layer1.Common.Config.Json;
 
-namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.Config
 {
     /// <summary>
     /// Поставщик конфигурации клиента.

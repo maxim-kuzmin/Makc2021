@@ -4,4 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Makc2021.Layer2.Clients.Oracle\Makc2021.Layer2.Clients.Oracle.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Makc2021.Layer1.Common;
+using Makc2021.Layer2.Common;
 using Makc2021.Layer4.Domains.DummyMain;
 using Makc2021.Layer4.Domains.DummyMain.Queries.Item.Get;
 using Makc2021.Layer4.Domains.DummyMain.Queries.List.Get;
@@ -31,6 +32,8 @@ namespace Makc2021.Layer5.Server
                 CommonConfigurator.ConfigureLocalization(options);
             });
 
+            services.AddSingleton<ICommonProvider>(x => new Layer2.Clients.SqlServer.ClientProvider());
+
             services.AddScoped<IDummyMainItemPageService>(x => new DummyMainItemPageService(
                 x.GetRequiredService<IDomainItemGetQueryHandler>(),
                 x.GetRequiredService<IDomainService>()
@@ -48,6 +51,7 @@ namespace Makc2021.Layer5.Server
             return new[]
             {
                 typeof(CommonEnvironment),
+                typeof(ICommonProvider),
                 typeof(IDummyMainItemPageService),
                 typeof(IDummyMainListPageService),
                 typeof(ILogger),

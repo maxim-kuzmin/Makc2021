@@ -5,7 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Makc2021.Layer2\Makc2021.Layer2.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ConfigFiles\Layer2.Clients.Oracle.config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

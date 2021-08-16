@@ -17,12 +17,12 @@ using Makc2021.Layer3.Sample.Entities.UserLogin;
 using Makc2021.Layer3.Sample.Entities.UserRole;
 using Makc2021.Layer3.Sample.Entities.UserToken;
 
-namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Entities
+namespace Makc2021.Layer3.Sample.Clients.SqlServer.Entities
 {
     /// <summary>
     /// Настройки сущностей клиента.
     /// </summary>
-    internal class ClientEntitiesSettings : EntitiesSettings
+    public class ClientEntitiesSettings : EntitiesSettings
     {
         #region Fields
 

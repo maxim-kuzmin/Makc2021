@@ -3,28 +3,27 @@
 using System;
 using System.Collections.Generic;
 using Makc2021.Layer1.Common;
-using Makc2021.Layer2.Common;
+using Makc2021.Layer3.Sample.Clients.SqlServer.Config;
+using Makc2021.Layer3.Sample.Clients.SqlServer.Entities;
 using Makc2021.Layer3.Sample.Entities;
-using Makc2021.Layer3.Sample.Mappers.EF.Db;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
-namespace Makc2021.Layer3.Sample.Mappers.EF
+namespace Makc2021.Layer3.Sample.Clients.SqlServer
 {
     /// <summary>
-    /// Модуль сопоставителя.
+    /// Модуль клиента.
     /// </summary>
-    public class MapperModule : CommonModule
+    public class ClientModule : CommonModule
     {
         #region Public methods
 
         /// <inheritdoc/>
         public sealed override void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IMapperService>(x => new MapperService(                
-                x.GetRequiredService<ICommonProvider>(),
-                x.GetRequiredService<EntitiesSettings>(),
-                x.GetRequiredService<IMapperDbFactory>()
-                ));
+            services.AddSingleton(x => new ClientConfigSource(x.GetRequiredService<CommonEnvironment>()).Settings);
+
+            services.AddSingleton(x => ClientEntitiesSettings.Instance); // EntitiesSettings
         }
 
         /// <inheritdoc/>
@@ -32,7 +31,8 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         {
             return new[]
             {
-                typeof(IMapperService)
+                typeof(IClientConfigSettings),
+                typeof(EntitiesSettings)
             };
         }
 
@@ -45,9 +45,7 @@ namespace Makc2021.Layer3.Sample.Mappers.EF
         {
             return new[]
             {
-                typeof(EntitiesSettings),
-                typeof(ICommonProvider),
-                typeof(IMapperDbFactory)
+                typeof(CommonEnvironment)
             };
         }
 

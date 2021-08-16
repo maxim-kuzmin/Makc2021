@@ -42,30 +42,31 @@ namespace Makc2021.Layer6.WebHttpServer
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(
-            Layer3.Sample.Mappers.EF.IMapperService appSampleMapperService,
-            IApplicationBuilder extAppBuilder,
-            IWebHostEnvironment extEnvironment            
+        public void Configure(            
+            IApplicationBuilder appBuilder,
+            IWebHostEnvironment hostEnvironment,
+            Layer3.Sample.Mappers.EF.IMapperService mapperServiceForSample,
+            Layer2.Clients.Oracle.IClientService oracleClientService
             )
         {
-            Configurator.Configure(appSampleMapperService);
+            Configurator.Configure(mapperServiceForSample, oracleClientService);
 
-            if (extEnvironment.IsDevelopment())
+            if (hostEnvironment.IsDevelopment())
             {
-                extAppBuilder.UseDeveloperExceptionPage();
-                extAppBuilder.UseSwagger();
-                extAppBuilder.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebServer v1"));
+                appBuilder.UseDeveloperExceptionPage();
+                appBuilder.UseSwagger();
+                appBuilder.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebServer v1"));
             }
 
-            extAppBuilder.UseHttpsRedirection();
+            appBuilder.UseHttpsRedirection();
 
-            extAppBuilder.UseRouting();
+            appBuilder.UseRouting();
 
-            extAppBuilder.UseCors();
+            appBuilder.UseCors();
 
-            extAppBuilder.UseAuthorization();
+            appBuilder.UseAuthorization();
 
-            extAppBuilder.UseEndpoints(endpoints =>
+            appBuilder.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });

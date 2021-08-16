@@ -13,13 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Makc2021.Layer3.Sample.Clients.SqlServer\Makc2021.Layer3.Sample.Clients.SqlServer.csproj" />
     <ProjectReference Include="..\Makc2021.Layer3.Sample.Mappers.EF\Makc2021.Layer3.Sample.Mappers.EF.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="ConfigFiles\Layer3.Sample.Clients.SqlServer.EF.config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

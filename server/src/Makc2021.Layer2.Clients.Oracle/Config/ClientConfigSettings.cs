@@ -2,7 +2,7 @@
 
 using Makc2021.Layer1.Common;
 
-namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
+namespace Makc2021.Layer2.Clients.Oracle.Config
 {
     /// <summary>
     /// Настройки конфигурации клиента.
@@ -12,7 +12,7 @@ namespace Makc2021.Layer3.Sample.Clients.SqlServer.EF.Config
         #region Properties
 
         /// <inheritdoc/>
-        public string ConnectionString { get; set; }
+        public string TnsAdmin { get; set; }
 
         #endregion Properties
 
