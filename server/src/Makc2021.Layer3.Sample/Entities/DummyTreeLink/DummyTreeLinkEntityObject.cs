@@ -10,12 +10,12 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTreeLink
         #region Properties
 
         /// <summary>
-        /// Идентификатор узла.
+        /// Идентификатор.
         /// </summary>
         public long Id { get; set; }
 
         /// <summary>
-        /// Идентификатор родительского узла.
+        /// Идентификатор родителя.
         /// </summary>
         public long ParentId { get; set; }
 

@@ -10,7 +10,7 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTree
         #region Properties
 
         /// <summary>
-        /// Идентификатор узла.
+        /// Идентификатор.
         /// </summary>
         public long Id { get; set; }
 
@@ -20,37 +20,37 @@ namespace Makc2021.Layer3.Sample.Entities.DummyTree
         public string Name { get; set; }
 
         /// <summary>
-        /// Идентификатор родительского узла.
+        /// Идентификатор родителя.
         /// </summary>
         public long? ParentId { get; set; }
 
         /// <summary>
-        /// Число дочерних узлов в дереве.
+        /// Число детей в дереве.
         /// </summary>
         public long TreeChildCount { get; set; }
 
         /// <summary>
-        /// Число узлов-потомков в дереве.
+        /// Число потомков в дереве.
         /// </summary>
         public long TreeDescendantCount { get; set; }
 
         /// <summary>
-        /// Уровень узла в дереве.
+        /// Уровень в дереве.
         /// </summary>
         public long TreeLevel { get; set; }
 
         /// <summary>
-        /// Путь к узлу в дереве.
+        /// Путь в дереве.
         /// </summary>
         public string TreePath { get; set; }
 
         /// <summary>
-        /// Позиция узла в дереве.
+        /// Позиция в дереве.
         /// </summary>
         public int TreePosition { get; set; }
 
         /// <summary>
-        /// Сортировка узла в дереве.
+        /// Сортировка в дереве.
         /// </summary>
         public string TreeSort { get; set; }
 
