@@ -34,64 +34,57 @@ namespace Makc2021.Layer1.Query
         /// <inheritdoc/>
         public string GetErrorMessageForDefault()
         {
-            return Localizer["Неизвестная ошибка"];
+            return Localizer["@@ErrorMessageForDefault"];
         }
 
         /// <inheritdoc/>
         public string GetErrorMessageForInvalidInput(IEnumerable<string> invalidProperties)
         {
-            string invalidPropertiesString = string.Join(", ", invalidProperties);
-
-            string key = string.Format(
-                "Входные данные запроса содержит недопустимые значения в свойствах: {0}",
-                invalidPropertiesString
-                );
-
-            return Localizer[key];
+            return Localizer["@@ErrorMessageForInvalidInput", string.Join(", ", invalidProperties)];
         }
 
         /// <inheritdoc/>
         public string GetErrorMessageWithCode(string errorMessage, string code)
         {
-            string errorCode = string.Format(Localizer["Код ошибки: {0}"], code);
+            string title = Localizer["@@TitleForErrorCode"];
 
-            return $"{errorMessage}. {errorCode}".Replace("!.", "!").Replace("?.", "?");
+            return $"{errorMessage}. {title}: {code}".Replace("!.", "!").Replace("?.", "?");
         }
 
         /// <inheritdoc/>
         public string GetTitleForError()
         {
-            return Localizer["Ошибка"];
+            return Localizer["@@TitleForError"];
         }
 
         /// <inheritdoc/>
         public string GetTitleForInput()
         {
-            return Localizer["Входные данные"];
+            return Localizer["@@TitleForInput"];
         }
 
         /// <inheritdoc/>
         public string GetTitleForQueryCode()
         {
-            return Localizer["Код запроса"];
+            return Localizer["@@TitleForQueryCode"];
         }    
 
         /// <inheritdoc/>
         public string GetTitleForResult()
         {
-            return Localizer["Результат"];
+            return Localizer["@@TitleForResult"];
         }
 
         /// <inheritdoc/>
         public string GetTitleForStart()
         {
-            return Localizer["Начало"];
+            return Localizer["@@TitleForStart"];
         }
 
         /// <inheritdoc/>
         public string GetTitleForSuccess()
         {
-            return Localizer["Успех"];
+            return Localizer["@@TitleForSuccess"];
         }
 
         #endregion Public methods

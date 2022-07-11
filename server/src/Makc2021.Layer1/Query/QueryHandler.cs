@@ -77,7 +77,7 @@ namespace Makc2021.Layer1.Query
 
             if (errorMessages != null && errorMessages.Any())
             {
-                queryResult.ErrorMessages.IntersectWith(errorMessages);
+                queryResult.ErrorMessages.UnionWith(errorMessages);
 
                 errorMessage = string.Join(". ", errorMessages).Replace("!.", "!").Replace("?.", "?");
             }
@@ -142,7 +142,7 @@ namespace Makc2021.Layer1.Query
 
                     if (messages != null && messages.Any())
                     {
-                        queryResult.SuccessMessages.IntersectWith(messages);
+                        queryResult.SuccessMessages.UnionWith(messages);
                     }
                 }
 
@@ -152,7 +152,7 @@ namespace Makc2021.Layer1.Query
 
                     if (messages != null && messages.Any())
                     {
-                        queryResult.WarningMessages.IntersectWith(messages);
+                        queryResult.WarningMessages.UnionWith(messages);
                     }
                 }
 
@@ -190,14 +190,14 @@ namespace Makc2021.Layer1.Query
 
         private IEnumerable<string> GetErrorMessages(Exception exception)
         {
-            IEnumerable<string> errorMessages = null;
+            IEnumerable<string> result = null;
 
             if (FunctionToGetErrorMessages != null)
             {
-                errorMessages = FunctionToGetErrorMessages.Invoke(exception);
+                result = FunctionToGetErrorMessages.Invoke(exception);
             }
 
-            if (errorMessages == null || !errorMessages.Any())
+            if (result == null || !result.Any())
             {
                 string errorMessage = null;
 
@@ -208,11 +208,11 @@ namespace Makc2021.Layer1.Query
 
                 if (!string.IsNullOrWhiteSpace(errorMessage))
                 {
-                    errorMessages = new[] { errorMessage };
+                    result = new[] { errorMessage };
                 }
             }
 
-            return errorMessages;
+            return result;
         }
 
         private void LogStartIfTestOrDebugEnabled()
@@ -237,9 +237,11 @@ namespace Makc2021.Layer1.Query
         {
             if (Logger != null)
             {
+                var queryResult = GetQueryResult();
+
                 string titleForSuccess = QueryResource.GetTitleForSuccess();
                 string titleForResult = QueryResource.GetTitleForResult();
-                string valueForResult = GetQueryResult().SerializeToJson(JsonSerializationOptions.ForLogger);
+                string valueForResult = queryResult.SerializeToJson(JsonSerializationOptions.ForLogger);
 
                 Logger.LogDebug($"{Title}{titleForSuccess}. {titleForResult}: {valueForResult}");
             }

@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="ResourceFiles\Query\QueryResource.ru.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="ResourceFiles\Query\QueryResource.en.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

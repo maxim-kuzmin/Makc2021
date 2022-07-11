@@ -35,7 +35,7 @@ namespace Makc2021.Layer1.Common
         /// <inheritdoc/>
         public string GetErrorMessageForNotImportedTypes(IEnumerable<Type> types)
         {
-            return string.Format(Localizer["Не импортированы следующие типы: '{0}'"], string.Join("', '", types));
+            return Localizer["@@ErrorMessageForNotImportedTypes", string.Join("', '", types)];
         }
 
         #endregion Public methods

@@ -117,31 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="@@TitleForErrorCode" xml:space="preserve">
-    <value>Error code</value>
+	<data name="@@TitleForErrorCode" xml:space="preserve">
+    <value>Код ошибки</value>
   </data>
-  <data name="@@ErrorMessageForDefault" xml:space="preserve">
-    <value>Unknown error</value>
+	<data name="@@ErrorMessageForDefault" xml:space="preserve">
+    <value>Неизвестная ошибка</value>
   </data>
   <data name="@@ErrorMessageForInvalidInput" xml:space="preserve">
-    <value>The query input has invalid values in its properties: {0}</value>
+    <value>Входные данные запроса содержит недопустимые значения в свойствах: {0}</value>
   </data>
   <data name="@@TitleForError" xml:space="preserve">
-    <value>Error</value>
+    <value>Ошибка</value>
   </data>
   <data name="@@TitleForInput" xml:space="preserve">
-    <value>Input</value>
+    <value>Входные данные</value>
   </data>
   <data name="@@TitleForQueryCode" xml:space="preserve">
-    <value>Query code</value>
+    <value>Код запроса</value>
   </data>
   <data name="@@TitleForStart" xml:space="preserve">
-    <value>Start</value>
+    <value>Начало</value>
   </data>
   <data name="@@TitleForResult" xml:space="preserve">
-    <value>Result</value>
+    <value>Результат</value>
   </data>
   <data name="@@TitleForSuccess" xml:space="preserve">
-    <value>Success</value>
+    <value>Успех</value>
   </data>
 </root>

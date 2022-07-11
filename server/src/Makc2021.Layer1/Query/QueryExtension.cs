@@ -115,9 +115,9 @@ namespace Makc2021.Layer1.Query
             {
                 isOk = isOk && queryResultToLoad.IsOk;
 
-                queryResult.ErrorMessages.IntersectWith(queryResultToLoad.ErrorMessages);
-                queryResult.SuccessMessages.IntersectWith(queryResultToLoad.SuccessMessages);
-                queryResult.WarningMessages.IntersectWith(queryResultToLoad.WarningMessages);
+                queryResult.ErrorMessages.UnionWith(queryResultToLoad.ErrorMessages);
+                queryResult.SuccessMessages.UnionWith(queryResultToLoad.SuccessMessages);
+                queryResult.WarningMessages.UnionWith(queryResultToLoad.WarningMessages);
             }
 
             queryResult.IsOk = isOk;

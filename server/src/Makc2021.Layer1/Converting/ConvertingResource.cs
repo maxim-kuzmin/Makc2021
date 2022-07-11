@@ -33,7 +33,7 @@ namespace Makc2021.Layer1.Converting
         /// <inheritdoc/>
         public string GetFormatForDate()
         {
-            return Localizer["dd.MM.yyyy"];
+            return Localizer["@@FormatForDate"];
         }
 
         #endregion Public methods

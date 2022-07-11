@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Запрос на получение списка" xml:space="preserve">
-    <value>The query to get a list</value>
-  </data>
-  <data name="Запрос на получение элемента" xml:space="preserve">
+  <data name="@@ItemGetQueryName" xml:space="preserve">
     <value>The query to get an item</value>
+  </data>
+  <data name="@@ListGetQueryName" xml:space="preserve">
+    <value>The query to get a list</value>
   </data>
 </root>

@@ -117,31 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="@@TitleForErrorCode" xml:space="preserve">
-    <value>Error code</value>
+  <data name="@@ItemGetQueryName" xml:space="preserve">
+    <value>Запрос на получение элемента</value>
   </data>
-  <data name="@@ErrorMessageForDefault" xml:space="preserve">
-    <value>Unknown error</value>
-  </data>
-  <data name="@@ErrorMessageForInvalidInput" xml:space="preserve">
-    <value>The query input has invalid values in its properties: {0}</value>
-  </data>
-  <data name="@@TitleForError" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="@@TitleForInput" xml:space="preserve">
-    <value>Input</value>
-  </data>
-  <data name="@@TitleForQueryCode" xml:space="preserve">
-    <value>Query code</value>
-  </data>
-  <data name="@@TitleForStart" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="@@TitleForResult" xml:space="preserve">
-    <value>Result</value>
-  </data>
-  <data name="@@TitleForSuccess" xml:space="preserve">
-    <value>Success</value>
-  </data>
+  <data name="@@ListGetQueryName" xml:space="preserve">
+    <value>Запрос на получение списка</value>
+  </data>	
 </root>

@@ -4,7 +4,6 @@ namespace Makc2021.Layer1.Common
 {
     /// <summary>
     /// Общее окружение.
-    /// Используется для поиска конфигурационных файлов.
     /// </summary>
     public class CommonEnvironment
     {
