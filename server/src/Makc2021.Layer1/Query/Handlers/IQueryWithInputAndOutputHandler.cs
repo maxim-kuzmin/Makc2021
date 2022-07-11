@@ -3,7 +3,7 @@
 namespace Makc2021.Layer1.Query.Handlers
 {
     /// <summary>
-    /// Обработчик запроса с входными и выходными данными.
+    /// Интерфейс обработчика запроса с входными и выходными данными.
     /// </summary>
     /// <typeparam name="TQueryInput">Тип входных данных запроса.</typeparam>
     /// <typeparam name="TQueryOutput">Тип выходных данных запроса.</typeparam>    
