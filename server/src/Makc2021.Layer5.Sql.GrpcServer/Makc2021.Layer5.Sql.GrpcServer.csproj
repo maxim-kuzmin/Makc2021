@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\Pages\DummyMain\Item\DummyMainItemPage.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\Pages\DummyMain\List\DummyMainListPage.proto" GrpcServices="Server" />    
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.37.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Makc2021.Layer5.Sql.Server\Makc2021.Layer5.Sql.Server.csproj" />
+  </ItemGroup>
+</Project>
