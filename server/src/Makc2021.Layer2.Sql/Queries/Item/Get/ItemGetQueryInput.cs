@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System.Collections.Generic;
-using Makc2021.Layer2.Sql.Query;
+using Makc2021.Layer1.Query;
 
 namespace Makc2021.Layer2.Sql.Queries.Item.Get
 {

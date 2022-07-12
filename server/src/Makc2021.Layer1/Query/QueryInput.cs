@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace Makc2021.Layer2.Sql.Query
+namespace Makc2021.Layer1.Query
 {
     /// <summary>
     /// Входные данные запроса.

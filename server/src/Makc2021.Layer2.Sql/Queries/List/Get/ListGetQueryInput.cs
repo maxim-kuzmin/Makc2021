@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using Makc2021.Layer1.Query;
-using Makc2021.Layer2.Sql.Query;
 
 namespace Makc2021.Layer2.Sql.Queries.List.Get
 {
