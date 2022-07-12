@@ -23,93 +23,93 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyMain
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override HashSet<string> Load(DummyMainEntityObject source, HashSet<string> loadableProperties = null)
+        public sealed override HashSet<string> Load(DummyMainEntityObject entityObject, HashSet<string> loadableProperties = null)
         {
-            var result = base.Load(source, loadableProperties);
+            var result = base.Load(entityObject, loadableProperties);
 
             if (result.Contains(nameof(EntityObject.Id)))
             {
-                EntityObject.Id = source.Id;
-            }
-
-            if (result.Contains(nameof(EntityObject.Name)))
-            {
-                EntityObject.Name = source.Name ?? string.Empty;
+                EntityObject.Id = entityObject.Id;
             }
 
             if (result.Contains(nameof(EntityObject.IdOfDummyOneToManyEntity)))
             {
-                EntityObject.IdOfDummyOneToManyEntity = source.IdOfDummyOneToManyEntity;
+                EntityObject.IdOfDummyOneToManyEntity = entityObject.IdOfDummyOneToManyEntity;
+            }
+
+            if (result.Contains(nameof(EntityObject.Name)))
+            {
+                EntityObject.Name = entityObject.Name ?? string.Empty;
             }
 
             if (result.Contains(nameof(EntityObject.PropBoolean)))
             {
-                EntityObject.PropBoolean = source.PropBoolean;
+                EntityObject.PropBoolean = entityObject.PropBoolean;
             }
 
             if (result.Contains(nameof(EntityObject.PropBooleanNullable)))
             {
-                EntityObject.PropBooleanNullable = source.PropBooleanNullable;
+                EntityObject.PropBooleanNullable = entityObject.PropBooleanNullable;
             }
 
             if (result.Contains(nameof(EntityObject.PropDate)))
             {
-                EntityObject.PropDate = source.PropDate;
+                EntityObject.PropDate = entityObject.PropDate;
             }
 
             if (result.Contains(nameof(EntityObject.PropDateNullable)))
             {
-                EntityObject.PropDateNullable = source.PropDateNullable;
+                EntityObject.PropDateNullable = entityObject.PropDateNullable;
             }
 
             if (result.Contains(nameof(EntityObject.PropDateTimeOffset)))
             {
-                EntityObject.PropDateTimeOffset = source.PropDateTimeOffset;
+                EntityObject.PropDateTimeOffset = entityObject.PropDateTimeOffset;
             }
 
             if (result.Contains(nameof(EntityObject.PropDateTimeOffsetNullable)))
             {
-                EntityObject.PropDateTimeOffsetNullable = source.PropDateTimeOffsetNullable;
+                EntityObject.PropDateTimeOffsetNullable = entityObject.PropDateTimeOffsetNullable;
             }
 
             if (result.Contains(nameof(EntityObject.PropDecimal)))
             {
-                EntityObject.PropDecimal = source.PropDecimal;
+                EntityObject.PropDecimal = entityObject.PropDecimal;
             }
 
             if (result.Contains(nameof(EntityObject.PropDecimalNullable)))
             {
-                EntityObject.PropDecimalNullable = source.PropDecimalNullable;
+                EntityObject.PropDecimalNullable = entityObject.PropDecimalNullable;
             }
 
             if (result.Contains(nameof(EntityObject.PropInt32)))
             {
-                EntityObject.PropInt32 = source.PropInt32;
+                EntityObject.PropInt32 = entityObject.PropInt32;
             }
 
             if (result.Contains(nameof(EntityObject.PropInt32Nullable)))
             {
-                EntityObject.PropInt32Nullable = source.PropInt32Nullable;
+                EntityObject.PropInt32Nullable = entityObject.PropInt32Nullable;
             }
 
             if (result.Contains(nameof(EntityObject.PropInt64)))
             {
-                EntityObject.PropInt64 = source.PropInt64;
+                EntityObject.PropInt64 = entityObject.PropInt64;
             }
 
             if (result.Contains(nameof(EntityObject.PropInt64Nullable)))
             {
-                EntityObject.PropInt64Nullable = source.PropInt64Nullable;
+                EntityObject.PropInt64Nullable = entityObject.PropInt64Nullable;
             }
 
             if (result.Contains(nameof(EntityObject.PropString)))
             {
-                EntityObject.PropString = source.PropString ?? string.Empty;
+                EntityObject.PropString = entityObject.PropString ?? string.Empty;
             }
 
             if (result.Contains(nameof(EntityObject.PropStringNullable)))
             {
-                EntityObject.PropStringNullable = source.PropStringNullable;
+                EntityObject.PropStringNullable = entityObject.PropStringNullable;
             }
 
             return result;

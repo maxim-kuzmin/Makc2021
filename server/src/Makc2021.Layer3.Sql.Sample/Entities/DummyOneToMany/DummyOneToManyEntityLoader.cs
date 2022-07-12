@@ -23,18 +23,18 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyOneToMany
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override HashSet<string> Load(DummyOneToManyEntityObject source, HashSet<string> loadableProperties = null)
+        public sealed override HashSet<string> Load(DummyOneToManyEntityObject entityObject, HashSet<string> loadableProperties = null)
         {
-            var result = base.Load(source, loadableProperties);
+            var result = base.Load(entityObject, loadableProperties);
 
             if (result.Contains(nameof(EntityObject.Id)))
             {
-                EntityObject.Id = source.Id;
+                EntityObject.Id = entityObject.Id;
             }
 
             if (result.Contains(nameof(EntityObject.Name)))
             {
-                EntityObject.Name = source.Name;
+                EntityObject.Name = entityObject.Name;
             }
 
             return result;

@@ -37,10 +37,10 @@ namespace Makc2021.Layer1.Entity
         /// <summary>
         /// Загрузить.
         /// </summary>
-        /// <param name="source">Источник.</param>
+        /// <param name="entityObject">Объект сущности.</param>
         /// <param name="loadableProperties">Загружаемые свойства.</param>
         /// <returns>Загруженные свойства.</returns>
-        public virtual HashSet<string> Load(TEntityObject source, HashSet<string> loadableProperties = null)
+        public virtual HashSet<string> Load(TEntityObject entityObject, HashSet<string> loadableProperties = null)
         {
             return loadableProperties ?? CreateAllPropertiesToLoad();
         }
@@ -50,9 +50,9 @@ namespace Makc2021.Layer1.Entity
         #region Protected methods
 
         /// <summary>
-        /// Создать набор всех свойств.
+        /// Создать все свойства для загрузки.
         /// </summary>
-        /// <returns>Набор всех свойств.</returns>
+        /// <returns>Все свойства для загрузки.</returns>
         protected abstract HashSet<string> CreateAllPropertiesToLoad();
 
         #endregion Protected methods

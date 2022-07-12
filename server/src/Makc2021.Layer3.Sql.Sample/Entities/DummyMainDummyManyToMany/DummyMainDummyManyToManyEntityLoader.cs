@@ -23,23 +23,18 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyMainDummyManyToMany
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override HashSet<string> Load(DummyMainDummyManyToManyEntityObject source, HashSet<string> loadableProperties = null)
+        public sealed override HashSet<string> Load(DummyMainDummyManyToManyEntityObject entityObject, HashSet<string> loadableProperties = null)
         {
-            var result = base.Load(source, loadableProperties);
-
-            if (result == null)
-            {
-                result = CreateAllPropertiesToLoad();
-            }
+            var result = base.Load(entityObject, loadableProperties);
 
             if (result.Contains(nameof(EntityObject.IdOfDummyMainEntity)))
             {
-                EntityObject.IdOfDummyMainEntity = source.IdOfDummyMainEntity;
+                EntityObject.IdOfDummyMainEntity = entityObject.IdOfDummyMainEntity;
             }
 
             if (result.Contains(nameof(EntityObject.IdOfDummyManyToManyEntity)))
             {
-                EntityObject.IdOfDummyManyToManyEntity = source.IdOfDummyManyToManyEntity;
+                EntityObject.IdOfDummyManyToManyEntity = entityObject.IdOfDummyManyToManyEntity;
             }
 
             return result;

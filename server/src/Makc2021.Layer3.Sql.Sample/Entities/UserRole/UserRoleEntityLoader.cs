@@ -23,18 +23,18 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.UserRole
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override HashSet<string> Load(UserRoleEntityObject source, HashSet<string> loadableProperties = null)
+        public sealed override HashSet<string> Load(UserRoleEntityObject entityObject, HashSet<string> loadableProperties = null)
         {
-            var result = base.Load(source, loadableProperties);
+            var result = base.Load(entityObject, loadableProperties);
 
             if (result.Contains(nameof(EntityObject.UserId)))
             {
-                EntityObject.UserId = source.UserId;
+                EntityObject.UserId = entityObject.UserId;
             }
 
             if (result.Contains(nameof(EntityObject.RoleId)))
             {
-                EntityObject.RoleId = source.RoleId;
+                EntityObject.RoleId = entityObject.RoleId;
             }
 
             return result;

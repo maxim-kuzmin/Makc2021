@@ -23,53 +23,53 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyTree
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override HashSet<string> Load(DummyTreeEntityObject source, HashSet<string> loadableProperties = null)
+        public sealed override HashSet<string> Load(DummyTreeEntityObject entityObject, HashSet<string> loadableProperties = null)
         {
-            var result = base.Load(source, loadableProperties);
+            var result = base.Load(entityObject, loadableProperties);
 
             if (result.Contains(nameof(EntityObject.Id)))
             {
-                EntityObject.Id = source.Id;
+                EntityObject.Id = entityObject.Id;
             }
 
             if (result.Contains(nameof(EntityObject.Name)))
             {
-                EntityObject.Name = source.Name;
+                EntityObject.Name = entityObject.Name;
             }
 
             if (result.Contains(nameof(EntityObject.ParentId)))
             {
-                EntityObject.ParentId = source.ParentId;
+                EntityObject.ParentId = entityObject.ParentId;
             }
 
             if (result.Contains(nameof(EntityObject.TreeChildCount)))
             {
-                EntityObject.TreeChildCount = source.TreeChildCount;
+                EntityObject.TreeChildCount = entityObject.TreeChildCount;
             }
 
             if (result.Contains(nameof(EntityObject.TreeDescendantCount)))
             {
-                EntityObject.TreeDescendantCount = source.TreeDescendantCount;
+                EntityObject.TreeDescendantCount = entityObject.TreeDescendantCount;
             }
 
             if (result.Contains(nameof(EntityObject.TreeLevel)))
             {
-                EntityObject.TreeLevel = source.TreeLevel;
+                EntityObject.TreeLevel = entityObject.TreeLevel;
             }
 
             if (result.Contains(nameof(EntityObject.TreePath)))
             {
-                EntityObject.TreePath = source.TreePath;
+                EntityObject.TreePath = entityObject.TreePath;
             }
 
             if (result.Contains(nameof(EntityObject.TreePosition)))
             {
-                EntityObject.TreePosition = source.TreePosition;
+                EntityObject.TreePosition = entityObject.TreePosition;
             }
 
             if (result.Contains(nameof(EntityObject.TreeSort)))
             {
-                EntityObject.TreeSort = source.TreeSort;
+                EntityObject.TreeSort = entityObject.TreeSort;
             }
 
             return result;

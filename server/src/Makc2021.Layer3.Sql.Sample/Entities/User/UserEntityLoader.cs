@@ -23,88 +23,88 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.User
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override HashSet<string> Load(UserEntityObject source, HashSet<string> loadableProperties = null)
+        public sealed override HashSet<string> Load(UserEntityObject entityObject, HashSet<string> loadableProperties = null)
         {
-            var result = base.Load(source, loadableProperties);
+            var result = base.Load(entityObject, loadableProperties);
 
             if (result.Contains(nameof(EntityObject.AccessFailedCount)))
             {
-                EntityObject.AccessFailedCount = source.AccessFailedCount;
+                EntityObject.AccessFailedCount = entityObject.AccessFailedCount;
             }
 
             if (result.Contains(nameof(EntityObject.ConcurrencyStamp)))
             {
-                EntityObject.ConcurrencyStamp = source.ConcurrencyStamp;
+                EntityObject.ConcurrencyStamp = entityObject.ConcurrencyStamp;
             }
 
             if (result.Contains(nameof(EntityObject.Email)))
             {
-                EntityObject.Email = source.Email;
+                EntityObject.Email = entityObject.Email;
             }
 
             if (result.Contains(nameof(EntityObject.EmailConfirmed)))
             {
-                EntityObject.EmailConfirmed = source.EmailConfirmed;
+                EntityObject.EmailConfirmed = entityObject.EmailConfirmed;
             }
 
             if (result.Contains(nameof(EntityObject.FullName)))
             {
-                EntityObject.FullName = source.FullName;
+                EntityObject.FullName = entityObject.FullName;
             }
 
             if (result.Contains(nameof(EntityObject.Id)))
             {
-                EntityObject.Id = source.Id;
+                EntityObject.Id = entityObject.Id;
             }
 
             if (result.Contains(nameof(EntityObject.LockoutEnabled)))
             {
-                EntityObject.LockoutEnabled = source.LockoutEnabled;
+                EntityObject.LockoutEnabled = entityObject.LockoutEnabled;
             }
 
             if (result.Contains(nameof(EntityObject.LockoutEnd)))
             {
-                EntityObject.LockoutEnd = source.LockoutEnd;
+                EntityObject.LockoutEnd = entityObject.LockoutEnd;
             }
 
             if (result.Contains(nameof(EntityObject.NormalizedEmail)))
             {
-                EntityObject.NormalizedEmail = source.NormalizedEmail;
+                EntityObject.NormalizedEmail = entityObject.NormalizedEmail;
             }
 
             if (result.Contains(nameof(EntityObject.NormalizedUserName)))
             {
-                EntityObject.NormalizedUserName = source.NormalizedUserName;
+                EntityObject.NormalizedUserName = entityObject.NormalizedUserName;
             }
 
             if (result.Contains(nameof(EntityObject.PasswordHash)))
             {
-                EntityObject.PasswordHash = source.PasswordHash;
+                EntityObject.PasswordHash = entityObject.PasswordHash;
             }
 
             if (result.Contains(nameof(EntityObject.PhoneNumber)))
             {
-                EntityObject.PhoneNumber = source.PhoneNumber;
+                EntityObject.PhoneNumber = entityObject.PhoneNumber;
             }
 
             if (result.Contains(nameof(EntityObject.PhoneNumberConfirmed)))
             {
-                EntityObject.PhoneNumberConfirmed = source.PhoneNumberConfirmed;
+                EntityObject.PhoneNumberConfirmed = entityObject.PhoneNumberConfirmed;
             }
 
             if (result.Contains(nameof(EntityObject.SecurityStamp)))
             {
-                EntityObject.SecurityStamp = source.SecurityStamp;
+                EntityObject.SecurityStamp = entityObject.SecurityStamp;
             }
 
             if (result.Contains(nameof(EntityObject.TwoFactorEnabled)))
             {
-                EntityObject.TwoFactorEnabled = source.TwoFactorEnabled;
+                EntityObject.TwoFactorEnabled = entityObject.TwoFactorEnabled;
             }
 
             if (result.Contains(nameof(EntityObject.UserName)))
             {
-                EntityObject.UserName = source.UserName;
+                EntityObject.UserName = entityObject.UserName;
             }
 
             return result;

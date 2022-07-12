@@ -23,18 +23,18 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyTreeLink
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override HashSet<string> Load(DummyTreeLinkEntityObject source, HashSet<string> loadableProperties = null)
+        public sealed override HashSet<string> Load(DummyTreeLinkEntityObject entityObject, HashSet<string> loadableProperties = null)
         {
-            var result = base.Load(source, loadableProperties);
+            var result = base.Load(entityObject, loadableProperties);
 
             if (result.Contains(nameof(EntityObject.Id)))
             {
-                EntityObject.Id = source.Id;
+                EntityObject.Id = entityObject.Id;
             }
 
             if (result.Contains(nameof(EntityObject.ParentId)))
             {
-                EntityObject.ParentId = source.ParentId;
+                EntityObject.ParentId = entityObject.ParentId;
             }
 
             return result;

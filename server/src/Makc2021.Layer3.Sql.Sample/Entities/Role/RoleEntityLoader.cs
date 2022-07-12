@@ -23,28 +23,28 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.Role
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override HashSet<string> Load(RoleEntityObject source, HashSet<string> loadableProperties = null)
+        public sealed override HashSet<string> Load(RoleEntityObject entityObject, HashSet<string> loadableProperties = null)
         {
-            var result = base.Load(source, loadableProperties);
+            var result = base.Load(entityObject, loadableProperties);
 
             if (result.Contains(nameof(EntityObject.ConcurrencyStamp)))
             {
-                EntityObject.ConcurrencyStamp = source.ConcurrencyStamp;
+                EntityObject.ConcurrencyStamp = entityObject.ConcurrencyStamp;
             }
 
             if (result.Contains(nameof(EntityObject.Id)))
             {
-                EntityObject.Id = source.Id;
+                EntityObject.Id = entityObject.Id;
             }
 
             if (result.Contains(nameof(EntityObject.Name)))
             {
-                EntityObject.Name = source.Name;
+                EntityObject.Name = entityObject.Name;
             }
 
             if (result.Contains(nameof(EntityObject.NormalizedName)))
             {
-                EntityObject.NormalizedName = source.NormalizedName;
+                EntityObject.NormalizedName = entityObject.NormalizedName;
             }
 
             return result;

@@ -23,28 +23,28 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.RoleClaim
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override HashSet<string> Load(RoleClaimEntityObject source, HashSet<string> loadableProperties = null)
+        public sealed override HashSet<string> Load(RoleClaimEntityObject entityObject, HashSet<string> loadableProperties = null)
         {
-            var result = base.Load(source, loadableProperties);
+            var result = base.Load(entityObject, loadableProperties);
 
             if (result.Contains(nameof(EntityObject.ClaimType)))
             {
-                EntityObject.ClaimType = source.ClaimType;
+                EntityObject.ClaimType = entityObject.ClaimType;
             }
 
             if (result.Contains(nameof(EntityObject.ClaimValue)))
             {
-                EntityObject.ClaimValue = source.ClaimValue;
+                EntityObject.ClaimValue = entityObject.ClaimValue;
             }
 
             if (result.Contains(nameof(EntityObject.Id)))
             {
-                EntityObject.Id = source.Id;
+                EntityObject.Id = entityObject.Id;
             }
 
             if (result.Contains(nameof(EntityObject.RoleId)))
             {
-                EntityObject.RoleId = source.RoleId;
+                EntityObject.RoleId = entityObject.RoleId;
             }
 
             return result;

@@ -23,28 +23,28 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.UserToken
         #region Public methods
 
         /// <inheritdoc/>
-        public sealed override HashSet<string> Load(UserTokenEntityObject source, HashSet<string> loadableProperties = null)
+        public sealed override HashSet<string> Load(UserTokenEntityObject entityObject, HashSet<string> loadableProperties = null)
         {
-            var result = base.Load(source, loadableProperties);
+            var result = base.Load(entityObject, loadableProperties);
 
             if (result.Contains(nameof(EntityObject.LoginProvider)))
             {
-                EntityObject.LoginProvider = source.LoginProvider;
+                EntityObject.LoginProvider = entityObject.LoginProvider;
             }
 
             if (result.Contains(nameof(EntityObject.Name)))
             {
-                EntityObject.Name = source.Name;
+                EntityObject.Name = entityObject.Name;
             }
 
             if (result.Contains(nameof(EntityObject.UserId)))
             {
-                EntityObject.UserId = source.UserId;
+                EntityObject.UserId = entityObject.UserId;
             }
 
             if (result.Contains(nameof(EntityObject.Value)))
             {
-                EntityObject.Value = source.Value;
+                EntityObject.Value = entityObject.Value;
             }
 
             return result;
