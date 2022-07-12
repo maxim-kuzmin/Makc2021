@@ -22,24 +22,27 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyMainDummyManyToMany
 
         #region Public methods
 
-        /// <summary>
-        /// Загрузить данные из источника.
-        /// </summary>
-        /// <param name="source">Источник данных.</param>
-        /// <param name="props">Загружаемые свойства.</param>
-        public void LoadDataFrom(DummyMainDummyManyToManyEntityObject source, HashSet<string> props = null)
+        /// <inheritdoc/>
+        public sealed override HashSet<string> Load(DummyMainDummyManyToManyEntityObject source, HashSet<string> loadableProperties = null)
         {
-            props = EnsureNotNullValue(props);
+            var result = base.Load(source, loadableProperties);
 
-            if (props.Contains(nameof(EntityObject.IdOfDummyMainEntity)))
+            if (result == null)
+            {
+                result = CreateAllPropertiesToLoad();
+            }
+
+            if (result.Contains(nameof(EntityObject.IdOfDummyMainEntity)))
             {
                 EntityObject.IdOfDummyMainEntity = source.IdOfDummyMainEntity;
             }
 
-            if (props.Contains(nameof(EntityObject.IdOfDummyManyToManyEntity)))
+            if (result.Contains(nameof(EntityObject.IdOfDummyManyToManyEntity)))
             {
                 EntityObject.IdOfDummyManyToManyEntity = source.IdOfDummyManyToManyEntity;
             }
+
+            return result;
         }
 
         #endregion Public methods
@@ -47,7 +50,7 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyMainDummyManyToMany
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableProperties()
+        protected override HashSet<string> CreateAllPropertiesToLoad()
         {
             return new HashSet<string>
             {

@@ -22,7 +22,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.User
         {
             MapperUserEntityObject result = new();
 
-            new UserEntityLoader(result).LoadDataFrom(source);
+            new UserEntityLoader(result).Load(source);
 
             return result;
         }
@@ -37,7 +37,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.User
         {
             UserEntityLoader loader = new();
 
-            loader.LoadDataFrom(source);
+            loader.Load(source);
 
             return loader.EntityObject;
         }

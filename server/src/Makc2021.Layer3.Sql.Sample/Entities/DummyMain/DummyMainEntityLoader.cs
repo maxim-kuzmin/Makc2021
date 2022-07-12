@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
 using System.Collections.Generic;
-using Makc2021.Layer2.Sql.Entity;
+using Makc2021.Layer3.Sql.Sample.Entity;
 
 namespace Makc2021.Layer3.Sql.Sample.Entities.DummyMain
 {
@@ -22,99 +22,97 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyMain
 
         #region Public methods
 
-        /// <summary>
-        /// Загрузить данные из источника.
-        /// </summary>
-        /// <param name="source">Источник данных.</param>
-        /// <param name="props">Загружаемые свойства.</param>
-        public void LoadDataFrom(DummyMainEntityObject source, HashSet<string> props = null)
+        /// <inheritdoc/>
+        public sealed override HashSet<string> Load(DummyMainEntityObject source, HashSet<string> loadableProperties = null)
         {
-            props = EnsureNotNullValue(props);
+            var result = base.Load(source, loadableProperties);
 
-            if (props.Contains(nameof(EntityObject.Id)))
+            if (result.Contains(nameof(EntityObject.Id)))
             {
                 EntityObject.Id = source.Id;
             }
 
-            if (props.Contains(nameof(EntityObject.Name)))
+            if (result.Contains(nameof(EntityObject.Name)))
             {
                 EntityObject.Name = source.Name ?? string.Empty;
             }
 
-            if (props.Contains(nameof(EntityObject.IdOfDummyOneToManyEntity)))
+            if (result.Contains(nameof(EntityObject.IdOfDummyOneToManyEntity)))
             {
                 EntityObject.IdOfDummyOneToManyEntity = source.IdOfDummyOneToManyEntity;
             }
 
-            if (props.Contains(nameof(EntityObject.PropBoolean)))
+            if (result.Contains(nameof(EntityObject.PropBoolean)))
             {
                 EntityObject.PropBoolean = source.PropBoolean;
             }
 
-            if (props.Contains(nameof(EntityObject.PropBooleanNullable)))
+            if (result.Contains(nameof(EntityObject.PropBooleanNullable)))
             {
                 EntityObject.PropBooleanNullable = source.PropBooleanNullable;
             }
 
-            if (props.Contains(nameof(EntityObject.PropDate)))
+            if (result.Contains(nameof(EntityObject.PropDate)))
             {
                 EntityObject.PropDate = source.PropDate;
             }
 
-            if (props.Contains(nameof(EntityObject.PropDateNullable)))
+            if (result.Contains(nameof(EntityObject.PropDateNullable)))
             {
                 EntityObject.PropDateNullable = source.PropDateNullable;
             }
 
-            if (props.Contains(nameof(EntityObject.PropDateTimeOffset)))
+            if (result.Contains(nameof(EntityObject.PropDateTimeOffset)))
             {
                 EntityObject.PropDateTimeOffset = source.PropDateTimeOffset;
             }
 
-            if (props.Contains(nameof(EntityObject.PropDateTimeOffsetNullable)))
+            if (result.Contains(nameof(EntityObject.PropDateTimeOffsetNullable)))
             {
                 EntityObject.PropDateTimeOffsetNullable = source.PropDateTimeOffsetNullable;
             }
 
-            if (props.Contains(nameof(EntityObject.PropDecimal)))
+            if (result.Contains(nameof(EntityObject.PropDecimal)))
             {
                 EntityObject.PropDecimal = source.PropDecimal;
             }
 
-            if (props.Contains(nameof(EntityObject.PropDecimalNullable)))
+            if (result.Contains(nameof(EntityObject.PropDecimalNullable)))
             {
                 EntityObject.PropDecimalNullable = source.PropDecimalNullable;
             }
 
-            if (props.Contains(nameof(EntityObject.PropInt32)))
+            if (result.Contains(nameof(EntityObject.PropInt32)))
             {
                 EntityObject.PropInt32 = source.PropInt32;
             }
 
-            if (props.Contains(nameof(EntityObject.PropInt32Nullable)))
+            if (result.Contains(nameof(EntityObject.PropInt32Nullable)))
             {
                 EntityObject.PropInt32Nullable = source.PropInt32Nullable;
             }
 
-            if (props.Contains(nameof(EntityObject.PropInt64)))
+            if (result.Contains(nameof(EntityObject.PropInt64)))
             {
                 EntityObject.PropInt64 = source.PropInt64;
             }
 
-            if (props.Contains(nameof(EntityObject.PropInt64Nullable)))
+            if (result.Contains(nameof(EntityObject.PropInt64Nullable)))
             {
                 EntityObject.PropInt64Nullable = source.PropInt64Nullable;
             }
 
-            if (props.Contains(nameof(EntityObject.PropString)))
+            if (result.Contains(nameof(EntityObject.PropString)))
             {
                 EntityObject.PropString = source.PropString ?? string.Empty;
             }
 
-            if (props.Contains(nameof(EntityObject.PropStringNullable)))
+            if (result.Contains(nameof(EntityObject.PropStringNullable)))
             {
                 EntityObject.PropStringNullable = source.PropStringNullable;
             }
+
+            return result;
         }
 
         #endregion Public methods
@@ -122,7 +120,7 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyMain
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableProperties()
+        protected override HashSet<string> CreateAllPropertiesToLoad()
         {
             return new HashSet<string>
             {

@@ -22,34 +22,32 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.RoleClaim
 
         #region Public methods
 
-        /// <summary>
-        /// Загрузить данные из источника.
-        /// </summary>
-        /// <param name="source">Источник данных.</param>
-        /// <param name="props">Загружаемые свойства.</param>
-        public void LoadDataFrom(RoleClaimEntityObject source, HashSet<string> props = null)
+        /// <inheritdoc/>
+        public sealed override HashSet<string> Load(RoleClaimEntityObject source, HashSet<string> loadableProperties = null)
         {
-            props = EnsureNotNullValue(props);
+            var result = base.Load(source, loadableProperties);
 
-            if (props.Contains(nameof(EntityObject.ClaimType)))
+            if (result.Contains(nameof(EntityObject.ClaimType)))
             {
                 EntityObject.ClaimType = source.ClaimType;
             }
 
-            if (props.Contains(nameof(EntityObject.ClaimValue)))
+            if (result.Contains(nameof(EntityObject.ClaimValue)))
             {
                 EntityObject.ClaimValue = source.ClaimValue;
             }
 
-            if (props.Contains(nameof(EntityObject.Id)))
+            if (result.Contains(nameof(EntityObject.Id)))
             {
                 EntityObject.Id = source.Id;
             }
 
-            if (props.Contains(nameof(EntityObject.RoleId)))
+            if (result.Contains(nameof(EntityObject.RoleId)))
             {
                 EntityObject.RoleId = source.RoleId;
             }
+
+            return result;
         }
 
         #endregion Public methods
@@ -57,7 +55,7 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.RoleClaim
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableProperties()
+        protected override HashSet<string> CreateAllPropertiesToLoad()
         {
             return new HashSet<string>
             {

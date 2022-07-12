@@ -3,7 +3,7 @@
 namespace Makc2021.Layer3.Sql.Sample.Entity
 {
     /// <inheritdoc/>
-    public abstract class EntityLoader<TEntityObject> : Layer2.Sql.Entity.EntityLoader<TEntityObject>
+    public abstract class EntityLoader<TEntityObject> : Layer1.Entity.EntityLoader<TEntityObject>
     {
         #region Constructors
 

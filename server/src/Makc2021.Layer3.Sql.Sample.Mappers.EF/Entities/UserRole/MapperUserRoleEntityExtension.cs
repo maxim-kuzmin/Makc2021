@@ -22,7 +22,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserRole
         {
             MapperUserRoleEntityObject result = new();
 
-            new UserRoleEntityLoader(result).LoadDataFrom(source);
+            new UserRoleEntityLoader(result).Load(source);
 
             return result;
         }
@@ -37,7 +37,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserRole
         {
             UserRoleEntityLoader loader = new();
 
-            loader.LoadDataFrom(source);
+            loader.Load(source);
 
             return loader.EntityObject;
         }

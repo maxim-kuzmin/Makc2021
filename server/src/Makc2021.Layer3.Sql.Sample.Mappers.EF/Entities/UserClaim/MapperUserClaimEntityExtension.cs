@@ -22,7 +22,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserClaim
         {
             MapperUserClaimEntityObject result = new();
 
-            new UserClaimEntityLoader(result).LoadDataFrom(source);
+            new UserClaimEntityLoader(result).Load(source);
 
             return result;
         }
@@ -37,7 +37,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserClaim
         {
             UserClaimEntityLoader loader = new();
 
-            loader.LoadDataFrom(source);
+            loader.Load(source);
 
             return loader.EntityObject;
         }

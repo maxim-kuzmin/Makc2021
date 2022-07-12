@@ -23,89 +23,91 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.User
         #region Public methods
 
         /// <inheritdoc/>
-        public void LoadDataFrom(UserEntityObject source, HashSet<string> props = null)
+        public sealed override HashSet<string> Load(UserEntityObject source, HashSet<string> loadableProperties = null)
         {
-            props = EnsureNotNullValue(props);
+            var result = base.Load(source, loadableProperties);
 
-            if (props.Contains(nameof(EntityObject.AccessFailedCount)))
+            if (result.Contains(nameof(EntityObject.AccessFailedCount)))
             {
                 EntityObject.AccessFailedCount = source.AccessFailedCount;
             }
 
-            if (props.Contains(nameof(EntityObject.ConcurrencyStamp)))
+            if (result.Contains(nameof(EntityObject.ConcurrencyStamp)))
             {
                 EntityObject.ConcurrencyStamp = source.ConcurrencyStamp;
             }
 
-            if (props.Contains(nameof(EntityObject.Email)))
+            if (result.Contains(nameof(EntityObject.Email)))
             {
                 EntityObject.Email = source.Email;
             }
 
-            if (props.Contains(nameof(EntityObject.EmailConfirmed)))
+            if (result.Contains(nameof(EntityObject.EmailConfirmed)))
             {
                 EntityObject.EmailConfirmed = source.EmailConfirmed;
             }
 
-            if (props.Contains(nameof(EntityObject.FullName)))
+            if (result.Contains(nameof(EntityObject.FullName)))
             {
                 EntityObject.FullName = source.FullName;
             }
 
-            if (props.Contains(nameof(EntityObject.Id)))
+            if (result.Contains(nameof(EntityObject.Id)))
             {
                 EntityObject.Id = source.Id;
             }
 
-            if (props.Contains(nameof(EntityObject.LockoutEnabled)))
+            if (result.Contains(nameof(EntityObject.LockoutEnabled)))
             {
                 EntityObject.LockoutEnabled = source.LockoutEnabled;
             }
 
-            if (props.Contains(nameof(EntityObject.LockoutEnd)))
+            if (result.Contains(nameof(EntityObject.LockoutEnd)))
             {
                 EntityObject.LockoutEnd = source.LockoutEnd;
             }
 
-            if (props.Contains(nameof(EntityObject.NormalizedEmail)))
+            if (result.Contains(nameof(EntityObject.NormalizedEmail)))
             {
                 EntityObject.NormalizedEmail = source.NormalizedEmail;
             }
 
-            if (props.Contains(nameof(EntityObject.NormalizedUserName)))
+            if (result.Contains(nameof(EntityObject.NormalizedUserName)))
             {
                 EntityObject.NormalizedUserName = source.NormalizedUserName;
             }
 
-            if (props.Contains(nameof(EntityObject.PasswordHash)))
+            if (result.Contains(nameof(EntityObject.PasswordHash)))
             {
                 EntityObject.PasswordHash = source.PasswordHash;
             }
 
-            if (props.Contains(nameof(EntityObject.PhoneNumber)))
+            if (result.Contains(nameof(EntityObject.PhoneNumber)))
             {
                 EntityObject.PhoneNumber = source.PhoneNumber;
             }
 
-            if (props.Contains(nameof(EntityObject.PhoneNumberConfirmed)))
+            if (result.Contains(nameof(EntityObject.PhoneNumberConfirmed)))
             {
                 EntityObject.PhoneNumberConfirmed = source.PhoneNumberConfirmed;
             }
 
-            if (props.Contains(nameof(EntityObject.SecurityStamp)))
+            if (result.Contains(nameof(EntityObject.SecurityStamp)))
             {
                 EntityObject.SecurityStamp = source.SecurityStamp;
             }
 
-            if (props.Contains(nameof(EntityObject.TwoFactorEnabled)))
+            if (result.Contains(nameof(EntityObject.TwoFactorEnabled)))
             {
                 EntityObject.TwoFactorEnabled = source.TwoFactorEnabled;
             }
 
-            if (props.Contains(nameof(EntityObject.UserName)))
+            if (result.Contains(nameof(EntityObject.UserName)))
             {
                 EntityObject.UserName = source.UserName;
             }
+
+            return result;
         }
 
         #endregion Public methods
@@ -116,7 +118,7 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.User
         /// Создать загружаемые свойства данных.
         /// </summary>
         /// <returns>Загружаемые свойства данных.</returns>
-        protected override HashSet<string> CreateLoadableProperties()
+        protected override HashSet<string> CreateAllPropertiesToLoad()
         {
             return new HashSet<string>
             {

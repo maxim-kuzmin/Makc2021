@@ -22,7 +22,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserToken
         {
             MapperUserTokenEntityObject result = new();
 
-            new UserTokenEntityLoader(result).LoadDataFrom(source);
+            new UserTokenEntityLoader(result).Load(source);
 
             return result;
         }
@@ -37,7 +37,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserToken
         {
             UserTokenEntityLoader loader = new();
 
-            loader.LoadDataFrom(source);
+            loader.Load(source);
 
             return loader.EntityObject;
         }

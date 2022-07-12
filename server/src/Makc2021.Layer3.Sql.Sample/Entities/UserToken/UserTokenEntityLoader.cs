@@ -22,34 +22,32 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.UserToken
 
         #region Public methods
 
-        /// <summary>
-        /// Загрузить данные из источника.
-        /// </summary>
-        /// <param name="source">Источник данных.</param>
-        /// <param name="props">Загружаемые свойства.</param>
-        public void LoadDataFrom(UserTokenEntityObject source, HashSet<string> props = null)
+        /// <inheritdoc/>
+        public sealed override HashSet<string> Load(UserTokenEntityObject source, HashSet<string> loadableProperties = null)
         {
-            props = EnsureNotNullValue(props);
+            var result = base.Load(source, loadableProperties);
 
-            if (props.Contains(nameof(EntityObject.LoginProvider)))
+            if (result.Contains(nameof(EntityObject.LoginProvider)))
             {
                 EntityObject.LoginProvider = source.LoginProvider;
             }
 
-            if (props.Contains(nameof(EntityObject.Name)))
+            if (result.Contains(nameof(EntityObject.Name)))
             {
                 EntityObject.Name = source.Name;
             }
 
-            if (props.Contains(nameof(EntityObject.UserId)))
+            if (result.Contains(nameof(EntityObject.UserId)))
             {
                 EntityObject.UserId = source.UserId;
             }
 
-            if (props.Contains(nameof(EntityObject.Value)))
+            if (result.Contains(nameof(EntityObject.Value)))
             {
                 EntityObject.Value = source.Value;
             }
+
+            return result;
         }
 
         #endregion Public methods
@@ -57,7 +55,7 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.UserToken
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableProperties()
+        protected override HashSet<string> CreateAllPropertiesToLoad()
         {
             return new HashSet<string>
             {

@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace Makc2021.Layer2.Sql.Entity
+namespace Makc2021.Layer1.Entity
 {
     /// <summary>
     /// Загрузчик сущности.
@@ -11,11 +11,6 @@ namespace Makc2021.Layer2.Sql.Entity
     public abstract class EntityLoader<TEntityObject>
     {
         #region Properties
-
-        /// <summary>
-        /// Загружаемые свойства.
-        /// </summary>
-        protected HashSet<string> LoadableProperties { get; set; }
 
         /// <summary>
         /// Объект сущности.
@@ -37,35 +32,28 @@ namespace Makc2021.Layer2.Sql.Entity
 
         #endregion Constructors
 
+        #region Public methods
+
+        /// <summary>
+        /// Загрузить.
+        /// </summary>
+        /// <param name="source">Источник.</param>
+        /// <param name="loadableProperties">Загружаемые свойства.</param>
+        /// <returns>Загруженные свойства.</returns>
+        public virtual HashSet<string> Load(TEntityObject source, HashSet<string> loadableProperties = null)
+        {
+            return loadableProperties ?? CreateAllPropertiesToLoad();
+        }
+
+        #endregion Public methods
+
         #region Protected methods
 
         /// <summary>
-        /// Гарантировать ненулевое значение.
+        /// Создать набор всех свойств.
         /// </summary>
-        /// <param name="loadableProperties">Загружаемые свойства.</param>
-        /// <returns>Ненулевое значение.</returns>
-        protected HashSet<string> EnsureNotNullValue(HashSet<string> loadableProperties)
-        {
-            if (loadableProperties != null)
-            {
-                return loadableProperties;
-            }
-            else
-            {
-                if (LoadableProperties == null)
-                {
-                    LoadableProperties = CreateLoadableProperties();
-                }
-
-                return LoadableProperties;
-            }
-        }
-
-        /// <summary>
-        /// Создать загружаемые свойства.
-        /// </summary>
-        /// <returns>Загружаемые свойства.</returns>
-        protected abstract HashSet<string> CreateLoadableProperties();
+        /// <returns>Набор всех свойств.</returns>
+        protected abstract HashSet<string> CreateAllPropertiesToLoad();
 
         #endregion Protected methods
     }

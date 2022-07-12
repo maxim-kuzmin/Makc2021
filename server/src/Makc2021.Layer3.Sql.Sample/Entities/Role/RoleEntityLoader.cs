@@ -22,34 +22,32 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.Role
 
         #region Public methods
 
-        /// <summary>
-        /// Загрузить данные из источника.
-        /// </summary>
-        /// <param name="source">Источник данных.</param>
-        /// <param name="props">Загружаемые свойства.</param>
-        public void LoadDataFrom(RoleEntityObject source, HashSet<string> props = null)
+        /// <inheritdoc/>
+        public sealed override HashSet<string> Load(RoleEntityObject source, HashSet<string> loadableProperties = null)
         {
-            props = EnsureNotNullValue(props);
+            var result = base.Load(source, loadableProperties);
 
-            if (props.Contains(nameof(EntityObject.ConcurrencyStamp)))
+            if (result.Contains(nameof(EntityObject.ConcurrencyStamp)))
             {
                 EntityObject.ConcurrencyStamp = source.ConcurrencyStamp;
             }
 
-            if (props.Contains(nameof(EntityObject.Id)))
+            if (result.Contains(nameof(EntityObject.Id)))
             {
                 EntityObject.Id = source.Id;
             }
 
-            if (props.Contains(nameof(EntityObject.Name)))
+            if (result.Contains(nameof(EntityObject.Name)))
             {
                 EntityObject.Name = source.Name;
             }
 
-            if (props.Contains(nameof(EntityObject.NormalizedName)))
+            if (result.Contains(nameof(EntityObject.NormalizedName)))
             {
                 EntityObject.NormalizedName = source.NormalizedName;
             }
+
+            return result;
         }
 
         #endregion Public methods
@@ -57,7 +55,7 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.Role
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableProperties()
+        protected override HashSet<string> CreateAllPropertiesToLoad()
         {
             return new HashSet<string>
             {

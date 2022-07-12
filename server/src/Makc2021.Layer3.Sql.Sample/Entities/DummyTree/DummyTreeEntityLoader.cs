@@ -22,59 +22,57 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyTree
 
         #region Public methods
 
-        /// <summary>
-        /// Загрузить данные из источника.
-        /// </summary>
-        /// <param name="source">Источник данных.</param>
-        /// <param name="props">Загружаемые свойства.</param>
-        public void LoadDataFrom(DummyTreeEntityObject source, HashSet<string> props = null)
+        /// <inheritdoc/>
+        public sealed override HashSet<string> Load(DummyTreeEntityObject source, HashSet<string> loadableProperties = null)
         {
-            props = EnsureNotNullValue(props);
+            var result = base.Load(source, loadableProperties);
 
-            if (props.Contains(nameof(EntityObject.Id)))
+            if (result.Contains(nameof(EntityObject.Id)))
             {
                 EntityObject.Id = source.Id;
             }
 
-            if (props.Contains(nameof(EntityObject.Name)))
+            if (result.Contains(nameof(EntityObject.Name)))
             {
                 EntityObject.Name = source.Name;
             }
 
-            if (props.Contains(nameof(EntityObject.ParentId)))
+            if (result.Contains(nameof(EntityObject.ParentId)))
             {
                 EntityObject.ParentId = source.ParentId;
             }
 
-            if (props.Contains(nameof(EntityObject.TreeChildCount)))
+            if (result.Contains(nameof(EntityObject.TreeChildCount)))
             {
                 EntityObject.TreeChildCount = source.TreeChildCount;
             }
 
-            if (props.Contains(nameof(EntityObject.TreeDescendantCount)))
+            if (result.Contains(nameof(EntityObject.TreeDescendantCount)))
             {
                 EntityObject.TreeDescendantCount = source.TreeDescendantCount;
             }
 
-            if (props.Contains(nameof(EntityObject.TreeLevel)))
+            if (result.Contains(nameof(EntityObject.TreeLevel)))
             {
                 EntityObject.TreeLevel = source.TreeLevel;
             }
 
-            if (props.Contains(nameof(EntityObject.TreePath)))
+            if (result.Contains(nameof(EntityObject.TreePath)))
             {
                 EntityObject.TreePath = source.TreePath;
             }
 
-            if (props.Contains(nameof(EntityObject.TreePosition)))
+            if (result.Contains(nameof(EntityObject.TreePosition)))
             {
                 EntityObject.TreePosition = source.TreePosition;
             }
 
-            if (props.Contains(nameof(EntityObject.TreeSort)))
+            if (result.Contains(nameof(EntityObject.TreeSort)))
             {
                 EntityObject.TreeSort = source.TreeSort;
             }
+
+            return result;
         }
 
         #endregion Public methods
@@ -82,7 +80,7 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyTree
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableProperties()
+        protected override HashSet<string> CreateAllPropertiesToLoad()
         {
             return new HashSet<string>
             {

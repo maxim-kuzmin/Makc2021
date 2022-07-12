@@ -22,24 +22,22 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.UserRole
 
         #region Public methods
 
-        /// <summary>
-        /// Загрузить данные из источника.
-        /// </summary>
-        /// <param name="source">Источник данных.</param>
-        /// <param name="props">Загружаемые свойства.</param>
-        public void LoadDataFrom(UserRoleEntityObject source, HashSet<string> props = null)
+        /// <inheritdoc/>
+        public sealed override HashSet<string> Load(UserRoleEntityObject source, HashSet<string> loadableProperties = null)
         {
-            props = EnsureNotNullValue(props);
+            var result = base.Load(source, loadableProperties);
 
-            if (props.Contains(nameof(EntityObject.UserId)))
+            if (result.Contains(nameof(EntityObject.UserId)))
             {
                 EntityObject.UserId = source.UserId;
             }
 
-            if (props.Contains(nameof(EntityObject.RoleId)))
+            if (result.Contains(nameof(EntityObject.RoleId)))
             {
                 EntityObject.RoleId = source.RoleId;
             }
+
+            return result;
         }
 
         #endregion Public methods
@@ -47,7 +45,7 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.UserRole
         #region Protected methods
 
         /// <inheritdoc/>
-        protected override HashSet<string> CreateLoadableProperties()
+        protected override HashSet<string> CreateAllPropertiesToLoad()
         {
             return new HashSet<string>
             {

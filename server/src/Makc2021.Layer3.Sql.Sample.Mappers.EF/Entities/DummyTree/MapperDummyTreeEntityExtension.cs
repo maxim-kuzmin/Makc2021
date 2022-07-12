@@ -22,7 +22,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyTree
         {
             MapperDummyTreeEntityObject result = new();
 
-            new DummyTreeEntityLoader(result).LoadDataFrom(source);
+            new DummyTreeEntityLoader(result).Load(source);
 
             return result;
         }
@@ -37,7 +37,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyTree
         {
             DummyTreeEntityLoader loader = new();
 
-            loader.LoadDataFrom(source);
+            loader.Load(source);
 
             return loader.EntityObject;
         }

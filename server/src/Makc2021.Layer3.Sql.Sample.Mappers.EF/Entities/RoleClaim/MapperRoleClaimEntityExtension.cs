@@ -22,7 +22,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.RoleClaim
         {
             MapperRoleClaimEntityObject result = new();
 
-            new RoleClaimEntityLoader(result).LoadDataFrom(source);
+            new RoleClaimEntityLoader(result).Load(source);
 
             return result;
         }
@@ -37,7 +37,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.RoleClaim
         {
             RoleClaimEntityLoader loader = new();
 
-            loader.LoadDataFrom(source);
+            loader.Load(source);
 
             return loader.EntityObject;
         }

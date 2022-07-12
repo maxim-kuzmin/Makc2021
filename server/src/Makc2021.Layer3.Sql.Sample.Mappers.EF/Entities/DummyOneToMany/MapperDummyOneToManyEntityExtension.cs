@@ -22,7 +22,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyOneToMany
         {
             MapperDummyOneToManyEntityObject result = new();
 
-            new DummyOneToManyEntityLoader(result).LoadDataFrom(source);
+            new DummyOneToManyEntityLoader(result).Load(source);
 
             return result;
         }
@@ -37,7 +37,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyOneToMany
         {
             DummyOneToManyEntityLoader loader = new();
 
-            loader.LoadDataFrom(source);
+            loader.Load(source);
 
             return loader.EntityObject;
         }
