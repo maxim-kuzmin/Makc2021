@@ -12,32 +12,33 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyTree
         #region Public methods
 
         /// <summary>
-        /// Создать объект сущности сопоставителя.
+        /// Преобразовать из объекта сущности в объект сопоставителя.
         /// </summary>
-        /// <param name="source">Источник данных.</param>
-        /// <returns>Объект сущности сопоставителя.</returns>
-        public static MapperDummyTreeEntityObject CreateMapperEntityObject(
-            this DummyTreeEntityObject source
+        /// <param name="entityObject">Объект сущности.</param>
+        /// <returns>Объект сопоставителя.</returns>
+        public static MapperDummyTreeEntityObject FromEntityToMapperObject(
+            this DummyTreeEntityObject entityObject
             )
         {
             MapperDummyTreeEntityObject result = new();
 
-            new DummyTreeEntityLoader(result).Load(source);
+            new DummyTreeEntityLoader(result).Load(entityObject);
 
             return result;
         }
 
         /// <summary>
-        /// Создать объект сущности.
+        /// Преобразовать из объекта сопоставителя в объект сущности.
         /// </summary>
+        /// <param name="mapperObject">Объект сопоставителя.</param>
         /// <returns>Объект сущности.</returns>
-        public static DummyTreeEntityObject CreateEntityObject(
-            this MapperDummyTreeEntityObject source
+        public static DummyTreeEntityObject FromMapperToEntityObject(
+            this MapperDummyTreeEntityObject mapperObject
             )
         {
             DummyTreeEntityLoader loader = new();
 
-            loader.Load(source);
+            loader.Load(mapperObject);
 
             return loader.EntityObject;
         }

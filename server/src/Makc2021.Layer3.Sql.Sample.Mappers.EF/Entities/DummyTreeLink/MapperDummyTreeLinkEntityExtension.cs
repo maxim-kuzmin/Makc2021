@@ -12,32 +12,33 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyTreeLink
         #region Public methods
 
         /// <summary>
-        /// Создать объект сущности сопоставителя.
+        /// Преобразовать из объекта сущности в объект сопоставителя.
         /// </summary>
-        /// <param name="source">Источник данных.</param>
-        /// <returns>Объект сущности сопоставителя.</returns>
-        public static MapperDummyTreeLinkEntityObject CreateMapperEntityObject(
-            this DummyTreeLinkEntityObject source
+        /// <param name="entityObject">Объект сущности.</param>
+        /// <returns>Объект сопоставителя.</returns>
+        public static MapperDummyTreeLinkEntityObject FromEntityToMapperObject(
+            this DummyTreeLinkEntityObject entityObject
             )
         {
             MapperDummyTreeLinkEntityObject result = new();
 
-            new DummyTreeLinkEntityLoader(result).Load(source);
+            new DummyTreeLinkEntityLoader(result).Load(entityObject);
 
             return result;
         }
 
         /// <summary>
-        /// Создать объект сущности.
+        /// Преобразовать из объекта сопоставителя в объект сущности.
         /// </summary>
+        /// <param name="mapperObject">Объект сопоставителя.</param>
         /// <returns>Объект сущности.</returns>
-        public static DummyTreeLinkEntityObject CreateEntityObject(
-            this MapperDummyTreeLinkEntityObject source
+        public static DummyTreeLinkEntityObject FromMapperToEntityObject(
+            this MapperDummyTreeLinkEntityObject mapperObject
             )
         {
             DummyTreeLinkEntityLoader loader = new();
 
-            loader.Load(source);
+            loader.Load(mapperObject);
 
             return loader.EntityObject;
         }

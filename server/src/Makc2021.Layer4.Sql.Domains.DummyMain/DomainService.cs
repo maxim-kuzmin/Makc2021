@@ -151,7 +151,7 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain
             var result = new DomainItemGetQueryOutput
             {
                 ObjectOfDummyMainEntity = entity.FromMapperToEntityObject(),
-                ObjectOfDummyOneToManyEntity = entity.ObjectOfDummyOneToManyEntity.CreateEntityObject()
+                ObjectOfDummyOneToManyEntity = entity.ObjectOfDummyOneToManyEntity.FromMapperToEntityObject()
             };
 
             if (entity.ObjectsOfDummyMainDummyManyToManyEntity.Any())
@@ -172,7 +172,7 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain
             item.ObjectsOfDummyManyToManyEntity = enities
                 .OrderBy(x => x.Name)
                 .ThenBy(x => x.Id)
-                .Select(x => x.CreateEntityObject())
+                .Select(x => x.FromMapperToEntityObject())
                 .ToArray();
         }
 

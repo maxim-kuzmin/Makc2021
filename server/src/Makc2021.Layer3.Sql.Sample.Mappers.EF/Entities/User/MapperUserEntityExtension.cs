@@ -12,32 +12,33 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.User
         #region Public methods
 
         /// <summary>
-        /// Создать объект сущности сопоставителя.
+        /// Преобразовать из объекта сущности в объект сопоставителя.
         /// </summary>
-        /// <param name="source">Источник данных.</param>
-        /// <returns>Объект сущности сопоставителя.</returns>
-        public static MapperUserEntityObject CreateMapperEntityObject(
-            this UserEntityObject source
+        /// <param name="entityObject">Объект сущности.</param>
+        /// <returns>Объект сопоставителя.</returns>
+        public static MapperUserEntityObject FromEntityToMapperObject(
+            this UserEntityObject entityObject
             )
         {
             MapperUserEntityObject result = new();
 
-            new UserEntityLoader(result).Load(source);
+            new UserEntityLoader(result).Load(entityObject);
 
             return result;
         }
 
         /// <summary>
-        /// Создать объект сущности.
+        /// Преобразовать из объекта сопоставителя в объект сущности.
         /// </summary>
+        /// <param name="mapperObject">Объект сопоставителя.</param>
         /// <returns>Объект сущности.</returns>
-        public static UserEntityObject CreateEntityObject(
-            this MapperUserEntityObject source
+        public static UserEntityObject FromMapperToEntityObject(
+            this MapperUserEntityObject mapperObject
             )
         {
             UserEntityLoader loader = new();
 
-            loader.Load(source);
+            loader.Load(mapperObject);
 
             return loader.EntityObject;
         }

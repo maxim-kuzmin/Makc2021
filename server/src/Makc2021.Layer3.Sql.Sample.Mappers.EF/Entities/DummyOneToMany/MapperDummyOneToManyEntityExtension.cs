@@ -12,32 +12,33 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyOneToMany
         #region Public methods
 
         /// <summary>
-        /// Создать объект сущности сопоставителя.
+        /// Преобразовать из объекта сущности в объект сопоставителя.
         /// </summary>
-        /// <param name="source">Источник данных.</param>
-        /// <returns>Объект сущности сопоставителя.</returns>
-        public static MapperDummyOneToManyEntityObject CreateMapperEntityObject(
-            this DummyOneToManyEntityObject source
+        /// <param name="entityObject">Объект сущности.</param>
+        /// <returns>Объект сопоставителя.</returns>
+        public static MapperDummyOneToManyEntityObject FromEntityToMapperObject(
+            this DummyOneToManyEntityObject entityObject
             )
         {
             MapperDummyOneToManyEntityObject result = new();
 
-            new DummyOneToManyEntityLoader(result).Load(source);
+            new DummyOneToManyEntityLoader(result).Load(entityObject);
 
             return result;
         }
 
         /// <summary>
-        /// Создать объект сущности.
+        /// Преобразовать из объекта сопоставителя в объект сущности.
         /// </summary>
+        /// <param name="mapperObject">Объект сопоставителя.</param>
         /// <returns>Объект сущности.</returns>
-        public static DummyOneToManyEntityObject CreateEntityObject(
-            this MapperDummyOneToManyEntityObject source
+        public static DummyOneToManyEntityObject FromMapperToEntityObject(
+            this MapperDummyOneToManyEntityObject mapperObject
             )
         {
             DummyOneToManyEntityLoader loader = new();
 
-            loader.Load(source);
+            loader.Load(mapperObject);
 
             return loader.EntityObject;
         }
