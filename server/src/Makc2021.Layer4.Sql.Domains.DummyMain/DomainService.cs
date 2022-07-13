@@ -150,14 +150,14 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain
         {
             var result = new DomainItemGetQueryOutput
             {
-                ObjectOfDummyMainEntity = entity.CreateEntityObject(),
+                ObjectOfDummyMainEntity = entity.FromMapperToEntityObject(),
                 ObjectOfDummyOneToManyEntity = entity.ObjectOfDummyOneToManyEntity.CreateEntityObject()
             };
 
             if (entity.ObjectsOfDummyMainDummyManyToManyEntity.Any())
             {
                 result.ObjectsOfDummyMainDummyManyToManyEntity = entity.ObjectsOfDummyMainDummyManyToManyEntity
-                    .Select(x => x.CreateEntityObject())
+                    .Select(x => x.FromMapperToEntityObject())
                     .ToArray();
             }
 
