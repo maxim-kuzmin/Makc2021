@@ -31,11 +31,6 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain.Queries.List.Get
         public string EntityName { get; set; }
 
         /// <summary>
-        /// Имя сущности "DummyOneToMany".
-        /// </summary>
-        public string NameOfDummyOneToManyEntity { get; set; }
-
-        /// <summary>
         /// Идентификатор сущности "DummyOneToMany".
         /// </summary>
         public long IdOfDummyOneToManyEntity { get; set; }
@@ -50,6 +45,11 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain.Queries.List.Get
         /// </summary>
         public string IdsStringOfDummyOneToManyEntity { get; set; }
 
+        /// <summary>
+        /// Имя сущности "DummyOneToMany".
+        /// </summary>
+        public string NameOfDummyOneToManyEntity { get; set; }
+
         #endregion Properties
 
         #region Public methods
@@ -61,9 +61,7 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain.Queries.List.Get
 
             if (string.IsNullOrWhiteSpace(SortField))
             {
-                MapperDummyMainEntityObject obj;
-
-                SortField = nameof(obj.Id);
+                SortField = nameof(MapperDummyMainEntityObject.Id);
             }
 
             if (string.IsNullOrWhiteSpace(SortDirection))

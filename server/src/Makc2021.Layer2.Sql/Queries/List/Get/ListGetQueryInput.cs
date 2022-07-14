@@ -68,7 +68,7 @@ namespace Makc2021.Layer2.Sql.Queries.List.Get
 
             if (PageSize < 1)
             {
-                PageSize = int.MaxValue;
+                PageSize = 0;
             }
         }
 

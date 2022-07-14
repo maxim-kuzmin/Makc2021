@@ -204,7 +204,7 @@ namespace Makc2021.Layer1.Converting
         {
             if (string.IsNullOrWhiteSpace(input))
             {
-                return new T[0];
+                return Array.Empty<T>();
             }
             else
             {
