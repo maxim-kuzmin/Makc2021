@@ -49,7 +49,7 @@ namespace Makc2021.Layer6.Sql.WebHttpServer.Controllers.Pages.DummyMain.Item
         {
             DummyMainItemPageGetQueryInput input = new();
 
-            input.Item.EntityId = entityId;
+            input.InputOfDummyMainDomainItemGetQuery.EntityId = entityId;
 
             var queryResult = await Service.Get(input, queryCode).ConfigureAwaitWithCultureSaving(false);
 

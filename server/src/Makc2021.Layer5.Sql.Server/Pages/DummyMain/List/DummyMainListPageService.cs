@@ -63,7 +63,7 @@ namespace Makc2021.Layer5.Sql.Server.Pages.DummyMain.List
 
             var list = input.List;
 
-            await queryResults.AddAsync(
+            await queryResults.AddWithOutputAsync(
                 () => GetListGetQueryResult(
                     new DomainListGetQueryInput
                     {

@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Makc2021.Layer1.Completion;
 using Makc2021.Layer1.Query;
-using Makc2021.Layer4.Sql.Domains.DummyMain;
-using Makc2021.Layer4.Sql.Domains.DummyMain.Queries.Item.Get;
 using Makc2021.Layer5.Sql.Server.Pages.DummyMain.Item.Queries.Get;
+using DummyMainDomainItemGetQueryInput = Makc2021.Layer4.Sql.Domains.DummyMain.Queries.Item.Get.DomainItemGetQueryInput;
+using DummyMainDomainItemGetQueryOutput = Makc2021.Layer4.Sql.Domains.DummyMain.Queries.Item.Get.DomainItemGetQueryOutput;
+using IDummyMainDomainItemGetQueryHandler = Makc2021.Layer4.Sql.Domains.DummyMain.Queries.Item.Get.IDomainItemGetQueryHandler;
+using IDummyMainDomainService = Makc2021.Layer4.Sql.Domains.DummyMain.IDomainService;
 
 namespace Makc2021.Layer5.Sql.Server.Pages.DummyMain.Item
 {
@@ -16,24 +18,24 @@ namespace Makc2021.Layer5.Sql.Server.Pages.DummyMain.Item
     /// </summary>
     public class DummyMainItemPageService : IDummyMainItemPageService
     {
-        private IDomainItemGetQueryHandler DomainItemGetQueryHandler { get; }
+        private IDummyMainDomainItemGetQueryHandler HandlerOfDummyMainDomainItemGetQuery { get; }
 
-        private IDomainService DomainService { get; }
+        private IDummyMainDomainService ServiceOfDummyMainDomain { get; }
 
         #region Constructors
 
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="domainItemGetQueryHandler">Обработчик запроса на получение элемента в домене.</param>
-        /// <param name="domainService">Сервис домена.</param>
+        /// <param name="handlerOfDummyMainDomainItemGetQueryHandler">Обработчик запроса на получение элемента в домене "DummyMain".</param>
+        /// <param name="serviceOfDummyMainDomainService">Сервис домена "DummyMain".</param>
         public DummyMainItemPageService(
-            IDomainItemGetQueryHandler domainItemGetQueryHandler,
-            IDomainService domainService
+            IDummyMainDomainItemGetQueryHandler handlerOfDummyMainDomainItemGetQueryHandler,
+            IDummyMainDomainService serviceOfDummyMainDomainService
             )
         {
-            DomainItemGetQueryHandler = domainItemGetQueryHandler;
-            DomainService = domainService;
+            HandlerOfDummyMainDomainItemGetQuery = handlerOfDummyMainDomainItemGetQueryHandler;
+            ServiceOfDummyMainDomain = serviceOfDummyMainDomainService;
         }
 
         #endregion Constructors
@@ -61,17 +63,17 @@ namespace Makc2021.Layer5.Sql.Server.Pages.DummyMain.Item
 
             List<QueryResult> queryResults = new();
 
-            var item = input.Item;
+            var item = input.InputOfDummyMainDomainItemGetQuery;
 
-            await queryResults.AddAsync(
+            await queryResults.AddWithOutputAsync(
                 () => GetItemGetQueryResult(
-                    new DomainItemGetQueryInput
+                    new DummyMainDomainItemGetQueryInput
                     {
                         EntityId = item.EntityId
                     },
                     queryCode
                     ),
-                queryOutput => output.Item = queryOutput
+                queryOutput => output.OutputOfDummyMainDomainItemGetQuery = queryOutput
                 ).ConfigureAwaitWithCultureSaving(false);
 
             result.Load(queryResults);
@@ -88,18 +90,18 @@ namespace Makc2021.Layer5.Sql.Server.Pages.DummyMain.Item
 
         #region Private methods
 
-        private async Task<QueryResultWithOutput<DomainItemGetQueryOutput>> GetItemGetQueryResult(            
-            DomainItemGetQueryInput input,
+        private async Task<QueryResultWithOutput<DummyMainDomainItemGetQueryOutput>> GetItemGetQueryResult(
+            DummyMainDomainItemGetQueryInput input,
             string queryCode
             )
         {
-            var queryHandler = DomainItemGetQueryHandler;
+            var queryHandler = HandlerOfDummyMainDomainItemGetQuery;
 
             try
             {
                 queryHandler.OnStart(input, queryCode);
 
-                var queryOutput = await DomainService.GetItem(
+                var queryOutput = await ServiceOfDummyMainDomain.GetItem(
                     queryHandler.QueryInput
                     ).ConfigureAwaitWithCultureSaving(false);
 

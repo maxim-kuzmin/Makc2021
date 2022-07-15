@@ -39,11 +39,11 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain.Testing.Fakes.Queries.Item.Get
         {
             QueryResult.Output = queryOutput;
 
-            OnSuccess(QueryResult);
+            OnSuccessWithResult(QueryResult);
         }
 
         /// <inheritdoc/>
-        public void OnSuccess(QueryResultWithOutput<DomainItemGetQueryOutput> queryResult)
+        public void OnSuccessWithResult(QueryResultWithOutput<DomainItemGetQueryOutput> queryResult)
         {
             queryResult.IsOk = true;
 

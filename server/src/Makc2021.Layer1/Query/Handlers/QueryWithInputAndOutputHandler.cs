@@ -95,7 +95,7 @@ namespace Makc2021.Layer1.Query.Handlers
         }
 
         /// <inheritdoc/>
-        public void OnSuccess(QueryResultWithOutput<TQueryOutput> queryResult)
+        public void OnSuccessWithResult(QueryResultWithOutput<TQueryOutput> queryResult)
         {
             QueryResult = queryResult;
 

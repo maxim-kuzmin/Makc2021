@@ -43,11 +43,11 @@ namespace Makc2021.Layer6.Sql.WebGrpcServer.Services.Pages.DummyMain.Item
         {
             DummyMainItemPageGetQueryInput input = new();
 
-            input.Item.EntityId = request.Item.EntityId;
+            input.InputOfDummyMainDomainItemGetQuery.EntityId = request.Item.EntityId;
 
             var queryResult = await Service.Get(input, request.QueryCode).ConfigureAwaitWithCultureSaving(false);
 
-            var objectOfDummyMainEntity = queryResult.Output.Item.ObjectOfDummyMainEntity;
+            var objectOfDummyMainEntity = queryResult.Output.OutputOfDummyMainDomainItemGetQuery.ObjectOfDummyMainEntity;
 
             return new DummyMainItemPageGetReply
             {

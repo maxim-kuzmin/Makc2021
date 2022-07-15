@@ -39,10 +39,10 @@ namespace Makc2021.Layer1.Query.Handlers
         void OnSuccess(TQueryOutput queryOutput);
 
         /// <summary>
-        /// Обработать успешное выполнение запроса.
+        /// Обработать успешное выполнение запроса с результатом.
         /// </summary>
         /// <param name="queryResult">Результат запроса.</param>
-        void OnSuccess(QueryResultWithOutput<TQueryOutput> queryResult);
+        void OnSuccessWithResult(QueryResultWithOutput<TQueryOutput> queryResult);
 
         #endregion Public methods
     }

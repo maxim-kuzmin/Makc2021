@@ -1,6 +1,6 @@
 ﻿// Copyright (c) 2021 Maxim Kuzmin. All rights reserved. Licensed under the MIT License.
 
-using Makc2021.Layer4.Sql.Domains.DummyMain.Queries.Item.Get;
+using DummyMainDomainItemGetQueryInput = Makc2021.Layer4.Sql.Domains.DummyMain.Queries.Item.Get.DomainItemGetQueryInput;
 
 namespace Makc2021.Layer5.Sql.Server.Pages.DummyMain.Item.Queries.Get
 {
@@ -12,9 +12,9 @@ namespace Makc2021.Layer5.Sql.Server.Pages.DummyMain.Item.Queries.Get
         #region Properties
 
         /// <summary>
-        /// Элемент.
+        /// Входные данные запроса на получение элемента в домене "DummyMain".
         /// </summary>
-        public DomainItemGetQueryInput Item { get; } = new();
+        public DummyMainDomainItemGetQueryInput InputOfDummyMainDomainItemGetQuery { get; } = new();
 
         #endregion Properties
     }

@@ -27,14 +27,14 @@ namespace Makc2021.Layer1.Query
         }
 
         /// <summary>
-        /// Добавить.
+        /// Добавить с выходными данными.
         /// </summary>
         /// <typeparam name="TOutput">Тип выходных данных.</typeparam>
         /// <param name="queryResults">Результаты запроса.</param>
         /// <param name="functionToGetQueryResult">Функция для получения результата запроса.</param>
         /// <param name="actionToSetOutput">Действие по установке выходных данных.</param>
         /// <returns>Признак успешной установки выходных данных.</returns>
-        public static bool Add<TOutput>(
+        public static bool AddWithOutput<TOutput>(
             this ICollection<QueryResult> queryResults,
             Func<QueryResultWithOutput<TOutput>> functionToGetQueryResult,
             Action<TOutput> actionToSetOutput
@@ -73,7 +73,7 @@ namespace Makc2021.Layer1.Query
         }
 
         /// <summary>
-        /// Добавить асинхронно.
+        /// Добавить с выходными данными асинхронно.
         /// </summary>
         /// <typeparam name="TOutput">Тип выходных данных.</typeparam>
         /// <param name="queryResults">Результаты запроса.</param>
@@ -82,7 +82,7 @@ namespace Makc2021.Layer1.Query
         /// </param>
         /// <param name="actionToSetOutput">Действие по установке выходных данных.</param>
         /// <returns>Задача на получение признака успешной установки выходных данных.</returns>
-        public static async Task<bool> AddAsync<TOutput>(
+        public static async Task<bool> AddWithOutputAsync<TOutput>(
             this ICollection<QueryResult> queryResults,
             Func<Task<QueryResultWithOutput<TOutput>>> functionToGetQueryResultTask,
             Action<TOutput> actionToSetOutput
