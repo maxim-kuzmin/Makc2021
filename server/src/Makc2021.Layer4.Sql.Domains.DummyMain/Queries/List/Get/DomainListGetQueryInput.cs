@@ -69,6 +69,11 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain.Queries.List.Get
                 SortDirection = QuerySettings.SORT_DIRECTION_DESC;
             }
 
+            if (!string.IsNullOrWhiteSpace(EntityIdsString) && (EntityIds == null || !EntityIds.Any()))
+            {
+                EntityIds = EntityIdsString.FromStringToNumericInt64Array();
+            }
+
             bool isOk = !string.IsNullOrWhiteSpace(IdsStringOfDummyOneToManyEntity)
                 &&
                 (
@@ -80,11 +85,6 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain.Queries.List.Get
             if (isOk)
             {
                 IdsOfDummyOneToManyEntity = IdsStringOfDummyOneToManyEntity.FromStringToNumericInt64Array();
-            }
-
-            if (!string.IsNullOrWhiteSpace(EntityIdsString) && (EntityIds == null || !EntityIds.Any()))
-            {
-                EntityIds = EntityIdsString.FromStringToNumericInt64Array();
             }
         }
 
