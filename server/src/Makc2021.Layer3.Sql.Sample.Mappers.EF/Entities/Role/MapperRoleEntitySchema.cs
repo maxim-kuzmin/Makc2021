@@ -26,7 +26,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.Role
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperRoleEntityObject> builder)
         {
-            Sample.Entities.Role.RoleEntitySettings setting = EntitiesSettings.Role;
+            Sample.Entities.Role.RoleEntitySettings setting = EntitiesOptions.Role;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

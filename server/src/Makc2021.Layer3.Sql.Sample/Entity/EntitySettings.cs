@@ -5,7 +5,7 @@ using Makc2021.Layer3.Sql.Sample.Db;
 namespace Makc2021.Layer3.Sql.Sample.Entity
 {
     /// <inheritdoc/>
-    public class EntitySettings : Layer2.Sql.Entity.EntitySettings<DbDefaults>
+    public class EntitySettings : Layer2.Sql.Entity.EntityOptions<DbDefaults>
     {
         #region Constructors
 

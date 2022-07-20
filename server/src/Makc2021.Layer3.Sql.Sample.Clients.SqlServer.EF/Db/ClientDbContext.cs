@@ -35,13 +35,13 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF.Db
 
         /// <inheritdoc/>
         public ClientDbContext()
-            : this(ClientDbFactory.Default.Options, ClientDbFactory.Default.EntitiesSettings)
+            : this(ClientDbFactory.Default.Options, ClientDbFactory.Default.EntitiesOptions)
         {
         }
 
         /// <inheritdoc/>
         public ClientDbContext(DbContextOptions<MapperDbContext> options)
-            : this(options, ClientDbFactory.Default.EntitiesSettings)
+            : this(options, ClientDbFactory.Default.EntitiesOptions)
         {
         }
 

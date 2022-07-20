@@ -26,7 +26,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyMainDummyManyToMan
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperDummyMainDummyManyToManyEntityObject> builder)
         {
-            Sample.Entities.DummyMainDummyManyToMany.DummyMainDummyManyToManyEntitySettings setting = EntitiesSettings.DummyMainDummyManyToMany;
+            Sample.Entities.DummyMainDummyManyToMany.DummyMainDummyManyToManyEntitySettings setting = EntitiesOptions.DummyMainDummyManyToMany;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

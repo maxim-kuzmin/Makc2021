@@ -69,7 +69,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF.Db
         /// <inheritdoc/>
         public ClientDbContext CreateDbContext(string[] args)
         {
-            var result = new ClientDbContext(Options, EntitiesSettings);
+            var result = new ClientDbContext(Options, EntitiesOptions);
 
             result.Database.SetCommandTimeout(DbCommandTimeout > 0 ? DbCommandTimeout : 3600);
 
@@ -105,7 +105,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF.Db
         }
 
         /// <inheritdoc/>
-        protected sealed override EntitiesSettings CreateEntitiesSettings()
+        protected sealed override EntitiesSettings CreateEntitiesOptions()
         {
             return ClientEntitiesSettings.Instance;
         }

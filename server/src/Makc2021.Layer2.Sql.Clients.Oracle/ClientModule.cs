@@ -48,7 +48,6 @@ namespace Makc2021.Layer2.Sql.Clients.Oracle
             return new[]
             {
                 typeof(CommonEnvironment),
-                typeof(ILogger),
                 typeof(IClientConfigSettings)
             };
         }

@@ -5,15 +5,15 @@ namespace Makc2021.Layer2.Sql.Mappers.EF.Db
     /// <summary>
     /// Интерфейс фабрики базы данных сопоставителя.
     /// </summary>
-    /// <typeparam name="TEntitiesSettings">Тип настроек сущностей.</typeparam>
-    public interface IMapperDbFactory<TEntitiesSettings>
+    /// <typeparam name="TEntitiesOptions">Тип параметров сущностей.</typeparam>
+    public interface IMapperDbFactory<TEntitiesOptions>
     {
         #region Properties
 
         /// <summary>
-        /// Настройки сущностей.
+        /// Параметры сущностей.
         /// </summary>
-        TEntitiesSettings EntitiesSettings { get; }
+        TEntitiesOptions EntitiesOptions { get; }
 
         #endregion Properties
     }

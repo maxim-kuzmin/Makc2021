@@ -8,17 +8,17 @@ namespace Makc2021.Layer2.Sql.Mappers.EF
     /// <summary>
     /// Схема сопоставителя.
     /// </summary>
-    /// <typeparam name="TEntitiesSettings">Тип настроек сущностей.</typeparam>
+    /// <typeparam name="TEntitiesOptions">Тип параметров сущностей.</typeparam>
     /// <typeparam name="TEntityObject">Тип объекта сущности.</typeparam>
-    public abstract class MapperSchema<TEntitiesSettings, TEntityObject> : IEntityTypeConfiguration<TEntityObject>
+    public abstract class MapperSchema<TEntitiesOptions, TEntityObject> : IEntityTypeConfiguration<TEntityObject>
         where TEntityObject : class
     {
         #region Properties
 
         /// <summary>
-        /// Настройки сущностей.
+        /// Параметры сущностей.
         /// </summary>
-        protected TEntitiesSettings EntitiesSettings { get; private set; }
+        protected TEntitiesOptions EntitiesOptions { get; private set; }
 
         #endregion Properties
 
@@ -27,10 +27,10 @@ namespace Makc2021.Layer2.Sql.Mappers.EF
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="entitiesSettings">Настройки сущностей.</param>
-        public MapperSchema(TEntitiesSettings entitiesSettings)
+        /// <param name="entitiesOptions">Параметры сущностей.</param>
+        public MapperSchema(TEntitiesOptions entitiesOptions)
         {
-            EntitiesSettings = entitiesSettings;
+            EntitiesOptions = entitiesOptions;
         }
 
         #endregion Constructors

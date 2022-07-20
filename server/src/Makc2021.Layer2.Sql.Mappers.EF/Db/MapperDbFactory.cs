@@ -10,8 +10,8 @@ namespace Makc2021.Layer2.Sql.Mappers.EF.Db
     /// <summary>
     /// Фабрика базы данных сопоставителя.
     /// </summary>
-    /// <typeparam name="TEntitiesSettings">Тип настроек сущностей.</typeparam>
-    public abstract class MapperDbFactory<TEntitiesSettings> : IMapperDbFactory<TEntitiesSettings>
+    /// <typeparam name="TEntitiesOptions">Тип параметров сущностей.</typeparam>
+    public abstract class MapperDbFactory<TEntitiesOptions> : IMapperDbFactory<TEntitiesOptions>
     {
         #region Properties
 
@@ -33,7 +33,7 @@ namespace Makc2021.Layer2.Sql.Mappers.EF.Db
         protected ILogger Logger { get; private set; }
 
         /// <inheritdoc/>
-        public TEntitiesSettings EntitiesSettings { get; private set; }
+        public TEntitiesOptions EntitiesOptions { get; private set; }
 
         #endregion Properties
 
@@ -51,13 +51,13 @@ namespace Makc2021.Layer2.Sql.Mappers.EF.Db
         /// Конструктор.
         /// </summary>
         /// <param name="connectionString">Строка подключения.</param>
-        /// <param name="entitiesSettings">Настройки сущностей.</param>
+        /// <param name="entitiesOptions">Параметры сущностей.</param>
         /// <param name="environment">Окружение.</param>
         /// <param name="logger">Регистратор.</param>
         /// <param name="logLevel">Уровень логирования.</param>
         public MapperDbFactory(
             string connectionString,
-            TEntitiesSettings entitiesSettings,
+            TEntitiesOptions entitiesOptions,
             CommonEnvironment environment,
             ILogger logger,
             LogLevel logLevel
@@ -66,7 +66,7 @@ namespace Makc2021.Layer2.Sql.Mappers.EF.Db
             Logger = logger;
             LogLevel = logLevel;
 
-            Initialize(connectionString, entitiesSettings, environment);
+            Initialize(connectionString, entitiesOptions, environment);
         }
 
         #endregion Constructors
@@ -116,22 +116,22 @@ namespace Makc2021.Layer2.Sql.Mappers.EF.Db
         /// Создать настройки сущностей.
         /// </summary>
         /// <returns>Настройки сущностей.</returns>
-        protected abstract TEntitiesSettings CreateEntitiesSettings();
+        protected abstract TEntitiesOptions CreateEntitiesOptions();
 
         /// <summary>
         /// Инициализировать.
         /// </summary>
         /// <param name="connectionString">Строка подключения.</param>
-        /// <param name="entitiesSettings">Настройки сущностей.</param>
+        /// <param name="entitiesOptions">Параметры сущностей.</param>
         /// <param name="environment">Окружение.</param>
         protected virtual void Initialize(
             string connectionString,
-            TEntitiesSettings entitiesSettings,
+            TEntitiesOptions entitiesOptions,
             CommonEnvironment environment
             )
         {
             Environment = environment ?? new();
-            EntitiesSettings = entitiesSettings ?? CreateEntitiesSettings();
+            EntitiesOptions = entitiesOptions ?? CreateEntitiesOptions();
             ConnectionString = connectionString ?? CreateConnectionString();
         }
 
