@@ -12,7 +12,7 @@ namespace Makc2021.Layer1.Query
         #region Methods
 
         /// <summary>
-        /// Обработать ошибку запроса.
+        /// Обработать ошибку.
         /// </summary>
         /// <param name="exception">Исключение.</param>
         void OnError(Exception exception);

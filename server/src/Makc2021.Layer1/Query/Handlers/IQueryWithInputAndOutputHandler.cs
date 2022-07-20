@@ -26,20 +26,20 @@ namespace Makc2021.Layer1.Query.Handlers
         #region Public methods
 
         /// <summary>
-        /// Обработать начало запроса.
+        /// Обработать начало.
         /// </summary>
         /// <param name="queryInput">Входные данные запроса.</param>     
         /// <param name="queryCode">Код запроса.</param>
         void OnStart(TQueryInput queryInput, string queryCode = null);
 
         /// <summary>
-        /// Обработать успешное выполнение запроса.
+        /// Обработать успех.
         /// </summary>
         /// <param name="queryOutput">Выходные данные запроса.</param>
         void OnSuccess(TQueryOutput queryOutput);
 
         /// <summary>
-        /// Обработать успешное выполнение запроса с результатом.
+        /// Обработать успех с результатом.
         /// </summary>
         /// <param name="queryResult">Результат запроса.</param>
         void OnSuccessWithResult(QueryResultWithOutput<TQueryOutput> queryResult);
