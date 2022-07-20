@@ -123,10 +123,10 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain
             {
                 switch (sortDirection)
                 {
-                    case QuerySettings.SORT_DIRECTION_ASC:
+                    case QueryOptions.SORT_DIRECTION_ASC:
                         query = query.OrderBy(x => x.Id);
                         break;
-                    case QuerySettings.SORT_DIRECTION_DESC:
+                    case QueryOptions.SORT_DIRECTION_DESC:
                         query = query.OrderByDescending(x => x.Id);
                         break;
                 }
@@ -135,10 +135,10 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain
             {
                 switch (sortDirection)
                 {
-                    case QuerySettings.SORT_DIRECTION_ASC:
+                    case QueryOptions.SORT_DIRECTION_ASC:
                         query = query.OrderBy(x => x.Name);
                         break;
-                    case QuerySettings.SORT_DIRECTION_DESC:
+                    case QueryOptions.SORT_DIRECTION_DESC:
                         query = query.OrderByDescending(x => x.Name);
                         break;
                 }
@@ -147,10 +147,10 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain
             {
                 switch (sortDirection)
                 {
-                    case QuerySettings.SORT_DIRECTION_ASC:
+                    case QueryOptions.SORT_DIRECTION_ASC:
                         query = query.OrderBy(x => x.ObjectOfDummyOneToManyEntity.Name);
                         break;
-                    case QuerySettings.SORT_DIRECTION_DESC:
+                    case QueryOptions.SORT_DIRECTION_DESC:
                         query = query.OrderByDescending(x => x.ObjectOfDummyOneToManyEntity.Name);
                         break;
                 }
@@ -159,10 +159,10 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain
             {
                 switch (sortDirection)
                 {
-                    case QuerySettings.SORT_DIRECTION_ASC:
+                    case QueryOptions.SORT_DIRECTION_ASC:
                         query = query.OrderBy(x => x.PropDate);
                         break;
-                    case QuerySettings.SORT_DIRECTION_DESC:
+                    case QueryOptions.SORT_DIRECTION_DESC:
                         query = query.OrderByDescending(x => x.PropDate);
                         break;
                 }
@@ -171,10 +171,10 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain
             {
                 switch (sortDirection)
                 {
-                    case QuerySettings.SORT_DIRECTION_ASC:
+                    case QueryOptions.SORT_DIRECTION_ASC:
                         query = query.OrderBy(x => x.PropBoolean);
                         break;
-                    case QuerySettings.SORT_DIRECTION_DESC:
+                    case QueryOptions.SORT_DIRECTION_DESC:
                         query = query.OrderByDescending(x => x.PropBoolean);
                         break;
                 }

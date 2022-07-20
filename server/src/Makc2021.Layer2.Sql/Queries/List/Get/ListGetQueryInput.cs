@@ -45,9 +45,9 @@ namespace Makc2021.Layer2.Sql.Queries.List.Get
             if (!string.IsNullOrWhiteSpace(SortDirection)
                 &&
                 (
-                    !QuerySettings.SORT_DIRECTION_ASC.Equals(SortDirection, StringComparison.OrdinalIgnoreCase)
+                    !QueryOptions.SORT_DIRECTION_ASC.Equals(SortDirection, StringComparison.OrdinalIgnoreCase)
                     &&
-                    !QuerySettings.SORT_DIRECTION_DESC.Equals(SortDirection, StringComparison.OrdinalIgnoreCase)
+                    !QueryOptions.SORT_DIRECTION_DESC.Equals(SortDirection, StringComparison.OrdinalIgnoreCase)
                 ))
             {
                 result.Add(nameof(SortField));

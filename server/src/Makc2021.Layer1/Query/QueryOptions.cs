@@ -3,9 +3,9 @@
 namespace Makc2021.Layer1.Query
 {
     /// <summary>
-    /// Настройки запроса.
+    /// Параметры запроса.
     /// </summary>
-    public static class QuerySettings
+    public static class QueryOptions
     {
         #region Constants
 

@@ -66,7 +66,7 @@ namespace Makc2021.Layer4.Sql.Domains.DummyMain.Queries.List.Get
 
             if (string.IsNullOrWhiteSpace(SortDirection))
             {
-                SortDirection = QuerySettings.SORT_DIRECTION_DESC;
+                SortDirection = QueryOptions.SORT_DIRECTION_DESC;
             }
 
             if (!string.IsNullOrWhiteSpace(EntityIdsString) && (EntityIds == null || !EntityIds.Any()))
