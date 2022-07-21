@@ -4,14 +4,15 @@ using System;
 using System.Collections.Generic;
 using Makc2021.Layer1.Common;
 using Makc2021.Layer2.Sql.Common;
-using Makc2021.Layer4.Sql.Domains.DummyMain;
-using Makc2021.Layer4.Sql.Domains.DummyMain.Queries.Item.Get;
-using Makc2021.Layer4.Sql.Domains.DummyMain.Queries.List.Get;
 using Makc2021.Layer5.Sql.Server.Pages.DummyMain.Item;
 using Makc2021.Layer5.Sql.Server.Pages.DummyMain.List;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using IClientProviderForSqlServer = Makc2021.Layer2.Sql.Clients.SqlServer.ClientProvider;
+using IDummyMainDomainItemGetQueryHandler = Makc2021.Layer4.Sql.Domains.DummyMain.Queries.Item.Get.IDomainItemGetQueryHandler;
+using IDummyMainDomainListGetQueryHandler = Makc2021.Layer4.Sql.Domains.DummyMain.Queries.List.Get.IDomainListGetQueryHandler;
+using IDummyMainDomainService = Makc2021.Layer4.Sql.Domains.DummyMain.IDomainService;
 
 namespace Makc2021.Layer5.Sql.Server
 {
@@ -27,21 +28,18 @@ namespace Makc2021.Layer5.Sql.Server
         {
             services.AddSingleton(new CommonEnvironment());
 
-            services.AddLocalization(options =>
-            {
-                CommonConfigurator.ConfigureLocalization(options);
-            });
+            services.AddLocalization(CommonConfigurator.ConfigureLocalization);
 
-            services.AddSingleton<ICommonProvider>(x => new Layer2.Sql.Clients.SqlServer.ClientProvider());
+            services.AddSingleton<ICommonProvider>(x => x.GetRequiredService<IClientProviderForSqlServer>());
 
             services.AddScoped<IDummyMainItemPageService>(x => new DummyMainItemPageService(
-                x.GetRequiredService<IDomainItemGetQueryHandler>(),
-                x.GetRequiredService<IDomainService>()
+                x.GetRequiredService<IDummyMainDomainItemGetQueryHandler>(),
+                x.GetRequiredService<IDummyMainDomainService>()
                 ));
 
             services.AddScoped<IDummyMainListPageService>(x => new DummyMainListPageService(
-                x.GetRequiredService<IDomainListGetQueryHandler>(),
-                x.GetRequiredService<IDomainService>()
+                x.GetRequiredService<IDummyMainDomainListGetQueryHandler>(),
+                x.GetRequiredService<IDummyMainDomainService>()
                 ));
         }
 
@@ -67,10 +65,11 @@ namespace Makc2021.Layer5.Sql.Server
         protected override IEnumerable<Type> GetImports()
         {
             return new[]
-            {                    
-                typeof(IDomainItemGetQueryHandler),
-                typeof(IDomainListGetQueryHandler),
-                typeof(IDomainService)
+            {
+                typeof(IClientProviderForSqlServer),
+                typeof(IDummyMainDomainItemGetQueryHandler),
+                typeof(IDummyMainDomainListGetQueryHandler),
+                typeof(IDummyMainDomainService)
             };
         }
 
