@@ -6,9 +6,9 @@ using Makc2021.Layer3.Sql.Sample.Entity;
 namespace Makc2021.Layer3.Sql.Sample.Entities.User
 {
     /// <summary>
-    /// Настройки сущности "User".
+    /// Параметры сущности "User".
     /// </summary>
-    public class UserEntitySettings : EntitySettings
+    public class UserEntityOptions : EntityOptions
     {
         #region Properties
 
@@ -114,21 +114,21 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.User
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
+        /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
         /// <param name="dbColumnNameForNormalizedEmail">Колонка в базе данных для поля "NormalizedEmail".</param>
         /// <param name="dbColumnNameForNormalizedUserName">Колонка в базе данных для поля "NormalizedUserName".</param>
-        public UserEntitySettings(
-            DbDefaults dbDefaults,
+        public UserEntityOptions(
+            DbDefaults defaults,
             string dbTable,
             string dbSchema = null,
             string dbColumnNameForNormalizedEmail = null,
             string dbColumnNameForNormalizedUserName = null
             )
-            : base(dbDefaults, dbTable, dbSchema)
+            : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = dbDefaults.DbColumnForId;
+            DbColumnForId = defaults.DbColumnForId;
 
             DbColumnForNormalizedEmail = dbColumnNameForNormalizedEmail
                 ?? nameof(UserEntityObject.NormalizedEmail);

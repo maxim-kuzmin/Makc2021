@@ -14,7 +14,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserRole
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperUserRoleEntitySchema(EntitiesSettings entitiesSettings)
+        public MapperUserRoleEntitySchema(EntitiesOptions entitiesSettings)
             : base(entitiesSettings)
         {
         }
@@ -26,7 +26,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserRole
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperUserRoleEntityObject> builder)
         {
-            Sample.Entities.UserRole.UserRoleEntitySettings setting = EntitiesOptions.UserRole;
+            Sample.Entities.UserRole.UserRoleEntityOptions setting = EntitiesOptions.UserRole;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

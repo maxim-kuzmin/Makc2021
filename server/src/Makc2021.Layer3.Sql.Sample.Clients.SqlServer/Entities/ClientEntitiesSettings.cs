@@ -22,11 +22,11 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.Entities
     /// <summary>
     /// Настройки сущностей клиента.
     /// </summary>
-    public class ClientEntitiesSettings : EntitiesSettings
+    public class ClientEntitiesSettings : EntitiesOptions
     {
         #region Fields
 
-        private static readonly Lazy<EntitiesSettings> _lazy = new(() => new ClientEntitiesSettings());
+        private static readonly Lazy<EntitiesOptions> _lazy = new(() => new ClientEntitiesSettings());
 
         #endregion Fields
 
@@ -35,7 +35,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.Entities
         /// <summary>
         /// Экземпляр.
         /// </summary>
-        public static EntitiesSettings Instance => _lazy.Value;
+        public static EntitiesOptions Instance => _lazy.Value;
 
         #endregion Properties
 
@@ -64,36 +64,36 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.Entities
                 NamePartsSeparator = "_"
             };
 
-            DummyOneToMany = new DummyOneToManyEntitySettings(dbDefaults, "DummyOneToMany");
+            DummyOneToMany = new DummyOneToManyEntityOptions(dbDefaults, "DummyOneToMany");
 
-            DummyMain = new DummyMainEntitySettings(DummyOneToMany, dbDefaults, "DummyMain");
+            DummyMain = new DummyMainEntityOptions(DummyOneToMany, dbDefaults, "DummyMain");
 
-            DummyManyToMany = new DummyManyToManyEntitySettings(dbDefaults, "DummyManyToMany");
+            DummyManyToMany = new DummyManyToManyEntityOptions(dbDefaults, "DummyManyToMany");
 
-            DummyMainDummyManyToMany = new DummyMainDummyManyToManyEntitySettings(
+            DummyMainDummyManyToMany = new DummyMainDummyManyToManyEntityOptions(
                 DummyMain,
                 DummyManyToMany,
                 dbDefaults,
                 "DummyMainDummyManyToMany"
                 );
 
-            DummyTree = new DummyTreeEntitySettings(dbDefaults, "DummyTree");
+            DummyTree = new DummyTreeEntityOptions(dbDefaults, "DummyTree");
 
-            DummyTreeLink = new DummyTreeLinkEntitySettings(DummyTree, dbDefaults, "DummyTreeLink");
+            DummyTreeLink = new DummyTreeLinkEntityOptions(DummyTree, dbDefaults, "DummyTreeLink");
 
-            Role = new RoleEntitySettings(dbDefaults, "Role");
+            Role = new RoleEntityOptions(dbDefaults, "Role");
 
-            RoleClaim = new RoleClaimEntitySettings(Role, dbDefaults, "RoleClaim");
+            RoleClaim = new RoleClaimEntityOptions(Role, dbDefaults, "RoleClaim");
 
-            User = new UserEntitySettings(dbDefaults, "User");
+            User = new UserEntityOptions(dbDefaults, "User");
 
-            UserClaim = new UserClaimEntitySettings(User, dbDefaults, "UserClaim");
+            UserClaim = new UserClaimEntityOptions(User, dbDefaults, "UserClaim");
 
-            UserLogin = new UserLoginEntitySettings(User, dbDefaults, "UserLogin");
+            UserLogin = new UserLoginEntityOptions(User, dbDefaults, "UserLogin");
 
-            UserRole = new UserRoleEntitySettings(Role, User, dbDefaults, "UserRole");
+            UserRole = new UserRoleEntityOptions(Role, User, dbDefaults, "UserRole");
 
-            UserToken = new UserTokenEntitySettings(User, dbDefaults, "UserToken");
+            UserToken = new UserTokenEntityOptions(User, dbDefaults, "UserToken");
         }
 
         #endregion Constructors     

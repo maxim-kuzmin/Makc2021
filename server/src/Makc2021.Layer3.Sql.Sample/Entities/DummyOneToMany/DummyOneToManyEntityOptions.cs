@@ -3,12 +3,12 @@
 using Makc2021.Layer3.Sql.Sample.Db;
 using Makc2021.Layer3.Sql.Sample.Entity;
 
-namespace Makc2021.Layer3.Sql.Sample.Entities.DummyManyToMany
+namespace Makc2021.Layer3.Sql.Sample.Entities.DummyOneToMany
 {
     /// <summary>
-    /// Настройки сущности "DummyManyToMany".
+    /// Параметры сущности "DummyOneToMany".
     /// </summary>
-    public class DummyManyToManyEntitySettings : EntitySettings
+    public class DummyOneToManyEntityOptions : EntityOptions
     {
         #region Properties
 
@@ -47,7 +47,7 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyManyToMany
         /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public DummyManyToManyEntitySettings(
+        public DummyOneToManyEntityOptions(
             DbDefaults defaults,
             string dbTable,
             string dbSchema = null

@@ -14,7 +14,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyTree
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperDummyTreeEntitySchema(EntitiesSettings entitiesSettings)
+        public MapperDummyTreeEntitySchema(EntitiesOptions entitiesSettings)
             : base(entitiesSettings)
         {
         }
@@ -26,7 +26,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyTree
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperDummyTreeEntityObject> builder)
         {
-            Sample.Entities.DummyTree.DummyTreeEntitySettings setting = EntitiesOptions.DummyTree;
+            Sample.Entities.DummyTree.DummyTreeEntityOptions setting = EntitiesOptions.DummyTree;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

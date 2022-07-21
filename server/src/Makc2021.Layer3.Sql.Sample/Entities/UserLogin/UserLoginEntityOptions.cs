@@ -7,9 +7,9 @@ using Makc2021.Layer3.Sql.Sample.Entity;
 namespace Makc2021.Layer3.Sql.Sample.Entities.UserLogin
 {
     /// <summary>
-    /// Настройки сущности "UserLogin".
+    /// Параметры сущности "UserLogin".
     /// </summary>
-    public class UserLoginEntitySettings : EntitySettings
+    public class UserLoginEntityOptions : EntityOptions
     {
         #region Properties
 
@@ -55,22 +55,22 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.UserLogin
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="settingOfUserEntity">Настройка сущности "User".</param>
-        /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
+        /// <param name="optionsOfUserEntity">Параметры сущности "User".</param>
+        /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public UserLoginEntitySettings(
-            UserEntitySettings settingOfUserEntity,
-            DbDefaults dbDefaults,
+        public UserLoginEntityOptions(
+            UserEntityOptions optionsOfUserEntity,
+            DbDefaults defaults,
             string dbTable,
             string dbSchema = null,
             string dbColumnNameForUserId = null
             )
-            : base(dbDefaults, dbTable, dbSchema)
+            : base(defaults, dbTable, dbSchema)
         {
             DbColumnForUserEntityId = dbColumnNameForUserId ?? nameof(UserLoginEntityObject.UserId);
 
-            DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, settingOfUserEntity.DbTable);
+            DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, optionsOfUserEntity.DbTable);
 
             DbIndexForUserEntityId = CreateDbIndexName(DbTable, DbColumnForUserEntityId);
 

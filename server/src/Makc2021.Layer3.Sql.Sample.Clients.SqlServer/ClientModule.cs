@@ -32,7 +32,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer
             return new[]
             {
                 typeof(IClientConfigSettings),
-                typeof(EntitiesSettings)
+                typeof(EntitiesOptions)
             };
         }
 

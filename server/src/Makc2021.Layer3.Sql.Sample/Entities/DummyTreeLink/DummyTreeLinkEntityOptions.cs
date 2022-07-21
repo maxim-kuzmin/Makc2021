@@ -7,9 +7,9 @@ using Makc2021.Layer3.Sql.Sample.Entity;
 namespace Makc2021.Layer3.Sql.Sample.Entities.DummyTreeLink
 {
     /// <summary>
-    /// Настройки сущности "DummyTreeLink".
+    /// Параметры сущности "DummyTreeLink".
     /// </summary>
-    public class DummyTreeLinkEntitySettings : EntitySettings
+    public class DummyTreeLinkEntityOptions : EntityOptions
     {
         #region Properties
 
@@ -40,22 +40,22 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyTreeLink
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="settingOfDummyTreeEntity">Настройка сущности "DummyTree".</param>
-        /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
+        /// <param name="optionsOfDummyTreeEntity">Параметры сущности "DummyTree".</param>
+        /// <param name="defaults">Значения по умолчанию в базе данных.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public DummyTreeLinkEntitySettings(
-            DummyTreeEntitySettings settingOfDummyTreeEntity,
-            DbDefaults dbDefaults,
+        public DummyTreeLinkEntityOptions(
+            DummyTreeEntityOptions optionsOfDummyTreeEntity,
+            DbDefaults defaults,
             string dbTable,
             string dbSchema = null
             )
-            : base(dbDefaults, dbTable, dbSchema)
+            : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = dbDefaults.DbColumnForId;
-            DbColumnForDummyTreeEntityParentId = dbDefaults.DbColumnForParentId;
+            DbColumnForId = defaults.DbColumnForId;
+            DbColumnForDummyTreeEntityParentId = defaults.DbColumnForParentId;
 
-            DbForeignKeyToDummyTreeEntity = CreateDbForeignKeyName(DbTable, settingOfDummyTreeEntity.DbTable);
+            DbForeignKeyToDummyTreeEntity = CreateDbForeignKeyName(DbTable, optionsOfDummyTreeEntity.DbTable);
 
             DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
         }

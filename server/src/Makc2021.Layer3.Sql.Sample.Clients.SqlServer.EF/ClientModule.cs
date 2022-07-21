@@ -25,7 +25,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF
             services.AddSingleton<IMapperDbFactory>(x => new ClientDbFactory(
                 x.GetRequiredService<IClientConfigSettings>(),
                 x.GetRequiredService<Layer2.Sql.Config.IConfigSettings>(),
-                x.GetRequiredService<EntitiesSettings>(),
+                x.GetRequiredService<EntitiesOptions>(),
                 x.GetRequiredService<CommonEnvironment>(),
                 x.GetRequiredService<ILogger<ClientDbFactory>>()
                 ));
@@ -37,7 +37,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF
             return new[]
             {
                 typeof(IClientConfigSettings),
-                typeof(EntitiesSettings),
+                typeof(EntitiesOptions),
                 typeof(IMapperDbFactory)
             };
         }

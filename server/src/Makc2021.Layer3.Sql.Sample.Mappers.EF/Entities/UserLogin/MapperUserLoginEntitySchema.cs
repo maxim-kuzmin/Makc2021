@@ -14,7 +14,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserLogin
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperUserLoginEntitySchema(EntitiesSettings entitiesSettings)
+        public MapperUserLoginEntitySchema(EntitiesOptions entitiesSettings)
             : base(entitiesSettings)
         {
         }
@@ -26,7 +26,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserLogin
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperUserLoginEntityObject> builder)
         {
-            Sample.Entities.UserLogin.UserLoginEntitySettings setting = EntitiesOptions.UserLogin;
+            Sample.Entities.UserLogin.UserLoginEntityOptions setting = EntitiesOptions.UserLogin;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

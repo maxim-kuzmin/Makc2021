@@ -17,76 +17,76 @@ using Makc2021.Layer3.Sql.Sample.Entities.UserToken;
 namespace Makc2021.Layer3.Sql.Sample.Entities
 {
     /// <summary>
-    /// Настройки сущностей.
+    /// Параметры сущностей.
     /// </summary>
-    public abstract class EntitiesSettings
+    public abstract class EntitiesOptions
     {
         #region Properties
 
         /// <summary>
         /// Сущность "DummyMain".
         /// </summary>
-        public DummyMainEntitySettings DummyMain { get; protected set; }
+        public DummyMainEntityOptions DummyMain { get; protected set; }
 
         /// <summary>
         /// Сущность "DummyMainDummyManyToMany".
         /// </summary>
-        public DummyMainDummyManyToManyEntitySettings DummyMainDummyManyToMany { get; protected set; }
+        public DummyMainDummyManyToManyEntityOptions DummyMainDummyManyToMany { get; protected set; }
 
         /// <summary>
         /// Сущность "DummyManyToMany".
         /// </summary>
-        public DummyManyToManyEntitySettings DummyManyToMany { get; protected set; }
+        public DummyManyToManyEntityOptions DummyManyToMany { get; protected set; }
 
         /// <summary>
         /// Сущность "DummyOneToMany".
         /// </summary>
-        public DummyOneToManyEntitySettings DummyOneToMany { get; protected set; }
+        public DummyOneToManyEntityOptions DummyOneToMany { get; protected set; }
 
         /// <summary>
         /// Сущность "DummyTree".
         /// </summary>
-        public DummyTreeEntitySettings DummyTree { get; protected set; }
+        public DummyTreeEntityOptions DummyTree { get; protected set; }
 
         /// <summary>
         /// Сущность "DummyTreeLink".
         /// </summary>
-        public DummyTreeLinkEntitySettings DummyTreeLink { get; protected set; }
+        public DummyTreeLinkEntityOptions DummyTreeLink { get; protected set; }
 
         /// <summary>
         /// Сущность "Role".
         /// </summary>
-        public RoleEntitySettings Role { get; protected set; }
+        public RoleEntityOptions Role { get; protected set; }
 
         /// <summary>
         /// Сущность "RoleClaim".
         /// </summary>
-        public RoleClaimEntitySettings RoleClaim { get; protected set; }
+        public RoleClaimEntityOptions RoleClaim { get; protected set; }
 
         /// <summary>
         /// Сущность "User".
         /// </summary>
-        public UserEntitySettings User { get; protected set; }
+        public UserEntityOptions User { get; protected set; }
 
         /// <summary>
         /// Сущность "UserClaim".
         /// </summary>
-        public UserClaimEntitySettings UserClaim { get; protected set; }
+        public UserClaimEntityOptions UserClaim { get; protected set; }
 
         /// <summary>
         /// Сущность "UserLogin".
         /// </summary>
-        public UserLoginEntitySettings UserLogin { get; protected set; }
+        public UserLoginEntityOptions UserLogin { get; protected set; }
 
         /// <summary>
         /// Сущность "UserRole".
         /// </summary>
-        public UserRoleEntitySettings UserRole { get; protected set; }
+        public UserRoleEntityOptions UserRole { get; protected set; }
 
         /// <summary>
         /// Сущность "UserToken".
         /// </summary>
-        public UserTokenEntitySettings UserToken { get; protected set; }
+        public UserTokenEntityOptions UserToken { get; protected set; }
 
         #endregion Properties
     }

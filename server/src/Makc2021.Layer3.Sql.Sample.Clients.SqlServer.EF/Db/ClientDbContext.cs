@@ -27,7 +27,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF.Db
     {
         #region Fields
 
-        private readonly EntitiesSettings _entitiesSettings;
+        private readonly EntitiesOptions _entitiesSettings;
 
         #endregion Fields
 
@@ -50,7 +50,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF.Db
         /// </summary>
         /// <param name="options">Опции.</param>
         /// <param name="entitiesSettings">Настройки сущностей.</param>
-        public ClientDbContext(DbContextOptions<MapperDbContext> options, EntitiesSettings entitiesSettings)
+        public ClientDbContext(DbContextOptions<MapperDbContext> options, EntitiesOptions entitiesSettings)
             : base(options)
         {
             _entitiesSettings = entitiesSettings;

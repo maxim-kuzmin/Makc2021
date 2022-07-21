@@ -47,7 +47,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF.Db
         public ClientDbFactory(
             IClientConfigSettings clientConfigSettings,
             Layer2.Sql.Config.IConfigSettings dataConfigSettings,
-            EntitiesSettings entitiesSettings,
+            EntitiesOptions entitiesSettings,
             CommonEnvironment environment,
             ILogger<ClientDbFactory> logger
             )
@@ -105,7 +105,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF.Db
         }
 
         /// <inheritdoc/>
-        protected sealed override EntitiesSettings CreateEntitiesOptions()
+        protected sealed override EntitiesOptions CreateEntitiesOptions()
         {
             return ClientEntitiesSettings.Instance;
         }

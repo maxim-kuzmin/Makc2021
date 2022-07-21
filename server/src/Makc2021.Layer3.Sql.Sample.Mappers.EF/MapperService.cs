@@ -30,7 +30,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF
 
         private ICommonProvider ClientProvider { get; }
 
-        private EntitiesSettings EntitiesSettings { get; }
+        private EntitiesOptions EntitiesSettings { get; }
 
         private IMapperDbFactory MapperDbFactory { get; }
 
@@ -46,7 +46,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF
         /// <param name="mapperDbFactory">Фабрика базы данных сопоставителя.</param>
         public MapperService(            
             ICommonProvider сlientProvider,
-            EntitiesSettings entitiesSettings,
+            EntitiesOptions entitiesSettings,
             IMapperDbFactory mapperDbFactory
             )
         {
@@ -116,8 +116,8 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF
 
         private static void InitQueryBuilder(
             TreeTriggerCommandBuilder builder,
-            DummyTreeLinkEntitySettings linkSettings,
-            DummyTreeEntitySettings treeSettings
+            DummyTreeLinkEntityOptions linkSettings,
+            DummyTreeEntityOptions treeSettings
             )
         {
             builder.LinkTableFieldNameForId = linkSettings.DbColumnForId;

@@ -6,9 +6,9 @@ using Makc2021.Layer3.Sql.Sample.Entity;
 namespace Makc2021.Layer3.Sql.Sample.Entities.Role
 {
     /// <summary>
-    /// Настройки сущности "Role".
+    /// Параметры сущности "Role".
     /// </summary>
-    public class RoleEntitySettings : EntitySettings
+    public class RoleEntityOptions : EntityOptions
     {
         #region Properties
 
@@ -49,19 +49,19 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.Role
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
+        /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public RoleEntitySettings(
-            DbDefaults dbDefaults,
+        public RoleEntityOptions(
+            DbDefaults defaults,
             string dbTable,
             string dbSchema = null,
             string dbColumnNameForNormalizedName = null
             )
-            : base(dbDefaults, dbTable, dbSchema)
+            : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = dbDefaults.DbColumnForId;
-            DbColumnForName = dbDefaults.DbColumnForName;
+            DbColumnForId = defaults.DbColumnForId;
+            DbColumnForName = defaults.DbColumnForName;
             DbColumnForNormalizedName = dbColumnNameForNormalizedName ?? nameof(RoleEntityObject.NormalizedName);
 
             DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);

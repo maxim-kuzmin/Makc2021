@@ -11,7 +11,6 @@ namespace Makc2021.Layer3.Sql.Sample.Entity
         public EntityLoader(TEntityObject entityObject)
             : base(entityObject)
         {
-            EntityObject = entityObject;
         }
 
         #endregion Constructors

@@ -7,9 +7,9 @@ using Makc2021.Layer3.Sql.Sample.Entity;
 namespace Makc2021.Layer3.Sql.Sample.Entities.RoleClaim
 {
     /// <summary>
-    /// Настройки сущности "RoleClaim".
+    /// Параметры сущности "RoleClaim".
     /// </summary>
-    public class RoleClaimEntitySettings : EntitySettings
+    public class RoleClaimEntityOptions : EntityOptions
     {
         #region Properties
 
@@ -55,26 +55,26 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.RoleClaim
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="settingOfRoleEntity">Настройка сущности "Role".</param>
-        /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
+        /// <param name="optionsOfRoleEntity">Параметры сущности "Role".</param>
+        /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public RoleClaimEntitySettings(
-            RoleEntitySettings settingOfRoleEntity,
-            DbDefaults dbDefaults,
+        public RoleClaimEntityOptions(
+            RoleEntityOptions optionsOfRoleEntity,
+            DbDefaults defaults,
             string dbTable,
             string dbSchema = null
             )
-            : base(dbDefaults, dbTable, dbSchema)
+            : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = dbDefaults.DbColumnForId;
+            DbColumnForId = defaults.DbColumnForId;
 
             DbColumnForRoleEntityId = CreateDbColumnName(
-                settingOfRoleEntity.DbTable,
-                settingOfRoleEntity.DbColumnForId
+                optionsOfRoleEntity.DbTable,
+                optionsOfRoleEntity.DbColumnForId
                 );
 
-            DbForeignKeyToRoleEntity = CreateDbForeignKeyName(DbTable, settingOfRoleEntity.DbTable);
+            DbForeignKeyToRoleEntity = CreateDbForeignKeyName(DbTable, optionsOfRoleEntity.DbTable);
 
             DbUniqueIndexForRoleEntityId = CreateDbUniqueIndexName(DbTable, DbColumnForRoleEntityId);
 

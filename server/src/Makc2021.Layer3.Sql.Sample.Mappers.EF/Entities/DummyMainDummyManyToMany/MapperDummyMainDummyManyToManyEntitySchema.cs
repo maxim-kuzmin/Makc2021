@@ -14,7 +14,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyMainDummyManyToMan
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperDummyMainDummyManyToManyEntitySchema(EntitiesSettings entitiesSettings)
+        public MapperDummyMainDummyManyToManyEntitySchema(EntitiesOptions entitiesSettings)
             : base(entitiesSettings)
         {
         }
@@ -26,7 +26,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyMainDummyManyToMan
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperDummyMainDummyManyToManyEntityObject> builder)
         {
-            Sample.Entities.DummyMainDummyManyToMany.DummyMainDummyManyToManyEntitySettings setting = EntitiesOptions.DummyMainDummyManyToMany;
+            Sample.Entities.DummyMainDummyManyToMany.DummyMainDummyManyToManyEntityOptions setting = EntitiesOptions.DummyMainDummyManyToMany;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

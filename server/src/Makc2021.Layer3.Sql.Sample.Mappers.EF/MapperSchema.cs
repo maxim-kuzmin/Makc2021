@@ -8,13 +8,13 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF
     /// Схема сопоставителя.
     /// </summary>
     /// <typeparam name="TEntityObject">Тип объекта сущности.</typeparam>
-    public abstract class MapperSchema<TEntityObject> : Layer2.Sql.Mappers.EF.MapperSchema<EntitiesSettings, TEntityObject>
+    public abstract class MapperSchema<TEntityObject> : Layer2.Sql.Mappers.EF.MapperSchema<EntitiesOptions, TEntityObject>
         where TEntityObject : class
     {
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperSchema(EntitiesSettings entitiesSettings)
+        public MapperSchema(EntitiesOptions entitiesSettings)
             : base(entitiesSettings)
         {
         }

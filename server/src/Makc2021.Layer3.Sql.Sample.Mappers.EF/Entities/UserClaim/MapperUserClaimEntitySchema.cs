@@ -14,7 +14,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserClaim
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperUserClaimEntitySchema(EntitiesSettings entitiesSettings)
+        public MapperUserClaimEntitySchema(EntitiesOptions entitiesSettings)
             : base(entitiesSettings)
         {
         }
@@ -26,7 +26,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserClaim
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperUserClaimEntityObject> builder)
         {
-            Sample.Entities.UserClaim.UserClaimEntitySettings setting = EntitiesOptions.UserClaim;
+            Sample.Entities.UserClaim.UserClaimEntityOptions setting = EntitiesOptions.UserClaim;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

@@ -7,9 +7,9 @@ using Makc2021.Layer3.Sql.Sample.Entity;
 namespace Makc2021.Layer3.Sql.Sample.Entities.UserToken
 {
     /// <summary>
-    /// Настройки сущности "UserToken".
+    /// Параметры сущности "UserToken".
     /// </summary>
-    public class UserTokenEntitySettings : EntitySettings
+    public class UserTokenEntityOptions : EntityOptions
     {
         #region Properties
 
@@ -50,21 +50,21 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.UserToken
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="settingOfUserEntity">Настройка сущности "User".</param>
-        /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
+        /// <param name="optionsOfUserEntity">Настройка сущности "User".</param>
+        /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public UserTokenEntitySettings(
-            UserEntitySettings settingOfUserEntity,
-            DbDefaults dbDefaults,
+        public UserTokenEntityOptions(
+            UserEntityOptions optionsOfUserEntity,
+            DbDefaults defaults,
             string dbTable,
             string dbSchema = null
             )
-            : base(dbDefaults, dbTable, dbSchema)
+            : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForName = dbDefaults.DbColumnForName;
+            DbColumnForName = defaults.DbColumnForName;
 
-            DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, settingOfUserEntity.DbTable);
+            DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, optionsOfUserEntity.DbTable);
 
             DbPrimaryKey = CreateDbPrimaryKeyName(DbTable);
         }

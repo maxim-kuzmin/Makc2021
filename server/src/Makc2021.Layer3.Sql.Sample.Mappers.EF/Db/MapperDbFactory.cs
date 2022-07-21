@@ -11,7 +11,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Db
     /// Фабрика базы данных сопоставителя.
     /// </summary>
     public abstract class MapperDbFactory :
-        Layer2.Sql.Mappers.EF.Db.MapperDbFactory<EntitiesSettings>,
+        Layer2.Sql.Mappers.EF.Db.MapperDbFactory<EntitiesOptions>,
         IMapperDbFactory
     {
         #region Properties
@@ -35,7 +35,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Db
         /// <inheritdoc/>
         public MapperDbFactory(
             string connectionString,
-            EntitiesSettings entitiesSettings,
+            EntitiesOptions entitiesSettings,
             CommonEnvironment environment,
             ILogger logger,
             LogLevel logLevel
@@ -64,7 +64,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Db
         /// <inheritdoc/>
         protected sealed override void Initialize(
             string connectionString,
-            EntitiesSettings entitiesSettings,
+            EntitiesOptions entitiesSettings,
             CommonEnvironment environment
             )
         {

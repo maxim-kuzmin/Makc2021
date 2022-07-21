@@ -14,7 +14,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.User
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperUserEntitySchema(EntitiesSettings entitiesSettings)
+        public MapperUserEntitySchema(EntitiesOptions entitiesSettings)
             : base(entitiesSettings)
         {
         }
@@ -26,7 +26,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.User
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperUserEntityObject> builder)
         {
-            Sample.Entities.User.UserEntitySettings setting = EntitiesOptions.User;
+            Sample.Entities.User.UserEntityOptions setting = EntitiesOptions.User;
 
             builder.ToTable(setting.DbTable, setting.DbSchema);
 

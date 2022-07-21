@@ -7,9 +7,9 @@ using Makc2021.Layer3.Sql.Sample.Db;
 namespace Makc2021.Layer3.Sql.Sample.Entities.DummyMain
 {
     /// <summary>
-    /// Настройки сущности "DummyMain".
+    /// Параметры сущности "DummyMain".
     /// </summary>
-    public class DummyMainEntitySettings : EntitySettings
+    public class DummyMainEntityOptions : EntityOptions
     {
         #region Properties
 
@@ -130,27 +130,27 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.DummyMain
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="settingOfDummyOneToManyEntity">Настройка сущности "DummyOneToMany".</param>
-        /// <param name="dbDefaults">Значения по умолчанию  в базе данных.</param>
+        /// <param name="optionsOfDummyOneToManyEntity">Параметры сущности "DummyOneToMany".</param>
+        /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public DummyMainEntitySettings(
-            DummyOneToManyEntitySettings settingOfDummyOneToManyEntity,
-            DbDefaults dbDefaults,
+        public DummyMainEntityOptions(
+            DummyOneToManyEntityOptions optionsOfDummyOneToManyEntity,
+            DbDefaults defaults,
             string dbTable,
             string dbSchema = null
             )
-            : base(dbDefaults, dbTable, dbSchema)
+            : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = dbDefaults.DbColumnForId;
-            DbColumnForName = dbDefaults.DbColumnForName;
+            DbColumnForId = defaults.DbColumnForId;
+            DbColumnForName = defaults.DbColumnForName;
 
             DbColumnForDummyOneToManyEntityId = CreateDbColumnName(
-                settingOfDummyOneToManyEntity.DbTable,
-                settingOfDummyOneToManyEntity.DbColumnForId
+                optionsOfDummyOneToManyEntity.DbTable,
+                optionsOfDummyOneToManyEntity.DbColumnForId
                 );
 
-            DbForeignKeyToDummyOneToManyEntity = CreateDbForeignKeyName(DbTable, settingOfDummyOneToManyEntity.DbTable);
+            DbForeignKeyToDummyOneToManyEntity = CreateDbForeignKeyName(DbTable, optionsOfDummyOneToManyEntity.DbTable);
 
             DbIndexForDummyOneToManyEntityId = CreateDbIndexName(DbTable, DbColumnForDummyOneToManyEntityId);
 

@@ -8,9 +8,9 @@ using Makc2021.Layer3.Sql.Sample.Entity;
 namespace Makc2021.Layer3.Sql.Sample.Entities.UserRole
 {
     /// <summary>
-    /// Настройки сущности "UserRole".
+    /// Параметры сущности "UserRole".
     /// </summary>
-    public class UserRoleEntitySettings : EntitySettings
+    public class UserRoleEntityOptions : EntityOptions
     {
         #region Properties
 
@@ -51,25 +51,25 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.UserRole
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="settingOfRoleEntity">Настройка сущности "Role".</param>
-        /// <param name="settingOfUserEntity">Настройка сущности "User".</param>
-        /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
+        /// <param name="optionsOfRoleEntity">Параметры сущности "Role".</param>
+        /// <param name="optionsOfUserEntity">Параметры сущности "User".</param>
+        /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
-        public UserRoleEntitySettings(
-            RoleEntitySettings settingOfRoleEntity,
-            UserEntitySettings settingOfUserEntity,
-            DbDefaults dbDefaults,
+        public UserRoleEntityOptions(
+            RoleEntityOptions optionsOfRoleEntity,
+            UserEntityOptions optionsOfUserEntity,
+            DbDefaults defaults,
             string dbTable,
             string dbSchema = null
             )
-            : base(dbDefaults, dbTable, dbSchema)
+            : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForRoleEntityId = CreateDbColumnName(settingOfRoleEntity.DbTable, settingOfRoleEntity.DbColumnForId);
-            DbColumnForUserEntityId = CreateDbColumnName(settingOfUserEntity.DbTable, settingOfUserEntity.DbColumnForId);
+            DbColumnForRoleEntityId = CreateDbColumnName(optionsOfRoleEntity.DbTable, optionsOfRoleEntity.DbColumnForId);
+            DbColumnForUserEntityId = CreateDbColumnName(optionsOfUserEntity.DbTable, optionsOfUserEntity.DbColumnForId);
 
-            DbForeignKeyToRoleEntity = CreateDbForeignKeyName(DbTable, settingOfRoleEntity.DbTable);
-            DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, settingOfUserEntity.DbTable);
+            DbForeignKeyToRoleEntity = CreateDbForeignKeyName(DbTable, optionsOfRoleEntity.DbTable);
+            DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, optionsOfUserEntity.DbTable);
 
             DbIndexForRoleEntityId = CreateDbIndexName(DbTable, DbColumnForRoleEntityId);
 

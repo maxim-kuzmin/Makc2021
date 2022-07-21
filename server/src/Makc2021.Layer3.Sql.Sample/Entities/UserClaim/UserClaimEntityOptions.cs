@@ -7,9 +7,9 @@ using Makc2021.Layer3.Sql.Sample.Entity;
 namespace Makc2021.Layer3.Sql.Sample.Entities.UserClaim
 {
     /// <summary>
-    /// Настройки сущности "UserClaim".
+    /// Параметры сущности "UserClaim".
     /// </summary>
-    public class UserClaimEntitySettings : EntitySettings
+    public class UserClaimEntityOptions : EntityOptions
     {
         #region Properties
 
@@ -55,24 +55,24 @@ namespace Makc2021.Layer3.Sql.Sample.Entities.UserClaim
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="settingOfUserEntity">Настройка сущности "User".</param>
-        /// <param name="dbDefaults">Значения по умолчанию в базе данных.</param>
+        /// <param name="optionsOfUserEntity">Параметры сущности "User".</param>
+        /// <param name="defaults">Значения по умолчанию.</param>
         /// <param name="dbTable">Таблица в базе данных.</param>
         /// <param name="dbSchema">Схема в базе данных.</param>
         /// <param name="dbColumnNameForUserId">Колонка в базе данных для поля "UserId".</param>
-        public UserClaimEntitySettings(
-            UserEntitySettings settingOfUserEntity,
-            DbDefaults dbDefaults,
+        public UserClaimEntityOptions(
+            UserEntityOptions optionsOfUserEntity,
+            DbDefaults defaults,
             string dbTable,
             string dbSchema = null,
             string dbColumnNameForUserId = null
             )
-            : base(dbDefaults, dbTable, dbSchema)
+            : base(defaults, dbTable, dbSchema)
         {
-            DbColumnForId = dbDefaults.DbColumnForId;
+            DbColumnForId = defaults.DbColumnForId;
             DbColumnForUserEntityId = dbColumnNameForUserId ?? nameof(UserClaimEntityObject.UserId);
 
-            DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, settingOfUserEntity.DbTable);
+            DbForeignKeyToUserEntity = CreateDbForeignKeyName(DbTable, optionsOfUserEntity.DbTable);
 
             DbIndexForUserEntityId = CreateDbIndexName(DbTable, DbColumnForUserEntityId);
 
