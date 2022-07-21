@@ -27,7 +27,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF.Db
     {
         #region Fields
 
-        private readonly EntitiesOptions _entitiesSettings;
+        private readonly EntitiesOptions _entitiesOptions;
 
         #endregion Fields
 
@@ -48,12 +48,12 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF.Db
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="options">Опции.</param>
-        /// <param name="entitiesSettings">Настройки сущностей.</param>
-        public ClientDbContext(DbContextOptions<MapperDbContext> options, EntitiesOptions entitiesSettings)
+        /// <param name="options">Параметры.</param>
+        /// <param name="entitiesOptions">Параметры сущностей.</param>
+        public ClientDbContext(DbContextOptions<MapperDbContext> options, EntitiesOptions entitiesOptions)
             : base(options)
         {
-            _entitiesSettings = entitiesSettings;
+            _entitiesOptions = entitiesOptions;
         }
 
         #endregion Constructors
@@ -65,21 +65,21 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF.Db
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new MapperDummyMainEntitySchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new MapperDummyManyToManyEntitySchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new MapperDummyMainDummyManyToManyEntitySchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new MapperDummyOneToManyEntitySchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new MapperDummyTreeEntitySchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new MapperDummyTreeLinkEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperDummyMainEntitySchema(_entitiesOptions));
+            modelBuilder.ApplyConfiguration(new MapperDummyManyToManyEntitySchema(_entitiesOptions));
+            modelBuilder.ApplyConfiguration(new MapperDummyMainDummyManyToManyEntitySchema(_entitiesOptions));
+            modelBuilder.ApplyConfiguration(new MapperDummyOneToManyEntitySchema(_entitiesOptions));
+            modelBuilder.ApplyConfiguration(new MapperDummyTreeEntitySchema(_entitiesOptions));
+            modelBuilder.ApplyConfiguration(new MapperDummyTreeLinkEntitySchema(_entitiesOptions));
 
-            modelBuilder.ApplyConfiguration(new MapperRoleEntitySchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new MapperRoleClaimEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperRoleEntitySchema(_entitiesOptions));
+            modelBuilder.ApplyConfiguration(new MapperRoleClaimEntitySchema(_entitiesOptions));
 
-            modelBuilder.ApplyConfiguration(new MapperUserEntitySchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new MapperUserClaimEntitySchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new MapperUserLoginEntitySchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new MapperUserRoleEntitySchema(_entitiesSettings));
-            modelBuilder.ApplyConfiguration(new MapperUserTokenEntitySchema(_entitiesSettings));
+            modelBuilder.ApplyConfiguration(new MapperUserEntitySchema(_entitiesOptions));
+            modelBuilder.ApplyConfiguration(new MapperUserClaimEntitySchema(_entitiesOptions));
+            modelBuilder.ApplyConfiguration(new MapperUserLoginEntitySchema(_entitiesOptions));
+            modelBuilder.ApplyConfiguration(new MapperUserRoleEntitySchema(_entitiesOptions));
+            modelBuilder.ApplyConfiguration(new MapperUserTokenEntitySchema(_entitiesOptions));
         }
 
         #endregion Protected methods

@@ -107,7 +107,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.EF.Db
         /// <inheritdoc/>
         protected sealed override EntitiesOptions CreateEntitiesOptions()
         {
-            return ClientEntitiesSettings.Instance;
+            return ClientEntitiesOptions.Instance;
         }
 
         #endregion Protected methods

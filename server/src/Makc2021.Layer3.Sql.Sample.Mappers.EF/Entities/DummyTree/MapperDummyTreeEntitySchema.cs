@@ -14,8 +14,8 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyTree
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperDummyTreeEntitySchema(EntitiesOptions entitiesSettings)
-            : base(entitiesSettings)
+        public MapperDummyTreeEntitySchema(EntitiesOptions entitiesOptions)
+            : base(entitiesOptions)
         {
         }
 
@@ -26,71 +26,71 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyTree
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperDummyTreeEntityObject> builder)
         {
-            Sample.Entities.DummyTree.DummyTreeEntityOptions setting = EntitiesOptions.DummyTree;
+            var options = EntitiesOptions.DummyTree;
 
-            builder.ToTable(setting.DbTable, setting.DbSchema);
+            builder.ToTable(options.DbTable, options.DbSchema);
 
-            builder.HasKey(x => x.Id).HasName(setting.DbPrimaryKey);
+            builder.HasKey(x => x.Id).HasName(options.DbPrimaryKey);
 
             builder.Property(x => x.Id)
                 .ValueGeneratedOnAdd()
-                .HasColumnName(setting.DbColumnForId);
+                .HasColumnName(options.DbColumnForId);
 
             builder.Property(x => x.Name)
                 .IsRequired()
                 .IsUnicode()
-                .HasMaxLength(setting.DbMaxLengthForName)
-                .HasColumnName(setting.DbColumnForName);
+                .HasMaxLength(options.DbMaxLengthForName)
+                .HasColumnName(options.DbColumnForName);
 
             builder.Property(x => x.ParentId)
-                .HasColumnName(setting.DbColumnForDummyTreeEntityParentId);
+                .HasColumnName(options.DbColumnForDummyTreeEntityParentId);
 
             builder.Property(x => x.TreeChildCount)
                 .IsRequired()
                 .HasDefaultValue(0)
-                .HasColumnName(setting.DbColumnForTreeChildCount);
+                .HasColumnName(options.DbColumnForTreeChildCount);
 
             builder.Property(x => x.TreeDescendantCount)
                 .IsRequired()
                 .HasDefaultValue(0)
-                .HasColumnName(setting.DbColumnForTreeDescendantCount);
+                .HasColumnName(options.DbColumnForTreeDescendantCount);
 
             builder.Property(x => x.TreeLevel)
                 .IsRequired()
                 .HasDefaultValue(0)
-                .HasColumnName(setting.DbColumnForTreeLevel);
+                .HasColumnName(options.DbColumnForTreeLevel);
 
             builder.Property(x => x.TreePath)
                 .IsRequired()
                 .IsUnicode(false)
-                .HasMaxLength(setting.DbMaxLengthForTreePath)
+                .HasMaxLength(options.DbMaxLengthForTreePath)
                 .HasDefaultValue(string.Empty)
-                .HasColumnName(setting.DbColumnForTreePath);
+                .HasColumnName(options.DbColumnForTreePath);
 
             builder.Property(x => x.TreePosition)
                 .IsRequired()
                 .HasDefaultValue(0)
-                .HasColumnName(setting.DbColumnForTreePosition);
+                .HasColumnName(options.DbColumnForTreePosition);
 
             builder.Property(x => x.TreeSort)
                 .IsRequired()
                 .IsUnicode(false)
-                .HasMaxLength(setting.DbMaxLengthForTreeSort)
+                .HasMaxLength(options.DbMaxLengthForTreeSort)
                 .HasDefaultValue(string.Empty)
-                .HasColumnName(setting.DbColumnForTreeSort);
+                .HasColumnName(options.DbColumnForTreeSort);
 
-            builder.HasIndex(x => x.Name).HasDatabaseName(setting.DbIndexForName);
-            builder.HasIndex(x => x.ParentId).HasDatabaseName(setting.DbIndexForDummyTreeEntityParentId);
-            builder.HasIndex(x => x.TreeSort).HasDatabaseName(setting.DbIndexForTreeSort);
+            builder.HasIndex(x => x.Name).HasDatabaseName(options.DbIndexForName);
+            builder.HasIndex(x => x.ParentId).HasDatabaseName(options.DbIndexForDummyTreeEntityParentId);
+            builder.HasIndex(x => x.TreeSort).HasDatabaseName(options.DbIndexForTreeSort);
 
             builder.HasIndex(x => new { x.ParentId, x.Name })
                 .IsUnique()
-                .HasDatabaseName(setting.DbUniqueIndexForDummyTreeEntityParentIdAndName);
+                .HasDatabaseName(options.DbUniqueIndexForDummyTreeEntityParentIdAndName);
 
             builder.HasOne(x => x.ObjectOfDummyTreeEntityParent)
                 .WithMany(x => x.ObjectsOfDummyTreeEntityChild)
                 .HasForeignKey(x => x.ParentId)
-                .HasConstraintName(setting.DbForeignKeyToDummyTreeEntityParent);
+                .HasConstraintName(options.DbForeignKeyToDummyTreeEntityParent);
         }
 
         #endregion Public methods

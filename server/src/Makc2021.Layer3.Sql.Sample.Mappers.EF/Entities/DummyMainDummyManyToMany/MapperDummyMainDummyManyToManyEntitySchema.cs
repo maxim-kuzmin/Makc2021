@@ -14,8 +14,8 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyMainDummyManyToMan
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperDummyMainDummyManyToManyEntitySchema(EntitiesOptions entitiesSettings)
-            : base(entitiesSettings)
+        public MapperDummyMainDummyManyToManyEntitySchema(EntitiesOptions entitiesOptions)
+            : base(entitiesOptions)
         {
         }
 
@@ -26,31 +26,31 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyMainDummyManyToMan
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperDummyMainDummyManyToManyEntityObject> builder)
         {
-            Sample.Entities.DummyMainDummyManyToMany.DummyMainDummyManyToManyEntityOptions setting = EntitiesOptions.DummyMainDummyManyToMany;
+            var options = EntitiesOptions.DummyMainDummyManyToMany;
 
-            builder.ToTable(setting.DbTable, setting.DbSchema);
+            builder.ToTable(options.DbTable, options.DbSchema);
 
-            builder.HasKey(x => new { x.IdOfDummyMainEntity, x.IdOfDummyManyToManyEntity }).HasName(setting.DbPrimaryKey);
+            builder.HasKey(x => new { x.IdOfDummyMainEntity, x.IdOfDummyManyToManyEntity }).HasName(options.DbPrimaryKey);
 
             builder.Property(x => x.IdOfDummyMainEntity)
                 .IsRequired()
-                .HasColumnName(setting.DbColumnForDummyMainEntityId);
+                .HasColumnName(options.DbColumnForDummyMainEntityId);
 
             builder.Property(x => x.IdOfDummyManyToManyEntity)
                 .IsRequired()
-                .HasColumnName(setting.DbColumnForDummyManyToManyEntityId);
+                .HasColumnName(options.DbColumnForDummyManyToManyEntityId);
 
-            builder.HasIndex(x => x.IdOfDummyManyToManyEntity).HasDatabaseName(setting.DbIndexForDummyManyToManyEntityId);
+            builder.HasIndex(x => x.IdOfDummyManyToManyEntity).HasDatabaseName(options.DbIndexForDummyManyToManyEntityId);
 
             builder.HasOne(x => x.ObjectOfDummyMainEntity)
                 .WithMany(x => x.ObjectsOfDummyMainDummyManyToManyEntity)
                 .HasForeignKey(x => x.IdOfDummyMainEntity)
-                .HasConstraintName(setting.DbForeignKeyToDummyMainEntity);
+                .HasConstraintName(options.DbForeignKeyToDummyMainEntity);
 
             builder.HasOne(x => x.ObjectOfDummyManyToManyEntity)
                 .WithMany(x => x.ObjectsOfDummyMainDummyManyToManyEntity)
                 .HasForeignKey(x => x.IdOfDummyManyToManyEntity)
-                .HasConstraintName(setting.DbForeignKeyToDummyManyToManyEntity);
+                .HasConstraintName(options.DbForeignKeyToDummyManyToManyEntity);
         }
 
         #endregion Public methods

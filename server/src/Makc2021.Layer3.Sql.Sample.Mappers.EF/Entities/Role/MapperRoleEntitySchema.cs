@@ -14,8 +14,8 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.Role
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperRoleEntitySchema(EntitiesOptions entitiesSettings)
-            : base(entitiesSettings)
+        public MapperRoleEntitySchema(EntitiesOptions entitiesOptions)
+            : base(entitiesOptions)
         {
         }
 
@@ -26,25 +26,25 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.Role
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperRoleEntityObject> builder)
         {
-            Sample.Entities.Role.RoleEntityOptions setting = EntitiesOptions.Role;
+            var options = EntitiesOptions.Role;
 
-            builder.ToTable(setting.DbTable, setting.DbSchema);
+            builder.ToTable(options.DbTable, options.DbSchema);
 
-            builder.HasKey(x => x.Id).HasName(setting.DbPrimaryKey);
+            builder.HasKey(x => x.Id).HasName(options.DbPrimaryKey);
 
             builder.Property(x => x.ConcurrencyStamp)
-                .HasColumnName(setting.DbColumnForConcurrencyStamp);
+                .HasColumnName(options.DbColumnForConcurrencyStamp);
 
             builder.Property(x => x.Id)
-                .HasColumnName(setting.DbColumnForId);
+                .HasColumnName(options.DbColumnForId);
 
             builder.Property(x => x.Name)
-                .HasColumnName(setting.DbColumnForName);
+                .HasColumnName(options.DbColumnForName);
 
             builder.Property(x => x.NormalizedName)
-                .HasColumnName(setting.DbColumnForNormalizedName);
+                .HasColumnName(options.DbColumnForNormalizedName);
 
-            builder.HasIndex(x => x.NormalizedName).IsUnique().HasDatabaseName(setting.DbUniqueIndexForNormalizedName);
+            builder.HasIndex(x => x.NormalizedName).IsUnique().HasDatabaseName(options.DbUniqueIndexForNormalizedName);
         }
 
         #endregion Public methods    

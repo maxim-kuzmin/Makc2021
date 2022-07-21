@@ -23,7 +23,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer
         {
             services.AddSingleton(x => new ClientConfigSource(x.GetRequiredService<CommonEnvironment>()).Settings);
 
-            services.AddSingleton(x => ClientEntitiesSettings.Instance); // EntitiesSettings
+            services.AddSingleton(x => ClientEntitiesOptions.Instance); // EntitiesSettings
         }
 
         /// <inheritdoc/>

@@ -30,7 +30,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF
 
         private ICommonProvider ClientProvider { get; }
 
-        private EntitiesOptions EntitiesSettings { get; }
+        private EntitiesOptions EntitiesOptions { get; }
 
         private IMapperDbFactory MapperDbFactory { get; }
 
@@ -41,17 +41,17 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF
         /// <summary>
         /// Конструктор.
         /// </summary>        
-        /// <param name="entitiesSettings">Настройки сущностей.</param>
         /// <param name="сlientProvider">Поставщик клиента.</param>
+        /// <param name="entitiesOptions">Параметры сущностей.</param>        
         /// <param name="mapperDbFactory">Фабрика базы данных сопоставителя.</param>
         public MapperService(            
             ICommonProvider сlientProvider,
-            EntitiesOptions entitiesSettings,
+            EntitiesOptions entitiesOptions,
             IMapperDbFactory mapperDbFactory
             )
         {
             ClientProvider = сlientProvider;
-            EntitiesSettings = entitiesSettings;
+            EntitiesOptions = entitiesOptions;
             MapperDbFactory = mapperDbFactory;
         }
 
@@ -109,7 +109,7 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF
 
             result.Action = action;
 
-            InitQueryBuilder(result, EntitiesSettings.DummyTreeLink, EntitiesSettings.DummyTree);
+            InitQueryBuilder(result, EntitiesOptions.DummyTreeLink, EntitiesOptions.DummyTree);
 
             return result;
         }

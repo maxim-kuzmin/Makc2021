@@ -14,8 +14,8 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.User
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperUserEntitySchema(EntitiesOptions entitiesSettings)
-            : base(entitiesSettings)
+        public MapperUserEntitySchema(EntitiesOptions entitiesOptions)
+            : base(entitiesOptions)
         {
         }
 
@@ -26,64 +26,64 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.User
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperUserEntityObject> builder)
         {
-            Sample.Entities.User.UserEntityOptions setting = EntitiesOptions.User;
+            var options = EntitiesOptions.User;
 
-            builder.ToTable(setting.DbTable, setting.DbSchema);
+            builder.ToTable(options.DbTable, options.DbSchema);
 
-            builder.HasKey(x => x.Id).HasName(setting.DbPrimaryKey);
+            builder.HasKey(x => x.Id).HasName(options.DbPrimaryKey);
 
             builder.Property(x => x.AccessFailedCount)
-                .HasColumnName(setting.DbColumnForAccessFailedCount);
+                .HasColumnName(options.DbColumnForAccessFailedCount);
 
             builder.Property(x => x.ConcurrencyStamp)
-                .HasColumnName(setting.DbColumnForConcurrencyStamp);
+                .HasColumnName(options.DbColumnForConcurrencyStamp);
 
             builder.Property(x => x.Email)
-                .HasColumnName(setting.DbColumnForEmail);
+                .HasColumnName(options.DbColumnForEmail);
 
             builder.Property(x => x.EmailConfirmed)
-                .HasColumnName(setting.DbColumnForEmailConfirmed);
+                .HasColumnName(options.DbColumnForEmailConfirmed);
 
             builder.Property(x => x.FullName)
                 .IsUnicode()
                 .HasMaxLength(256)
-                .HasColumnName(setting.DbColumnForFullName);
+                .HasColumnName(options.DbColumnForFullName);
 
             builder.Property(x => x.Id)
-                .HasColumnName(setting.DbColumnForId);
+                .HasColumnName(options.DbColumnForId);
 
             builder.Property(x => x.LockoutEnabled)
-                .HasColumnName(setting.DbColumnForLockoutEnabled);
+                .HasColumnName(options.DbColumnForLockoutEnabled);
 
             builder.Property(x => x.LockoutEnd)
-                .HasColumnName(setting.DbColumnForLockoutEnd);
+                .HasColumnName(options.DbColumnForLockoutEnd);
 
             builder.Property(x => x.NormalizedEmail)
-                .HasColumnName(setting.DbColumnForNormalizedEmail);
+                .HasColumnName(options.DbColumnForNormalizedEmail);
 
             builder.Property(x => x.NormalizedUserName)
-                .HasColumnName(setting.DbColumnForNormalizedUserName);
+                .HasColumnName(options.DbColumnForNormalizedUserName);
 
             builder.Property(x => x.PasswordHash)
-                .HasColumnName(setting.DbColumnForPasswordHash);
+                .HasColumnName(options.DbColumnForPasswordHash);
 
             builder.Property(x => x.PhoneNumber)
-                .HasColumnName(setting.DbColumnForPhoneNumber);
+                .HasColumnName(options.DbColumnForPhoneNumber);
 
             builder.Property(x => x.PhoneNumberConfirmed)
-                .HasColumnName(setting.DbColumnForPhoneNumberConfirmed);
+                .HasColumnName(options.DbColumnForPhoneNumberConfirmed);
 
             builder.Property(x => x.SecurityStamp)
-                .HasColumnName(setting.DbColumnForSecurityStamp);
+                .HasColumnName(options.DbColumnForSecurityStamp);
 
             builder.Property(x => x.TwoFactorEnabled)
-                .HasColumnName(setting.DbColumnForTwoFactorEnabled);
+                .HasColumnName(options.DbColumnForTwoFactorEnabled);
 
             builder.Property(x => x.UserName)
-                .HasColumnName(setting.DbColumnForUserName);
+                .HasColumnName(options.DbColumnForUserName);
 
-            builder.HasIndex(x => x.NormalizedUserName).IsUnique().HasDatabaseName(setting.DbUniqueIndexForNormalizedUserName);
-            builder.HasIndex(x => x.NormalizedEmail).HasDatabaseName(setting.DbIndexForNormalizedEmail);
+            builder.HasIndex(x => x.NormalizedUserName).IsUnique().HasDatabaseName(options.DbUniqueIndexForNormalizedUserName);
+            builder.HasIndex(x => x.NormalizedEmail).HasDatabaseName(options.DbIndexForNormalizedEmail);
         }
 
         #endregion Public methods    

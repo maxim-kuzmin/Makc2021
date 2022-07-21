@@ -14,8 +14,8 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserRole
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperUserRoleEntitySchema(EntitiesOptions entitiesSettings)
-            : base(entitiesSettings)
+        public MapperUserRoleEntitySchema(EntitiesOptions entitiesOptions)
+            : base(entitiesOptions)
         {
         }
 
@@ -26,31 +26,31 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserRole
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperUserRoleEntityObject> builder)
         {
-            Sample.Entities.UserRole.UserRoleEntityOptions setting = EntitiesOptions.UserRole;
+            var options = EntitiesOptions.UserRole;
 
-            builder.ToTable(setting.DbTable, setting.DbSchema);
+            builder.ToTable(options.DbTable, options.DbSchema);
 
-            builder.HasKey(x => new { x.UserId, x.RoleId }).HasName(setting.DbPrimaryKey);
+            builder.HasKey(x => new { x.UserId, x.RoleId }).HasName(options.DbPrimaryKey);
 
             builder.Property(x => x.UserId)
                 .IsRequired()
-                .HasColumnName(setting.DbColumnForUserEntityId);
+                .HasColumnName(options.DbColumnForUserEntityId);
 
             builder.Property(x => x.RoleId)
                 .IsRequired()
-                .HasColumnName(setting.DbColumnForRoleEntityId);
+                .HasColumnName(options.DbColumnForRoleEntityId);
 
-            builder.HasIndex(x => x.RoleId).HasDatabaseName(setting.DbIndexForRoleEntityId);
+            builder.HasIndex(x => x.RoleId).HasDatabaseName(options.DbIndexForRoleEntityId);
 
             builder.HasOne(x => x.ObjectOfUserEntity)
                 .WithMany(x => x.ObjectsOfUserRoleEntity)
                 .HasForeignKey(x => x.UserId)
-                .HasConstraintName(setting.DbForeignKeyToUserEntity);
+                .HasConstraintName(options.DbForeignKeyToUserEntity);
 
             builder.HasOne(x => x.ObjectOfRoleEntity)
                 .WithMany(x => x.ObjectsOfUserRoleEntity)
                 .HasForeignKey(x => x.RoleId)
-                .HasConstraintName(setting.DbForeignKeyToRoleEntity);
+                .HasConstraintName(options.DbForeignKeyToRoleEntity);
         }
 
         #endregion Public methods    

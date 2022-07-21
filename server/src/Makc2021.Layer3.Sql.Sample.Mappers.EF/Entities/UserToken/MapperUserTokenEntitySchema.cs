@@ -14,8 +14,8 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserToken
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperUserTokenEntitySchema(EntitiesOptions entitiesSettings)
-            : base(entitiesSettings)
+        public MapperUserTokenEntitySchema(EntitiesOptions entitiesOptions)
+            : base(entitiesOptions)
         {
         }
 
@@ -26,28 +26,28 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserToken
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperUserTokenEntityObject> builder)
         {
-            Sample.Entities.UserToken.UserTokenEntityOptions setting = EntitiesOptions.UserToken;
+            var options = EntitiesOptions.UserToken;
 
-            builder.ToTable(setting.DbTable, setting.DbSchema);
+            builder.ToTable(options.DbTable, options.DbSchema);
 
-            builder.HasKey(x => new { x.UserId, x.LoginProvider, x.Name }).HasName(setting.DbPrimaryKey);
+            builder.HasKey(x => new { x.UserId, x.LoginProvider, x.Name }).HasName(options.DbPrimaryKey);
 
             builder.Property(x => x.LoginProvider)
-                .HasColumnName(setting.DbColumnForLoginProvider);
+                .HasColumnName(options.DbColumnForLoginProvider);
 
             builder.Property(x => x.Name)
-                .HasColumnName(setting.DbColumnForName);
+                .HasColumnName(options.DbColumnForName);
 
             builder.Property(x => x.Value)
-                .HasColumnName(setting.DbColumnForValue);
+                .HasColumnName(options.DbColumnForValue);
 
             builder.Property(x => x.UserId)
-                .HasColumnName(setting.DbColumnForUserEntityId);
+                .HasColumnName(options.DbColumnForUserEntityId);
 
             builder.HasOne(x => x.ObjectOfUserEntity)
                 .WithMany(x => x.ObjectsOfUserTokenEntity)
                 .HasForeignKey(x => x.UserId)
-                .HasConstraintName(setting.DbForeignKeyToUserEntity);
+                .HasConstraintName(options.DbForeignKeyToUserEntity);
         }
 
         #endregion Public methods    

@@ -14,8 +14,8 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyTreeLink
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperDummyTreeLinkEntitySchema(EntitiesOptions entitiesSettings)
-            : base(entitiesSettings)
+        public MapperDummyTreeLinkEntitySchema(EntitiesOptions entitiesOptions)
+            : base(entitiesOptions)
         {
         }
 
@@ -26,24 +26,24 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyTreeLink
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperDummyTreeLinkEntityObject> builder)
         {
-            Sample.Entities.DummyTreeLink.DummyTreeLinkEntityOptions setting = EntitiesOptions.DummyTreeLink;
+            var options = EntitiesOptions.DummyTreeLink;
 
-            builder.ToTable(setting.DbTable, setting.DbSchema);
+            builder.ToTable(options.DbTable, options.DbSchema);
 
-            builder.HasKey(x => new { x.Id, x.ParentId }).HasName(setting.DbPrimaryKey);
+            builder.HasKey(x => new { x.Id, x.ParentId }).HasName(options.DbPrimaryKey);
 
             builder.Property(x => x.Id)
                 .IsRequired()
-                .HasColumnName(setting.DbColumnForId);
+                .HasColumnName(options.DbColumnForId);
 
             builder.Property(x => x.ParentId)
                 .IsRequired()
-                .HasColumnName(setting.DbColumnForDummyTreeEntityParentId);
+                .HasColumnName(options.DbColumnForDummyTreeEntityParentId);
 
             builder.HasOne(x => x.ObjectOfDummyTreeEntity)
                 .WithMany(x => x.ObjectsOfDummyTreeLinkEntity)
                 .HasForeignKey(x => x.Id)
-                .HasConstraintName(setting.DbForeignKeyToDummyTreeEntity);
+                .HasConstraintName(options.DbForeignKeyToDummyTreeEntity);
         }
 
         #endregion Public methods

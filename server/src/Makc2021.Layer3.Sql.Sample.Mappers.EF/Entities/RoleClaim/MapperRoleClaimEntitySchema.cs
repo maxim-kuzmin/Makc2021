@@ -14,8 +14,8 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.RoleClaim
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperRoleClaimEntitySchema(EntitiesOptions entitiesSettings)
-            : base(entitiesSettings)
+        public MapperRoleClaimEntitySchema(EntitiesOptions entitiesOptions)
+            : base(entitiesOptions)
         {
         }
 
@@ -26,30 +26,30 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.RoleClaim
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperRoleClaimEntityObject> builder)
         {
-            Sample.Entities.RoleClaim.RoleClaimEntityOptions setting = EntitiesOptions.RoleClaim;
+            var options = EntitiesOptions.RoleClaim;
 
-            builder.ToTable(setting.DbTable, setting.DbSchema);
+            builder.ToTable(options.DbTable, options.DbSchema);
 
-            builder.HasKey(x => x.Id).HasName(setting.DbPrimaryKey);
+            builder.HasKey(x => x.Id).HasName(options.DbPrimaryKey);
 
             builder.Property(x => x.ClaimType)
-                .HasColumnName(setting.DbColumnForClaimType);
+                .HasColumnName(options.DbColumnForClaimType);
 
             builder.Property(x => x.ClaimValue)
-                .HasColumnName(setting.DbColumnForClaimValue);
+                .HasColumnName(options.DbColumnForClaimValue);
 
             builder.Property(x => x.Id)
-                .HasColumnName(setting.DbColumnForId);
+                .HasColumnName(options.DbColumnForId);
 
             builder.Property(x => x.RoleId)
-                .HasColumnName(setting.DbColumnForRoleEntityId);
+                .HasColumnName(options.DbColumnForRoleEntityId);
 
-            builder.HasIndex(x => x.RoleId).IsUnique().HasDatabaseName(setting.DbUniqueIndexForRoleEntityId);
+            builder.HasIndex(x => x.RoleId).IsUnique().HasDatabaseName(options.DbUniqueIndexForRoleEntityId);
 
             builder.HasOne(x => x.ObjectOfRoleEntity)
                 .WithMany(x => x.ObjectsOfRoleClaimEntity)
                 .HasForeignKey(x => x.RoleId)
-                .HasConstraintName(setting.DbForeignKeyToRoleEntity);
+                .HasConstraintName(options.DbForeignKeyToRoleEntity);
         }
 
         #endregion Public methods    

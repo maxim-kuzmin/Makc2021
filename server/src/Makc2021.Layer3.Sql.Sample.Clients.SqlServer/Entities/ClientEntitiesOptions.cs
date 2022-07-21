@@ -20,13 +20,13 @@ using Makc2021.Layer3.Sql.Sample.Entities.UserToken;
 namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.Entities
 {
     /// <summary>
-    /// Настройки сущностей клиента.
+    /// Параметры сущностей клиента.
     /// </summary>
-    public class ClientEntitiesSettings : EntitiesOptions
+    public class ClientEntitiesOptions : EntitiesOptions
     {
         #region Fields
 
-        private static readonly Lazy<EntitiesOptions> _lazy = new(() => new ClientEntitiesSettings());
+        private static readonly Lazy<EntitiesOptions> _lazy = new(() => new ClientEntitiesOptions());
 
         #endregion Fields
 
@@ -41,7 +41,7 @@ namespace Makc2021.Layer3.Sql.Sample.Clients.SqlServer.Entities
 
         #region Constructors
 
-        private ClientEntitiesSettings()
+        private ClientEntitiesOptions()
         {
             DbDefaults dbDefaults = new()
             {

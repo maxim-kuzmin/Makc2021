@@ -14,8 +14,8 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperSchema(EntitiesOptions entitiesSettings)
-            : base(entitiesSettings)
+        public MapperSchema(EntitiesOptions entitiesOptions)
+            : base(entitiesOptions)
         {
         }
 

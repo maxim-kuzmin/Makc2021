@@ -14,8 +14,8 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyOneToMany
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperDummyOneToManyEntitySchema(EntitiesOptions entitiesSettings)
-            : base(entitiesSettings)
+        public MapperDummyOneToManyEntitySchema(EntitiesOptions entitiesOptions)
+            : base(entitiesOptions)
         {
         }
 
@@ -26,23 +26,23 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.DummyOneToMany
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperDummyOneToManyEntityObject> builder)
         {
-            Sample.Entities.DummyOneToMany.DummyOneToManyEntityOptions setting = EntitiesOptions.DummyOneToMany;
+            var options = EntitiesOptions.DummyOneToMany;
 
-            builder.ToTable(setting.DbTable, setting.DbSchema);
+            builder.ToTable(options.DbTable, options.DbSchema);
 
-            builder.HasKey(x => x.Id).HasName(setting.DbPrimaryKey);
+            builder.HasKey(x => x.Id).HasName(options.DbPrimaryKey);
 
             builder.Property(x => x.Id)
                 .ValueGeneratedOnAdd()
-                .HasColumnName(setting.DbColumnForId);
+                .HasColumnName(options.DbColumnForId);
 
             builder.Property(x => x.Name)
                 .IsRequired()
                 .IsUnicode()
-                .HasMaxLength(setting.DbMaxLengthForName)
-                .HasColumnName(setting.DbColumnForName);
+                .HasMaxLength(options.DbMaxLengthForName)
+                .HasColumnName(options.DbColumnForName);
 
-            builder.HasIndex(x => x.Name).IsUnique().HasDatabaseName(setting.DbUniqueIndexForName);
+            builder.HasIndex(x => x.Name).IsUnique().HasDatabaseName(options.DbUniqueIndexForName);
         }
 
         #endregion Public methods    

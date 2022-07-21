@@ -14,8 +14,8 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserClaim
         #region Constructors
 
         /// <inheritdoc/>
-        public MapperUserClaimEntitySchema(EntitiesOptions entitiesSettings)
-            : base(entitiesSettings)
+        public MapperUserClaimEntitySchema(EntitiesOptions entitiesOptions)
+            : base(entitiesOptions)
         {
         }
 
@@ -26,30 +26,30 @@ namespace Makc2021.Layer3.Sql.Sample.Mappers.EF.Entities.UserClaim
         /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<MapperUserClaimEntityObject> builder)
         {
-            Sample.Entities.UserClaim.UserClaimEntityOptions setting = EntitiesOptions.UserClaim;
+            var options = EntitiesOptions.UserClaim;
 
-            builder.ToTable(setting.DbTable, setting.DbSchema);
+            builder.ToTable(options.DbTable, options.DbSchema);
 
-            builder.HasKey(x => x.Id).HasName(setting.DbPrimaryKey);
+            builder.HasKey(x => x.Id).HasName(options.DbPrimaryKey);
 
             builder.Property(x => x.ClaimType)
-                .HasColumnName(setting.DbColumnForClaimType);
+                .HasColumnName(options.DbColumnForClaimType);
 
             builder.Property(x => x.ClaimValue)
-                .HasColumnName(setting.DbColumnForClaimValue);
+                .HasColumnName(options.DbColumnForClaimValue);
 
             builder.Property(x => x.Id)
-                .HasColumnName(setting.DbColumnForId);
+                .HasColumnName(options.DbColumnForId);
 
             builder.Property(x => x.UserId)
-                .HasColumnName(setting.DbColumnForUserEntityId);
+                .HasColumnName(options.DbColumnForUserEntityId);
 
-            builder.HasIndex(x => x.UserId).HasDatabaseName(setting.DbIndexForUserEntityId);
+            builder.HasIndex(x => x.UserId).HasDatabaseName(options.DbIndexForUserEntityId);
 
             builder.HasOne(x => x.ObjectOfUserEntity)
                 .WithMany(x => x.ObjectsOfUserClaimEntity)
                 .HasForeignKey(x => x.UserId)
-                .HasConstraintName(setting.DbForeignKeyToUserEntity);
+                .HasConstraintName(options.DbForeignKeyToUserEntity);
         }
 
         #endregion Public methods    
